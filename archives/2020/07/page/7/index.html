@@ -18,14 +18,14 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2020/7 - Ye</title>
+  <title>Archive: 2020/7 - Alloceee</title>
   
 
   
 
   <!-- feed -->
   
-    <link rel="alternate" href="/atom.xml" title="Ye">
+    <link rel="alternate" href="/atom.xml" title="Alloceee">
   
 
   <!-- import meta -->
@@ -1025,124 +1025,6 @@
         
           
   <h2 class="title">
-    <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">
-      Java-笔试题
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/" class="leancloud_visitors" data-flag-title="Java-笔试题">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="写一个ArrayList的动态代理类"><a href="#写一个ArrayList的动态代理类" class="headerlink" title="写一个ArrayList的动态代理类"></a>写一个ArrayList的动态代理类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 写一个ArrayList的动态代理类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> AlmostLover</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayListProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; proxyInstance = (List&lt;String&gt;) Proxy.newProxyInstance(list.getClass().getClassLoader(),</span><br><span class="line">                list.getClass().getInterfaces(), <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> method.invoke(list,args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        proxyInstance.add(<span class="string">"你好"</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
     <a href="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
       Java-并发编程
     </a>
@@ -1844,6 +1726,274 @@ sleep()方法被调用以后，持有的锁是不释放的
         
           
   <h2 class="title">
+    <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">
+      Java-笔试题
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/" class="leancloud_visitors" data-flag-title="Java-笔试题">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="写一个ArrayList的动态代理类"><a href="#写一个ArrayList的动态代理类" class="headerlink" title="写一个ArrayList的动态代理类"></a>写一个ArrayList的动态代理类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 写一个ArrayList的动态代理类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> AlmostLover</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayListProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; proxyInstance = (List&lt;String&gt;) Proxy.newProxyInstance(list.getClass().getClassLoader(),</span><br><span class="line">                list.getClass().getInterfaces(), <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> method.invoke(list,args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        proxyInstance.add(<span class="string">"你好"</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+      JS原型和原型链
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="leancloud_visitors" data-flag-title="JS原型和原型链">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="js的原型和原型链"><a href="#js的原型和原型链" class="headerlink" title="js的原型和原型链"></a>js的原型和原型链</h1><p>构造函数创建对象：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.name = <span class="string">'Kevin'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
+
+<p>Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person</p>
+<h5 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h5><p>每个函数都有一个 prototype 属性<br> 每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 虽然写在注释里，但是你要注意：</span></span><br><span class="line"><span class="comment">// prototype是函数才会有的属性</span></span><br><span class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(person1.name) <span class="comment">// Kevin</span></span><br><span class="line"><span class="built_in">console</span>.log(person2.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-48851bf37a08259d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/556/format/webp" alt="img"></p>
+<p>image.png</p>
+<h5 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h5><p>每一个JavaScript对象(除了 null )都具有的一个属性，叫<strong>proto</strong>，这个属性会指向该对象的原型</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(person.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-e7476a8697e97aab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/567/format/webp" alt="img"></p>
+<p>image.png</p>
+<h5 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h5><p>每个原型都有一个 constructor 属性指向关联的构造函数 实例原型指向构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person &#x3D;&#x3D;&#x3D; Person.prototype.constructor); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-0cac772635e8a128.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/518/format/webp" alt="img"></p>
+<p>image.png</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.__proto__ == Person.prototype) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.constructor == Person) <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 顺便学习一个ES5的方法,可以获得对象的原型</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(person) === Person.prototype) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="实例与原型"><a href="#实例与原型" class="headerlink" title="实例与原型"></a>实例与原型</h6><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">person.name = <span class="string">'Daisy'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Daisy</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> person.name;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们给实例对象 person 添加了 name 属性，当我们打印 person.name 的时候，结果自然为 Daisy。</p>
+<p>但是当我们删除了 person 的 name 属性时，读取 person.name，从 person 对象中找不到 name 属性就会从 person 的原型也就是 person.<strong>proto</strong> ，也就是 Person.prototype中查找，幸运的是我们找到了 name 属性，结果为 Kevin。</p>
+<h5 id="原型与原型"><a href="#原型与原型" class="headerlink" title="原型与原型"></a>原型与原型</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">obj.name = <span class="string">'Kevin'</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-293b8fe01cf2ef5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/609/format/webp" alt="img"></p>
+<p>image.png</p>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Object.prototype.__proto__ &#x3D;&#x3D;&#x3D; null) &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-3089c135df71c956.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/604/format/webp" alt="img"></p>
+<p>image.png</p>
+<p>JavaScript 默认并不会<strong>复制</strong>对象的属性，相反，JavaScript 只是在两个对象之间创建一个<strong>关联</strong>，这样，一个对象就可以通过委托访问另一个对象的属性和函数，所以与其叫继承，<strong>委托</strong>的说法反而更准确些</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2020/07/15/Java-%E9%9D%A2%E8%AF%95%E9%A2%98/">
       Java-面试题
     </a>
@@ -2044,156 +2194,6 @@ sleep()方法被调用以后，持有的锁是不释放的
 <li><p>缺点：1、可能会加载应用程序不需要访问的对象，白白浪费许多内存空间；2、复杂的数据库表连接也会影响检索性能；</p>
 </li>
 </ul>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/">
-      JS原型和原型链
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="leancloud_visitors" data-flag-title="JS原型和原型链">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="js的原型和原型链"><a href="#js的原型和原型链" class="headerlink" title="js的原型和原型链"></a>js的原型和原型链</h1><p>构造函数创建对象：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.name = <span class="string">'Kevin'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
-
-<p>Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person</p>
-<h5 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h5><p>每个函数都有一个 prototype 属性<br> 每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 虽然写在注释里，但是你要注意：</span></span><br><span class="line"><span class="comment">// prototype是函数才会有的属性</span></span><br><span class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(person1.name) <span class="comment">// Kevin</span></span><br><span class="line"><span class="built_in">console</span>.log(person2.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-48851bf37a08259d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/556/format/webp" alt="img"></p>
-<p>image.png</p>
-<h5 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h5><p>每一个JavaScript对象(除了 null )都具有的一个属性，叫<strong>proto</strong>，这个属性会指向该对象的原型</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(person.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-e7476a8697e97aab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/567/format/webp" alt="img"></p>
-<p>image.png</p>
-<h5 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h5><p>每个原型都有一个 constructor 属性指向关联的构造函数 实例原型指向构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person &#x3D;&#x3D;&#x3D; Person.prototype.constructor); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
-
-<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-0cac772635e8a128.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/518/format/webp" alt="img"></p>
-<p>image.png</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.__proto__ == Person.prototype) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.constructor == Person) <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 顺便学习一个ES5的方法,可以获得对象的原型</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(person) === Person.prototype) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="实例与原型"><a href="#实例与原型" class="headerlink" title="实例与原型"></a>实例与原型</h6><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">person.name = <span class="string">'Daisy'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Daisy</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> person.name;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，我们给实例对象 person 添加了 name 属性，当我们打印 person.name 的时候，结果自然为 Daisy。</p>
-<p>但是当我们删除了 person 的 name 属性时，读取 person.name，从 person 对象中找不到 name 属性就会从 person 的原型也就是 person.<strong>proto</strong> ，也就是 Person.prototype中查找，幸运的是我们找到了 name 属性，结果为 Kevin。</p>
-<h5 id="原型与原型"><a href="#原型与原型" class="headerlink" title="原型与原型"></a>原型与原型</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">obj.name = <span class="string">'Kevin'</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-293b8fe01cf2ef5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/609/format/webp" alt="img"></p>
-<p>image.png</p>
-<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Object.prototype.__proto__ &#x3D;&#x3D;&#x3D; null) &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
-
-<p><img src="https:////upload-images.jianshu.io/upload_images/1490251-3089c135df71c956.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/604/format/webp" alt="img"></p>
-<p>image.png</p>
-<p>JavaScript 默认并不会<strong>复制</strong>对象的属性，相反，JavaScript 只是在两个对象之间创建一个<strong>关联</strong>，这样，一个对象就可以通过委托访问另一个对象的属性和函数，所以与其叫继承，<strong>委托</strong>的说法反而更准确些</p>
 
       
     </div>
@@ -2591,7 +2591,7 @@ sleep()方法被调用以后，持有的锁是不释放的
         
         
         
-          <p><span id="jinrishici-sentence">Ye</span></p>
+          <p><span id="jinrishici-sentence">Alloceee</span></p>
           <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
         
       </div>

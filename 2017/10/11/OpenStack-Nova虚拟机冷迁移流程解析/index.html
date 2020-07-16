@@ -16,7 +16,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>OpenStack Nova虚拟机冷迁移流程解析 - Ye</title>
+  <title>OpenStack Nova虚拟机冷迁移流程解析 - Alloceee</title>
   
     <meta name="keywords" content="Nova,OpenStack">
   
@@ -30,7 +30,7 @@
 
   <!-- feed -->
   
-    <link rel="alternate" href="/atom.xml" title="Ye">
+    <link rel="alternate" href="/atom.xml" title="Alloceee">
   
 
   <!-- import meta -->
@@ -659,7 +659,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/&title=OpenStack Nova虚拟机冷迁移流程解析 - Ye&summary=1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/&title=OpenStack Nova虚拟机冷迁移流程解析 - Alloceee&summary=1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：
 12$ nova migrate server_id$ nova resize-confirm server_id
 
 看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。"
@@ -674,7 +674,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/&title=OpenStack Nova虚拟机冷迁移流程解析 - Ye&summary=1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/&title=OpenStack Nova虚拟机冷迁移流程解析 - Alloceee&summary=1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：
 12$ nova migrate server_id$ nova resize-confirm server_id
 
 看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。"
@@ -689,7 +689,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/&title=OpenStack Nova虚拟机冷迁移流程解析 - Ye&summary=1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/&title=OpenStack Nova虚拟机冷迁移流程解析 - Alloceee&summary=1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：
 12$ nova migrate server_id$ nova resize-confirm server_id
 
 看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。"
