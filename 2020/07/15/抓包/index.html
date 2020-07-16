@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>抓包 - Ye</title>
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ye">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">抓包</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/07/15/%E6%8A%93%E5%8C%85/">
+      抓包
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          
+          <p>0×01 前言</p>
+<blockquote>
+<p><strong>在平时和其他大佬交流时，总会出现这么些话，“抓个包看看就知道哪出问题了”，“抓流量啊，payload都在里面”，“这数据流怎么这么奇怪”。这里出现的名词，都是差不多的意思吗？packet,frame,flow,session区别是什么，你真的分的清楚吗？</strong></p>
+</blockquote>
+<p>平时关系还不大，这几个名词随便用，大家也都知道指什么，这段时间在分析协议类型的漏洞，终于意识到基础知识的浅薄，才知道自己根本没分清这几个基础概念，看国外一些技术文档不明所以，于是查了大量资料，写出了本文。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/msM7PibnMwSDqGUXoU7epUy3aO8kibnyV0X6S026I9oH046ndzc5KHPiag4WWrqAaKfTdoYVXlHC9YhNY4iaU2jG2Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>0×02 区分control plane和data plane</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/msM7PibnMwSDqGUXoU7epUy3aO8kibnyV0kTj0kNhkXziaZFZyHWpQ1DmDTNHLs1FsmE0vun0tmyqWHtribPZtCibYw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>control plane, data plane是实现网络设备所需要理解的两个基本的概念。data plane一般用于快速转发，而control plane是为快速转发准备必要的信息。control plane包括路由协议，设备管理，命令行，ARP，IGMP等；而data plane一般是转发包。这样的划分，目的是把系统的主要工作和次要工作分离开，避免不同类型的处理相互干扰。在一个网络设备里面，转发无疑是最主要的工作，它具有最高的优先级，而路由协议，由于并不需要在短时间内处理大量的包，所以可以把它放到次一级的优先级里面。data plane可以借助asic或者NP等优化，可以达到很高的速度，而control plane，则可以借助于通用的库，或者系统，以达到更好的保护。</p>
+<p>control plane的os和data plane的os，作用完全不同。data plane的os需要实时响应，并且需要更快速，高效的内存管理，队列管理，定时器管理等；而control plane的os则倾向于更好的保护，更简便的编程方式，以及快速移植等。当然，哪些任务放到control plane，哪些任务放到data plane，是需要在实践中去选择。举个例子，由于arp学习和应答的时间是不确定的，而mac learning则是立即生效的。所以arp学习和应答一般放在control plane；而mac learning则放在data plane。</p>
+<p>就data plane来说，又可分control path和data path。control path同样是为data path准备必要的信息。有时为了更快的速度，避免control plane和data plane过多的交互，把control plane的某些工作拿到data plane上来做，比如ICMP的应答等。</p>
+<p>0×03 区分session和flow</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/msM7PibnMwSDqGUXoU7epUy3aO8kibnyV0QgIWrkQXkkrOBO8eicSGYMlbyy5wLBvP88WM7SbicS8dcVph1w3ctCxw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>flow是发送方和接收方之间的数据包中的data plane stream，其共享关键IP报头信息。例如，10.1.1.1端口12398处的客户端与用于SSH的192.168.1.1端口22处的服务器通信是specific stream，可以在关键字段不更改时捕获该特定stream。</p>
+<p>session是发送方和接收方之间的control plane通信。TCP 3次握手创建会话，在发送方的源端口和接收方的目标侦听端口之间建立连接。TCP窗口大小，初始序列和确认值以及keepalive是作为构建session的一部分进行协商的。</p>
+<p>简单地说，flow代表了data plane,而session代表了control plane。</p>
+<p>0×04 区分datagram和stream</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/msM7PibnMwSDqGUXoU7epUy3aO8kibnyV0WibsdDtQo5icA4mCMyCVL54rxfvRx5BwicPiaNkIct0A7wiaiau9dFQ6PNYQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>stream是我们通常认为的通信渠道。比如远程登录，文件传输，邮件传递 ，这个都是使用stream。Strean就像管道一样。它有两个端点。数据从一端放入，另一端出来。没有任何数据以任何方式被复制，丢弃或重组。两个流可以组合在一起形成全双工连接。</p>
+<p>datagram（通常称为packet）本质上更具原子性。它是一小段数据，通常要求小于最大长度（通常在256到2000字节范围内）。datagram是完全自包含的,有源和目的地，但不能被称为connection。数据报与之前或之后的任何其他数据都没有任何关系。</p>
+<p>很难理解吗？</p>
+<p>我们再打个比方。</p>
+<p>stream就像打电话- 一方拨打电话，另一方接听，你们互相打招呼（TCP中的SYN / ACK），然后交换信息。一旦完成，你就说再见（TCP中的FIN / ACK）。如果一方没有听到再见，他们通常会打电话给另一方，因为这是一个意想不到的事件; 也就是说通常客户端将重新连接到服务器。这样可以保证数据不会以与我们发送的顺序不同的顺序到达，并且可以保证数据不会被损坏。</p>
+<p>datagram就像在班级里传小纸条。如果你和想要拿到小纸条的人不坐在一起，这个小纸条将在其他人之间传递过去。小纸条可能无法到达目的地，并且可能会在到达目的地时被修改过。另一种两款，如果将两个小纸条传递给同一个人，两个小纸条可能不会按照我们需要的顺序到达，因为小纸条们通过教室的路线可能不一样，一个人可能不会像另一个那样快速传递小纸条，等等会有很多因素影响到小纸条的传递。</p>
+<p>尽管大多数网络通信都使用stream，但所有Internet传输都采用datagram的形式，实际上是通过TCP协议使用datagram来模拟Internet stream。而为了诊断因特网故障，可以使用诸如TCPdump这类packet decoder来查看各个packet。</p>
+<p>0×05 区别Packet和frame</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/msM7PibnMwSDqGUXoU7epUy3aO8kibnyV01yMM4BFicgNLWCBiaWZE6xjJNJBLUrWvf09UtfBEoYr3BKX4pxaDeIXw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>为了简化问题，我们将frame和packet想象为将要从一个人发送到另一个人的信息的信封。frame和packet之间的关键区别在于它们如何封装信息，而这取决于信息在哪儿被发送。</p>
+<p>想象一下，一家公司有跨部门邮件，一个人可以将文档发送给其本地组织中的另一个人。内容放在内部信封中，发送者在“发件人”字段中写下他们的姓名和部门，然后在“收件人”字段中写下收件人的姓名和部门。发送信封时，邮件室识别内部使用信封，读取目的地名称和部门，使用目录将该信息转换为物理位置（办公室）并将其传递给收件人。信封永远不会离开本地组织，信封的所有传递行为都由本地处理。</p>
+<p>部门间信封不能发送到公司外部，因为信封上没有邮寄地址。要将内容发送到本地以外的办公室，需要将办公室间信封放在邮政信封内，并贴上适当的邮政地址标签。</p>
+<p>Frame以类似的方式工作。它是具有源和目标地址的数据的容器，用于在同一网络上的两个位置之间传递称为payload的信息。Frame的源和目标地址不是名称和部门，而是计算机，平板电脑，IP电话，物联网设备等的MAC地址，这是每个以太网设备在这个世界上唯一的ID号。</p>
+<p>frame由网络接口设备在TCP/IP协议栈的第2层生成，payload大小取决于传输的数据类型。frame被发送到网络上，以太网交换机根据其存储器中的MAC表检查frame的目的地址。MAC表告诉交换机哪个物理端口(RJ45端口)与设备相关联，该设备的MAC地址与帧的目的地址相匹配。</p>
+<p>交换机将frame转发到由MAC表确定的物理端口。如果电缆直接连接到目的设备，传输就完成了。如果电缆连接到另一台交换机，下一台交换机将重复查找和转发过程，直到frame到达预期目的地。</p>
+<p>这一切都发生在LAN中的第2层交换机上。与部门间邮件一样，frame不能在本地/专用网络之外发送到因特网上，因为它没有正确的地址。要将数据发送到不同网络或互联网服务器上的设备，必须在packet中构建一个frame。</p>
+<p>很像部门间信封需要放在邮政信封内发送到不同的办公室的例子，Ethernet frame用附加信息封装，以创建一个IPpacket。</p>
+<p>虽然网络设备的MAC地址是唯一，永久的，但IP地址通常会临时分配给网络设备，并随着设备连接到不同的网络而改变。例如，平板电脑每次连接到不同的无线网络时，其IP地址都会发生变化。packet在网络的第3层创建，允许不同局域网之间交换信息，通常是通过路由器。路由器将小型网络互连在一起，允许使用IP地址而不是MAC地址进行更大规模的信息交换。</p>
+<p>第3层packet允许路由器使用标识网络的IP地址和网络上设备的临时地址来提供网络间的数据传输(互联网)。一旦进入网络，网络内(局域网)数据转发由二层交换机处理，它读取frame的MAC地址，并将其转发到目的设备，在那里以太网控制器提取payload，完成不同网络上设备之间的信息传输过程。</p>
+<p>0×06 区分packet capture和flow capture(抓包和抓流量)</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/msM7PibnMwSDqGUXoU7epUy3aO8kibnyV0Ngf4xV9bowJAx7PmEZJZROhjhIV3W9tdOVykZubIMIOkibic0ibFcSm8A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>Packet capture可以让我们在网络数据包通过网络时拿到镜像。而flow data通常包含在网络上设置的连接的摘要。它们都是非常有用的故障排除技术，可以找出网络上发生的故障。那么这两种技术有什么区别呢？</p>
+<p>Flow capture:在OSI模型的第3层运行的大多数路由器和交换机都具有flow导出选项。有许多flow标准，包括NetFlow，sFlow和IPFIX。只需安装一个flow连接器，它可以处理网络设备使用的任何flow标准。基于flow的分析可以很好地找出网络中某些部分的通信状况。它的优点是：</p>
+<blockquote>
+<p>1.易于在第3层设备上设置操作；</p>
+<p>2.不需要布线；终端用户系统不需要软件客户端或代理。</p>
+</blockquote>
+<p>缺点是：</p>
+<blockquote>
+<p>1.某些交换机上没有flow选项；</p>
+<p>2.想要解决问题时缺少详细信息；</p>
+<p>3.当应用程序依赖其他协议时，不适合在网络边缘进行监控</p>
+</blockquote>
+<p>Packet capture: 抓包能够捕获在网络中传输的网络数据包的镜像。大多数交换机允许在不影响网络性能的情况下设置镜像端口。通常，深度数据包检测(DPI)应用程序连接到镜像端口，并从数据包中提取某些信息，以便我们可以发现网络上发生了什么。优点是：</p>
+<blockquote>
+<p>1.更好地分析应用程序和用户行为，非常适合监控重要应用程序，服务器或至关重要的Internet连接；</p>
+<p>2.会得到更多的信息，如应用程序，文件，网站和主机名；</p>
+<p>3.终端用户系统上不需要软件客户端或代理。</p>
+</blockquote>
+<p>缺点是：</p>
+<blockquote>
+<p>1.需要在镜像端口和DPI应用程序之间连接物理线路；</p>
+<p>2.需要确保镜像端口在繁忙的网络上不会过载。</p>
+</blockquote>
+<p>在不清楚区别之前，我们可能会将两者混为一谈，现在应该已经明确区别了。那我们应该使用哪种技术？在一般情况下，两者都需要用到。如果有大量的WAN链接并且需要一种简单的方法来获得最大程度的可见性，抓流量可能更好。而抓包可以为我们提供网络上某些节点的更多详细信息。两者的结合意味着我们可以更轻松地检测诸如带宽占用，以及查看正在使用的应用程序等情况。</p>
+<p>0×07 结语</p>
+<p>需要区分的点都很多，我在文中已经比较好的安排，一步步引出来，从control plane,data plane的区别开始讨论，因为这是区分0×03 flow和session的基础，在0×03中提到了stream的概念，于是在0×04中讨论stream和datagram的区别，在0×04最后提到了用于解码分析packet的tcpdump，引出了packet，于是自然在0×05中讨论packet和frame。以上基础概念和去都明确之后，最后讨论了抓包（packet capture）和抓流量（flow capture）的区别及各自优缺点。</p>
+<p>Fiddler简介以及web抓包</p>
+<p>一.Fiddler简介</p>
+<p>​     简单来说，Fiddler是一个http协议调试代理工具，它能够记录并检查所有你的电脑和互联网之间的http通讯。网上简介很多，我们不多说。</p>
+<p>二.Fiddler版本</p>
+<p>​     Fiddler有Fiddler2和Fiddler4，两者区别在于，基于的framework不同，也就是系统支持不一样，功能原理都是一样的；电脑操作系统低于win7或是XP系统用Fiddler2就行，win7或win7以上版本，用Fiddler4 版本，建议都用Fiddler4版本；</p>
+<p>三.Fiddler软件介绍</p>
+<p>​     安装完成之后点击启动Fiddler，Fiddler界面见下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPpo752EicchiaDTz5ibibhpROF0TdQ8E0rPCicVLuaIjAJQ2vn5VBHlzS8SGDQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>1.Fiddler开关</p>
+<p>​     界面左下角或点击F12控制Fiddler开关，开关是“Capturing”；</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPpo9N04cdCV1QEAzX1iaTBRJTf5zrNlehUeSe2lx11T7jP4DPIzLyXpofA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"> </p>
+<p>2.启动之后Fiddler代理永远是开着的；</p>
+<p>3.浏览器代理设置</p>
+<p>（1）IE或360浏览器代理都是自动开启的；</p>
+<p>​     代理查看方式：浏览器菜单栏上：工具—&gt;Internet选项—&gt;连接—&gt;局域网设置—&gt;高级代理。</p>
+<p>​    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPporRln2g3DyhBNJ9ia8QQXerfHkZBFfXbdHQPw2O8pWUuG8NPVtvKYzKw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>​     Fiddler开启之后，代理自动修改；</p>
+<p>（2）火狐浏览器</p>
+<p>​     火狐浏览器启动之后，Fiddler没有反应，是因为火狐代理是自己独立的，不会像IE、360那样自动改变；</p>
+<p>​     代理设置：<img src="https://mmbiz.qpic.cn/mmbiz_png/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPpo4ErmEg8wic6f6GQztgalRiaGShIBcWPI6PQib1vOsIbX6OYtaVOBZWQcA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img">——&gt;选项——&gt;高级——&gt;网络——&gt;连接——&gt;设置——&gt;手动配置代理——&gt;Http代理和端口输入（与Fiddler代理端口保持一致）；</p>
+<p>（3）谷歌浏览器代理设置</p>
+<p>​     工具——&gt;设置——&gt;拖动页面到底部，点击：显示高级设置按钮——&gt;网络——&gt;更改代理服务器设置——&gt;点击：局域网设置——&gt;高级——&gt;进入代理服务器设置；</p>
+<p>​     谷歌和IE都是用的系统代理。</p>
+<p>4.Fiddler自己的端口：</p>
+<p>​     查看方式：Tools——&gt;TelerikFiddler Options——&gt;Connections下的Fiddler listens on port:8888，8888就是我们Fiddler默认的端口号；</p>
+<p>​     Fiddler默认端口号是8888（文章中有图说明端口号是哪一个），如果要修改，修改之后要重启Fiddler。</p>
+<p>5.Fiddler抓包格式</p>
+<p>​     Fiddler只能抓取Http和https格式的，但是默认只能抓取http，想要抓取https我们的设置一下，步骤见下：</p>
+<p>​     Tools——&gt;Telerik Fiddler Options——&gt;HTTPS下，勾选：CaptureHTTPS CONNECTs、Decrypt HTTPS traffic 、ignore server certificate errors(unsafe)——&gt;点击OK，弹出证书之后直接确认就行。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPpoxoyFvHlKybTib78hsok1dXvUHSsU4T9DKXqmU873GW7SnhEVcicp7PWA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>6.Fiddler远程机制</p>
+<p>​     Fiddler是代理机制，所以我们也可以实现远程操作，Fiddler默认只开启本地，若要抓取远程需要打开远程设置。</p>
+<p>​     设置：Tools——&gt;TelerikFiddler Options——&gt;Connections——&gt;勾选Allow remote computers connect，此时就可以远程操作；</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPpoZib2gbJdeh4wqOgzmqUOP8aiaPxicCOUo6pCMVm0ZEVLYuaO5WLI20ulw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>7.Fiddler远程实例</p>
+<p>​     我直接用另一台电脑，远程捕获我自己电脑。</p>
+<p>（1）另一台电脑相关设置</p>
+<p>​     另一台电脑上安装Fiddler并启动，查询另一台电脑的IP，开始——&gt;运行或（win+R）——&gt;输入cmd，然后输入ipconfig，查看IP和Fiddler端口号，并记录：</p>
+<p>​     Ip为：192.168.103.171，Fiddler端口号为：8888；</p>
+<p>（2）我的电脑相关设置</p>
+<p>​     点击浏览器，以搜狐浏览器来说，修改代理</p>
+<p>​     http代理为：另一个机子上的IP，端口值为Fiddler的端口</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPpo2ibYXSJXBhpsSzYib7U0ypynib97CXXeiblj5B3ASCfcuaZ8ia1tA5tBBMA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>（3）结果</p>
+<p>​     在我本地浏览器点击，另一个机子中Fiddler上捕获的数据界面见下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/y8O9gpPSonAJM4ddVzcqDpmI0SYmwPpoN6d2sVcyqqk4j8GP3ic70fWwibUAadPP0B7mCHeTnR6nhUtLQW9pibC7g/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>（4）说明</p>
+<p>​     指定代理之后，无论Fiddler开关是关闭还是打开，数据都会传输过来，见上图。</p>
+<p>​     本地远程其他机子，方法一致，就是讲要远程的机子代理改为本地电脑IP+Fiddler端口号即可。</p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/%E6%8A%93%E5%8C%85/>http://yoursite.com/2020/07/15/%E6%8A%93%E5%8C%85/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-02T20:31:35+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jun 2, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/%E6%8A%93%E5%8C%85/&title=抓包 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/%E6%8A%93%E5%8C%85/&title=抓包 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/%E6%8A%93%E5%8C%85/&title=抓包 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2020/07/15/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-ElasticSearch/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ElasticSearch的使用</p>
+                <p class='content'>ElasticSearchWindows下安装elasticsearch在安装Elasticsearch引擎之前，必须安装ES需要的软件环境
+注意：安装elasticsearch7.4运行需要j...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/07/15/Redis-%E9%9D%A2%E8%AF%95%E9%A2%98/'>
+                <p class='title'>Redis-面试题<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>1.Redis是什么Redis是C语言开发的一个开源的（遵从BSD协议）高性能键值对（key-value）的内存数据库，可以用做数据库、缓存、消息中间件等
+它是一种NoSQL（not-only ...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      <section id="comments">
+        <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+      </section>
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

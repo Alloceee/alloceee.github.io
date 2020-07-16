@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+      <meta name="robots" content="noindex,follow">
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>Tag: webpack - Ye</title>
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ye">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover ' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">false</div>
+  <div id="pjax-pageTitle"></div>
+  <div id="pjax-enable-cover">true</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+
+<div class='l_main'>
+  
+    
+      
+  <section class="post-list ">
+    
+      
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/webpack/">
+      webpack工程化
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/webpack/" class="leancloud_visitors" data-flag-title="webpack工程化">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/webpack/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/webpack/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="webpack工程化"><a href="#webpack工程化" class="headerlink" title="webpack工程化"></a>webpack工程化</h1><ul>
+<li>webpack基础用法（webpack介绍，webpack配置模板，webpack核心概念与用法）</li>
+<li>webpack高级用法（Tree Shaking，Code Splitting，Shimming，动态import）</li>
+<li>webpack实战配置（React开发构建，多页面打包方面，构建Library，PWA构建，ESLint规范，单元测试）</li>
+<li>webapck构建优化（打包分析，多进程构建，区分环境，代码解压）</li>
+<li>webpack原理（如果自己便携loader/plugins,node调试工具，梳理webpack打包原理）</li>
+</ul>
+<h2 id="Webpack-入门教程"><a href="#Webpack-入门教程" class="headerlink" title="Webpack 入门教程"></a>Webpack 入门教程</h2><ul>
+<li>Webpack 是一个前端资源加载/打包工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。</li>
+</ul>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/01/what-is-webpack.png" alt="img"></p>
+<p>从图中我们可以看出，Webpack 可以将多种静态资源 js、css、less 转换成一个静态文件，减少了页面的请求。</p>
+<p>接下来我们简单为大家介绍 Webpack 的安装与使用。</p>
+<h3 id="安装-Webpack"><a href="#安装-Webpack" class="headerlink" title="安装 Webpack"></a>安装 Webpack</h3><p>在安装 Webpack 前，你本地环境需要支持 <a href="https://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">node.js</a>。</p>
+<p>由于 npm 安装速度慢，本教程使用了淘宝的镜像及其命令 cnpm，安装使用介绍参照：<a href="https://www.runoob.com/nodejs/nodejs-npm.html" target="_blank" rel="noopener">使用淘宝 NPM 镜像</a>。</p>
+<p>使用 cnpm 安装 webpack：</p>
+<p>cnpm install webpack -g</p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>接下来我们创建一个目录 app：</p>
+<p>mkdir app</p>
+<p>在 app 目录下添加 runoob1.js 文件，代码如下：</p>
+<h2 id="app-runoob1-js-文件"><a href="#app-runoob1-js-文件" class="headerlink" title="app/runoob1.js 文件"></a>app/runoob1.js 文件</h2><p>document.write(“It works.”);</p>
+<p>在 app 目录下添加 index.html 文件，代码如下：</p>
+<h2 id="app-index-html-文件"><a href="#app-index-html-文件" class="headerlink" title="app/index.html 文件"></a>app/index.html 文件</h2><html>    <head>        <meta charset="utf-8">    <link rel="alternate" href="/atom.xml" title="Ye" type="application/atom+xml">
+</head>    <body>        <script type="text/javascript" src="bundle.js" charset="utf-8"></script>    </body> </html>
+
+<p>接下来我们使用 webpack 命令来打包：</p>
+<p>webpack runoob1.js bundle.js</p>
+<p>执行以上命令会编译 runoob1.js 文件并生成bundle.js 文件，成功后输出信息如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Hash: a41c6217554e666594cb</span><br><span class="line">Version: webpack 1.12.13</span><br><span class="line">Time: 50ms</span><br><span class="line">    Asset     Size  Chunks             Chunk Names</span><br><span class="line">bundle.js  1.42 kB       0  [emitted]  main</span><br><span class="line">   [0] .&#x2F;runoob1.js 29 bytes &#123;0&#125; [built]</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中打开 index.html，输出结果如下：</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/01/08C6036B-1B89-444A-94D7-4A920105E21B.jpg" alt="img"></p>
+<h3 id="创建第二个-JS-文件"><a href="#创建第二个-JS-文件" class="headerlink" title="创建第二个 JS 文件"></a>创建第二个 JS 文件</h3><p>接下来我们创建另外一个 js 文件 runoob2.js，代码如下所示：</p>
+<h2 id="app-runoob2-js-文件"><a href="#app-runoob2-js-文件" class="headerlink" title="app/runoob2.js 文件"></a>app/runoob2.js 文件</h2><p>module.exports = “It works from runoob2.js.”;</p>
+<p>更新 runoob1.js 文件，代码如下：</p>
+<h2 id="app-runoob1-js-文件-1"><a href="#app-runoob1-js-文件-1" class="headerlink" title="app/runoob1.js 文件"></a>app/runoob1.js 文件</h2><p>document.write(require(“./runoob2.js”));</p>
+<p>接下来我们使用 webpack 命令来打包：</p>
+<p>webpack runoob1.js bundle.js  Hash: dcf55acff639ebfe1677 Version: webpack 1.12.13 Time: 52ms    Asset     Size  Chunks             Chunk Names bundle.js  1.55 kB       0  [emitted]  main   [0] ./runoob1.js 41 bytes {0} [built]   [1] ./runoob2.js 46 bytes {0} [built]</p>
+<p>在浏览器访问，输出结果如下所示：</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/01/40F7221F-417F-493B-BD47-1C5D03D39370.jpg" alt="img"></p>
+<p>webpack 根据模块的依赖关系进行静态分析，这些文件(模块)会被包含到 bundle.js 文件中。Webpack 会给每个模块分配一个唯一的 id 并通过这个 id 索引和访问模块。 在页面启动时，会先执行 runoob1.js 中的代码，其它模块会在运行 require 的时候再执行。</p>
+<hr>
+<h2 id="LOADER"><a href="#LOADER" class="headerlink" title="LOADER"></a>LOADER</h2><p>Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。</p>
+<p>所以如果我们需要在应用中添加 css 文件，就需要使用到 css-loader 和 style-loader，他们做两件不同的事情，css-loader 会遍历 CSS 文件，然后找到 url() 表达式然后处理他们，style-loader 会把原来的 CSS 代码插入页面中的一个 style 标签中。</p>
+<p>接下来我们使用以下命令来安装 css-loader 和 style-loader(全局安装需要参数 -g)。</p>
+<p>cnpm install css-loader style-loader</p>
+<p>执行以上命令后，会再当前目录生成 node_modules 目录，它就是 css-loader 和 style-loader 的安装目录。</p>
+<p>接下来创建一个 style.css 文件，代码如下：</p>
+<h2 id="app-style-css-文件"><a href="#app-style-css-文件" class="headerlink" title="app/style.css 文件"></a>app/style.css 文件</h2><p>body {    background: yellow; }</p>
+<p>修改 runoob1.js 文件，代码如下：</p>
+<h2 id="app-runoob1-js-文件-2"><a href="#app-runoob1-js-文件-2" class="headerlink" title="app/runoob1.js 文件"></a>app/runoob1.js 文件</h2><p>require(“!style-loader!css-loader!./style.css”); document.write(require(“./runoob2.js”));</p>
+<p>接下来我们使用 webpack 命令来打包：</p>
+<p>webpack runoob1.js bundle.js  Hash: a9ef45165f81c89a4363 Version: webpack 1.12.13 Time: 619ms    Asset     Size  Chunks             Chunk Names bundle.js  11.8 kB       0  [emitted]  main   [0] ./runoob1.js 76 bytes {0} [built]   [5] ./runoob2.js 46 bytes {0} [built]    + 4 hidden modules</p>
+<p>在浏览器访问，输出结果如下所示：</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/01/9ABEBA1F-DF8C-4019-BC6A-5B8D2A3A7BA4.jpg" alt="img"></p>
+<p>require CSS 文件的时候都要写 loader 前缀 <strong>!style-loader!css-loader!</strong>，当然我们可以根据模块类型（扩展名）来自动绑定需要的 loader。 将 runoob1.js 中的 <strong>require(“!style-loader!css-loader!./style.css”)</strong> 修改为 <strong>require(“./style.css”)</strong> ：</p>
+<h2 id="app-runoob1-js-文件-3"><a href="#app-runoob1-js-文件-3" class="headerlink" title="app/runoob1.js 文件"></a>app/runoob1.js 文件</h2><p>require(“./style.css”); document.write(require(“./runoob2.js”));</p>
+<p>然后执行：</p>
+<p>webpack runoob1.js bundle.js –module-bind ‘css=style-loader!css-loader’</p>
+<p>在浏览器访问，输出结果如下所示：</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/01/9ABEBA1F-DF8C-4019-BC6A-5B8D2A3A7BA4.jpg" alt="img"></p>
+<p>显然，这两种使用 loader 的方式，效果是一样的。</p>
+<hr>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>我们可以将一些编译选项放在配置文件中，以便于统一管理：</p>
+<p>创建 webpack.config.js 文件，代码如下所示：</p>
+<h2 id="app-webpack-config-js-文件"><a href="#app-webpack-config-js-文件" class="headerlink" title="app/webpack.config.js 文件"></a>app/webpack.config.js 文件</h2><p>module.exports = {    entry: “./runoob1.js”,    output: {        path: __dirname,        filename: “bundle.js”    },    module: {        loaders: [            { test: /.css$/, loader: “style-loader!css-loader” }        ]    } };</p>
+<p>接下来我们只需要执行 webpack 命令即可生成 bundle.js 文件：</p>
+<p>webpack  Hash: 4fdefac099a5f36ff74b Version: webpack 1.12.13 Time: 576ms    Asset     Size  Chunks             Chunk Names bundle.js  11.8 kB       0  [emitted]  main   [0] ./runoob1.js 65 bytes {0} [built]   [5] ./runoob2.js 46 bytes {0} [built]    + 4 hidden modules</p>
+<p>webpack 命令执行后，会默认载入当前目录的 webpack.config.js 文件。</p>
+<hr>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>插件在 webpack 的配置信息 plugins 选项中指定，用于完成一些 loader 不能完成的工。</p>
+<p>webpack 自带一些插件，你可以通过 cnpm 安装一些插件。</p>
+<p>使用内置插件需要通过以下命令来安装：</p>
+<p>cnpm install webpack –save-dev</p>
+<p>比如我们可以安装内置的 BannerPlugin 插件，用于在文件头部输出一些注释信息。</p>
+<p>修改 webpack.config.js，代码如下：</p>
+<h2 id="app-webpack-config-js-文件-1"><a href="#app-webpack-config-js-文件-1" class="headerlink" title="app/webpack.config.js 文件"></a>app/webpack.config.js 文件</h2><p>var webpack=require(‘webpack’);  module.exports = {    entry: “./runoob1.js”,    output: {        path: __dirname,        filename: “bundle.js”    },    module: {        loaders: [            { test: /.css$/, loader: “style-loader!css-loader” }        ]    },    plugins:[    new webpack.BannerPlugin(‘菜鸟教程 webpack 实例’)    ] };</p>
+<p>然后运行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack</span><br></pre></td></tr></table></figure>
+
+<p>打开 bundle.js，可以看到文件头部出现了我们指定的注释信息。</p>
+<hr>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>当项目逐渐变大，webpack 的编译时间会变长，可以通过参数让编译的输出内容带有进度和颜色。</p>
+<p>webpack –progress –colors</p>
+<p>如果不想每次修改模块后都重新编译，那么可以启动监听模式。开启监听模式后，没有变化的模块会在编译后缓存到内存中，而不会每次都被重新编译，所以监听模式的整体速度是很快的。</p>
+<p>webpack –progress –colors –watch</p>
+<p>当然，我们可以使用 webpack-dev-server 开发服务，这样我们就能通过 localhost:8080 启动一个 express 静态资源 web 服务器，并且会以监听模式自动运行 webpack，在浏览器打开 <a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> 或 <a href="http://localhost:8080/webpack-dev-server/" target="_blank" rel="noopener">http://localhost:8080/webpack-dev-server/</a> 可以浏览项目中的页面和编译后的资源输出，并且通过一个 socket.io 服务实时监听它们的变化并自动刷新页面。</p>
+<p># 安装 cnpm install webpack-dev-server -g  # 运行 webpack-dev-server –progress –colors</p>
+<p>在浏览器打开 <a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> 输出结果如下：</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/01/47B0234F-E1F0-43FF-8F80-050514A1A25C.jpg" alt="img"></p>
+<h3 id="实践加深理解-撸一个简易-webpack"><a href="#实践加深理解-撸一个简易-webpack" class="headerlink" title="实践加深理解,撸一个简易 webpack"></a>实践加深理解,撸一个简易 webpack</h3><h4 id="1-定义-Compiler-类"><a href="#1-定义-Compiler-类" class="headerlink" title="1. 定义 Compiler 类"></a>1. 定义 Compiler 类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Compiler &#123;</span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    &#x2F;&#x2F; webpack 配置</span><br><span class="line">    const &#123; entry, output &#125; &#x3D; options</span><br><span class="line">    &#x2F;&#x2F; 入口</span><br><span class="line">    this.entry &#x3D; entry</span><br><span class="line">    &#x2F;&#x2F; 出口</span><br><span class="line">    this.output &#x3D; output</span><br><span class="line">    &#x2F;&#x2F; 模块</span><br><span class="line">    this.modules &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 构建启动</span><br><span class="line">  run() &#123;&#125;</span><br><span class="line">  &#x2F;&#x2F; 重写 require函数,输出bundle</span><br><span class="line">  generate() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-解析入口文件-获取-AST"><a href="#2-解析入口文件-获取-AST" class="headerlink" title="2. 解析入口文件,获取 AST"></a>2. 解析入口文件,获取 AST</h3><p>我们这里使用@babel/parser,这是 babel7 的工具,来帮助我们分析内部的语法,包括 es6,返回一个 AST 抽象语法树。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webpack.config.js</span><br><span class="line"></span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, &#39;.&#x2F;dist&#39;),</span><br><span class="line">    filename: &#39;main.js&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const parser &#x3D; require(&#39;@babel&#x2F;parser&#39;)</span><br><span class="line">const options &#x3D; require(&#39;.&#x2F;webpack.config&#39;)</span><br><span class="line"></span><br><span class="line">const Parser &#x3D; &#123;</span><br><span class="line">  getAst: path &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 读取入口文件</span><br><span class="line">    const content &#x3D; fs.readFileSync(path, &#39;utf-8&#39;)</span><br><span class="line">    &#x2F;&#x2F; 将文件内容转为AST抽象语法树</span><br><span class="line">    return parser.parse(content, &#123;</span><br><span class="line">      sourceType: &#39;module&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Compiler &#123;</span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    &#x2F;&#x2F; webpack 配置</span><br><span class="line">    const &#123; entry, output &#125; &#x3D; options</span><br><span class="line">    &#x2F;&#x2F; 入口</span><br><span class="line">    this.entry &#x3D; entry</span><br><span class="line">    &#x2F;&#x2F; 出口</span><br><span class="line">    this.output &#x3D; output</span><br><span class="line">    &#x2F;&#x2F; 模块</span><br><span class="line">    this.modules &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 构建启动</span><br><span class="line">  run() &#123;</span><br><span class="line">    const ast &#x3D; Parser.getAst(this.entry)</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 重写 require函数,输出bundle</span><br><span class="line">  generate() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">new Compiler(options).run()</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-找出所有依赖模块"><a href="#3-找出所有依赖模块" class="headerlink" title="3. 找出所有依赖模块"></a>3. 找出所有依赖模块</h3><p>Babel 提供了@babel/traverse(遍历)方法维护这 AST 树的整体状态,我们这里使用它来帮我们找出依赖模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const options &#x3D; require(&#39;.&#x2F;webpack.config&#39;)</span><br><span class="line">const parser &#x3D; require(&#39;@babel&#x2F;parser&#39;)</span><br><span class="line">const traverse &#x3D; require(&#39;@babel&#x2F;traverse&#39;).default</span><br><span class="line"> </span><br><span class="line">const Parser &#x3D; &#123;</span><br><span class="line">  getAst: path &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 读取入口文件</span><br><span class="line">    const content &#x3D; fs.readFileSync(path, &#39;utf-8&#39;)</span><br><span class="line">    &#x2F;&#x2F; 将文件内容转为AST抽象语法树</span><br><span class="line">    return parser.parse(content, &#123;</span><br><span class="line">      sourceType: &#39;module&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  getDependecies: (ast, filename) &#x3D;&gt; &#123;</span><br><span class="line">    const dependecies &#x3D; &#123;&#125;</span><br><span class="line">    &#x2F;&#x2F; 遍历所有的 import 模块,存入dependecies</span><br><span class="line">    traverse(ast, &#123;</span><br><span class="line">      &#x2F;&#x2F; 类型为 ImportDeclaration 的 AST 节点 (即为import 语句)</span><br><span class="line">      ImportDeclaration(&#123; node &#125;) &#123;</span><br><span class="line">        const dirname &#x3D; path.dirname(filename)</span><br><span class="line">        &#x2F;&#x2F; 保存依赖模块路径,之后生成依赖关系图需要用到</span><br><span class="line">        const filepath &#x3D; &#39;.&#x2F;&#39; + path.join(dirname, node.source.value)</span><br><span class="line">        dependecies[node.source.value] &#x3D; filepath</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return dependecies</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Compiler &#123;</span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    &#x2F;&#x2F; webpack 配置</span><br><span class="line">    const &#123; entry, output &#125; &#x3D; options</span><br><span class="line">    &#x2F;&#x2F; 入口</span><br><span class="line">    this.entry &#x3D; entry</span><br><span class="line">    &#x2F;&#x2F; 出口</span><br><span class="line">    this.output &#x3D; output</span><br><span class="line">    &#x2F;&#x2F; 模块</span><br><span class="line">    this.modules &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 构建启动</span><br><span class="line">  run() &#123;</span><br><span class="line">    const &#123; getAst, getDependecies &#125; &#x3D; Parser</span><br><span class="line">    const ast &#x3D; getAst(this.entry)</span><br><span class="line">    const dependecies &#x3D; getDependecies(ast, this.entry)</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 重写 require函数,输出bundle</span><br><span class="line">  generate() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">new Compiler(options).run()</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-AST-转换为-code"><a href="#4-AST-转换为-code" class="headerlink" title="4. AST 转换为 code"></a>4. AST 转换为 code</h3><p>将 AST 语法树转换为浏览器可执行代码,我们这里使用@babel/core 和 @babel/preset-env。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const options &#x3D; require(&#39;.&#x2F;webpack.config&#39;)</span><br><span class="line">const parser &#x3D; require(&#39;@babel&#x2F;parser&#39;)</span><br><span class="line">const traverse &#x3D; require(&#39;@babel&#x2F;traverse&#39;).default</span><br><span class="line">const &#123; transformFromAst &#125; &#x3D; require(&#39;@babel&#x2F;core&#39;)</span><br><span class="line"> </span><br><span class="line">const Parser &#x3D; &#123;</span><br><span class="line">  getAst: path &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 读取入口文件</span><br><span class="line">    const content &#x3D; fs.readFileSync(path, &#39;utf-8&#39;)</span><br><span class="line">    &#x2F;&#x2F; 将文件内容转为AST抽象语法树</span><br><span class="line">    return parser.parse(content, &#123;</span><br><span class="line">      sourceType: &#39;module&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  getDependecies: (ast, filename) &#x3D;&gt; &#123;</span><br><span class="line">    const dependecies &#x3D; &#123;&#125;</span><br><span class="line">    &#x2F;&#x2F; 遍历所有的 import 模块,存入dependecies</span><br><span class="line">    traverse(ast, &#123;</span><br><span class="line">      &#x2F;&#x2F; 类型为 ImportDeclaration 的 AST 节点 (即为import 语句)</span><br><span class="line">      ImportDeclaration(&#123; node &#125;) &#123;</span><br><span class="line">        const dirname &#x3D; path.dirname(filename)</span><br><span class="line">        &#x2F;&#x2F; 保存依赖模块路径,之后生成依赖关系图需要用到</span><br><span class="line">        const filepath &#x3D; &#39;.&#x2F;&#39; + path.join(dirname, node.source.value)</span><br><span class="line">        dependecies[node.source.value] &#x3D; filepath</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return dependecies</span><br><span class="line">  &#125;,</span><br><span class="line">  getCode: ast &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; AST转换为code</span><br><span class="line">    const &#123; code &#125; &#x3D; transformFromAst(ast, null, &#123;</span><br><span class="line">      presets: [&#39;@babel&#x2F;preset-env&#39;]</span><br><span class="line">    &#125;)</span><br><span class="line">    return code</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Compiler &#123;</span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    &#x2F;&#x2F; webpack 配置</span><br><span class="line">    const &#123; entry, output &#125; &#x3D; options</span><br><span class="line">    &#x2F;&#x2F; 入口</span><br><span class="line">    this.entry &#x3D; entry</span><br><span class="line">    &#x2F;&#x2F; 出口</span><br><span class="line">    this.output &#x3D; output</span><br><span class="line">    &#x2F;&#x2F; 模块</span><br><span class="line">    this.modules &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 构建启动</span><br><span class="line">  run() &#123;</span><br><span class="line">    const &#123; getAst, getDependecies, getCode &#125; &#x3D; Parser</span><br><span class="line">    const ast &#x3D; getAst(this.entry)</span><br><span class="line">    const dependecies &#x3D; getDependecies(ast, this.entry)</span><br><span class="line">    const code &#x3D; getCode(ast)</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 重写 require函数,输出bundle</span><br><span class="line">  generate() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">new Compiler(options).run()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-递归解析所有依赖项-生成依赖关系图"><a href="#5-递归解析所有依赖项-生成依赖关系图" class="headerlink" title="5. 递归解析所有依赖项,生成依赖关系图"></a>5. 递归解析所有依赖项,生成依赖关系图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const options &#x3D; require(&#39;.&#x2F;webpack.config&#39;)</span><br><span class="line">const parser &#x3D; require(&#39;@babel&#x2F;parser&#39;)</span><br><span class="line">const traverse &#x3D; require(&#39;@babel&#x2F;traverse&#39;).default</span><br><span class="line">const &#123; transformFromAst &#125; &#x3D; require(&#39;@babel&#x2F;core&#39;)</span><br><span class="line"> </span><br><span class="line">const Parser &#x3D; &#123;</span><br><span class="line">  getAst: path &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 读取入口文件</span><br><span class="line">    const content &#x3D; fs.readFileSync(path, &#39;utf-8&#39;)</span><br><span class="line">    &#x2F;&#x2F; 将文件内容转为AST抽象语法树</span><br><span class="line">    return parser.parse(content, &#123;</span><br><span class="line">      sourceType: &#39;module&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  getDependecies: (ast, filename) &#x3D;&gt; &#123;</span><br><span class="line">    const dependecies &#x3D; &#123;&#125;</span><br><span class="line">    &#x2F;&#x2F; 遍历所有的 import 模块,存入dependecies</span><br><span class="line">    traverse(ast, &#123;</span><br><span class="line">      &#x2F;&#x2F; 类型为 ImportDeclaration 的 AST 节点 (即为import 语句)</span><br><span class="line">      ImportDeclaration(&#123; node &#125;) &#123;</span><br><span class="line">        const dirname &#x3D; path.dirname(filename)</span><br><span class="line">        &#x2F;&#x2F; 保存依赖模块路径,之后生成依赖关系图需要用到</span><br><span class="line">        const filepath &#x3D; &#39;.&#x2F;&#39; + path.join(dirname, node.source.value)</span><br><span class="line">        dependecies[node.source.value] &#x3D; filepath</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return dependecies</span><br><span class="line">  &#125;,</span><br><span class="line">  getCode: ast &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; AST转换为code</span><br><span class="line">    const &#123; code &#125; &#x3D; transformFromAst(ast, null, &#123;</span><br><span class="line">      presets: [&#39;@babel&#x2F;preset-env&#39;]</span><br><span class="line">    &#125;)</span><br><span class="line">    return code</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Compiler &#123;</span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    &#x2F;&#x2F; webpack 配置</span><br><span class="line">    const &#123; entry, output &#125; &#x3D; options</span><br><span class="line">    &#x2F;&#x2F; 入口</span><br><span class="line">    this.entry &#x3D; entry</span><br><span class="line">    &#x2F;&#x2F; 出口</span><br><span class="line">    this.output &#x3D; output</span><br><span class="line">    &#x2F;&#x2F; 模块</span><br><span class="line">    this.modules &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 构建启动</span><br><span class="line">  run() &#123;</span><br><span class="line">    &#x2F;&#x2F; 解析入口文件</span><br><span class="line">    const info &#x3D; this.build(this.entry)</span><br><span class="line">    this.modules.push(info)</span><br><span class="line">    this.modules.forEach((&#123; dependecies &#125;) &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 判断有依赖对象,递归解析所有依赖项</span><br><span class="line">      if (dependecies) &#123;</span><br><span class="line">        for (const dependency in dependecies) &#123;</span><br><span class="line">          this.modules.push(this.build(dependecies[dependency]))</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F; 生成依赖关系图</span><br><span class="line">    const dependencyGraph &#x3D; this.modules.reduce(</span><br><span class="line">      (graph, item) &#x3D;&gt; (&#123;</span><br><span class="line">        ...graph,</span><br><span class="line">        &#x2F;&#x2F; 使用文件路径作为每个模块的唯一标识符,保存对应模块的依赖对象和文件内容</span><br><span class="line">        [item.filename]: &#123;</span><br><span class="line">          dependecies: item.dependecies,</span><br><span class="line">          code: item.code</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;),</span><br><span class="line">      &#123;&#125;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  build(filename) &#123;</span><br><span class="line">    const &#123; getAst, getDependecies, getCode &#125; &#x3D; Parser</span><br><span class="line">    const ast &#x3D; getAst(filename)</span><br><span class="line">    const dependecies &#x3D; getDependecies(ast, filename)</span><br><span class="line">    const code &#x3D; getCode(ast)</span><br><span class="line">    return &#123;</span><br><span class="line">      &#x2F;&#x2F; 文件路径,可以作为每个模块的唯一标识符</span><br><span class="line">      filename,</span><br><span class="line">      &#x2F;&#x2F; 依赖对象,保存着依赖模块路径</span><br><span class="line">      dependecies,</span><br><span class="line">      &#x2F;&#x2F; 文件内容</span><br><span class="line">      code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 重写 require函数,输出bundle</span><br><span class="line">  generate() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">new Compiler(options).run()</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-重写-require-函数-输出-bundle"><a href="#6-重写-require-函数-输出-bundle" class="headerlink" title="6. 重写 require 函数,输出 bundle"></a>6. 重写 require 函数,输出 bundle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const options &#x3D; require(&#39;.&#x2F;webpack.config&#39;)</span><br><span class="line">const parser &#x3D; require(&#39;@babel&#x2F;parser&#39;)</span><br><span class="line">const traverse &#x3D; require(&#39;@babel&#x2F;traverse&#39;).default</span><br><span class="line">const &#123; transformFromAst &#125; &#x3D; require(&#39;@babel&#x2F;core&#39;)</span><br><span class="line"> </span><br><span class="line">const Parser &#x3D; &#123;</span><br><span class="line">  getAst: path &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 读取入口文件</span><br><span class="line">    const content &#x3D; fs.readFileSync(path, &#39;utf-8&#39;)</span><br><span class="line">    &#x2F;&#x2F; 将文件内容转为AST抽象语法树</span><br><span class="line">    return parser.parse(content, &#123;</span><br><span class="line">      sourceType: &#39;module&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  getDependecies: (ast, filename) &#x3D;&gt; &#123;</span><br><span class="line">    const dependecies &#x3D; &#123;&#125;</span><br><span class="line">    &#x2F;&#x2F; 遍历所有的 import 模块,存入dependecies</span><br><span class="line">    traverse(ast, &#123;</span><br><span class="line">      &#x2F;&#x2F; 类型为 ImportDeclaration 的 AST 节点 (即为import 语句)</span><br><span class="line">      ImportDeclaration(&#123; node &#125;) &#123;</span><br><span class="line">        const dirname &#x3D; path.dirname(filename)</span><br><span class="line">        &#x2F;&#x2F; 保存依赖模块路径,之后生成依赖关系图需要用到</span><br><span class="line">        const filepath &#x3D; &#39;.&#x2F;&#39; + path.join(dirname, node.source.value)</span><br><span class="line">        dependecies[node.source.value] &#x3D; filepath</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return dependecies</span><br><span class="line">  &#125;,</span><br><span class="line">  getCode: ast &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; AST转换为code</span><br><span class="line">    const &#123; code &#125; &#x3D; transformFromAst(ast, null, &#123;</span><br><span class="line">      presets: [&#39;@babel&#x2F;preset-env&#39;]</span><br><span class="line">    &#125;)</span><br><span class="line">    return code</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Compiler &#123;</span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    &#x2F;&#x2F; webpack 配置</span><br><span class="line">    const &#123; entry, output &#125; &#x3D; options</span><br><span class="line">    &#x2F;&#x2F; 入口</span><br><span class="line">    this.entry &#x3D; entry</span><br><span class="line">    &#x2F;&#x2F; 出口</span><br><span class="line">    this.output &#x3D; output</span><br><span class="line">    &#x2F;&#x2F; 模块</span><br><span class="line">    this.modules &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 构建启动</span><br><span class="line">  run() &#123;</span><br><span class="line">    &#x2F;&#x2F; 解析入口文件</span><br><span class="line">    const info &#x3D; this.build(this.entry)</span><br><span class="line">    this.modules.push(info)</span><br><span class="line">    this.modules.forEach((&#123; dependecies &#125;) &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 判断有依赖对象,递归解析所有依赖项</span><br><span class="line">      if (dependecies) &#123;</span><br><span class="line">        for (const dependency in dependecies) &#123;</span><br><span class="line">          this.modules.push(this.build(dependecies[dependency]))</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F; 生成依赖关系图</span><br><span class="line">    const dependencyGraph &#x3D; this.modules.reduce(</span><br><span class="line">      (graph, item) &#x3D;&gt; (&#123;</span><br><span class="line">        ...graph,</span><br><span class="line">        &#x2F;&#x2F; 使用文件路径作为每个模块的唯一标识符,保存对应模块的依赖对象和文件内容</span><br><span class="line">        [item.filename]: &#123;</span><br><span class="line">          dependecies: item.dependecies,</span><br><span class="line">          code: item.code</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;),</span><br><span class="line">      &#123;&#125;</span><br><span class="line">    )</span><br><span class="line">    this.generate(dependencyGraph)</span><br><span class="line">  &#125;</span><br><span class="line">  build(filename) &#123;</span><br><span class="line">    const &#123; getAst, getDependecies, getCode &#125; &#x3D; Parser</span><br><span class="line">    const ast &#x3D; getAst(filename)</span><br><span class="line">    const dependecies &#x3D; getDependecies(ast, filename)</span><br><span class="line">    const code &#x3D; getCode(ast)</span><br><span class="line">    return &#123;</span><br><span class="line">      &#x2F;&#x2F; 文件路径,可以作为每个模块的唯一标识符</span><br><span class="line">      filename,</span><br><span class="line">      &#x2F;&#x2F; 依赖对象,保存着依赖模块路径</span><br><span class="line">      dependecies,</span><br><span class="line">      &#x2F;&#x2F; 文件内容</span><br><span class="line">      code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 重写 require函数 (浏览器不能识别commonjs语法),输出bundle</span><br><span class="line">  generate(code) &#123;</span><br><span class="line">    &#x2F;&#x2F; 输出文件路径</span><br><span class="line">    const filePath &#x3D; path.join(this.output.path, this.output.filename)</span><br><span class="line">    &#x2F;&#x2F; 懵逼了吗? 没事,下一节我们捋一捋</span><br><span class="line">    const bundle &#x3D; &#96;(function(graph)&#123;</span><br><span class="line">      function require(module)&#123;</span><br><span class="line">        function localRequire(relativePath)&#123;</span><br><span class="line">          return require(graph[module].dependecies[relativePath])</span><br><span class="line">        &#125;</span><br><span class="line">        var exports &#x3D; &#123;&#125;;</span><br><span class="line">        (function(require,exports,code)&#123;</span><br><span class="line">          eval(code)</span><br><span class="line">        &#125;)(localRequire,exports,graph[module].code);</span><br><span class="line">        return exports;</span><br><span class="line">      &#125;</span><br><span class="line">      require(&#39;$&#123;this.entry&#125;&#39;)</span><br><span class="line">    &#125;)($&#123;JSON.stringify(code)&#125;)&#96;</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 把文件内容写入到文件系统</span><br><span class="line">    fs.writeFileSync(filePath, bundle, &#39;utf-8&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">new Compiler(options).run()</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-看完这节-彻底搞懂-bundle-实现"><a href="#7-看完这节-彻底搞懂-bundle-实现" class="headerlink" title="7. 看完这节,彻底搞懂 bundle 实现"></a>7. 看完这节,彻底搞懂 bundle 实现</h3><p>我们通过下面的例子来进行讲解,先死亡凝视 30 秒</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">;(function(graph) &#123;</span><br><span class="line">  function require(moduleId) &#123;</span><br><span class="line">    function localRequire(relativePath) &#123;</span><br><span class="line">      return require(graph[moduleId].dependecies[relativePath])</span><br><span class="line">    &#125;</span><br><span class="line">    var exports &#x3D; &#123;&#125;</span><br><span class="line">    ;(function(require, exports, code) &#123;</span><br><span class="line">      eval(code)</span><br><span class="line">    &#125;)(localRequire, exports, graph[moduleId].code)</span><br><span class="line">    return exports</span><br><span class="line">  &#125;</span><br><span class="line">  require(&#39;.&#x2F;src&#x2F;index.js&#39;)</span><br><span class="line">&#125;)(&#123;</span><br><span class="line">  &#39;.&#x2F;src&#x2F;index.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123; &#39;.&#x2F;hello.js&#39;: &#39;.&#x2F;src&#x2F;hello.js&#39; &#125;,</span><br><span class="line">    code: &#39;&quot;use strict&quot;;\n\nvar _hello &#x3D; require(&quot;.&#x2F;hello.js&quot;);\n\ndocument.write((0, _hello.say)(&quot;webpack&quot;));&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#39;.&#x2F;src&#x2F;hello.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123;&#125;,</span><br><span class="line">    code:</span><br><span class="line">      &#39;&quot;use strict&quot;;\n\nObject.defineProperty(exports, &quot;__esModule&quot;, &#123;\n  value: true\n&#125;);\nexports.say &#x3D; say;\n\nfunction say(name) &#123;\n  return &quot;hello &quot;.concat(name);\n&#125;&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>step 1 : 从入口文件开始执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义一个立即执行函数,传入生成的依赖关系图</span><br><span class="line">;(function(graph) &#123;</span><br><span class="line">  &#x2F;&#x2F; 重写require函数</span><br><span class="line">  function require(moduleId) &#123;</span><br><span class="line">    console.log(moduleId) &#x2F;&#x2F; .&#x2F;src&#x2F;index.js</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 从入口文件开始执行</span><br><span class="line">  require(&#39;.&#x2F;src&#x2F;index.js&#39;)</span><br><span class="line">&#125;)(&#123;</span><br><span class="line">  &#39;.&#x2F;src&#x2F;index.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123; &#39;.&#x2F;hello.js&#39;: &#39;.&#x2F;src&#x2F;hello.js&#39; &#125;,</span><br><span class="line">    code: &#39;&quot;use strict&quot;;\n\nvar _hello &#x3D; require(&quot;.&#x2F;hello.js&quot;);\n\ndocument.write((0, _hello.say)(&quot;webpack&quot;));&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#39;.&#x2F;src&#x2F;hello.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123;&#125;,</span><br><span class="line">    code:</span><br><span class="line">      &#39;&quot;use strict&quot;;\n\nObject.defineProperty(exports, &quot;__esModule&quot;, &#123;\n  value: true\n&#125;);\nexports.say &#x3D; say;\n\nfunction say(name) &#123;\n  return &quot;hello &quot;.concat(name);\n&#125;&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>step 2 : 使用 eval 执行代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义一个立即执行函数,传入生成的依赖关系图</span><br><span class="line">;(function(graph) &#123;</span><br><span class="line">  &#x2F;&#x2F; 重写require函数</span><br><span class="line">  function require(moduleId) &#123;</span><br><span class="line">    ;(function(code) &#123;</span><br><span class="line">      console.log(code) &#x2F;&#x2F; &quot;use strict&quot;;\n\nvar _hello &#x3D; require(&quot;.&#x2F;hello.js&quot;);\n\ndocument.write((0, _hello.say)(&quot;webpack&quot;));</span><br><span class="line">      eval(code) &#x2F;&#x2F; Uncaught TypeError: Cannot read property &#39;code&#39; of undefined</span><br><span class="line">    &#125;)(graph[moduleId].code)</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 从入口文件开始执行</span><br><span class="line">  require(&#39;.&#x2F;src&#x2F;index.js&#39;)</span><br><span class="line">&#125;)(&#123;</span><br><span class="line">  &#39;.&#x2F;src&#x2F;index.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123; &#39;.&#x2F;hello.js&#39;: &#39;.&#x2F;src&#x2F;hello.js&#39; &#125;,</span><br><span class="line">    code: &#39;&quot;use strict&quot;;\n\nvar _hello &#x3D; require(&quot;.&#x2F;hello.js&quot;);\n\ndocument.write((0, _hello.say)(&quot;webpack&quot;));&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#39;.&#x2F;src&#x2F;hello.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123;&#125;,</span><br><span class="line">    code:</span><br><span class="line">      &#39;&quot;use strict&quot;;\n\nObject.defineProperty(exports, &quot;__esModule&quot;, &#123;\n  value: true\n&#125;);\nexports.say &#x3D; say;\n\nfunction say(name) &#123;\n  return &quot;hello &quot;.concat(name);\n&#125;&#39;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到,我们在执行”./src/index.js”文件代码的时候报错了,这是因为 index.js 里引用依赖 hello.js,而我们没有对依赖进行处理,接下来我们对依赖引用进行处理。</p>
+<p>step 3 : 依赖对象寻址映射,获取 exports 对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义一个立即执行函数,传入生成的依赖关系图</span><br><span class="line">;(function(graph) &#123;</span><br><span class="line">  &#x2F;&#x2F; 重写require函数</span><br><span class="line">  function require(moduleId) &#123;</span><br><span class="line">    &#x2F;&#x2F; 找到对应moduleId的依赖对象,调用require函数,eval执行,拿到exports对象</span><br><span class="line">    function localRequire(relativePath) &#123;</span><br><span class="line">      return require(graph[moduleId].dependecies[relativePath]) &#x2F;&#x2F; &#123;__esModule: true, say: ƒ say(name)&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 定义exports对象</span><br><span class="line">    var exports &#x3D; &#123;&#125;</span><br><span class="line">    ;(function(require, exports, code) &#123;</span><br><span class="line">      &#x2F;&#x2F; commonjs语法使用module.exports暴露实现,我们传入的exports对象会捕获依赖对象(hello.js)暴露的实现(exports.say &#x3D; say)并写入</span><br><span class="line">      eval(code)</span><br><span class="line">    &#125;)(localRequire, exports, graph[moduleId].code)</span><br><span class="line">    &#x2F;&#x2F; 暴露exports对象,即暴露依赖对象对应的实现</span><br><span class="line">    return exports</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 从入口文件开始执行</span><br><span class="line">  require(&#39;.&#x2F;src&#x2F;index.js&#39;)</span><br><span class="line">&#125;)(&#123;</span><br><span class="line">  &#39;.&#x2F;src&#x2F;index.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123; &#39;.&#x2F;hello.js&#39;: &#39;.&#x2F;src&#x2F;hello.js&#39; &#125;,</span><br><span class="line">    code: &#39;&quot;use strict&quot;;\n\nvar _hello &#x3D; require(&quot;.&#x2F;hello.js&quot;);\n\ndocument.write((0, _hello.say)(&quot;webpack&quot;));&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#39;.&#x2F;src&#x2F;hello.js&#39;: &#123;</span><br><span class="line">    dependecies: &#123;&#125;,</span><br><span class="line">    code:</span><br><span class="line">      &#39;&quot;use strict&quot;;\n\nObject.defineProperty(exports, &quot;__esModule&quot;, &#123;\n  value: true\n&#125;);\nexports.say &#x3D; say;\n\nfunction say(name) &#123;\n  return &quot;hello &quot;.concat(name);\n&#125;&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这下应该明白了吧 ~ 可以直接复制上面代码到控制台输出哦~</p>
+<p><a href="https://github.com/webfansplz/article/tree/master/easy-webpack" target="_blank" rel="noopener">完整代码地址戳我 👈</a></p>
+<h2 id="Webpack优化"><a href="#Webpack优化" class="headerlink" title="Webpack优化"></a>Webpack优化</h2><h5 id="0、写在前面"><a href="#0、写在前面" class="headerlink" title="0、写在前面"></a>0、写在前面</h5><p>Webpack优化可以分为<strong>优化开发体验</strong>和<strong>优化输出质量</strong>两部分</p>
+<h5 id="1、优化开发体验"><a href="#1、优化开发体验" class="headerlink" title="1、优化开发体验"></a>1、优化开发体验</h5><p>优化开发体验的目的是为了提升开发时的效率，其中又可以分为以下几点：</p>
+<ol>
+<li><p><strong>优化构建速度</strong>。在项目庞大时构建耗时可能会变的很长，每次等待构建的耗时加起来也会是个大数目。</p>
+<ul>
+<li><p><a href="http://webpack.wuhaolin.cn/4优化/4-1缩小文件搜索范围.html" target="_blank" rel="noopener">4-1 缩小文件搜索范围</a></p>
+<ul>
+<li><p>4-1-1 在配置 <code>Loader</code> 时通过 <code>include</code> 去缩小命中范围</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/6991256-6b690047d692eaf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/985/format/webp" alt="img"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 4-1-2 优化 `resolve.modules` 配置，指明存放第三方模块的绝对路径，以减少寻找，配置如下：
+
+  ![img](https:////upload-images.jianshu.io/upload_images/6991256-beb2d8106ff62d6a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1148/format/webp)
+
+
+
+- 4-1-3 优化 `resolve.mainFields` 配置
+
+- 4-1-4 优化 `resolve.alias` 配置
+
+- 4-1-5 优化 `resolve.extensions` 配置
+   在配置 `resolve.extensions` 时你需要遵守以下几点，以做到尽可能的优化构建性能：
+
+  - 后缀尝试列表要尽可能的小，不要把项目中不可能存在的情况写到后缀尝试列表中。
+
+  - 频率出现最高的文件后缀要优先放在最前面，以做到尽快的退出寻找过程。
+
+  - 在源码中写导入语句时，要尽可能的带上后缀，从而可以避免寻找过程。例如在你确定的情况下把 
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&#39;.&#x2F;data&#39;)</span><br></pre></td></tr></table></figure>
+
+     写成 
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&#39;.&#x2F;data.json&#39;)</span><br></pre></td></tr></table></figure>
+
+    。
+
+    ![img](https:////upload-images.jianshu.io/upload_images/6991256-8af21eb0c8e9524d.png?imageMogr2/auto-orient/strip|imageView2/2/w/1170/format/webp)
+
+- 4-1-6 优化 `module.noParse` 配置</code></pre><ul>
+<li><p><a href="http://webpack.wuhaolin.cn/4优化/4-2使用DllPlugin.html" target="_blank" rel="noopener">4-2 使用 DllPlugin</a><br> 为什么给 Web 项目构建接入 <strong>动态链接库</strong> 的思想后，会大大提升构建速度呢？ 原因在于包含大量复用模块的动态链接库只需要编译一次，在之后的构建过程中被动态链接库包含的模块将不会在重新编译，而是直接使用动态链接库中的代码。 由于动态链接库中大多数包含的是常用的第三方模块，例如 <code>react</code>、<code>react-dom</code>，只要不升级这些模块的版本，动态链接库就不用重新编译。</p>
+</li>
+<li><p><a href="http://webpack.wuhaolin.cn/4优化/4-3使用HappyPack.html" target="_blank" rel="noopener">4-3 使用 HappyPack</a><br> <strong>在整个 <code>Webpack</code> 构建流程中，最耗时的流程可能就是 <code>Loader</code> 对文件的转换操作了，因为要转换的文件数据巨多，而且这些转换操作都只能一个个挨着处理。（运行在 Node.js 之上的 Webpack 是单线程模型的）</strong><br> <a href="https://github.com/amireh/happypack" target="_blank" rel="noopener">HappyPack</a>的核心原理就是把这部分任务分解到多个进程去并行处理，从而减少了总的构建时间。</p>
+</li>
+<li><p><a href="http://webpack.wuhaolin.cn/4优化/4-4使用ParallelUglifyPlugin.html" target="_blank" rel="noopener">4-4 使用 ParallelUglifyPlugin</a><br> <a href="https://github.com/gdborton/webpack-parallel-uglify-plugin" target="_blank" rel="noopener">ParallelUglifyPlugin</a> 会开启多个子进程，把对多个文件的压缩工作分配给多个子进程去完成，每个子进程其实还是通过 <code>UglifyJS</code>去压缩代码，但是变成了并行执行。 所以 <code>ParallelUglifyPlugin</code> 能更快的完成对多个文件的压缩工作。</p>
+</li>
+</ul>
+<ol start="2">
+<li><p><strong>优化使用体验</strong>。通过自动化手段完成一些重复的工作，让我们专注于解决问题本身。</p>
+<ul>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-5使用自动刷新.html" target="_blank" rel="noopener">4-5 使用自动刷新</a><br> 使用 <code>webpack</code> 模块负责监听文件，<code>webpack-dev-server</code> 模块则负责刷新浏览器。</li>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-6开启模块热替换.html" target="_blank" rel="noopener">4-6 开启模块热替换</a></li>
+</ul>
+</li>
+</ol>
+<h5 id="2、优化输出质量"><a href="#2、优化输出质量" class="headerlink" title="2、优化输出质量"></a>2、优化输出质量</h5><p>优化输出质量的目的是为了给用户呈现体验更好的网页，例如减少首屏加载时间、提升性能流畅度等。 这至关重要，因为在互联网行业竞争日益激烈的今天，这可能关系到你的产品的生死。</p>
+<p>优化输出质量本质是优化构建输出的要发布到线上的代码，分为以下几点：</p>
+<ol>
+<li><strong>减少用户能感知到的加载时间</strong>，也就是首屏加载时间。<ul>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-7区分环境.html" target="_blank" rel="noopener">4-7 区分环境</a></li>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-8压缩代码.html" target="_blank" rel="noopener">4-8 压缩代码</a></li>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-9CDN加速.html" target="_blank" rel="noopener">4-9 CDN 加速</a></li>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-10使用TreeShaking.html" target="_blank" rel="noopener">4-10 使用 Tree Shaking</a><br> <code>Tree Shaking</code> 可以用来剔除 <code>JavaScript</code> 中用不上的死代码（没用到的代码）。它依赖静态的 ES6 模块化语法，例如通过 import 和 export 导入导出。</li>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-11提取公共代码.html" target="_blank" rel="noopener">4-11 提取公共代码</a></li>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-12按需加载.html" target="_blank" rel="noopener">4-12 按需加载</a></li>
+</ul>
+</li>
+<li><strong>提升流畅度</strong>，也就是提升代码性能。<ul>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-13使用Prepack.html" target="_blank" rel="noopener">4-13 使用 Prepack</a></li>
+<li><a href="http://webpack.wuhaolin.cn/4优化/4-14开启ScopeHoisting.html" target="_blank" rel="noopener">4-14 开启 Scope Hoisting</a></li>
+</ul>
+</li>
+</ol>
+<p>参考文章：<br> <a href="http://webpack.wuhaolin.cn/4优化/" target="_blank" rel="noopener">深入浅出 Webpack - 优化</a></p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+    
+  </section>
+  
+    
+    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+    
+    
+
+  
+
+
+    
+  
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">Ye</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:me@xaoxuu.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/xaoxuu"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=63035382"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.22px; color: #8a8a8a">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 20.67px; color: #6c6c6c">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+    </div>
+  </section>
+
+
+  
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

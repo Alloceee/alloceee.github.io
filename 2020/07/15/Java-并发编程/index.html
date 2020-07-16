@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>Java-并发编程 - Ye</title>
+  
+    <meta name="keywords" content="Java">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ye">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">Java-并发编程</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+      Java-并发编程
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          
+          <h1 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h1><p>并发编程三大特性：可见性，原子性，有序性</p>
+<h2 id="1、线程基础、线程"><a href="#1、线程基础、线程" class="headerlink" title="1、线程基础、线程"></a>1、线程基础、线程</h2><p>之间的共享和协作</p>
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><ul>
+<li>CPU核心数，线程数</li>
+</ul>
+<p>核心数:线程数=1:1  ;使用了超线程技术后—&gt; 1:2</p>
+<ul>
+<li>CPU时间片轮转机制</li>
+</ul>
+<p>又称RR调度，会导致上下文切换</p>
+<ul>
+<li>什么是进程和线程</li>
+</ul>
+<p>进程：程序运行资源分配的最小单位，进程内部有多个线程，会共享这个进程的资源</p>
+<p>线程：CPU调度的最小单位，必须依赖进程而存在。</p>
+<ul>
+<li>什么是并行和并发</li>
+</ul>
+<p>并行：同一时刻，可以同时处理事情的能力</p>
+<p>并发：与单位时间相关，在单位时间内可以处理事情的能力</p>
+<ul>
+<li>高并发编程的意义、好处和注意事项</li>
+</ul>
+<p>好处：充分利用cpu的资源、加快用户响应的时间，程序模块化，异步化</p>
+<p>问题：</p>
+<p>线程共享资源，存在冲突；</p>
+<p>容易导致死锁；</p>
+<p>启用太多的线程，就有搞垮机器的可能</p>
+<h3 id="2、Java中线程基础"><a href="#2、Java中线程基础" class="headerlink" title="2、Java中线程基础"></a>2、Java中线程基础</h3><ul>
+<li><p>启动和终止线程</p>
+<ul>
+<li>三种启动线程的方式</li>
+<li>理解中断</li>
+<li>如何安全的终止线程</li>
+</ul>
+<p>线程自然终止：自然执行完或抛出未处理异常</p>
+<p>stop()，resume(),suspend()已不建议使用，stop()会导致线程不会正确释放资源，suspend()容易导致死锁。</p>
+<p>java线程是协作式，而非抢占式</p>
+<p>调用一个线程的interrupt() 方法中断一个线程，并不是强行关闭这个线程，只是跟这个线程打个招呼，将线程的中断标志位置为true，线程是否中断，由线程本身决定。</p>
+<p>isInterrupted() 判定当前线程是否处于中断状态。</p>
+<p>static方法interrupted() 判定当前线程是否处于中断状态，同时中断标志位改为false。</p>
+<p>方法里如果抛出InterruptedException，线程的中断标志位会被复位成false，如果确实是需要中断线程，要求我们自己在catch语句块里再次调用interrupt()。</p>
+</li>
+<li><p>线程再认识</p>
+<ul>
+<li>线程常用方法</li>
+<li>线程的状态</li>
+</ul>
+<p>线程只有5种状态。整个生命周期就是这几种状态的切换。</p>
+<p>run()和start() ：run方法就是普通对象的普通方法，只有调用了start()后，Java才会将线程对象和操作系统中实际的线程进行映射，再来执行run方法。</p>
+<p>yield() ：让出cpu的执行权，将线程从运行转到可运行状态，但是下个时间片，该线程依然有可能被再次选中运行。</p>
+<ul>
+<li>线程的优先级</li>
+</ul>
+<p>取值为1~10，缺省为5，但线程的优先级不可靠，不建议作为线程开发时候的手段</p>
+<h4 id="Daemon线程"><a href="#Daemon线程" class="headerlink" title="Daemon线程"></a>Daemon线程</h4><p>在Java中有两类线程：用户线程 (User Thread)、守护线程 (Daemon Thread)。 </p>
+<p>所谓守护 线程，是指在程序运行的时候在后台提供一种通用服务的线程，比如垃圾回收线程就是一个很称职的守护者，并且这种线程并不属于程序中不可或缺的部分。因此，当所有的非守护线程结束时，程序也就终止了，同时会杀死进程中的所有守护线程。反过来说，只要任何非守护线程还在运行，程序就不会终止。</p>
+<p>用户线程和守护线程两者几乎没有区别，唯一的不同之处就在于虚拟机的离开：如果用户线程已经全部退出运行了，只剩下守护线程存在了，虚拟机也就退出了。 因为没有了被守护者，守护线程也就没有工作可做了，也就没有继续运行程序的必要了。</p>
+<p>将线程转换为守护线程可以通过调用Thread对象的setDaemon(true)方法来实现。在使用守护线程时需要注意一下几点：</p>
+</li>
+</ul>
+<p>  (1) thread.setDaemon(true)必须在thread.start()之前设置，否则会跑出一个IllegalThreadStateException异常。你不能把正在运行的常规线程设置为守护线程。 </p>
+<p>  (2) 在Daemon线程中产生的新线程也是Daemon的。</p>
+<p>  (3) 守护线程应该永远不去访问固有资源，如文件、数据库，因为它会在任何时候甚至在一个操作的中间发生中断。</p>
+<p>  和主线程共死，finally不能保证一定执行</p>
+<ul>
+<li><p>线程间的共享</p>
+<ul>
+<li><p>synchronized</p>
+<ul>
+<li>对象锁，锁的是类的对象实例。</li>
+<li>类锁，锁的是每个类的的Class对象，每个类的的Class对象在一个虚拟机中只有一个，所以类锁也只有一个。</li>
+</ul>
+</li>
+<li><p>volatile</p>
+</li>
+</ul>
+<p>适合于只有一个线程写，多个线程读的场景，因为它只能确保可见性。</p>
+<ul>
+<li>ThreadLocal</li>
+</ul>
+<p>线程变量。可以理解为是个map，类型 Map&lt;Thread,Integer&gt;</p>
+</li>
+<li><p>线程间协作：轮询：难以保证及时性，资源开销很大，</p>
+<ul>
+<li><p>等待和通知机制</p>
+<ul>
+<li>Wait,Notify/NotifyAll</li>
+<li>等待和通知的标准范式</li>
+</ul>
+</li>
+</ul>
+<p>等待方：</p>
+<pre><code>1、 获取对象的锁；
+
+2、 循环里判断条件是否满足，不满足调用wait方法，
+
+3、 条件满足执行业务逻辑
+
+通知方来说
+
+1、 获取对象的锁；
+
+2、 改变条件
+
+3、 通知所有等待在对象的线程
+
+- notify和notifyAll应该用谁
+
+应该尽量使用notifyAll，使用notify因为有可能发生信号丢失的的情况
+
+**等待超时模式实现一个连接池**
+
+假设  等待时间时长为T，当前时间now+T以后超时</code></pre></li>
+</ul>
+<pre><code>  long  overtime = now+T;
+
+  long remain = T;//等待的持续时间
+
+  while(result不满足条件&amp;&amp; remain&gt;0){
+
+  ​    wait(remain);
+
+  ​    remain = overtime – now;//等待剩下的持续时间
+
+  }
+
+  return result;
+
+- Join方法
+
+线程A，执行了线程B的join方法，线程A必须要等待B执行完成了以后，线程A才能继续自己的工作
+
+- 调用yield() 、sleep()、wait()、notify()等方法对锁有何影响？
+
+线程在执行yield()以后，持有的锁是不释放的
+
+sleep()方法被调用以后，持有的锁是不释放的
+
+调动方法之前，必须要持有锁。调用了wait()方法以后，锁就会被释放，当wait方法返回的时候，线程会重新持有锁
+
+调动方法之前，必须要持有锁，调用notify()方法本身不会释放锁的</code></pre><h2 id="2、线程的并发工具类"><a href="#2、线程的并发工具类" class="headerlink" title="2、线程的并发工具类"></a>2、线程的并发工具类</h2><h3 id="Fork-Join"><a href="#Fork-Join" class="headerlink" title="Fork/Join"></a>Fork/Join</h3><ul>
+<li>什么是分而治之？</li>
+</ul>
+<p>规模为N的问题，N&lt;阈值，直接解决，N&gt;阈值，将N分解为K个小规模子问题，子问题互相对立，与原问题形式相同，将子问题的解合并得到原问题的解</p>
+<p>动态规范</p>
+<ul>
+<li>工作密取</li>
+<li>使用的标准范式</li>
+</ul>
+<h3 id="CountDownLatch作用、应用场景和实战"><a href="#CountDownLatch作用、应用场景和实战" class="headerlink" title="CountDownLatch作用、应用场景和实战"></a>CountDownLatch作用、应用场景和实战</h3><p>作用：是一组线程等待其他的线程完成工作以后在执行，加强版join</p>
+<p>await用来等待，countDown负责计数器的减一</p>
+<h3 id="CyclicBarrier作用、应用场景和实战"><a href="#CyclicBarrier作用、应用场景和实战" class="headerlink" title="CyclicBarrier作用、应用场景和实战"></a>CyclicBarrier作用、应用场景和实战</h3><p>让一组线程达到某个屏障，被阻塞，一直到组内最后一个线程达到屏障时，屏障开放，所有被阻塞的线程会继续运行CyclicBarrier(int parties)</p>
+<p>CyclicBarrier(int parties, Runnable barrierAction)，屏障开放，barrierAction定义的任务会执行</p>
+<h3 id="CountDownLatch和CyclicBarrier辨析"><a href="#CountDownLatch和CyclicBarrier辨析" class="headerlink" title="CountDownLatch和CyclicBarrier辨析"></a>CountDownLatch和CyclicBarrier辨析</h3><p>1、countdownlatch放行由第三者控制，CyclicBarrier放行由一组线程本身控制<br>2、countdownlatch放行条件》=线程数，CyclicBarrier放行条件=线程数</p>
+<h3 id="Semaphore作用、应用场景和实战"><a href="#Semaphore作用、应用场景和实战" class="headerlink" title="Semaphore作用、应用场景和实战"></a>Semaphore作用、应用场景和实战</h3><p>控制同时访问某个特定资源的线程数量，用在流量控制</p>
+<h3 id="Exchange作用、应用场景和实战"><a href="#Exchange作用、应用场景和实战" class="headerlink" title="Exchange作用、应用场景和实战"></a>Exchange作用、应用场景和实战</h3><p>两个线程间的数据交换，</p>
+<h3 id="Callable、Future和FutureTask"><a href="#Callable、Future和FutureTask" class="headerlink" title="Callable、Future和FutureTask"></a>Callable、Future和FutureTask</h3><p>isDone，结束，正常还是异常结束，或者自己取消，返回true；</p>
+<p>isCancelled 任务完成前被取消，返回true；</p>
+<p>cancel（boolean）：</p>
+<p>1、 任务还没开始，返回false</p>
+<p>2、 任务已经启动，cancel（true），中断正在运行的任务，中断成功，返回true，cancel（false），不会去中断已经运行的任务</p>
+<p>3、 任务已经结束，返回false</p>
+<p>包含图片和文字的文档的处理：图片（云上），可以用future去取图片，主线程继续解析文字。</p>
+<h2 id="3、原子操作CAS"><a href="#3、原子操作CAS" class="headerlink" title="3、原子操作CAS"></a>3、原子操作CAS</h2><h3 id="原子操作类"><a href="#原子操作类" class="headerlink" title="原子操作类"></a>原子操作类</h3><ul>
+<li><p>CAS的原理</p>
+</li>
+<li><p>CAS的问题</p>
+<ul>
+<li>ABA问题</li>
+<li>开销</li>
+<li>只能保证一个共享变量的原子操作</li>
+</ul>
+</li>
+<li><p>原子操作类的使用</p>
+<ul>
+<li>基本类型</li>
+<li>数组</li>
+<li>引用</li>
+<li>带版本戳</li>
+</ul>
+</li>
+</ul>
+<h2 id="4、显式锁和AQS"><a href="#4、显式锁和AQS" class="headerlink" title="4、显式锁和AQS"></a>4、显式锁和AQS</h2><h3 id="显式锁"><a href="#显式锁" class="headerlink" title="显式锁"></a>显式锁</h3><ul>
+<li><p>Lock接口、核心方法和使用</p>
+</li>
+<li><p>Lock接口和synchronized的比较</p>
+</li>
+<li><p>ReentrantLock</p>
+<ul>
+<li>可重入锁</li>
+<li>锁的公平和非公平</li>
+</ul>
+</li>
+<li><p>ReentrantReadWriteLock</p>
+<ul>
+<li>ReadWriteLock接口</li>
+<li>使用场景</li>
+</ul>
+</li>
+<li><p>Condition接口</p>
+<ul>
+<li>用处</li>
+<li>用Lock和Condition实现等待通知</li>
+</ul>
+</li>
+</ul>
+<h3 id="了解LockSupport"><a href="#了解LockSupport" class="headerlink" title="了解LockSupport"></a>了解LockSupport</h3><h3 id="AbstractQueuedSynchronizer"><a href="#AbstractQueuedSynchronizer" class="headerlink" title="AbstractQueuedSynchronizer"></a>AbstractQueuedSynchronizer</h3><ul>
+<li><p>什么是AQS？学习它的必要</p>
+</li>
+<li><p>AQS使用方式和其中的设计模式</p>
+</li>
+<li><p>了解其中的方法</p>
+</li>
+<li><p>实现一个自己的独占锁 </p>
+</li>
+<li><p>深入源码</p>
+<ul>
+<li><p>AQS中的数据结构</p>
+</li>
+<li><p>节点在同步队列中的增加和移出</p>
+</li>
+<li><p>独占式同步状态获取与释放</p>
+</li>
+<li><p>共享式同步状态获取与释放</p>
+</li>
+<li><p>Condition分析</p>
+<ul>
+<li>等待队列</li>
+<li>await方法</li>
+<li>signal方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>了解ReentrantLock的实现</p>
+<ul>
+<li>锁的可重入</li>
+<li>公平和非公平锁</li>
+</ul>
+</li>
+<li><p>了解ReentrantReadWriteLock的实现</p>
+</li>
+</ul>
+<h2 id="9、JMM和底层实现原理"><a href="#9、JMM和底层实现原理" class="headerlink" title="9、JMM和底层实现原理"></a>9、JMM和底层实现原理</h2><h3 id="现代计算机物理"><a href="#现代计算机物理" class="headerlink" title="现代计算机物理"></a>现代计算机物理</h3><p>上的内存模型</p>
+<ul>
+<li>概念</li>
+<li>带来的问题</li>
+</ul>
+<h3 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h3><p>（JMM）</p>
+<ul>
+<li><p>JVM对Java内存<br>模型的实现</p>
+</li>
+<li><p>带来的问题</p>
+</li>
+<li><p>重排序</p>
+<ul>
+<li>类型</li>
+<li>依赖性</li>
+<li>as-if-serial</li>
+<li>重排序带来的问题</li>
+<li>内存屏障</li>
+<li>临界区</li>
+</ul>
+</li>
+<li><p>Happens-Before</p>
+<ul>
+<li>定义</li>
+<li>规则</li>
+</ul>
+</li>
+<li><p>volatile的内存语义</p>
+<ul>
+<li><p>概念和深入理解</p>
+</li>
+<li><p>内存语义的实现</p>
+<ul>
+<li>重排序规则</li>
+<li>内存屏障插入策略</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>锁的内存语义</p>
+</li>
+<li><p>final的内存语义</p>
+</li>
+<li><p>volatile的实现原理</p>
+</li>
+<li><p>synchronized的实现原理</p>
+</li>
+</ul>
+<h2 id="8、实战项目-2个"><a href="#8、实战项目-2个" class="headerlink" title="8、实战项目(2个)"></a>8、实战项目(2个)</h2><h3 id="并发任务执行框架"><a href="#并发任务执行框架" class="headerlink" title="并发任务执行框架"></a>并发任务执行框架</h3><ul>
+<li><p>需求的产生和分析 </p>
+</li>
+<li><p>需要做什么</p>
+<ul>
+<li>封装多线程，屏蔽细节</li>
+<li>保存任务的上下文</li>
+<li>自动清除已完成和过期任务</li>
+</ul>
+</li>
+<li><p>具体实现</p>
+<ul>
+<li>可查询进度的并发任务执行框架</li>
+</ul>
+</li>
+</ul>
+<h3 id="应用性能优化实战"><a href="#应用性能优化实战" class="headerlink" title="应用性能优化实战"></a>应用性能优化实战</h3><ul>
+<li><p>项目简介</p>
+</li>
+<li><p>项目分析，为何优化</p>
+</li>
+<li><p>分析和改进</p>
+<ul>
+<li>架构改进</li>
+<li>单服务改进</li>
+</ul>
+</li>
+<li><p>如何继续改进</p>
+</li>
+<li><p>带来的启示</p>
+</li>
+</ul>
+<h2 id="7、并发安全"><a href="#7、并发安全" class="headerlink" title="7、并发安全"></a>7、并发安全</h2><h3 id="类的线程安全"><a href="#类的线程安全" class="headerlink" title="类的线程安全"></a>类的线程安全</h3><h3 id="如何做到类的线程安全"><a href="#如何做到类的线程安全" class="headerlink" title="如何做到类的线程安全"></a>如何做到类的线程安全</h3><ul>
+<li>无状态</li>
+<li>让类不可变</li>
+<li>更多……</li>
+</ul>
+<h3 id="线程不安全引发的问题"><a href="#线程不安全引发的问题" class="headerlink" title="线程不安全引发的问题"></a>线程不安全引发的问题</h3><ul>
+<li><p>死锁</p>
+<ul>
+<li>原因</li>
+<li>表现</li>
+<li>检测和解决</li>
+</ul>
+</li>
+<li><p>活锁</p>
+</li>
+<li><p>多线程程序<br>性能和思考</p>
+<ul>
+<li>影响性能的因素</li>
+<li>减少锁的竞争</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程安全的单例模式"><a href="#线程安全的单例模式" class="headerlink" title="线程安全的单例模式"></a>线程安全的单例模式</h3><ul>
+<li>如何让双重检查锁定安全</li>
+<li>懒汉式</li>
+<li>饿汉式</li>
+</ul>
+<h2 id="6、线程池"><a href="#6、线程池" class="headerlink" title="6、线程池"></a>6、线程池</h2><h3 id="什么是线程池？为什么要用线程池？"><a href="#什么是线程池？为什么要用线程池？" class="headerlink" title="什么是线程池？为什么要用线程池？"></a>什么是线程池？为什么要用线程池？</h3><h3 id="实现一个我们自己的线程池"><a href="#实现一个我们自己的线程池" class="headerlink" title="实现一个我们自己的线程池"></a>实现一个我们自己的线程池</h3><h3 id="JDK中的线程池"><a href="#JDK中的线程池" class="headerlink" title="JDK中的线程池"></a>JDK中的线程池</h3><ul>
+<li>线程池的创建</li>
+<li>提交任务</li>
+<li>关闭线程池</li>
+</ul>
+<h3 id="线程池工作机制"><a href="#线程池工作机制" class="headerlink" title="线程池工作机制"></a>线程池工作机制</h3><h3 id="合理配置线程池"><a href="#合理配置线程池" class="headerlink" title="合理配置线程池"></a>合理配置线程池</h3><h3 id="系统为我们预定义的线程池"><a href="#系统为我们预定义的线程池" class="headerlink" title="系统为我们预定义的线程池"></a>系统为我们预定义的线程池</h3><ul>
+<li><p>FixedThreadPool<br>SingleThreadExecutor<br>CachedThreadPool<br>WorkStealingPool</p>
+<ul>
+<li>含义</li>
+<li>使用场景</li>
+</ul>
+</li>
+<li><p>ScheduledThreadPoolExecutor</p>
+<ul>
+<li>含义</li>
+<li>使用场景</li>
+<li>内部方法辨析</li>
+</ul>
+</li>
+</ul>
+<h3 id="Executor框架"><a href="#Executor框架" class="headerlink" title="Executor框架"></a>Executor框架</h3><h3 id="CompletionService"><a href="#CompletionService" class="headerlink" title="CompletionService"></a>CompletionService</h3><ul>
+<li>使用</li>
+<li>优点</li>
+</ul>
+<h2 id="5、并发容器"><a href="#5、并发容器" class="headerlink" title="5、并发容器"></a>5、并发容器</h2><h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
+<li><p>使用</p>
+</li>
+<li><p>实现</p>
+<ul>
+<li><p>基本思想</p>
+</li>
+<li><p>预备知识</p>
+<ul>
+<li>Hash</li>
+<li>位运算</li>
+</ul>
+</li>
+<li><p>jdk1.7</p>
+<ul>
+<li>构造方法</li>
+<li>如何定位</li>
+<li>get方法</li>
+<li>put方法</li>
+<li>扩容</li>
+</ul>
+</li>
+<li><p>jdk1.8</p>
+<ul>
+<li>构造方法</li>
+<li>如何定位</li>
+<li>get方法</li>
+<li>put方法</li>
+<li>扩容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他并发容器"><a href="#其他并发容器" class="headerlink" title="其他并发容器"></a>其他并发容器</h3><ul>
+<li><p>ConcurrentSkipListMap等</p>
+<ul>
+<li>了解什么是SkipList</li>
+</ul>
+</li>
+<li><p>ConcurrentLinkedQueue  </p>
+</li>
+<li><p>写时复制容器</p>
+</li>
+</ul>
+<h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><ul>
+<li><p>概念</p>
+</li>
+<li><p>生产者消费者模式</p>
+</li>
+<li><p>常用方法</p>
+</li>
+<li><p>常用阻塞队列辨析</p>
+<ul>
+<li>·ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。<br>·LinkedBlockingQueue：一个由链表结构组成的有界阻塞队列。<br>·PriorityBlockingQueue：一个支持优先级排序的无界阻塞队列。<br>·DelayQueue：一个使用优先级队列实现的无界阻塞队列。<br>·SynchronousQueue：一个不存储元素的阻塞队列。<br>·LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。<br>·LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。</li>
+</ul>
+</li>
+<li><p>延时队列实战</p>
+</li>
+<li><p>阻塞队列实现原理</p>
+</li>
+</ul>
+<p><em>XMind: ZEN - Trial Version</em></p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/>http://yoursite.com/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-16T11:05:10+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jul 16, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/&title=Java-并发编程 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/&title=Java-并发编程 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/&title=Java-并发编程 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Java-笔试题</p>
+                <p class='content'>写一个ArrayList的动态代理类12345678910111213141516171819202122232425import java.lang.reflect.InvocationHan...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/'>
+                <p class='title'>Java-抽象类和接口有什么区别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>abstract class和interface有什么区别
+含有abstract修饰符的class即为抽象类，abstract类不能创建的实例对象。
+
+含有abstract方法的类必须定义为ab...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      <section id="comments">
+        <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+      </section>
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、线程基础、线程"><span class="toc-text">1、线程基础、线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Java中线程基础"><span class="toc-text">2、Java中线程基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Daemon线程"><span class="toc-text">Daemon线程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、线程的并发工具类"><span class="toc-text">2、线程的并发工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fork-Join"><span class="toc-text">Fork&#x2F;Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CountDownLatch作用、应用场景和实战"><span class="toc-text">CountDownLatch作用、应用场景和实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CyclicBarrier作用、应用场景和实战"><span class="toc-text">CyclicBarrier作用、应用场景和实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CountDownLatch和CyclicBarrier辨析"><span class="toc-text">CountDownLatch和CyclicBarrier辨析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semaphore作用、应用场景和实战"><span class="toc-text">Semaphore作用、应用场景和实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exchange作用、应用场景和实战"><span class="toc-text">Exchange作用、应用场景和实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Callable、Future和FutureTask"><span class="toc-text">Callable、Future和FutureTask</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、原子操作CAS"><span class="toc-text">3、原子操作CAS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原子操作类"><span class="toc-text">原子操作类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、显式锁和AQS"><span class="toc-text">4、显式锁和AQS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#显式锁"><span class="toc-text">显式锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解LockSupport"><span class="toc-text">了解LockSupport</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AbstractQueuedSynchronizer"><span class="toc-text">AbstractQueuedSynchronizer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9、JMM和底层实现原理"><span class="toc-text">9、JMM和底层实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#现代计算机物理"><span class="toc-text">现代计算机物理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型"><span class="toc-text">Java内存模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8、实战项目-2个"><span class="toc-text">8、实战项目(2个)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#并发任务执行框架"><span class="toc-text">并发任务执行框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用性能优化实战"><span class="toc-text">应用性能优化实战</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、并发安全"><span class="toc-text">7、并发安全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的线程安全"><span class="toc-text">类的线程安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何做到类的线程安全"><span class="toc-text">如何做到类的线程安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程不安全引发的问题"><span class="toc-text">线程不安全引发的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程安全的单例模式"><span class="toc-text">线程安全的单例模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、线程池"><span class="toc-text">6、线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是线程池？为什么要用线程池？"><span class="toc-text">什么是线程池？为什么要用线程池？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现一个我们自己的线程池"><span class="toc-text">实现一个我们自己的线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK中的线程池"><span class="toc-text">JDK中的线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程池工作机制"><span class="toc-text">线程池工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合理配置线程池"><span class="toc-text">合理配置线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统为我们预定义的线程池"><span class="toc-text">系统为我们预定义的线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executor框架"><span class="toc-text">Executor框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CompletionService"><span class="toc-text">CompletionService</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、并发容器"><span class="toc-text">5、并发容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-text">ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他并发容器"><span class="toc-text">其他并发容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻塞队列"><span class="toc-text">阻塞队列</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

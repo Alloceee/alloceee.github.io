@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>前端-杂七杂八 - Ye</title>
+  
+    <meta name="keywords" content="前端">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ye">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">前端-杂七杂八</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/07/15/%E5%85%B6%E4%BB%96/">
+      前端-杂七杂八
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          
+          <h2 id="一、CSS"><a href="#一、CSS" class="headerlink" title="一、CSS"></a>一、CSS</h2><h3 id="1-盒模型"><a href="#1-盒模型" class="headerlink" title="#1. 盒模型"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_1-盒模型" target="_blank" rel="noopener">#</a>1. 盒模型</h3><blockquote>
+<p>页面渲染时，<code>dom</code> 元素所采用的 布局模型。可通过<code>box-sizing</code>进行设置。根据计算宽高的区域可分为</p>
+</blockquote>
+<ul>
+<li><code>content-box</code> (<code>W3C</code> 标准盒模型)</li>
+<li><code>border-box</code> (<code>IE</code> 盒模型)</li>
+<li><code>padding-box</code></li>
+<li><code>margin-box</code> (浏览器未实现)</li>
+</ul>
+<h3 id="2-BFC"><a href="#2-BFC" class="headerlink" title="#2. BFC"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_2-bfc" target="_blank" rel="noopener">#</a>2. BFC</h3><blockquote>
+<p>块级格式化上下文，是一个独立的渲染区域，让处于 <code>BFC</code> 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
+</blockquote>
+<blockquote>
+<p>IE下为 <code>Layout</code>，可通过 <code>zoom:1</code> 触发</p>
+</blockquote>
+<p><strong>触发条件:</strong></p>
+<ul>
+<li>根元素</li>
+<li><code>position: absolute/fixed</code></li>
+<li><code>display: inline-block / table</code></li>
+<li><code>float</code> 元素</li>
+<li><code>ovevflow !== visible</code></li>
+</ul>
+<p><strong>规则:</strong></p>
+<ul>
+<li>属于同一个 <code>BFC</code> 的两个相邻 <code>Box</code> 垂直排列</li>
+<li>属于同一个 <code>BFC</code> 的两个相邻 <code>Box</code> 的 <code>margin</code> 会发生重叠</li>
+<li><code>BFC</code> 中子元素的 <code>margin box</code> 的左边， 与包含块 (BFC) <code>border box</code>的左边相接触 (子元素 <code>absolute</code> 除外)</li>
+<li><code>BFC</code> 的区域不会与 <code>float</code> 的元素区域重叠</li>
+<li>计算 <code>BFC</code> 的高度时，浮动子元素也参与计算</li>
+<li>文字层不会被浮动层覆盖，环绕于周围</li>
+</ul>
+<p><strong>应用:</strong></p>
+<ul>
+<li>阻止<code>margin</code>重叠</li>
+<li>可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个<code>div</code>都位于同一个 <code>BFC</code> 区域之中)</li>
+<li>自适应两栏布局</li>
+<li>可以阻止元素被浮动元素覆盖</li>
+</ul>
+<h3 id="3-层叠上下文"><a href="#3-层叠上下文" class="headerlink" title="#3.层叠上下文"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_3-层叠上下文" target="_blank" rel="noopener">#</a>3.层叠上下文</h3><blockquote>
+<p>元素提升为一个比较特殊的图层，在三维空间中 (z轴) 高出普通元素一等。</p>
+</blockquote>
+<p><strong>触发条件</strong></p>
+<ul>
+<li><p>根层叠上下文(<code>html</code>)</p>
+</li>
+<li><p><code>position</code></p>
+</li>
+<li><pre><code>css3
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  属性</span><br><span class="line"></span><br><span class="line">  - &#96;flex&#96;</span><br><span class="line">  - &#96;transform&#96;</span><br><span class="line">  - &#96;opacity&#96;</span><br><span class="line">  - &#96;filter&#96;</span><br><span class="line">  - &#96;will-change&#96;</span><br><span class="line">  - &#96;webkit-overflow-scrolling&#96;</span><br><span class="line"></span><br><span class="line">**层叠等级：层叠上下文在z轴上的排序**</span><br><span class="line"></span><br><span class="line">- 在同一层叠上下文中，层叠等级才有意义</span><br><span class="line">- &#96;z-index&#96;的优先级最高</span><br><span class="line"></span><br><span class="line">![img](https:&#x2F;&#x2F;user-gold-cdn.xitu.io&#x2F;2019&#x2F;2&#x2F;14&#x2F;168e9d9f3a1d368b)</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_4-居中布局)4. 居中布局</span><br><span class="line"></span><br><span class="line">**水平居中**</span><br><span class="line"></span><br><span class="line">- 行内元素: &#96;text-align: center&#96;</span><br><span class="line">- 块级元素: &#96;margin: 0 auto&#96;</span><br><span class="line">- &#96;absolute + transform&#96;</span><br><span class="line">- &#96;flex + justify-content: center&#96;</span><br><span class="line"></span><br><span class="line">**垂直居中**</span><br><span class="line"></span><br><span class="line">- &#96;line-height: height&#96;</span><br><span class="line">- &#96;absolute + transform&#96;</span><br><span class="line">- &#96;flex + align-items: center&#96;</span><br><span class="line">- &#96;table&#96;</span><br><span class="line"></span><br><span class="line">**水平垂直居中**</span><br><span class="line"></span><br><span class="line">- &#96;absolute + transform&#96;</span><br><span class="line">- &#96;flex + justify-content + align-items&#96;</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_5-选择器优先级)5. 选择器优先级</span><br><span class="line"></span><br><span class="line">- &#96;!important&#96; &gt; 行内样式 &gt; &#96;#id&#96; &gt; &#96;.class&#96; &gt; &#96;tag&#96; &gt; &#96;*&#96; &gt; 继承 &gt; 默认</span><br><span class="line">- 选择器 从右往左 解析</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_6-去除浮动影响，防止父级高度塌陷)6.去除浮动影响，防止父级高度塌陷</span><br><span class="line"></span><br><span class="line">- 通过增加尾元素清除浮动</span><br><span class="line">- &#96;:after &#x2F;   : clear: both&#96;</span><br><span class="line">- 创建父级 &#96;BFC&#96;</span><br><span class="line">- 父级设置高度</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_7-link-与-import-的区别)7.link 与 @import 的区别</span><br><span class="line"></span><br><span class="line">- &#96;link&#96;功能较多，可以定义 &#96;RSS&#96;，定义 &#96;Rel&#96; 等作用，而&#96;@import&#96;只能用于加载 &#96;css&#96;</span><br><span class="line">- 当解析到&#96;link&#96;时，页面会同步加载所引的 &#96;css&#96;，而&#96;@import&#96;所引用的 &#96;css&#96; 会等到页面加载完才被加载</span><br><span class="line">- &#96;@import&#96;需要 &#96;IE5&#96; 以上才能使用</span><br><span class="line">- &#96;link&#96;可以使用 &#96;js&#96; 动态引入，&#96;@import&#96;不行</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_8-css预处理器-sass-less-postcss)8. CSS预处理器(Sass&#x2F;Less&#x2F;Postcss)</span><br><span class="line"></span><br><span class="line">&gt; &#96;CSS&#96;预处理器的原理: 是将类 &#96;CSS&#96;语言通过 &#96;Webpack&#96; 编译 转成浏览器可读的真正 &#96;CSS&#96;。在这层编译之上，便可以赋予 &#96;CSS&#96; 更多更强大的功能，常用功能:</span><br><span class="line"></span><br><span class="line">- 嵌套</span><br><span class="line">- 变量</span><br><span class="line">- 循环语句</span><br><span class="line">- 条件语句</span><br><span class="line">- 自动前缀</span><br><span class="line">- 单位转换</span><br><span class="line">- &#96;mixin&#96;复用</span><br><span class="line"></span><br><span class="line">&gt; 面试中一般不会重点考察该点，一般介绍下自己在实战项目中的经验即可~</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_9-css动画)9.CSS动画</span><br><span class="line"></span><br><span class="line">**transition: 过渡动画**</span><br><span class="line"></span><br><span class="line">- &#96;transition-property&#96;: 属性</span><br><span class="line">- &#96;transition-duration&#96;: 间隔</span><br><span class="line">- &#96;transition-timing-function&#96;: 曲线</span><br><span class="line">- &#96;transition-delay&#96;: 延迟</span><br><span class="line">- 常用钩子: &#96;transitionend&#96;</span><br><span class="line"></span><br><span class="line">**animation &#x2F; keyframes**</span><br><span class="line"></span><br><span class="line">- &#96;animation-name&#96;: 动画名称，对应&#96;@keyframes&#96;</span><br><span class="line"></span><br><span class="line">- &#96;animation-duration&#96;: 间隔</span><br><span class="line"></span><br><span class="line">- &#96;animation-timing-function&#96;: 曲线</span><br><span class="line"></span><br><span class="line">- &#96;animation-delay&#96;: 延迟</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+animation-iteration-count
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  : 次数</span><br><span class="line"></span><br><span class="line">  - &#96;infinite&#96;: 循环动画</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+animation-direction
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  : 方向</span><br><span class="line"></span><br><span class="line">  - &#96;alternate&#96;: 反向播放</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+animation-fill-mode
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  : 静止模式</span><br><span class="line"></span><br><span class="line">  - &#96;forwards&#96;: 停止时，保留最后一帧</span><br><span class="line">  - &#96;backwards&#96;: 停止时，回到第一帧</span><br><span class="line">  - &#96;both&#96;: 同时运用 &#96;forwards &#x2F; backwards&#96;</span><br><span class="line"></span><br><span class="line">- 常用钩子: &#96;animationend&#96;</span><br><span class="line"></span><br><span class="line">&gt; 动画属性: 尽量使用动画属性进行动画，能拥有较好的性能表现</span><br><span class="line"></span><br><span class="line">- &#96;translate&#96;</span><br><span class="line">- &#96;scale&#96;</span><br><span class="line">- &#96;rotate&#96;</span><br><span class="line">- &#96;skew&#96;</span><br><span class="line">- &#96;opacity&#96;</span><br><span class="line">- &#96;color&#96;</span><br><span class="line"></span><br><span class="line">## [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#二、javascript)二、JavaScript</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_1-原型-构造函数-实例)1. 原型 &#x2F; 构造函数 &#x2F; 实例</span><br><span class="line"></span><br><span class="line">- 原型(&#96;prototype&#96;): 一个简单的对象，用于实现对象的 属性继承。可以简单的理解成对象的爹。在 &#96;Firefox&#96; 和 &#96;Chrome&#96; 中，每个&#96;JavaScript&#96;对象中都包含一个&#96;__proto__&#96;(非标准)的属性指向它爹(该对象的原型)，可&#96;obj.__proto__&#96;进行访问。</span><br><span class="line">- 构造函数: 可以通过&#96;new&#96;来 新建一个对象 的函数。</span><br><span class="line">- 实例: 通过构造函数和&#96;new&#96;创建出来的对象，便是实例。 实例通过&#96;__proto__&#96;指向原型，通过&#96;constructor&#96;指向构造函数。</span><br><span class="line"></span><br><span class="line">&gt; 以&#96;Object&#96;为例，我们常用的&#96;Object&#96;便是一个构造函数，因此我们可以通过它构建实例。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">&#x2F;&#x2F; 实例</span><br><span class="line">const instance &#x3D; new Object()</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+<blockquote>
+<p>则此时， 实例为<code>instance</code>, 构造函数为<code>Object</code>，我们知道，构造函数拥有一个<code>prototype</code>的属性指向原型，因此原型为:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原型</span></span><br><span class="line"><span class="keyword">const</span> prototype = <span class="built_in">Object</span>.prototype</span><br></pre></td></tr></table></figure>
+
+<p><strong>这里我们可以来看出三者的关系:</strong></p>
+<ul>
+<li><code>实例.__proto__ === 原型</code></li>
+<li><code>原型.constructor === 构造函数</code></li>
+<li><code>构造函数.prototype === 原型</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这条线其实是是基于原型进行获取的，可以理解成一条基于原型的映射线</span><br><span class="line">&#x2F;&#x2F; 例如: </span><br><span class="line">&#x2F;&#x2F; const o &#x3D; new Object()</span><br><span class="line">&#x2F;&#x2F; o.constructor &#x3D;&#x3D;&#x3D; Object   --&gt; true</span><br><span class="line">&#x2F;&#x2F; o.__proto__ &#x3D; null;</span><br><span class="line">&#x2F;&#x2F; o.constructor &#x3D;&#x3D;&#x3D; Object   --&gt; false</span><br><span class="line">实例.constructor &#x3D;&#x3D;&#x3D; 构造函数</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-gold-cdn.xitu.io/2019/2/14/168e9d9b940c4c6f" alt="img"></p>
+<h3 id="2-原型链："><a href="#2-原型链：" class="headerlink" title="#2.原型链："></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_2-原型链：" target="_blank" rel="noopener">#</a>2.原型链：</h3><blockquote>
+<p>原型链是由原型对象组成，每个对象都有 <code>__proto__</code> 属性，指向了创建该对象的构造函数的原型，<code>__proto__</code> 将对象连接起来组成了原型链。是一个用来实现继承和共享属性的有限的对象链</p>
+</blockquote>
+<ul>
+<li>属性查找机制: 当查找对象的属性时，如果实例对象自身不存在该属性，则沿着原型链往上一级查找，找到时则输出，不存在时，则继续沿着原型链往上一级查找，直至最顶级的原型对象<code>Object.prototype</code>，如还是没找到，则输出<code>undefined</code>；</li>
+<li>属性修改机制: 只会修改实例对象本身的属性，如果不存在，则进行添加该属性，如果需要修改原型的属性时，则可以用: <code>b.prototype.x = 2</code>；但是这样会造成所有继承于该对象的实例的属性发生改变。</li>
+</ul>
+<h3 id="3-执行上下文-EC"><a href="#3-执行上下文-EC" class="headerlink" title="#3. 执行上下文(EC)"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_3-执行上下文-ec" target="_blank" rel="noopener">#</a>3. 执行上下文(EC)</h3><blockquote>
+<p>执行上下文可以简单理解为一个对象:</p>
+</blockquote>
+<p><strong>它包含三个部分:</strong></p>
+<ul>
+<li>变量对象(<code>VO</code>)</li>
+<li>作用域链(词法作用域)</li>
+<li><code>this</code>指向</li>
+</ul>
+<p><strong>它的类型:</strong></p>
+<ul>
+<li>全局执行上下文</li>
+<li>函数执行上下文</li>
+<li><code>eval</code>执行上下文</li>
+</ul>
+<p><strong>代码执行过程:</strong></p>
+<ul>
+<li>创建 全局上下文 (<code>global EC</code>)</li>
+<li>全局执行上下文 (<code>caller</code>) 逐行 自上而下 执行。遇到函数时，函数执行上下文 (<code>callee</code>) 被<code>push</code>到执行栈顶层</li>
+<li>函数执行上下文被激活，成为 <code>active EC</code>, 开始执行函数中的代码，<code>caller</code> 被挂起</li>
+<li>函数执行完后，<code>callee</code> 被<code>pop</code>移除出执行栈，控制权交还全局上下文 (<code>caller</code>)，继续执行</li>
+</ul>
+<h3 id="4-变量对象"><a href="#4-变量对象" class="headerlink" title="#4.变量对象"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_4-变量对象" target="_blank" rel="noopener">#</a>4.变量对象</h3><ul>
+<li>变量对象，是执行上下文中的一部分，可以抽象为一种 数据作用域，其实也可以理解为就是一个简单的对象，它存储着该执行上下文中的所有 变量和函数声明(不包含函数表达式)。</li>
+<li>活动对象 (<code>AO</code>): 当变量对象所处的上下文为 <code>active EC</code> 时，称为活动对象。</li>
+</ul>
+<h3 id="5-作用域"><a href="#5-作用域" class="headerlink" title="#5. 作用域"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_5-作用域" target="_blank" rel="noopener">#</a>5. 作用域</h3><blockquote>
+<p>执行上下文中还包含作用域链。理解作用域之前，先介绍下作用域。作用域其实可理解为该上下文中声明的 变量和声明的作用范围。可分为 块级作用域 和 函数作用域</p>
+</blockquote>
+<p><strong>特性:</strong></p>
+<ul>
+<li>声明提前: 一个声明在函数体内都是可见的, 函数优先于变量</li>
+<li>非匿名自执行函数，函数变量为 只读 状态，无法修改</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="number">1</span>) &#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    foo = <span class="number">10</span>  <span class="comment">// 由于foo在函数中只为可读，因此赋值无效</span></span><br><span class="line">    <span class="built_in">console</span>.log(foo)</span><br><span class="line">&#125;()) </span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果打印：  ƒ foo() &#123; foo = 10 ; console.log(foo) &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-作用域链"><a href="#6-作用域链" class="headerlink" title="#6.作用域链"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_6-作用域链" target="_blank" rel="noopener">#</a>6.作用域链</h3><blockquote>
+<p>我们知道，我们可以在执行上下文中访问到父级甚至全局的变量，这便是作用域链的功劳。作用域链可以理解为一组对象列表，包含 父级和自身的变量对象，因此我们便能通过作用域链访问到父级里声明的变量或者函数。</p>
+</blockquote>
+<p><strong>由两部分组成:</strong></p>
+<ul>
+<li><code>[[scope]]</code>属性: 指向父级变量对象和作用域链，也就是包含了父级的<code>[[scope]]</code>和<code>AO</code></li>
+<li><code>AO</code>: 自身活动对象</li>
+</ul>
+<blockquote>
+<p>如此 <code>[[scopr]]</code>包含<code>[[scope]]</code>，便自上而下形成一条 链式作用域。</p>
+</blockquote>
+<h3 id="7-闭包"><a href="#7-闭包" class="headerlink" title="#7. 闭包"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_7-闭包" target="_blank" rel="noopener">#</a>7. 闭包</h3><blockquote>
+<p>闭包属于一种特殊的作用域，称为 静态作用域。它的定义可以理解为: 父函数被销毁 的情况下，返回出的子函数的<code>[[scope]]</code>中仍然保留着父级的单变量对象和作用域链，因此可以继续访问到父级的变量对象，这样的函数称为闭包。</p>
+</blockquote>
+<p><strong>闭包会产生一个很经典的问题:</strong></p>
+<blockquote>
+<p>多个子函数的<code>[[scope]]</code>都是同时指向父级，是完全共享的。因此当父级的变量对象被修改时，所有子函数都受到影响。</p>
+</blockquote>
+<p>••解决:**</p>
+<ul>
+<li>变量可以通过 函数参数的形式 传入，避免使用默认的<code>[[scope]]</code>向上查找</li>
+<li>使用<code>setTimeout</code>包裹，通过第三个参数传入</li>
+<li>使用 块级作用域，让变量成为自己上下文的属性，避免共享</li>
+</ul>
+<h3 id="8-script-引入方式："><a href="#8-script-引入方式：" class="headerlink" title="#8. script 引入方式："></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_8-script-引入方式：" target="_blank" rel="noopener">#</a>8. script 引入方式：</h3><ul>
+<li><code>html</code> 静态``引入</li>
+<li><code>js</code> 动态插入``</li>
+<li>``: 异步加载，元素解析完成后执行</li>
+<li>``: 异步加载，但执行时会阻塞元素渲染</li>
+</ul>
+<h3 id="9-对象的拷贝"><a href="#9-对象的拷贝" class="headerlink" title="#9. 对象的拷贝"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_9-对象的拷贝" target="_blank" rel="noopener">#</a>9. 对象的拷贝</h3><p><strong>浅拷贝: 以赋值的形式拷贝引用对象，仍指向同一个地址，修改时原对象也会受到影响</strong></p>
+<ul>
+<li><code>Object.assign</code></li>
+<li>展开运算符(<code>...</code>)</li>
+</ul>
+<p><strong>深拷贝: 完全拷贝一个新对象，修改时原对象不再受到任何影响</strong></p>
+<ul>
+<li><code>JSON.parse(JSON.stringify(obj))</code>: 性能最快</li>
+<li>具有循环引用的对象时，报错</li>
+<li>当值为函数、<code>undefined</code>、或<code>symbol</code>时，无法拷贝</li>
+<li>递归进行逐一赋值</li>
+</ul>
+<h3 id="10-new运算符的执行过程"><a href="#10-new运算符的执行过程" class="headerlink" title="#10. new运算符的执行过程"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_10-new运算符的执行过程" target="_blank" rel="noopener">#</a>10. new运算符的执行过程</h3><ul>
+<li>新生成一个对象</li>
+<li>链接到原型: <code>obj.__proto__ = Con.prototype</code></li>
+<li>绑定<code>this: apply</code></li>
+<li>返回新对象(如果构造函数有自己 <code>retrun</code> 时，则返回该值)</li>
+</ul>
+<h3 id="11-instanceof原理"><a href="#11-instanceof原理" class="headerlink" title="#11. instanceof原理"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_11-instanceof原理" target="_blank" rel="noopener">#</a>11. instanceof原理</h3><blockquote>
+<p>能在实例的 原型对象链 中找到该构造函数的<code>prototype</code>属性所指向的 原型对象，就返回<code>true</code>。即:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// __proto__: 代表原型对象链</span></span><br><span class="line">instance.[__proto__...] === instance.constructor.prototype</span><br><span class="line"></span><br><span class="line"><span class="comment">// return true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="12-代码的复用"><a href="#12-代码的复用" class="headerlink" title="#12. 代码的复用"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_12-代码的复用" target="_blank" rel="noopener">#</a>12. 代码的复用</h3><blockquote>
+<p>当你发现任何代码开始写第二遍时，就要开始考虑如何复用。一般有以下的方式:</p>
+</blockquote>
+<ul>
+<li>函数封装</li>
+<li>继承</li>
+<li>复制<code>extend</code></li>
+<li>混入<code>mixin</code></li>
+<li>借用<code>apply/call</code></li>
+</ul>
+<h3 id="13-继承"><a href="#13-继承" class="headerlink" title="#13. 继承"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_13-继承" target="_blank" rel="noopener">#</a>13. 继承</h3><blockquote>
+<p>在 JS 中，继承通常指的便是 原型链继承，也就是通过指定原型，并可以通过原型链继承原型上的属性或者方法。</p>
+</blockquote>
+<p><strong>最优化: 圣杯模式</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inherit = (<span class="function"><span class="keyword">function</span>(<span class="params">c,p</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">c,p</span>)</span>&#123;</span><br><span class="line">		F.prototype = p.prototype;</span><br><span class="line">		c.prototype = <span class="keyword">new</span> F();</span><br><span class="line">		c.uber = p.prototype;</span><br><span class="line">		c.prototype.constructor = c;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用 <code>ES6</code> 的语法糖 <code>class / extends</code></p>
+</blockquote>
+<h3 id="14-类型转换"><a href="#14-类型转换" class="headerlink" title="#14. 类型转换"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_14-类型转换" target="_blank" rel="noopener">#</a>14. 类型转换</h3><blockquote>
+<p>大家都知道 JS 中在使用运算符号或者对比符时，会自带隐式转换，规则如下:</p>
+</blockquote>
+<ul>
+<li><code>-、*、/、%</code>：一律转换成数值后计算</li>
+<li>+：<ul>
+<li>数字 + 字符串 = 字符串， 运算顺序是从左到右</li>
+<li>数字 + 对象， 优先调用对象的<code>valueOf -&gt; toString</code></li>
+<li>数字 + <code>boolean/null</code> -&gt; 数字</li>
+<li>数字 + <code>undefined</code> -&gt; <code>NaN</code></li>
+</ul>
+</li>
+<li><code>[1].toString() === &#39;1&#39;</code></li>
+<li><code>{}.toString() === &#39;[object object]&#39;</code></li>
+<li><code>NaN !== NaN</code> 、+<code>undefined</code> 为 <code>NaN</code></li>
+</ul>
+<h3 id="15-类型判断"><a href="#15-类型判断" class="headerlink" title="#15. 类型判断"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_15-类型判断" target="_blank" rel="noopener">#</a>15. 类型判断</h3><blockquote>
+<p>判断 <code>Target</code> 的类型，单单用 <code>typeof</code> 并无法完全满足，这其实并不是 <code>bug</code>，本质原因是 <code>JS</code> 的万物皆对象的理论。因此要真正完美判断时，我们需要区分对待:</p>
+</blockquote>
+<ul>
+<li>基本类型(<code>null</code>): 使用 <code>String(null)</code></li>
+<li>基本类型(<code>string / number / boolean / undefined</code>) + <code>function</code>: - 直接使用 <code>typeof</code>即可</li>
+<li>其余引用类型(<code>Array / Date / RegExp Error</code>): 调用<code>toString</code>后根据<code>[object XXX]</code>进行判断</li>
+</ul>
+<p>很稳的判断封装:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> class2type = &#123;&#125;</span><br><span class="line"><span class="string">'Array Date RegExp Object Error'</span>.split(<span class="string">' '</span>).forEach(<span class="function"><span class="params">e</span> =&gt;</span> class2type[ <span class="string">'[object '</span> + e + <span class="string">']'</span> ] = e.toLowerCase()) </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj == <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">String</span>(obj)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">'object'</span> ? class2type[ <span class="built_in">Object</span>.prototype.toString.call(obj) ] || <span class="string">'object'</span> : <span class="keyword">typeof</span> obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="16-模块化"><a href="#16-模块化" class="headerlink" title="#16. 模块化"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_16-模块化" target="_blank" rel="noopener">#</a>16. 模块化</h3><blockquote>
+<p>模块化开发在现代开发中已是必不可少的一部分，它大大提高了项目的可维护、可拓展和可协作性。通常，我们 在浏览器中使用 <code>ES6</code> 的模块化支持，在 <code>Node</code> 中使用 <code>commonjs</code> 的模块化支持。</p>
+</blockquote>
+<p><strong>分类:</strong></p>
+<ul>
+<li><code>es6: import / export</code></li>
+<li><code>commonjs: require / module.exports / exports</code></li>
+<li><code>amd: require / defined</code></li>
+</ul>
+<p><strong>require与import的区别</strong></p>
+<ul>
+<li><code>require</code>支持 动态导入，<code>import</code>不支持，正在提案 (<code>babel</code> 下可支持)</li>
+<li><code>require</code>是 同步 导入，<code>impor</code>t属于 异步 导入</li>
+<li><code>require</code>是 值拷贝，导出值变化不会影响导入值；<code>import</code>指向 内存地址，导入值会随导出值而变化</li>
+</ul>
+<h3 id="17-防抖与节流"><a href="#17-防抖与节流" class="headerlink" title="#17. 防抖与节流"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_17-防抖与节流" target="_blank" rel="noopener">#</a>17. 防抖与节流</h3><blockquote>
+<p>防抖与节流函数是一种最常用的 高频触发优化方式，能对性能有较大的帮助。</p>
+</blockquote>
+<ul>
+<li>防抖 (debounce): 将多次高频操作优化为只在最后一次执行，通常使用的场景是：用户输入，只需再输入完成后做一次输入校验即可。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, wait, immediate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> args = <span class="built_in">arguments</span></span><br><span class="line">        <span class="keyword">let</span> context = <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (immediate &amp;&amp; !timer) &#123;</span><br><span class="line">            fn.apply(context, args)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timer) clearTimeout(timer)</span><br><span class="line">        timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            fn.apply(context, args)</span><br><span class="line">        &#125;, wait)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>节流(throttle): 每隔一段时间后执行一次，也就是降低频率，将高频操作优化成低频操作，通常使用场景: 滚动条事件 或者 <code>resize</code> 事件，通常每隔 <code>100~500 ms</code>执行一次即可。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, wait, immediate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">let</span> callNow = immediate</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> context = <span class="keyword">this</span>,</span><br><span class="line">            args = <span class="built_in">arguments</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (callNow) &#123;</span><br><span class="line">            fn.apply(context, args)</span><br><span class="line">            callNow = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">            timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                fn.apply(context, args)</span><br><span class="line">                timer = <span class="literal">null</span></span><br><span class="line">            &#125;, wait)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-函数执行改变this"><a href="#18-函数执行改变this" class="headerlink" title="#18. 函数执行改变this"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_18-函数执行改变this" target="_blank" rel="noopener">#</a>18. 函数执行改变this</h3><ul>
+<li>由于 JS 的设计原理: 在函数中，可以引用运行环境中的变量。因此就需要一个机制来让我们可以在函数体内部获取当前的运行环境，这便是<code>this</code>。</li>
+</ul>
+<blockquote>
+<p>因此要明白 <code>this</code> 指向，其实就是要搞清楚 函数的运行环境，说人话就是，谁调用了函数。例如</p>
+</blockquote>
+<ul>
+<li><code>obj.fn()</code>，便是 <code>obj</code> 调用了函数，既函数中的 <code>this === obj</code></li>
+<li><code>fn()</code>，这里可以看成 <code>window.fn()</code>，因此 <code>this === window</code></li>
+</ul>
+<blockquote>
+<p>但这种机制并不完全能满足我们的业务需求，因此提供了三种方式可以手动修改 <code>this</code> 的指向:</p>
+</blockquote>
+<ul>
+<li><code>call: fn.call(target, 1, 2)</code></li>
+<li><code>apply: fn.apply(target, [1, 2])</code></li>
+<li><code>bind: fn.bind(target)(1,2)</code></li>
+</ul>
+<h3 id="19-ES6-ES7"><a href="#19-ES6-ES7" class="headerlink" title="#19. ES6/ES7"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_19-es6-es7" target="_blank" rel="noopener">#</a>19. ES6/ES7</h3><blockquote>
+<p>由于 <code>Babel</code>的强大和普及，现在 <code>ES6/ES7</code> 基本上已经是现代化开发的必备了。通过新的语法糖，能让代码整体更为简洁和易读。</p>
+</blockquote>
+<p><strong>声明</strong></p>
+<ul>
+<li><code>let / const</code>: 块级作用域、不存在变量提升、暂时性死区、不允许重复声明</li>
+<li><code>const</code>: 声明常量，无法修改</li>
+</ul>
+<p><strong>解构赋值</strong></p>
+<p><strong>class / extend: 类声明与继承</strong></p>
+<p><strong>Set / Map: 新的数据结构</strong></p>
+<p><strong>异步解决方案:</strong></p>
+<ul>
+<li><p><code>Promise</code>的使用与实现</p>
+</li>
+<li><pre><code>generator
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  :</span><br><span class="line"></span><br><span class="line">  - &#96;yield&#96;: 暂停代码</span><br><span class="line">  - &#96;next()&#96;: 继续执行代码</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">function* helloWorld() &#123;</span><br><span class="line">  yield &#39;hello&#39;;</span><br><span class="line">  yield &#39;world&#39;;</span><br><span class="line">  return &#39;ending&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const generator &#x3D; helloWorld();</span><br><span class="line"></span><br><span class="line">generator.next()  &#x2F;&#x2F; &#123; value: &#39;hello&#39;, done: false &#125;</span><br><span class="line"></span><br><span class="line">generator.next()  &#x2F;&#x2F; &#123; value: &#39;world&#39;, done: false &#125;</span><br><span class="line"></span><br><span class="line">generator.next()  &#x2F;&#x2F; &#123; value: &#39;ending&#39;, done: true &#125;</span><br><span class="line"></span><br><span class="line">generator.next()  &#x2F;&#x2F; &#123; value: undefined, done: true &#125;</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+<blockquote>
+<p><code>await / async</code>: 是<code>generator</code>的语法糖， <code>babel</code>中是基于<code>promise</code>实现。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserByAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">let</span> user = <span class="keyword">await</span> fetchUser();</span><br><span class="line">   <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user = <span class="keyword">await</span> getUserByAsync()</span><br><span class="line"><span class="built_in">console</span>.log(user)</span><br></pre></td></tr></table></figure>
+
+<h3 id="20-AST"><a href="#20-AST" class="headerlink" title="#20. AST"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_20-ast" target="_blank" rel="noopener">#</a>20. AST</h3><blockquote>
+<p>抽象语法树 (<code>Abstract Syntax Tree</code>)，是将代码逐字母解析成 树状对象 的形式。这是语言之间的转换、代码语法检查，代码风格检查，代码格式化，代码高亮，代码错误提示，代码自动补全等等的基础。例如:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> n * n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过解析转化成的AST如下图:</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2019/2/14/168e9d95910dd187?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="21-babel编译原理"><a href="#21-babel编译原理" class="headerlink" title="#21. babel编译原理"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_21-babel编译原理" target="_blank" rel="noopener">#</a>21. babel编译原理</h3><ul>
+<li><code>babylon</code> 将 <code>ES6/ES7</code> 代码解析成 <code>AST</code></li>
+<li><code>babel-traverse</code> 对 <code>AST</code> 进行遍历转译，得到新的 <code>AST</code></li>
+<li>新 AST 通过 <code>babel-generator</code> 转换成 <code>ES5</code></li>
+</ul>
+<h3 id="22-函数柯里化"><a href="#22-函数柯里化" class="headerlink" title="#22. 函数柯里化"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_22-函数柯里化" target="_blank" rel="noopener">#</a>22. 函数柯里化</h3><blockquote>
+<p>在一个函数中，首先填充几个参数，然后再返回一个新的函数的技术，称为函数的柯里化。通常可用于在不侵入函数的前提下，为函数 预置通用参数，供多次重复调用。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> add = <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">y</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x + y</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add1 = add(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">add1(<span class="number">2</span>) === <span class="number">3</span></span><br><span class="line">add1(<span class="number">20</span>) === <span class="number">21</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="23-数组-array"><a href="#23-数组-array" class="headerlink" title="#23. 数组(array)"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_23-数组-array" target="_blank" rel="noopener">#</a>23. 数组(array)</h3><ul>
+<li><code>map</code>: 遍历数组，返回回调返回值组成的新数组</li>
+<li><code>forEach</code>: 无法<code>break</code>，可以用<code>try/catch</code>中<code>throw new Error</code>来停止</li>
+<li><code>filter</code>: 过滤</li>
+<li><code>some</code>: 有一项返回<code>true</code>，则整体为<code>true</code></li>
+<li><code>every</code>: 有一项返回<code>false</code>，则整体为<code>false</code></li>
+<li><code>join</code>: 通过指定连接符生成字符串</li>
+<li><code>push / pop</code>: 末尾推入和弹出，改变原数组， 返回推入/弹出项</li>
+<li><code>unshift / shift</code>: 头部推入和弹出，改变原数组，返回操作项</li>
+<li><code>sort(fn) / reverse</code>: 排序与反转，改变原数组</li>
+<li><code>concat</code>: 连接数组，不影响原数组， 浅拷贝</li>
+<li><code>slice(start, end)</code>: 返回截断后的新数组，不改变原数组</li>
+<li><code>splice(start, number, value...)</code>: 返回删除元素组成的数组，<code>value</code>为插入项，改变原数组</li>
+<li><code>indexOf / lastIndexOf(value, fromIndex)</code>: 查找数组项，返回对应的下标</li>
+<li><code>reduce / reduceRight(fn(prev, cur)</code>， <code>defaultPrev)</code>: 两两执行，<code>prev</code> 为上次化简函数的<code>return</code>值，<code>cur</code>为当前值(从第二项开始)</li>
+</ul>
+<p><strong>数组乱序：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>];</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.random() - <span class="number">0.5</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>数组拆解: flat: [1,[2,3]] –&gt; [1, 2, 3]</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.flat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.toString().split(<span class="string">','</span>).map(<span class="function"><span class="params">item</span> =&gt;</span> +item )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、浏览器"><a href="#三、浏览器" class="headerlink" title="#三、浏览器"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#三、浏览器" target="_blank" rel="noopener">#</a>三、浏览器</h2><h3 id="1-跨标签页通讯"><a href="#1-跨标签页通讯" class="headerlink" title="#1. 跨标签页通讯"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_1-跨标签页通讯" target="_blank" rel="noopener">#</a>1. 跨标签页通讯</h3><blockquote>
+<p>不同标签页间的通讯，本质原理就是去运用一些可以 共享的中间介质，因此比较常用的有以下方法:</p>
+</blockquote>
+<ul>
+<li><p>通过父页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.open()</span><br></pre></td></tr></table></figure>
+
+<p>和子页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postMessage</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>异步下，通过 <code>window.open(&#39;about: blank&#39;)</code> 和 <code>tab.location.href = &#39;*&#39;</code></li>
+</ul>
+</li>
+<li><p>设置同域下共享的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage</span><br></pre></td></tr></table></figure>
+
+<p>与监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.onstorage</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重复写入相同的值无法触发</li>
+<li>会受到浏览器隐身模式等的限制</li>
+</ul>
+</li>
+<li><p>设置共享<code>cookie</code>与不断轮询脏检查(<code>setInterval</code>)</p>
+</li>
+<li><p>借助服务端或者中间层实现</p>
+</li>
+</ul>
+<h3 id="2-浏览器架构"><a href="#2-浏览器架构" class="headerlink" title="#2. 浏览器架构"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_2-浏览器架构" target="_blank" rel="noopener">#</a>2. 浏览器架构</h3><ul>
+<li><p>用户界面</p>
+</li>
+<li><p>主进程</p>
+</li>
+<li><p>内核</p>
+<ul>
+<li><p>渲染引擎</p>
+</li>
+<li><pre><code>JS
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">    引擎</span><br><span class="line"></span><br><span class="line">    - 执行栈</span><br><span class="line"></span><br><span class="line">- 事件触发线程</span><br><span class="line"></span><br><span class="line">  - 消息队列</span><br><span class="line">    - 微任务</span><br><span class="line">    - 宏任务</span><br><span class="line"></span><br><span class="line">- 网络异步线程</span><br><span class="line"></span><br><span class="line">- 定时器线程</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_3-浏览器下事件循环-event-loop)3. 浏览器下事件循环(Event Loop)</span><br><span class="line"></span><br><span class="line">&gt; 事件循环是指: 执行一个宏任务，然后执行清空微任务列表，循环再执行宏任务，再清微任务列表</span><br><span class="line"></span><br><span class="line">- 微任务 &#96;microtask(jobs): promise &#x2F; ajax &#x2F; Object.observe&#96;(该方法已废弃)</span><br><span class="line">- 宏任务 &#96;macrotask(task): setTimout &#x2F; script &#x2F; IO &#x2F; UI Rendering&#96;</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_4-从输入-url-到展示的过程)4. 从输入 url 到展示的过程</span><br><span class="line"></span><br><span class="line">- &#96;DNS&#96; 解析</span><br><span class="line"></span><br><span class="line">- &#96;TCP&#96; 三次握手</span><br><span class="line"></span><br><span class="line">- 发送请求，分析 &#96;url&#96;，设置请求报文(头，主体)</span><br><span class="line"></span><br><span class="line">- 服务器返回请求的文件 (&#96;html&#96;)</span><br><span class="line"></span><br><span class="line">- 浏览器渲染</span><br><span class="line"></span><br><span class="line">  -</span><br></pre></td></tr></table></figure>
+HTML parser
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+DOM Tree
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    - 标记化算法，进行元素状态的标记</span><br><span class="line">    - &#96;dom&#96; 树构建</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+CSS parser --&gt; Style Tree
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 解析 &#96;css&#96; 代码，生成样式树</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+attachment
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+Render Tree
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 结合 dom树 与 style树，生成渲染树</span><br><span class="line"></span><br><span class="line">- &#96;layout&#96;: 布局</span><br><span class="line"></span><br><span class="line">- &#96;GPU painting&#96;: 像素绘制页面</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_5-重绘与回流)5. 重绘与回流</span><br><span class="line"></span><br><span class="line">&gt; 当元素的样式发生变化时，浏览器需要触发更新，重新绘制元素。这个过程中，有两种类型的操作，即重绘与回流。</span><br><span class="line"></span><br><span class="line">&gt; - 重绘(repaint): 当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制，因此 损耗较少</span><br><span class="line">&gt; - 回流(reflow): 当元素的尺寸、结构或触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。会触发回流的操作:</span><br><span class="line"></span><br><span class="line">- 页面初次渲染</span><br><span class="line">- 浏览器窗口大小改变</span><br><span class="line">- 元素尺寸、位置、内容发生改变</span><br><span class="line">- 元素字体大小变化</span><br><span class="line">- 添加或者删除可见的 &#96;dom&#96; 元素</span><br><span class="line">- 激活 &#96;CSS&#96; 伪类（例如：&#96;:hover&#96;）</span><br><span class="line">- 查询某些属性或调用某些方法</span><br><span class="line">  - &#96;clientWidth、clientHeight、clientTop、clientLeft&#96;</span><br><span class="line">  - &#96;offsetWidth、offsetHeight、offsetTop、offsetLeft&#96;</span><br><span class="line">  - &#96;scrollWidth、scrollHeight、scrollTop、scrollLeft&#96;</span><br><span class="line">  - &#96;getComputedStyle()&#96;</span><br><span class="line">  - &#96;getBoundingClientRect()&#96;</span><br><span class="line">  - &#96;scrollTo()&#96;</span><br><span class="line"></span><br><span class="line">&gt; 回流必定触发重绘，重绘不一定触发回流。重绘的开销较小，回流的代价较高。</span><br><span class="line"></span><br><span class="line">**最佳实践:**</span><br><span class="line"></span><br><span class="line">**css**</span><br><span class="line"></span><br><span class="line">- 避免使用&#96;table&#96;布局</span><br><span class="line">- 将动画效果应用到&#96;position&#96;属性为&#96;absolute&#96;或&#96;fixed&#96;的元素上</span><br><span class="line"></span><br><span class="line">**javascript**</span><br><span class="line"></span><br><span class="line">- 避免频繁操作样式，可汇总后统一 一次修改</span><br><span class="line">- 尽量使用&#96;class&#96;进行样式修改</span><br><span class="line">- 减少&#96;dom&#96;的增删次数，可使用 字符串 或者 &#96;documentFragment&#96; 一次性插入</span><br><span class="line">- 极限优化时，修改样式可将其&#96;display: none&#96;后修改</span><br><span class="line">- 避免多次触发上面提到的那些会触发回流的方法，可以的话尽量用 变量存住</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_6-存储)6. 存储</span><br><span class="line"></span><br><span class="line">&gt; 我们经常需要对业务中的一些数据进行存储，通常可以分为 短暂性存储 和 持久性储存。</span><br><span class="line"></span><br><span class="line">- 短暂性的时候，我们只需要将数据存在内存中，只在运行时可用</span><br><span class="line"></span><br><span class="line">- 持久性存储，可以分为 浏览器端 与 服务器端</span><br><span class="line"></span><br><span class="line">  - 浏览器:</span><br><span class="line"></span><br><span class="line">    -</span><br></pre></td></tr></table></figure>
+  cookie
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      : 通常用于存储用户身份，登录状态等</span><br><span class="line"></span><br><span class="line">      - &#96;http&#96; 中自动携带， 体积上限为 &#96;4K&#96;， 可自行设置过期时间</span><br><span class="line"></span><br><span class="line">    - &#96;localStorage &#x2F; sessionStorage&#96;: 长久储存&#x2F;窗口关闭删除， 体积限制为 &#96;4~5M&#96;</span><br><span class="line"></span><br><span class="line">    - &#96;indexDB&#96;</span><br><span class="line"></span><br><span class="line">  - 服务器:</span><br><span class="line"></span><br><span class="line">    - 分布式缓存 &#96;redis&#96;</span><br><span class="line">    - 数据库</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_7-web-worker)7. Web Worker</span><br><span class="line"></span><br><span class="line">&gt; 现代浏览器为&#96;JavaScript&#96;创造的 多线程环境。可以新建并将部分任务分配到&#96;worker&#96;线程并行运行，两个线程可 独立运行，互不干扰，可通过自带的 消息机制 相互通信。</span><br><span class="line"></span><br><span class="line">**基本用法:**</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">&#x2F;&#x2F; 创建 worker</span><br><span class="line">const worker &#x3D; new Worker(&#39;work.js&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 向主进程推送消息</span><br><span class="line">worker.postMessage(&#39;Hello World&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 监听主进程来的消息</span><br><span class="line">worker.onmessage &#x3D; function (event) &#123;</span><br><span class="line">  console.log(&#39;Received message &#39; + event.data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p><strong>限制:</strong></p>
+<ul>
+<li>同源限制</li>
+<li>无法使用 <code>document / window / alert / confirm</code></li>
+<li>无法加载本地资源</li>
+</ul>
+<h3 id="8-内存泄露"><a href="#8-内存泄露" class="headerlink" title="#8. 内存泄露"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_8-内存泄露" target="_blank" rel="noopener">#</a>8. 内存泄露</h3><ul>
+<li>意外的全局变量: 无法被回收</li>
+<li>定时器: 未被正确关闭，导致所引用的外部变量无法被释放</li>
+<li>事件监听: 没有正确销毁 (低版本浏览器可能出现)</li>
+<li>闭包: 会导致父级中的变量无法被释放</li>
+<li><code>dom</code> 引用: <code>dom</code> 元素被删除时，内存中的引用未被正确清空</li>
+</ul>
+<blockquote>
+<p>可用 <code>chrome</code> 中的 <code>timeline</code> 进行内存标记，可视化查看内存的变化情况，找出异常点。</p>
+</blockquote>
+<h2 id="四、服务端与网络"><a href="#四、服务端与网络" class="headerlink" title="#四、服务端与网络"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#四、服务端与网络" target="_blank" rel="noopener">#</a>四、服务端与网络</h2><h3 id="1-http-https-协议"><a href="#1-http-https-协议" class="headerlink" title="#1. http/https 协议"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_1-http-https-协议" target="_blank" rel="noopener">#</a>1. http/https 协议</h3><p><strong>1.0 协议缺陷:</strong></p>
+<ul>
+<li>无法复用链接，完成即断开，重新慢启动和 <code>TCP 3</code>次握手</li>
+<li><code>head of line blocking</code>: 线头阻塞，导致请求之间互相影响</li>
+</ul>
+<p><strong>1.1 改进:</strong></p>
+<ul>
+<li><p>长连接(默认 <code>keep-alive</code>)，复用</p>
+</li>
+<li><p><code>host</code> 字段指定对应的虚拟站点</p>
+</li>
+<li><p>新增功能:</p>
+<ul>
+<li><p>断点续传</p>
+</li>
+<li><p>身份认证</p>
+</li>
+<li><p>状态管理</p>
+</li>
+<li><pre><code>cache
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">    缓存</span><br><span class="line"></span><br><span class="line">    - &#96;Cache-Control&#96;</span><br><span class="line">    - &#96;Expires&#96;</span><br><span class="line">    - &#96;Last-Modified&#96;</span><br><span class="line">    - &#96;Etag&#96;</span><br><span class="line"></span><br><span class="line">**2.0:**</span><br><span class="line"></span><br><span class="line">- 多路复用</span><br><span class="line">- 二进制分帧层: 应用层和传输层之间</span><br><span class="line">- 首部压缩</span><br><span class="line">- 服务端推送</span><br><span class="line"></span><br><span class="line">**https: 较为安全的网络传输协议**</span><br><span class="line"></span><br><span class="line">- 证书(公钥)</span><br><span class="line">- &#96;SSL&#96; 加密</span><br><span class="line">- 端口 &#96;443&#96;</span><br><span class="line"></span><br><span class="line">**TCP:**</span><br><span class="line"></span><br><span class="line">- 三次握手</span><br><span class="line">- 四次挥手</span><br><span class="line">- 滑动窗口: 流量控制</span><br><span class="line">- 拥塞处理</span><br><span class="line">  - 慢开始</span><br><span class="line">  - 拥塞避免</span><br><span class="line">  - 快速重传</span><br><span class="line">  - 快速恢复</span><br><span class="line"></span><br><span class="line">**缓存策略: 可分为 强缓存 和 协商缓存**</span><br><span class="line"></span><br><span class="line">- &#96;Cache-Control&#x2F;Expires&#96;: 浏览器判断缓存是否过期，未过期时，直接使用强缓存，&#96;Cache-Control&#96;的 &#96;max-age&#96; 优先级高于 &#96;Expires&#96;</span><br><span class="line"></span><br><span class="line">- 当缓存已经过期时，使用协商缓存</span><br><span class="line"></span><br><span class="line">  - 唯一标识方案: &#96;Etag&#96;(&#96;response&#96; 携带) &amp; &#96;If-None-Match&#96;(&#96;request&#96;携带，上一次返回的 &#96;Etag&#96;): 服务器判断资源是否被修改</span><br><span class="line"></span><br><span class="line">  - 最后一次修改时间:</span><br></pre></td></tr></table></figure>
+Last-Modified(response) &amp; If-Modified-Since
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(</span><br></pre></td></tr></table></figure>
+request
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">，上一次返回的</span><br></pre></td></tr></table></figure>
+Last-Modified
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    - 如果一致，则直接返回 304 通知浏览器使用缓存</span><br><span class="line">    - 如不一致，则服务端返回新的资源</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+Last-Modified
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">  缺点：</span><br><span class="line"></span><br><span class="line">  - 周期性修改，但内容未变时，会导致缓存失效</span><br><span class="line">  - 最小粒度只到 &#96;s&#96;， &#96;s&#96; 以内的改动无法检测到</span><br><span class="line"></span><br><span class="line">- &#96;Etag&#96; 的优先级高于&#96;Last-Modified&#96;</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_2-常见状态码)2. 常见状态码</span><br><span class="line"></span><br><span class="line">- &#96;1xx&#96;: 接受，继续处理</span><br><span class="line">- &#96;200&#96;: 成功，并返回数据</span><br><span class="line">- &#96;201&#96;: 已创建</span><br><span class="line">- &#96;202&#96;: 已接受</span><br><span class="line">- &#96;203&#96;: 成为，但未授权</span><br><span class="line">- &#96;204&#96;: 成功，无内容</span><br><span class="line">- &#96;205&#96;: 成功，重置内容</span><br><span class="line">- &#96;206&#96;: 成功，部分内容</span><br><span class="line">- &#96;301&#96;: 永久移动，重定向</span><br><span class="line">- &#96;302&#96;: 临时移动，可使用原有URI</span><br><span class="line">- &#96;304&#96;: 资源未修改，可使用缓存</span><br><span class="line">- &#96;305&#96;: 需代理访问</span><br><span class="line">- &#96;400&#96;: 请求语法错误</span><br><span class="line">- &#96;401&#96;: 要求身份认证</span><br><span class="line">- &#96;403&#96;: 拒绝请求</span><br><span class="line">- &#96;404&#96;: 资源不存在</span><br><span class="line">- &#96;500&#96;: 服务器错误</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_3-get-post)3. get &#x2F; post</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+get
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  : 缓存、请求长度受限、会被历史保存记录</span><br><span class="line"></span><br><span class="line">  - 无副作用(不修改资源)，幂等(请求次数与资源无关)的场景</span><br><span class="line"></span><br><span class="line">- &#96;post&#96;: 安全、大数据、更多编码类型</span><br><span class="line"></span><br><span class="line">![img](https:&#x2F;&#x2F;user-gold-cdn.xitu.io&#x2F;2019&#x2F;2&#x2F;14&#x2F;168e9d9050b9d08a)</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_4-websocket)4. Websocket</span><br><span class="line"></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+&gt; Websocket` 是一个 持久化的协议， 基于 `http` ， 服务端可以 主动 `push
+&gt; <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**兼容：**</span><br><span class="line"></span><br><span class="line">- &#96;FLASH Socket&#96;</span><br><span class="line">- 长轮询： 定时发送 &#96;ajax&#96;</span><br><span class="line">- &#96;long poll&#96;： 发送 --&gt; 有消息时再 &#96;response&#96;</span><br><span class="line"></span><br><span class="line">- &#96;new WebSocket(url)&#96;</span><br><span class="line">- &#96;ws.onerror &#x3D; fn&#96;</span><br><span class="line">- &#96;ws.onclose &#x3D; fn&#96;</span><br><span class="line">- &#96;ws.onopen &#x3D; fn&#96;</span><br><span class="line">- &#96;ws.onmessage &#x3D; fn&#96;</span><br><span class="line">- &#96;ws.send()&#96;</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_5-tcp三次握手)5. TCP三次握手</span><br><span class="line"></span><br><span class="line">建立连接前，客户端和服务端需要通过握手来确认对方:</span><br><span class="line"></span><br><span class="line">- 客户端发送 &#96;syn&#96;(同步序列编号) 请求，进入 &#96;syn_send&#96; 状态，等待确认</span><br><span class="line">- 服务端接收并确认 &#96;syn&#96; 包后发送 &#96;syn+ack&#96; 包，进入 &#96;syn_recv&#96; 状态</span><br><span class="line">- 客户端接收 &#96;syn+ack&#96; 包后，发送 &#96;ack&#96; 包，双方进入 &#96;established&#96; 状态</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_6-tcp四次挥手)6. TCP四次挥手</span><br><span class="line"></span><br><span class="line">- 客户端 -- FIN --&gt; 服务端， FIN—WAIT</span><br><span class="line">- 服务端 -- ACK --&gt; 客户端， CLOSE-WAIT</span><br><span class="line">- 服务端 -- ACK,FIN --&gt; 客户端， LAST-ACK</span><br><span class="line">- 客户端 -- ACK --&gt; 服务端，CLOSED</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_7-node-的-event-loop-6个阶段)7. Node 的 Event Loop: 6个阶段</span><br><span class="line"></span><br><span class="line">- &#96;timer&#96; 阶段: 执行到期的&#96;setTimeout &#x2F; setInterval&#96;队列回调</span><br><span class="line"></span><br><span class="line">- &#96;I&#x2F;O&#96; 阶段: 执行上轮循环残流的&#96;callback&#96;</span><br><span class="line"></span><br><span class="line">- &#96;idle&#96;, &#96;prepare&#96;</span><br><span class="line"></span><br><span class="line">- </span><br></pre></td></tr></table></figure>
+poll
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  : 等待回调</span><br><span class="line"></span><br><span class="line">  - 1. 执行回调</span><br><span class="line"></span><br><span class="line">  - 1. 执行定时器</span><br><span class="line"></span><br><span class="line">    - 如有到期的&#96;setTimeout &#x2F; setInterval&#96;， 则返回 &#96;timer&#96; 阶段</span><br><span class="line">    - 如有&#96;setImmediate&#96;，则前往 &#96;check&#96; 阶段</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+check
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 执行&#96;setImmediate&#96;</span><br><span class="line"></span><br><span class="line">- &#96;close callbacks&#96;</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_8-跨域)8. 跨域</span><br><span class="line"></span><br><span class="line">- &#96;JSONP&#96;: 利用&#96;&#96;标签不受跨域限制的特点，缺点是只能支持 &#96;get&#96; 请求</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">function jsonp(url, jsonpCallback, success) &#123;</span><br><span class="line">  const script &#x3D; document.createElement(&#39;script&#39;)</span><br><span class="line">  script.src &#x3D; url</span><br><span class="line">  script.async &#x3D; true</span><br><span class="line">  script.type &#x3D; &#39;text&#x2F;javascript&#39;</span><br><span class="line">  window[jsonpCallback] &#x3D; function(data) &#123;</span><br><span class="line">    success &amp;&amp; success(data)</span><br><span class="line">  &#125;</span><br><span class="line">  document.body.appendChild(script)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre></li>
+</ul>
+</li>
+<li><p>设置 <code>CORS: Access-Control-Allow-Origin：*</code></p>
+</li>
+<li><p><code>postMessage</code></p>
+</li>
+</ul>
+<h3 id="9-安全"><a href="#9-安全" class="headerlink" title="#9. 安全"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_9-安全" target="_blank" rel="noopener">#</a>9. 安全</h3><ul>
+<li><pre><code>XSS
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  攻击: 注入恶意代码</span><br><span class="line"></span><br><span class="line">  - &#96;cookie&#96; 设置 &#96;httpOnly&#96;</span><br><span class="line">  - 转义页面上的输入内容和输出内容</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+CSRF
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  : 跨站请求伪造，防护:</span><br><span class="line"></span><br><span class="line">  - &#96;get&#96;不修改数据</span><br><span class="line">  - 不被第三方网站访问到用户的 &#96;cookie&#96;</span><br><span class="line">  - 设置白名单，不被第三方网站请求</span><br><span class="line">  - 请求校验</span><br><span class="line"></span><br><span class="line">## [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#五、框架：vue)五、框架：Vue</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_1-nexttick)1. nextTick</span><br><span class="line"></span><br><span class="line">&gt; 在下次&#96;dom&#96;更新循环结束之后执行延迟回调，可用于获取更新后的&#96;dom&#96;状态</span><br><span class="line"></span><br><span class="line">- 新版本中默认是&#96;mincrotasks&#96;, &#96;v-on&#96;中会使用&#96;macrotasks&#96;</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+macrotasks
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  任务的实现:</span><br><span class="line"></span><br><span class="line">  - &#96;setImmediate &#x2F; MessageChannel &#x2F; setTimeout&#96;</span><br><span class="line"></span><br><span class="line">### [#](http:&#x2F;&#x2F;blog.poetries.top&#x2F;FE-Interview-Questions&#x2F;review&#x2F;#_2-生命周期)2. 生命周期</span><br><span class="line"></span><br><span class="line">***init\***</span><br><span class="line"></span><br><span class="line">- &#96;initLifecycle&#x2F;Event&#96;，往vm上挂载各种属性</span><br><span class="line"></span><br><span class="line">- &#96;callHook: beforeCreated&#96;: 实例刚创建</span><br><span class="line"></span><br><span class="line">- &#96;initInjection&#x2F;initState&#96;: 初始化注入和 &#96;data&#96; 响应性</span><br><span class="line"></span><br><span class="line">- &#96;created: 创建完成，属性已经绑定， 但还未生成真实&#96;dom&#96;</span><br><span class="line"></span><br><span class="line">- 进行元素的挂载： &#96;$el &#x2F; vm.$mount()&#96;</span><br><span class="line"></span><br><span class="line">- 是否有</span><br></pre></td></tr></table></figure>
+template
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">: 解析成</span><br></pre></td></tr></table></figure>
+render function
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - &#96;*.vue&#96;文件: &#96;vue-loader&#96;会将&#96;编译成&#96;render function&#96;</span><br><span class="line"></span><br><span class="line">- &#96;beforeMount&#96;: 模板编译&#x2F;挂载之前</span><br><span class="line"></span><br><span class="line">- 执行&#96;render function&#96;，生成真实的&#96;dom&#96;，并替换到&#96;dom tree&#96;中</span><br><span class="line"></span><br><span class="line">- &#96;mounted&#96;: 组件已挂载</span><br><span class="line"></span><br><span class="line">**update**</span><br><span class="line"></span><br><span class="line">- 执行&#96;diff&#96;算法，比对改变是否需要触发&#96;UI&#96;更新</span><br><span class="line"></span><br><span class="line">- &#96;flushScheduleQueue&#96;</span><br><span class="line"></span><br><span class="line">- &#96;watcher.before&#96;: 触发&#96;beforeUpdate&#96;钩子	- &#96;watcher.run()&#96;: 执行&#96;watcher&#96;中的 &#96;notify&#96;，通知所有依赖项更新UI</span><br><span class="line"></span><br><span class="line">- 触发&#96;updated&#96;钩子: 组件已更新</span><br><span class="line"></span><br><span class="line">- &#96;actived &#x2F; deactivated(keep-alive)&#96;: 不销毁，缓存，组件激活与失活</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+destroy
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - &#96;beforeDestroy&#96;: 销毁开始</span><br><span class="line">  - 销毁自身且递归销毁子组件以及事件监听</span><br><span class="line">    - &#96;remove()&#96;: 删除节点</span><br><span class="line">    - &#96;watcher.teardown()&#96;: 清空依赖</span><br><span class="line">    - &#96;vm.$off()&#96;: 解绑监听</span><br><span class="line">  - &#96;destroyed&#96;: 完成后触发钩子</span><br><span class="line"></span><br><span class="line">&gt; 上面是vue的声明周期的简单梳理，接下来我们直接以代码的形式来完成vue的初始化</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">new Vue(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 初始化Vue实例</span><br><span class="line">function _init() &#123;</span><br><span class="line">	 &#x2F;&#x2F; 挂载属性</span><br><span class="line">    initLifeCycle(vm) </span><br><span class="line">    &#x2F;&#x2F; 初始化事件系统，钩子函数等</span><br><span class="line">    initEvent(vm) </span><br><span class="line">    &#x2F;&#x2F; 编译slot、vnode</span><br><span class="line">    initRender(vm) </span><br><span class="line">    &#x2F;&#x2F; 触发钩子</span><br><span class="line">    callHook(vm, &#39;beforeCreate&#39;)</span><br><span class="line">    &#x2F;&#x2F; 添加inject功能</span><br><span class="line">    initInjection(vm)</span><br><span class="line">    &#x2F;&#x2F; 完成数据响应性 props&#x2F;data&#x2F;watch&#x2F;computed&#x2F;methods</span><br><span class="line">    initState(vm)</span><br><span class="line">    &#x2F;&#x2F; 添加 provide 功能</span><br><span class="line">    initProvide(vm)</span><br><span class="line">    &#x2F;&#x2F; 触发钩子</span><br><span class="line">    callHook(vm, &#39;created&#39;)</span><br><span class="line">		</span><br><span class="line">	 &#x2F;&#x2F; 挂载节点</span><br><span class="line">    if (vm.$options.el) &#123;</span><br><span class="line">        vm.$mount(vm.$options.el)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 挂载节点实现</span><br><span class="line">function mountComponent(vm) &#123;</span><br><span class="line">	 &#x2F;&#x2F; 获取 render function</span><br><span class="line">    if (!this.options.render) &#123;</span><br><span class="line">        &#x2F;&#x2F; template to render</span><br><span class="line">        &#x2F;&#x2F; Vue.compile &#x3D; compileToFunctions</span><br><span class="line">        let &#123; render &#125; &#x3D; compileToFunctions() </span><br><span class="line">        this.options.render &#x3D; render</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 触发钩子</span><br><span class="line">    callHook(&#39;beforeMounte&#39;)</span><br><span class="line">    &#x2F;&#x2F; 初始化观察者</span><br><span class="line">    &#x2F;&#x2F; render 渲染 vdom， </span><br><span class="line">    vdom &#x3D; vm.render()</span><br><span class="line">    &#x2F;&#x2F; update: 根据 diff 出的 patchs 挂载成真实的 dom </span><br><span class="line">    vm._update(vdom)</span><br><span class="line">    &#x2F;&#x2F; 触发钩子  </span><br><span class="line">    callHook(vm, &#39;mounted&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 更新节点实现</span><br><span class="line">funtion queueWatcher(watcher) &#123;</span><br><span class="line">	nextTick(flushScheduleQueue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 清空队列</span><br><span class="line">function flushScheduleQueue() &#123;</span><br><span class="line">	 &#x2F;&#x2F; 遍历队列中所有修改</span><br><span class="line">    for()&#123;</span><br><span class="line">	    &#x2F;&#x2F; beforeUpdate</span><br><span class="line">        watcher.before()</span><br><span class="line">         </span><br><span class="line">        &#x2F;&#x2F; 依赖局部更新节点</span><br><span class="line">        watcher.update() </span><br><span class="line">        callHook(&#39;updated&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 销毁实例实现</span><br><span class="line">Vue.prototype.$destory &#x3D; function() &#123;</span><br><span class="line">	 &#x2F;&#x2F; 触发钩子</span><br><span class="line">    callHook(vm, &#39;beforeDestory&#39;)</span><br><span class="line">    &#x2F;&#x2F; 自身及子节点</span><br><span class="line">    remove() </span><br><span class="line">    &#x2F;&#x2F; 删除依赖</span><br><span class="line">    watcher.teardown() </span><br><span class="line">    &#x2F;&#x2F; 删除监听</span><br><span class="line">    vm.$off() </span><br><span class="line">    &#x2F;&#x2F; 触发钩子</span><br><span class="line">    callHook(vm, &#39;destoryed&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+<h3 id="3-Proxy-相比于-defineProperty-的优势"><a href="#3-Proxy-相比于-defineProperty-的优势" class="headerlink" title="#3. Proxy 相比于 defineProperty 的优势"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_3-proxy-相比于-defineproperty-的优势" target="_blank" rel="noopener">#</a>3. Proxy 相比于 defineProperty 的优势</h3><ul>
+<li>数组变化也能监听到</li>
+<li>不需要深度遍历监听</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">let</span> reactiveData = <span class="keyword">new</span> <span class="built_in">Proxy</span>(data, &#123;</span><br><span class="line">	<span class="keyword">get</span>: function(target, name)&#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-vue-router"><a href="#4-vue-router" class="headerlink" title="#4. vue-router"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_4-vue-router" target="_blank" rel="noopener">#</a>4. vue-router</h3><p><strong>mode</strong></p>
+<ul>
+<li><code>hash</code></li>
+<li><code>history</code></li>
+</ul>
+<p><strong>跳转</strong></p>
+<ul>
+<li><code>this.$router.push()</code></li>
+<li>``</li>
+</ul>
+<p><strong>占位</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-view&gt;&lt;&#x2F;router-view&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-vuex"><a href="#5-vuex" class="headerlink" title="#5. vuex"></a><a href="http://blog.poetries.top/FE-Interview-Questions/review/#_5-vuex" target="_blank" rel="noopener">#</a>5. vuex</h3><ul>
+<li><code>state</code>: 状态中心</li>
+<li><code>mutations</code>: 更改状态</li>
+<li><code>actions</code>: 异步更改状态</li>
+<li><code>getters</code>: 获取状态</li>
+<li><code>modules</code>: 将<code>state</code>分成多个<code>modules</code>，便于管理</li>
+</ul>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/%E5%85%B6%E4%BB%96/>http://yoursite.com/2020/07/15/%E5%85%B6%E4%BB%96/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-16T11:43:47+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jul 16, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%89%8D%E7%AB%AF/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>前端</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/%E5%85%B6%E4%BB%96/&title=前端-杂七杂八 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/%E5%85%B6%E4%BB%96/&title=前端-杂七杂八 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/%E5%85%B6%E4%BB%96/&title=前端-杂七杂八 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2020/07/15/webpack/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>webpack工程化</p>
+                <p class='content'>webpack工程化
+webpack基础用法（webpack介绍，webpack配置模板，webpack核心概念与用法）
+webpack高级用法（Tree Shaking，Code Splitt...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/07/15/%E5%89%8D%E7%AB%AF-%E7%B2%BE%E7%AE%80/'>
+                <p class='title'>前端-精简<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>一、CSS相关#1.1 左边定宽，右边自适应方案：float + margin，float + calc1234567891011121314151617/* 方案1 */ .left &#12...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      <section id="comments">
+        <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+      </section>
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、CSS"><span class="toc-text">一、CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-盒模型"><span class="toc-text">1. 盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-BFC"><span class="toc-text">2. BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-层叠上下文"><span class="toc-text">3.层叠上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-原型链："><span class="toc-text">2.原型链：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行上下文-EC"><span class="toc-text">3. 执行上下文(EC)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-变量对象"><span class="toc-text">4.变量对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-作用域"><span class="toc-text">5. 作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-作用域链"><span class="toc-text">6.作用域链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-闭包"><span class="toc-text">7. 闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-script-引入方式："><span class="toc-text">8. script 引入方式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-对象的拷贝"><span class="toc-text">9. 对象的拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-new运算符的执行过程"><span class="toc-text">10. new运算符的执行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-instanceof原理"><span class="toc-text">11. instanceof原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-代码的复用"><span class="toc-text">12. 代码的复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-继承"><span class="toc-text">13. 继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-类型转换"><span class="toc-text">14. 类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-类型判断"><span class="toc-text">15. 类型判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-模块化"><span class="toc-text">16. 模块化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-防抖与节流"><span class="toc-text">17. 防抖与节流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-函数执行改变this"><span class="toc-text">18. 函数执行改变this</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-ES6-ES7"><span class="toc-text">19. ES6&#x2F;ES7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-AST"><span class="toc-text">20. AST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-babel编译原理"><span class="toc-text">21. babel编译原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-函数柯里化"><span class="toc-text">22. 函数柯里化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-数组-array"><span class="toc-text">23. 数组(array)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、浏览器"><span class="toc-text">三、浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-跨标签页通讯"><span class="toc-text">1. 跨标签页通讯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-浏览器架构"><span class="toc-text">2. 浏览器架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-内存泄露"><span class="toc-text">8. 内存泄露</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、服务端与网络"><span class="toc-text">四、服务端与网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-http-https-协议"><span class="toc-text">1. http&#x2F;https 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-安全"><span class="toc-text">9. 安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Proxy-相比于-defineProperty-的优势"><span class="toc-text">3. Proxy 相比于 defineProperty 的优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-vue-router"><span class="toc-text">4. vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vuex"><span class="toc-text">5. vuex</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>nodejs入门 - Ye</title>
+  
+    <meta name="keywords" content="nodejs">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ye">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">nodejs入门</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/07/15/NodeJS/">
+      nodejs入门
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          
+          <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><p>nodejs不是一个js框架，千万不要认为是类似jquery的框架，</p>
+<p>nodejs是js运行时，运行环境，类比java中jvm，</p>
+<p>nodejs对应的mvc框架</p>
+<h3 id="Sails-js，Total-js，Partial-js，Koa-js，Locomotive-js，Express-js-Flatiron-js"><a href="#Sails-js，Total-js，Partial-js，Koa-js，Locomotive-js，Express-js-Flatiron-js" class="headerlink" title="Sails. js，Total.js，Partial.js，Koa. js，Locomotive. js，Express. js,Flatiron. js"></a>Sails. js，Total.js，Partial.js，Koa. js，Locomotive. js，Express. js,Flatiron. js</h3><p>【js模块化】</p>
+<h4 id="相关概念："><a href="#相关概念：" class="headerlink" title="相关概念："></a>相关概念：</h4><p>commonjs，amd，cmd，umd</p>
+<h4 id="相关框架："><a href="#相关框架：" class="headerlink" title="相关框架："></a>相关框架：</h4><p>commonjs，seajs，requirejs，coolie</p>
+<h4 id="类比Java中的："><a href="#类比Java中的：" class="headerlink" title="类比Java中的："></a>类比Java中的：</h4><p>import，对就是import。</p>
+<p>在我们创建 Node.js 第一个 “Hello, World!” 应用前，让我们先了解下 Node.js 应用是由哪几部分组成的：</p>
+<ol>
+<li><strong>引入 required 模块：</strong>我们可以使用 <strong>require</strong> 指令来载入 Node.js 模块。</li>
+<li><strong>创建服务器：</strong>服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</li>
+<li><strong>接收请求与响应请求</strong> 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</li>
+</ol>
+<h1 id="NPM-使用介绍"><a href="#NPM-使用介绍" class="headerlink" title="NPM 使用介绍"></a>NPM 使用介绍</h1><p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：</p>
+<ul>
+<li>允许用户从NPM服务器下载别人编写的第三方包到本地使用。</li>
+<li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
+<li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
+</ul>
+<h2 id="全局安装与本地安装"><a href="#全局安装与本地安装" class="headerlink" title="全局安装与本地安装"></a>全局安装与本地安装</h2><p>npm 的包安装分为本地安装（local）、全局安装（global）两种，从敲的命令行来看，差别只是有没有-g而已，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install express          # 本地安装</span><br><span class="line">npm install express -g   # 全局安装</span><br></pre></td></tr></table></figure>
+
+<p>如果出现以下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm err! Error: connect ECONNREFUSED 127.0.0.1:8087</span><br></pre></td></tr></table></figure>
+
+<p>解决办法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set proxy null</span><br></pre></td></tr></table></figure>
+
+<h1 id="Node-js-REPL-交互式解释器"><a href="#Node-js-REPL-交互式解释器" class="headerlink" title="Node.js REPL(交互式解释器)"></a>Node.js REPL(交互式解释器)</h1><p>Node.js REPL(Read Eval Print Loop:交互式解释器) 表示一个电脑的环境，类似 Window 系统的终端或 Unix/Linux shell，我们可以在终端中输入命令，并接收系统的响应。</p>
+<p>Node 自带了交互式解释器，可以执行以下任务：</p>
+<ul>
+<li><strong>读取</strong> - 读取用户输入，解析输入了Javascript 数据结构并存储在内存中。</li>
+<li><strong>执行</strong> - 执行输入的数据结构</li>
+<li><strong>打印</strong> - 输出结果</li>
+<li><strong>循环</strong> - 循环操作以上步骤直到用户两次按下 <strong>ctrl-c</strong> 按钮退出。</li>
+</ul>
+<p>Node 的交互式解释器可以很好的调试 Javascript 代码。</p>
+<p>开始学习 REPL</p>
+<p>我们可以输入以下命令来启动 Node 的终端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这时我们就可以在 &gt; 后输入简单的表达式，并按下回车键来计算结果。</p>
+<h3 id="简单的表达式运算"><a href="#简单的表达式运算" class="headerlink" title="简单的表达式运算"></a>简单的表达式运算</h3><p>接下来让我们在 Node.js REPL 的命令行窗口中执行简单的数学运算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt; 1 +4</span><br><span class="line">5</span><br><span class="line">&gt; 5 &#x2F; 2</span><br><span class="line">2.5</span><br><span class="line">&gt; 3 * 6</span><br><span class="line">18</span><br><span class="line">&gt; 4 - 1</span><br><span class="line">3</span><br><span class="line">&gt; 1 + ( 2 * 3 ) - 4</span><br><span class="line">3</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h3><p>你可以将数据存储在变量中，并在你需要的时候使用它。</p>
+<p>变量声明需要使用 <strong>var</strong> 关键字，如果没有使用 var 关键字变量会直接打印出来。</p>
+<p>使用 <strong>var</strong> 关键字的变量可以使用 console.log() 来输出变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt; x &#x3D; 10</span><br><span class="line">10</span><br><span class="line">&gt; var y &#x3D; 10</span><br><span class="line">undefined</span><br><span class="line">&gt; x + y</span><br><span class="line">20</span><br><span class="line">&gt; console.log(&quot;Hello World&quot;)</span><br><span class="line">Hello World</span><br><span class="line">undefined</span><br><span class="line">&gt; console.log(&quot;www.runoob.com&quot;)</span><br><span class="line">www.runoob.com</span><br><span class="line">undefined</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行表达式"><a href="#多行表达式" class="headerlink" title="多行表达式"></a>多行表达式</h3><p>Node REPL 支持输入多行表达式，这就有点类似 JavaScript。接下来让我们来执行一个 do-while 循环：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt; var x &#x3D; 0</span><br><span class="line">undefined</span><br><span class="line">&gt; do &#123;</span><br><span class="line">... x++;</span><br><span class="line">... console.log(&quot;x: &quot; + x);</span><br><span class="line">... &#125; while ( x &lt; 5 );</span><br><span class="line">x: 1</span><br><span class="line">x: 2</span><br><span class="line">x: 3</span><br><span class="line">x: 4</span><br><span class="line">x: 5</span><br><span class="line">undefined</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>…</strong> 三个点的符号是系统自动生成的，你回车换行后即可。Node 会自动检测是否为连续的表达式。</p>
+<h3 id="下划线-变量"><a href="#下划线-变量" class="headerlink" title="下划线(_)变量"></a>下划线(_)变量</h3><p>你可以使用下划线(_)获取上一个表达式的运算结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt; var x &#x3D; 10</span><br><span class="line">undefined</span><br><span class="line">&gt; var y &#x3D; 20</span><br><span class="line">undefined</span><br><span class="line">&gt; x + y</span><br><span class="line">30</span><br><span class="line">&gt; var sum &#x3D; _</span><br><span class="line">undefined</span><br><span class="line">&gt; console.log(sum)</span><br><span class="line">30</span><br><span class="line">undefined</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="REPL-命令"><a href="#REPL-命令" class="headerlink" title="REPL 命令"></a>REPL 命令</h2><ul>
+<li><strong>ctrl + c</strong> - 退出当前终端。</li>
+<li><strong>ctrl + c 按下两次</strong> - 退出 Node REPL。</li>
+<li><strong>ctrl + d</strong> - 退出 Node REPL.</li>
+<li><strong>向上/向下 键</strong> - 查看输入的历史命令</li>
+<li><strong>tab 键</strong> - 列出当前命令</li>
+<li><strong>.help</strong> - 列出使用命令</li>
+<li><strong>.break</strong> - 退出多行表达式</li>
+<li><strong>.clear</strong> - 退出多行表达式</li>
+<li><strong>.save *filename*</strong> - 保存当前的 Node REPL 会话到指定文件</li>
+<li><strong>.load *filename*</strong> - 载入当前 Node REPL 会话的文件内容。</li>
+</ul>
+<hr>
+<h2 id="停止-REPL"><a href="#停止-REPL" class="headerlink" title="停止 REPL"></a>停止 REPL</h2><p>前面我们已经提到按下两次 <strong>ctrl + c</strong> 键就能退出 REPL:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt;</span><br><span class="line">(^C again to quit)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Node-js事件循环"><a href="#Node-js事件循环" class="headerlink" title="Node.js事件循环"></a>Node.js事件循环</h1><p>Node.js是单进程单线程应用程序，但是因为V8引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。</p>
+<p>Node.js几乎每一个API都是支持回调函数的。</p>
+<p>Node.js基本上所有的事件机制都是用设计模式中观察者模式实现。</p>
+<p>Node.js单线程类似进入while(true)的事件循环，知道没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数。</p>
+<h2 id="事件驱动程序"><a href="#事件驱动程序" class="headerlink" title="事件驱动程序"></a>事件驱动程序</h2><p>Node.js使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。</p>
+<p>当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。</p>
+<p>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也称之为非阻塞式IO或者事件驱动IO）。</p>
+<p>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/event_loop.jpg" alt="img"></p>
+<p>类似于观察者模式，事件相当于主题（Subject），而所有注册到这个事件上的处理函数相当于观察者（Observer）.</p>
+<p>Node.js有多个内置的事件，我们可以通过引入events模块，并通过实例化EventEmitter类来绑定和监听事件。</p>
+<h1 id="Node-js-GET-POST请求"><a href="#Node-js-GET-POST请求" class="headerlink" title="Node.js GET/POST请求"></a>Node.js GET/POST请求</h1><p>在很多场景中，我们的服务器都需要跟用户的浏览器打交道，如表单提交。</p>
+<p>表单提交到服务器一般都使用 GET/POST 请求。</p>
+<p>本章节我们将为大家介绍 Node.js GET/POST请求。</p>
+<hr>
+<h2 id="获取GET请求内容"><a href="#获取GET请求内容" class="headerlink" title="获取GET请求内容"></a>获取GET请求内容</h2><p>由于GET请求直接被嵌入在路径中，URL是完整的请求路径，包括了?后面的部分，因此你可以手动解析后面的内容作为GET请求的参数。</p>
+<p>node.js 中 url 模块中的 parse 函数提供了这个功能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain; charset=utf-8'</span>&#125;);</span><br><span class="line">    res.end(util.inspect(url.parse(req.url, <span class="literal">true</span>)));</span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取-URL-的参数"><a href="#获取-URL-的参数" class="headerlink" title="获取 URL 的参数"></a>获取 URL 的参数</h3><p>我们可以使用 url.parse 方法来解析 URL 中的参数，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 解析 url 参数</span></span><br><span class="line">    <span class="keyword">var</span> params = url.parse(req.url, <span class="literal">true</span>).query;</span><br><span class="line">    res.write(<span class="string">"网站名："</span> + params.name);</span><br><span class="line">    res.write(<span class="string">"\n"</span>);</span><br><span class="line">    res.write(<span class="string">"网站 URL："</span> + params.url);</span><br><span class="line">    res.end();</span><br><span class="line"> </span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取-POST-请求内容"><a href="#获取-POST-请求内容" class="headerlink" title="获取 POST 请求内容"></a>获取 POST 请求内容</h2><p>POST 请求的内容全部的都在请求体中，http.ServerRequest 并没有一个属性内容为请求体，原因是等待请求体传输可能是一件耗时的工作。</p>
+<p>比如上传文件，而很多时候我们可能并不需要理会请求体的内容，恶意的POST请求会大大消耗服务器的资源，所以 node.js 默认是不会解析请求体的，当你需要的时候，需要手动来做。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 定义了一个post变量，用于暂存请求体的信息</span></span><br><span class="line">    <span class="keyword">var</span> post = <span class="string">''</span>;     </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 通过req的data事件监听函数，每当接受到请求体的数据，就累加到post变量中</span></span><br><span class="line">    req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>)</span>&#123;    </span><br><span class="line">        post += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回。</span></span><br><span class="line">    req.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">        post = querystring.parse(post);</span><br><span class="line">        res.end(util.inspect(post));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Node-js-文件系统"><a href="#Node-js-文件系统" class="headerlink" title="Node.js 文件系统"></a>Node.js 文件系统</h1><p>Node.js 提供一组类似 UNIX（POSIX）标准的文件操作API。 Node 导入文件系统模块(fs)语法如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="异步和同步"><a href="#异步和同步" class="headerlink" title="异步和同步"></a>异步和同步</h2><p>Node.js 文件系统（fs 模块）模块中的方法均有异步和同步版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的 fs.readFileSync()。</p>
+<p>异步的方法函数最后一个参数为回调函数，回调函数的第一个参数包含了错误信息(error)。</p>
+<p>建议大家使用异步方法，比起同步，异步方法性能更高，速度更快，而且没有阻塞。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>创建 input.txt 文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">菜鸟教程官网地址：www.runoob.com</span><br><span class="line">文件读取实例</span><br></pre></td></tr></table></figure>
+
+<p>创建 file.js 文件, 代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 异步读取</span><br><span class="line">fs.readFile(&#39;input.txt&#39;, function (err, data) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;异步读取: &quot; + data.toString());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 同步读取</span><br><span class="line">var data &#x3D; fs.readFileSync(&#39;input.txt&#39;);</span><br><span class="line">console.log(&quot;同步读取: &quot; + data.toString());</span><br><span class="line"></span><br><span class="line">console.log(&quot;程序执行完毕。&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">同步读取: 菜鸟教程官网地址：www.runoob.com</span><br><span class="line">文件读取实例</span><br><span class="line"></span><br><span class="line">程序执行完毕。</span><br><span class="line">异步读取: 菜鸟教程官网地址：www.runoob.com</span><br><span class="line">文件读取实例</span><br></pre></td></tr></table></figure>
+
+<p>接下来，让我们来具体了解下 Node.js 文件系统的方法。</p>
+<hr>
+<h2 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>以下为在异步模式下打开文件的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.open(path, flags[, mode], callback)</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>path</strong> - 文件的路径。</li>
+<li><strong>flags</strong> - 文件打开的行为。具体值详见下文。</li>
+<li><strong>mode</strong> - 设置文件模式(权限)，文件创建默认权限为 0666(可读，可写)。</li>
+<li><strong>callback</strong> - 回调函数，带有两个参数如：callback(err, fd)。</li>
+</ul>
+<p>flags 参数可以是以下值：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="left">以读取模式打开文件。如果文件不存在抛出异常。</td>
+</tr>
+<tr>
+<td align="left">r+</td>
+<td align="left">以读写模式打开文件。如果文件不存在抛出异常。</td>
+</tr>
+<tr>
+<td align="left">rs</td>
+<td align="left">以同步的方式读取文件。</td>
+</tr>
+<tr>
+<td align="left">rs+</td>
+<td align="left">以同步的方式读取和写入文件。</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">以写入模式打开文件，如果文件不存在则创建。</td>
+</tr>
+<tr>
+<td align="left">wx</td>
+<td align="left">类似 ‘w’，但是如果文件路径存在，则文件写入失败。</td>
+</tr>
+<tr>
+<td align="left">w+</td>
+<td align="left">以读写模式打开文件，如果文件不存在则创建。</td>
+</tr>
+<tr>
+<td align="left">wx+</td>
+<td align="left">类似 ‘w+’， 但是如果文件路径存在，则文件读写失败。</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">以追加模式打开文件，如果文件不存在则创建。</td>
+</tr>
+<tr>
+<td align="left">ax</td>
+<td align="left">类似 ‘a’， 但是如果文件路径存在，则文件追加失败。</td>
+</tr>
+<tr>
+<td align="left">a+</td>
+<td align="left">以读取追加模式打开文件，如果文件不存在则创建。</td>
+</tr>
+<tr>
+<td align="left">ax+</td>
+<td align="left">类似 ‘a+’， 但是如果文件路径存在，则文件读取追加失败。</td>
+</tr>
+</tbody></table>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>接下来我们创建 file.js 文件，并打开 input.txt 文件进行读写，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 异步打开文件</span><br><span class="line">console.log(&quot;准备打开文件！&quot;);</span><br><span class="line">fs.open(&#39;input.txt&#39;, &#39;r+&#39;, function(err, fd) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">  console.log(&quot;文件打开成功！&quot;);     </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备打开文件！</span><br><span class="line">文件打开成功！</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="获取文件信息"><a href="#获取文件信息" class="headerlink" title="获取文件信息"></a>获取文件信息</h2><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><p>以下为通过异步模式获取文件信息的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.stat(path, callback)</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>path</strong> - 文件路径。</li>
+<li><strong>callback</strong> - 回调函数，带有两个参数如：(err, stats), <strong>stats</strong> 是 fs.Stats 对象。</li>
+</ul>
+<p>fs.stat(path)执行后，会将stats类的实例返回给其回调函数。可以通过stats类中的提供方法判断文件的相关属性。例如判断是否为文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line"></span><br><span class="line">fs.stat(&#39;&#x2F;Users&#x2F;liuht&#x2F;code&#x2F;itbilu&#x2F;demo&#x2F;fs.js&#39;, function (err, stats) &#123;</span><br><span class="line">    console.log(stats.isFile());         &#x2F;&#x2F;true</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>stats类中的方法有：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">stats.isFile()</td>
+<td align="left">如果是文件返回 true，否则返回 false。</td>
+</tr>
+<tr>
+<td align="left">stats.isDirectory()</td>
+<td align="left">如果是目录返回 true，否则返回 false。</td>
+</tr>
+<tr>
+<td align="left">stats.isBlockDevice()</td>
+<td align="left">如果是块设备返回 true，否则返回 false。</td>
+</tr>
+<tr>
+<td align="left">stats.isCharacterDevice()</td>
+<td align="left">如果是字符设备返回 true，否则返回 false。</td>
+</tr>
+<tr>
+<td align="left">stats.isSymbolicLink()</td>
+<td align="left">如果是软链接返回 true，否则返回 false。</td>
+</tr>
+<tr>
+<td align="left">stats.isFIFO()</td>
+<td align="left">如果是FIFO，返回true，否则返回 false。FIFO是UNIX中的一种特殊类型的命令管道。</td>
+</tr>
+<tr>
+<td align="left">stats.isSocket()</td>
+<td align="left">如果是 Socket 返回 true，否则返回 false。</td>
+</tr>
+</tbody></table>
+<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">console.log(&quot;准备打开文件！&quot;);</span><br><span class="line">fs.stat(&#39;input.txt&#39;, function (err, stats) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(stats);</span><br><span class="line">   console.log(&quot;读取文件信息成功！&quot;);</span><br><span class="line">   </span><br><span class="line">   &#x2F;&#x2F; 检测文件类型</span><br><span class="line">   console.log(&quot;是否为文件(isFile) ? &quot; + stats.isFile());</span><br><span class="line">   console.log(&quot;是否为目录(isDirectory) ? &quot; + stats.isDirectory());    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备打开文件！</span><br><span class="line">&#123; dev: 16777220,</span><br><span class="line">  mode: 33188,</span><br><span class="line">  nlink: 1,</span><br><span class="line">  uid: 501,</span><br><span class="line">  gid: 20,</span><br><span class="line">  rdev: 0,</span><br><span class="line">  blksize: 4096,</span><br><span class="line">  ino: 40333161,</span><br><span class="line">  size: 61,</span><br><span class="line">  blocks: 8,</span><br><span class="line">  atime: Mon Sep 07 2015 17:43:55 GMT+0800 (CST),</span><br><span class="line">  mtime: Mon Sep 07 2015 17:22:35 GMT+0800 (CST),</span><br><span class="line">  ctime: Mon Sep 07 2015 17:22:35 GMT+0800 (CST) &#125;</span><br><span class="line">读取文件信息成功！</span><br><span class="line">是否为文件(isFile) ? true</span><br><span class="line">是否为目录(isDirectory) ? false</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h2><h3 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h3><p>以下为异步模式下写入文件的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.writeFile(file, data[, options], callback)</span><br></pre></td></tr></table></figure>
+
+<p>writeFile 直接打开文件默认是 <strong>w</strong> 模式，所以如果文件存在，该方法写入的内容会覆盖旧的文件内容。</p>
+<h3 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>file</strong> - 文件名或文件描述符。</li>
+<li><strong>data</strong> - 要写入文件的数据，可以是 String(字符串) 或 Buffer(缓冲) 对象。</li>
+<li><strong>options</strong> - 该参数是一个对象，包含 {encoding, mode, flag}。默认编码为 utf8, 模式为 0666 ， flag 为 ‘w’</li>
+<li><strong>callback</strong> - 回调函数，回调函数只包含错误信息参数(err)，在写入失败时返回。</li>
+</ul>
+<h3 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h3><p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">console.log(&quot;准备写入文件&quot;);</span><br><span class="line">fs.writeFile(&#39;input.txt&#39;, &#39;我是通 过fs.writeFile 写入文件的内容&#39;,  function(err) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;数据写入成功！&quot;);</span><br><span class="line">   console.log(&quot;--------我是分割线-------------&quot;)</span><br><span class="line">   console.log(&quot;读取写入的数据！&quot;);</span><br><span class="line">   fs.readFile(&#39;input.txt&#39;, function (err, data) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">         return console.error(err);</span><br><span class="line">      &#125;</span><br><span class="line">      console.log(&quot;异步读取文件数据: &quot; + data.toString());</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备写入文件</span><br><span class="line">数据写入成功！</span><br><span class="line">--------我是分割线-------------</span><br><span class="line">读取写入的数据！</span><br><span class="line">异步读取文件数据: 我是通 过fs.writeFile 写入文件的内容</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h2><h3 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h3><p>以下为异步模式下读取文件的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.read(fd, buffer, offset, length, position, callback)</span><br></pre></td></tr></table></figure>
+
+<p>该方法使用了文件描述符来读取文件。</p>
+<h3 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>fd</strong> - 通过 fs.open() 方法返回的文件描述符。</li>
+<li><strong>buffer</strong> - 数据写入的缓冲区。</li>
+<li><strong>offset</strong> - 缓冲区写入的写入偏移量。</li>
+<li><strong>length</strong> - 要从文件中读取的字节数。</li>
+<li><strong>position</strong> - 文件读取的起始位置，如果 position 的值为 null，则会从当前文件指针的位置读取。</li>
+<li><strong>callback</strong> - 回调函数，有三个参数err, bytesRead, buffer，err 为错误信息， bytesRead 表示读取的字节数，buffer 为缓冲区对象。</li>
+</ul>
+<h3 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h3><p>input.txt 文件内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">菜鸟教程官网地址：www.runoob.com</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line">var buf &#x3D; new Buffer.alloc(1024);</span><br><span class="line"></span><br><span class="line">console.log(&quot;准备打开已存在的文件！&quot;);</span><br><span class="line">fs.open(&#39;input.txt&#39;, &#39;r+&#39;, function(err, fd) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;文件打开成功！&quot;);</span><br><span class="line">   console.log(&quot;准备读取文件：&quot;);</span><br><span class="line">   fs.read(fd, buf, 0, buf.length, 0, function(err, bytes)&#123;</span><br><span class="line">      if (err)&#123;</span><br><span class="line">         console.log(err);</span><br><span class="line">      &#125;</span><br><span class="line">      console.log(bytes + &quot;  字节被读取&quot;);</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 仅输出读取的字节</span><br><span class="line">      if(bytes &gt; 0)&#123;</span><br><span class="line">         console.log(buf.slice(0, bytes).toString());</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备打开已存在的文件！</span><br><span class="line">文件打开成功！</span><br><span class="line">准备读取文件：</span><br><span class="line">42  字节被读取</span><br><span class="line">菜鸟教程官网地址：www.runoob.com</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h2><h3 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h3><p>以下为异步模式下关闭文件的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.close(fd, callback)</span><br></pre></td></tr></table></figure>
+
+<p>该方法使用了文件描述符来读取文件。</p>
+<h3 id="参数-4"><a href="#参数-4" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>fd</strong> - 通过 fs.open() 方法返回的文件描述符。</li>
+<li><strong>callback</strong> - 回调函数，没有参数。</li>
+</ul>
+<h3 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h3><p>input.txt 文件内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">菜鸟教程官网地址：www.runoob.com</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line">var buf &#x3D; new Buffer.alloc(1024);</span><br><span class="line"></span><br><span class="line">console.log(&quot;准备打开文件！&quot;);</span><br><span class="line">fs.open(&#39;input.txt&#39;, &#39;r+&#39;, function(err, fd) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;文件打开成功！&quot;);</span><br><span class="line">   console.log(&quot;准备读取文件！&quot;);</span><br><span class="line">   fs.read(fd, buf, 0, buf.length, 0, function(err, bytes)&#123;</span><br><span class="line">      if (err)&#123;</span><br><span class="line">         console.log(err);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 仅输出读取的字节</span><br><span class="line">      if(bytes &gt; 0)&#123;</span><br><span class="line">         console.log(buf.slice(0, bytes).toString());</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 关闭文件</span><br><span class="line">      fs.close(fd, function(err)&#123;</span><br><span class="line">         if (err)&#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">         &#125; </span><br><span class="line">         console.log(&quot;文件关闭成功&quot;);</span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备打开文件！</span><br><span class="line">文件打开成功！</span><br><span class="line">准备读取文件！</span><br><span class="line">菜鸟教程官网地址：www.runoob.com</span><br><span class="line">文件关闭成功</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="截取文件"><a href="#截取文件" class="headerlink" title="截取文件"></a>截取文件</h2><h3 id="语法-5"><a href="#语法-5" class="headerlink" title="语法"></a>语法</h3><p>以下为异步模式下截取文件的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.ftruncate(fd, len, callback)</span><br></pre></td></tr></table></figure>
+
+<p>该方法使用了文件描述符来读取文件。</p>
+<h3 id="参数-5"><a href="#参数-5" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>fd</strong> - 通过 fs.open() 方法返回的文件描述符。</li>
+<li><strong>len</strong> - 文件内容截取的长度。</li>
+<li><strong>callback</strong> - 回调函数，没有参数。</li>
+</ul>
+<h3 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h3><p>input.txt 文件内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site:www.runoob.com</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line">var buf &#x3D; new Buffer.alloc(1024);</span><br><span class="line"></span><br><span class="line">console.log(&quot;准备打开文件！&quot;);</span><br><span class="line">fs.open(&#39;input.txt&#39;, &#39;r+&#39;, function(err, fd) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;文件打开成功！&quot;);</span><br><span class="line">   console.log(&quot;截取10字节内的文件内容，超出部分将被去除。&quot;);</span><br><span class="line">   </span><br><span class="line">   &#x2F;&#x2F; 截取文件</span><br><span class="line">   fs.ftruncate(fd, 10, function(err)&#123;</span><br><span class="line">      if (err)&#123;</span><br><span class="line">         console.log(err);</span><br><span class="line">      &#125; </span><br><span class="line">      console.log(&quot;文件截取成功。&quot;);</span><br><span class="line">      console.log(&quot;读取相同的文件&quot;); </span><br><span class="line">      fs.read(fd, buf, 0, buf.length, 0, function(err, bytes)&#123;</span><br><span class="line">         if (err)&#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         &#x2F;&#x2F; 仅输出读取的字节</span><br><span class="line">         if(bytes &gt; 0)&#123;</span><br><span class="line">            console.log(buf.slice(0, bytes).toString());</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         &#x2F;&#x2F; 关闭文件</span><br><span class="line">         fs.close(fd, function(err)&#123;</span><br><span class="line">            if (err)&#123;</span><br><span class="line">               console.log(err);</span><br><span class="line">            &#125; </span><br><span class="line">            console.log(&quot;文件关闭成功！&quot;);</span><br><span class="line">         &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备打开文件！</span><br><span class="line">文件打开成功！</span><br><span class="line">截取10字节内的文件内容，超出部分将被去除。</span><br><span class="line">文件截取成功。</span><br><span class="line">读取相同的文件</span><br><span class="line">site:www.r</span><br><span class="line">文件关闭成功</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><h3 id="语法-6"><a href="#语法-6" class="headerlink" title="语法"></a>语法</h3><p>以下为删除文件的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.unlink(path, callback)</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数-6"><a href="#参数-6" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>path</strong> - 文件路径。</li>
+<li><strong>callback</strong> - 回调函数，没有参数。</li>
+</ul>
+<h3 id="实例-7"><a href="#实例-7" class="headerlink" title="实例"></a>实例</h3><p>input.txt 文件内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site:www.runoob.com</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">console.log(&quot;准备删除文件！&quot;);</span><br><span class="line">fs.unlink(&#39;input.txt&#39;, function(err) &#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;文件删除成功！&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备删除文件！</span><br><span class="line">文件删除成功！</span><br></pre></td></tr></table></figure>
+
+<p>再去查看 input.txt 文件，发现已经不存在了。</p>
+<hr>
+<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><h3 id="语法-7"><a href="#语法-7" class="headerlink" title="语法"></a>语法</h3><p>以下为创建目录的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.mkdir(path[, options], callback)</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数-7"><a href="#参数-7" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>path</strong> - 文件路径。</li>
+<li>options 参数可以是：<ul>
+<li><strong>recursive</strong> - 是否以递归的方式创建目录，默认为 false。</li>
+<li><strong>mode</strong> - 设置目录权限，默认为 0777。</li>
+</ul>
+</li>
+<li><strong>callback</strong> - 回调函数，没有参数。</li>
+</ul>
+<h3 id="实例-8"><a href="#实例-8" class="headerlink" title="实例"></a>实例</h3><p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line">&#x2F;&#x2F; tmp 目录必须存在</span><br><span class="line">console.log(&quot;创建目录 &#x2F;tmp&#x2F;test&#x2F;&quot;);</span><br><span class="line">fs.mkdir(&quot;&#x2F;tmp&#x2F;test&#x2F;&quot;,function(err)&#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;目录创建成功。&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">创建目录 &#x2F;tmp&#x2F;test&#x2F;</span><br><span class="line">目录创建成功。</span><br></pre></td></tr></table></figure>
+
+<p>可以添加 recursive: true 参数，不管创建的目录 /tmp 和 /tmp/a 是否存在：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.mkdir(&#39;&#x2F;tmp&#x2F;a&#x2F;apple&#39;, &#123; recursive: true &#125;, (err) &#x3D;&gt; &#123;</span><br><span class="line">  if (err) throw err;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="读取目录"><a href="#读取目录" class="headerlink" title="读取目录"></a>读取目录</h2><h3 id="语法-8"><a href="#语法-8" class="headerlink" title="语法"></a>语法</h3><p>以下为读取目录的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.readdir(path, callback)</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数-8"><a href="#参数-8" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>path</strong> - 文件路径。</li>
+<li><strong>callback</strong> - 回调函数，回调函数带有两个参数err, files，err 为错误信息，files 为 目录下的文件数组列表。</li>
+</ul>
+<h3 id="实例-9"><a href="#实例-9" class="headerlink" title="实例"></a>实例</h3><p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">console.log(&quot;查看 &#x2F;tmp 目录&quot;);</span><br><span class="line">fs.readdir(&quot;&#x2F;tmp&#x2F;&quot;,function(err, files)&#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   files.forEach( function (file)&#123;</span><br><span class="line">       console.log( file );</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">查看 &#x2F;tmp 目录</span><br><span class="line">input.out</span><br><span class="line">output.out</span><br><span class="line">test</span><br><span class="line">test.txt</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="删除目录"><a href="#删除目录" class="headerlink" title="删除目录"></a>删除目录</h2><h3 id="语法-9"><a href="#语法-9" class="headerlink" title="语法"></a>语法</h3><p>以下为删除目录的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.rmdir(path, callback)</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数-9"><a href="#参数-9" class="headerlink" title="参数"></a>参数</h3><p>参数使用说明如下：</p>
+<ul>
+<li><strong>path</strong> - 文件路径。</li>
+<li><strong>callback</strong> - 回调函数，没有参数。</li>
+</ul>
+<h3 id="实例-10"><a href="#实例-10" class="headerlink" title="实例"></a>实例</h3><p>接下来我们创建 file.js 文件，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&quot;fs&quot;);</span><br><span class="line">&#x2F;&#x2F; 执行前创建一个空的 &#x2F;tmp&#x2F;test 目录</span><br><span class="line">console.log(&quot;准备删除目录 &#x2F;tmp&#x2F;test&quot;);</span><br><span class="line">fs.rmdir(&quot;&#x2F;tmp&#x2F;test&quot;,function(err)&#123;</span><br><span class="line">   if (err) &#123;</span><br><span class="line">       return console.error(err);</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(&quot;读取 &#x2F;tmp 目录&quot;);</span><br><span class="line">   fs.readdir(&quot;&#x2F;tmp&#x2F;&quot;,function(err, files)&#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">          return console.error(err);</span><br><span class="line">      &#125;</span><br><span class="line">      files.forEach( function (file)&#123;</span><br><span class="line">          console.log( file );</span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ node file.js </span><br><span class="line">准备删除目录 &#x2F;tmp&#x2F;test</span><br><span class="line">读取 &#x2F;tmp 目录</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="文件模块方法参考手册"><a href="#文件模块方法参考手册" class="headerlink" title="文件模块方法参考手册"></a>文件模块方法参考手册</h2><p>以下为 Node.js 文件模块相同的方法列表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">方法 &amp; 描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><strong>fs.rename(oldPath, newPath, callback)</strong> 异步 rename().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><strong>fs.ftruncate(fd, len, callback)</strong> 异步 ftruncate().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"><strong>fs.ftruncateSync(fd, len)</strong> 同步 ftruncate()</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"><strong>fs.truncate(path, len, callback)</strong> 异步 truncate().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left"><strong>fs.truncateSync(path, len)</strong> 同步 truncate()</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left"><strong>fs.chown(path, uid, gid, callback)</strong> 异步 chown().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left"><strong>fs.chownSync(path, uid, gid)</strong> 同步 chown()</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left"><strong>fs.fchown(fd, uid, gid, callback)</strong> 异步 fchown().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left"><strong>fs.fchownSync(fd, uid, gid)</strong> 同步 fchown()</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left"><strong>fs.lchown(path, uid, gid, callback)</strong> 异步 lchown().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left"><strong>fs.lchownSync(path, uid, gid)</strong> 同步 lchown()</td>
+</tr>
+<tr>
+<td align="left">12</td>
+<td align="left"><strong>fs.chmod(path, mode, callback)</strong> 异步 chmod().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td align="left"><strong>fs.chmodSync(path, mode)</strong> 同步 chmod().</td>
+</tr>
+<tr>
+<td align="left">14</td>
+<td align="left"><strong>fs.fchmod(fd, mode, callback)</strong> 异步 fchmod().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">15</td>
+<td align="left"><strong>fs.fchmodSync(fd, mode)</strong> 同步 fchmod().</td>
+</tr>
+<tr>
+<td align="left">16</td>
+<td align="left"><strong>fs.lchmod(path, mode, callback)</strong> 异步 lchmod().回调函数没有参数，但可能抛出异常。Only available on Mac OS X.</td>
+</tr>
+<tr>
+<td align="left">17</td>
+<td align="left"><strong>fs.lchmodSync(path, mode)</strong> 同步 lchmod().</td>
+</tr>
+<tr>
+<td align="left">18</td>
+<td align="left"><strong>fs.stat(path, callback)</strong> 异步 stat(). 回调函数有两个参数 err, stats，stats 是 fs.Stats 对象。</td>
+</tr>
+<tr>
+<td align="left">19</td>
+<td align="left"><strong>fs.lstat(path, callback)</strong> 异步 lstat(). 回调函数有两个参数 err, stats，stats 是 fs.Stats 对象。</td>
+</tr>
+<tr>
+<td align="left">20</td>
+<td align="left"><strong>fs.fstat(fd, callback)</strong> 异步 fstat(). 回调函数有两个参数 err, stats，stats 是 fs.Stats 对象。</td>
+</tr>
+<tr>
+<td align="left">21</td>
+<td align="left"><strong>fs.statSync(path)</strong> 同步 stat(). 返回 fs.Stats 的实例。</td>
+</tr>
+<tr>
+<td align="left">22</td>
+<td align="left"><strong>fs.lstatSync(path)</strong> 同步 lstat(). 返回 fs.Stats 的实例。</td>
+</tr>
+<tr>
+<td align="left">23</td>
+<td align="left"><strong>fs.fstatSync(fd)</strong> 同步 fstat(). 返回 fs.Stats 的实例。</td>
+</tr>
+<tr>
+<td align="left">24</td>
+<td align="left"><strong>fs.link(srcpath, dstpath, callback)</strong> 异步 link().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">25</td>
+<td align="left"><strong>fs.linkSync(srcpath, dstpath)</strong> 同步 link().</td>
+</tr>
+<tr>
+<td align="left">26</td>
+<td align="left"><strong>fs.symlink(srcpath, dstpath[, type], callback)</strong> 异步 symlink().回调函数没有参数，但可能抛出异常。 type 参数可以设置为 ‘dir’, ‘file’, 或 ‘junction’ (默认为 ‘file’) 。</td>
+</tr>
+<tr>
+<td align="left">27</td>
+<td align="left"><strong>fs.symlinkSync(srcpath, dstpath[, type])</strong> 同步 symlink().</td>
+</tr>
+<tr>
+<td align="left">28</td>
+<td align="left"><strong>fs.readlink(path, callback)</strong> 异步 readlink(). 回调函数有两个参数 err, linkString。</td>
+</tr>
+<tr>
+<td align="left">29</td>
+<td align="left"><strong>fs.realpath(path[, cache], callback)</strong> 异步 realpath(). 回调函数有两个参数 err, resolvedPath。</td>
+</tr>
+<tr>
+<td align="left">30</td>
+<td align="left"><strong>fs.realpathSync(path[, cache])</strong> 同步 realpath()。返回绝对路径。</td>
+</tr>
+<tr>
+<td align="left">31</td>
+<td align="left"><strong>fs.unlink(path, callback)</strong> 异步 unlink().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">32</td>
+<td align="left"><strong>fs.unlinkSync(path)</strong> 同步 unlink().</td>
+</tr>
+<tr>
+<td align="left">33</td>
+<td align="left"><strong>fs.rmdir(path, callback)</strong> 异步 rmdir().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">34</td>
+<td align="left"><strong>fs.rmdirSync(path)</strong> 同步 rmdir().</td>
+</tr>
+<tr>
+<td align="left">35</td>
+<td align="left"><strong>fs.mkdir(path[, mode], callback)</strong> S异步 mkdir(2).回调函数没有参数，但可能抛出异常。 访问权限默认为 0777。</td>
+</tr>
+<tr>
+<td align="left">36</td>
+<td align="left"><strong>fs.mkdirSync(path[, mode])</strong> 同步 mkdir().</td>
+</tr>
+<tr>
+<td align="left">37</td>
+<td align="left"><strong>fs.readdir(path, callback)</strong> 异步 readdir(3). 读取目录的内容。</td>
+</tr>
+<tr>
+<td align="left">38</td>
+<td align="left"><strong>fs.readdirSync(path)</strong> 同步 readdir().返回文件数组列表。</td>
+</tr>
+<tr>
+<td align="left">39</td>
+<td align="left"><strong>fs.close(fd, callback)</strong> 异步 close().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">40</td>
+<td align="left"><strong>fs.closeSync(fd)</strong> 同步 close().</td>
+</tr>
+<tr>
+<td align="left">41</td>
+<td align="left"><strong>fs.open(path, flags[, mode], callback)</strong> 异步打开文件。</td>
+</tr>
+<tr>
+<td align="left">42</td>
+<td align="left"><strong>fs.openSync(path, flags[, mode])</strong> 同步 version of fs.open().</td>
+</tr>
+<tr>
+<td align="left">43</td>
+<td align="left"><strong>fs.utimes(path, atime, mtime, callback)</strong></td>
+</tr>
+<tr>
+<td align="left">44</td>
+<td align="left"><strong>fs.utimesSync(path, atime, mtime)</strong> 修改文件时间戳，文件通过指定的文件路径。</td>
+</tr>
+<tr>
+<td align="left">45</td>
+<td align="left"><strong>fs.futimes(fd, atime, mtime, callback)</strong></td>
+</tr>
+<tr>
+<td align="left">46</td>
+<td align="left"><strong>fs.futimesSync(fd, atime, mtime)</strong> 修改文件时间戳，通过文件描述符指定。</td>
+</tr>
+<tr>
+<td align="left">47</td>
+<td align="left"><strong>fs.fsync(fd, callback)</strong> 异步 fsync.回调函数没有参数，但可能抛出异常。</td>
+</tr>
+<tr>
+<td align="left">48</td>
+<td align="left"><strong>fs.fsyncSync(fd)</strong> 同步 fsync.</td>
+</tr>
+<tr>
+<td align="left">49</td>
+<td align="left"><strong>fs.write(fd, buffer, offset, length[, position], callback)</strong> 将缓冲区内容写入到通过文件描述符指定的文件。</td>
+</tr>
+<tr>
+<td align="left">50</td>
+<td align="left"><strong>fs.write(fd, data[, position[, encoding]], callback)</strong> 通过文件描述符 fd 写入文件内容。</td>
+</tr>
+<tr>
+<td align="left">51</td>
+<td align="left"><strong>fs.writeSync(fd, buffer, offset, length[, position])</strong> 同步版的 fs.write()。</td>
+</tr>
+<tr>
+<td align="left">52</td>
+<td align="left"><strong>fs.writeSync(fd, data[, position[, encoding]])</strong> 同步版的 fs.write().</td>
+</tr>
+<tr>
+<td align="left">53</td>
+<td align="left"><strong>fs.read(fd, buffer, offset, length, position, callback)</strong> 通过文件描述符 fd 读取文件内容。</td>
+</tr>
+<tr>
+<td align="left">54</td>
+<td align="left"><strong>fs.readSync(fd, buffer, offset, length, position)</strong> 同步版的 fs.read.</td>
+</tr>
+<tr>
+<td align="left">55</td>
+<td align="left"><strong>fs.readFile(filename[, options], callback)</strong> 异步读取文件内容。</td>
+</tr>
+<tr>
+<td align="left">56</td>
+<td align="left"><strong>fs.readFileSync(filename[, options])</strong></td>
+</tr>
+<tr>
+<td align="left">57</td>
+<td align="left"><strong>fs.writeFile(filename, data[, options], callback)</strong> 异步写入文件内容。</td>
+</tr>
+<tr>
+<td align="left">58</td>
+<td align="left"><strong>fs.writeFileSync(filename, data[, options])</strong> 同步版的 fs.writeFile。</td>
+</tr>
+<tr>
+<td align="left">59</td>
+<td align="left"><strong>fs.appendFile(filename, data[, options], callback)</strong> 异步追加文件内容。</td>
+</tr>
+<tr>
+<td align="left">60</td>
+<td align="left"><strong>fs.appendFileSync(filename, data[, options])</strong> The 同步 version of fs.appendFile.</td>
+</tr>
+<tr>
+<td align="left">61</td>
+<td align="left"><strong>fs.watchFile(filename[, options], listener)</strong> 查看文件的修改。</td>
+</tr>
+<tr>
+<td align="left">62</td>
+<td align="left"><strong>fs.unwatchFile(filename[, listener])</strong> 停止查看 filename 的修改。</td>
+</tr>
+<tr>
+<td align="left">63</td>
+<td align="left"><strong>fs.watch(filename[, options][, listener])</strong> 查看 filename 的修改，filename 可以是文件或目录。返回 fs.FSWatcher 对象。</td>
+</tr>
+<tr>
+<td align="left">64</td>
+<td align="left"><strong>fs.exists(path, callback)</strong> 检测给定的路径是否存在。</td>
+</tr>
+<tr>
+<td align="left">65</td>
+<td align="left"><strong>fs.existsSync(path)</strong> 同步版的 fs.exists.</td>
+</tr>
+<tr>
+<td align="left">66</td>
+<td align="left"><strong>fs.access(path[, mode], callback)</strong> 测试指定路径用户权限。</td>
+</tr>
+<tr>
+<td align="left">67</td>
+<td align="left"><strong>fs.accessSync(path[, mode])</strong> 同步版的 fs.access。</td>
+</tr>
+<tr>
+<td align="left">68</td>
+<td align="left"><strong>fs.createReadStream(path[, options])</strong> 返回ReadStream 对象。</td>
+</tr>
+<tr>
+<td align="left">69</td>
+<td align="left"><strong>fs.createWriteStream(path[, options])</strong> 返回 WriteStream 对象。</td>
+</tr>
+<tr>
+<td align="left">70</td>
+<td align="left"><strong>fs.symlink(srcpath, dstpath[, type], callback)</strong> 异步 symlink().回调函数没有参数，但可能抛出异常。</td>
+</tr>
+</tbody></table>
+<h1 id="Node-js-Express-框架"><a href="#Node-js-Express-框架" class="headerlink" title="Node.js Express 框架"></a>Node.js Express 框架</h1><h2 id="Express-简介"><a href="#Express-简介" class="headerlink" title="Express 简介"></a>Express 简介</h2><p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
+<p>使用 Express 可以快速地搭建一个完整功能的网站。</p>
+<p>Express 框架核心特性：</p>
+<ul>
+<li>可以设置中间件来响应 HTTP 请求。</li>
+<li>定义了路由表用于执行不同的 HTTP 请求动作。</li>
+<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
+</ul>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/NodeJS/>http://yoursite.com/2020/07/15/NodeJS/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-16T11:33:26+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jul 16, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/nodejs/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>nodejs</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/NodeJS/&title=nodejs入门 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/NodeJS/&title=nodejs入门 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/NodeJS/&title=nodejs入门 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2020/07/15/Leetcode-%E8%BE%93%E5%85%A5%E6%9F%90%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E7%BB%93%E6%9E%9C%EF%BC%8C%E8%AF%B7%E9%87%8D%E5%BB%BA%E8%AF%A5%E4%BA%8C%E5%8F%89%E6%A0%91/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树</p>
+                <p class='content'>题目链接：https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-ji...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/07/15/webpack/'>
+                <p class='title'>webpack工程化<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>webpack工程化
+webpack基础用法（webpack介绍，webpack配置模板，webpack核心概念与用法）
+webpack高级用法（Tree Shaking，Code Splitt...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      <section id="comments">
+        <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+      </section>
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sails-js，Total-js，Partial-js，Koa-js，Locomotive-js，Express-js-Flatiron-js"><span class="toc-text">Sails. js，Total.js，Partial.js，Koa. js，Locomotive. js，Express. js,Flatiron. js</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相关概念："><span class="toc-text">相关概念：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关框架："><span class="toc-text">相关框架：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类比Java中的："><span class="toc-text">类比Java中的：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全局安装与本地安装"><span class="toc-text">全局安装与本地安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单的表达式运算"><span class="toc-text">简单的表达式运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用变量"><span class="toc-text">使用变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多行表达式"><span class="toc-text">多行表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下划线-变量"><span class="toc-text">下划线(_)变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REPL-命令"><span class="toc-text">REPL 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#停止-REPL"><span class="toc-text">停止 REPL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件驱动程序"><span class="toc-text">事件驱动程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取GET请求内容"><span class="toc-text">获取GET请求内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取-URL-的参数"><span class="toc-text">获取 URL 的参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取-POST-请求内容"><span class="toc-text">获取 POST 请求内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异步和同步"><span class="toc-text">异步和同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打开文件"><span class="toc-text">打开文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-1"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取文件信息"><span class="toc-text">获取文件信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-1"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-1"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-2"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写入文件"><span class="toc-text">写入文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-2"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-2"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-3"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读取文件"><span class="toc-text">读取文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-3"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-3"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-4"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭文件"><span class="toc-text">关闭文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-4"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-4"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-5"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#截取文件"><span class="toc-text">截取文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-5"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-5"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-6"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除文件"><span class="toc-text">删除文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-6"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-6"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-7"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建目录"><span class="toc-text">创建目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-7"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-7"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-8"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读取目录"><span class="toc-text">读取目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-8"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-8"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-9"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除目录"><span class="toc-text">删除目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-9"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数-9"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-10"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件模块方法参考手册"><span class="toc-text">文件模块方法参考手册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Express-简介"><span class="toc-text">Express 简介</span></a>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

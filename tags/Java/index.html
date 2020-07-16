@@ -495,6 +495,979 @@
         
           
   <h2 class="title">
+    <a href="/2020/07/15/JMM/">
+      Java-内存模型JMM
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/JMM/" class="leancloud_visitors" data-flag-title="Java-内存模型JMM">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/JMM/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/JMM/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java内存模型（JMM）"><a href="#Java内存模型（JMM）" class="headerlink" title="Java内存模型（JMM）"></a>Java内存模型（JMM）</h1><p>即Java Memory Model，简称JMM。JMM定义了Java虚拟机（JVM）在计算机内存（RAM）中的工作方式。JVM是整个计算机虚拟模型，所以JMM隶属于JVM的。从抽象的角度来看，JMM定义了线程与主内存之间的抽象关系：线程之间的共享变量存储在主内存（Main Memory）中，每个线程都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了缓存、写缓冲区、寄存器以及其他的硬件和编译器优化。</p>
+<h1 id="JVM对Java内存模型的实现"><a href="#JVM对Java内存模型的实现" class="headerlink" title="JVM对Java内存模型的实现"></a><strong>JVM对Java内存模型的实现</strong></h1><p>所有原始类型(boolean,byte,short,char,int,long,float,double)的局部变量都直接保存在线程栈当中，对于它们的值各个线程之间都是独立的。对于原始类型的局部变量，一个线程可以传递一个副本给另一个线程，当它们之间是无法共享的。</p>
+<p>堆区包含了Java应用创建的所有对象信息，不管对象是哪个线程创建的，其中的对象包括原始类型的封装类（如Byte、Integer、Long等等）。不管对象是属于一个成员变量还是方法中的局部变量，它都会被存储在堆区。</p>
+<p>一个局部变量如果是原始类型，那么它会被完全存储到栈区。 一个局部变量也有可能是一个对象的引用，这种情况下，这个本地引用会被存储到栈中，但是对象本身仍然存储在堆区。</p>
+<p>对于一个对象的成员方法，这些方法中包含局部变量，仍需要存储在栈区，即使它们所属的对象在堆区。 对于一个对象的成员变量，不管它是原始类型还是包装类型，都会被存储到堆区。Static类型的变量以及类本身相关信息都会随着类本身存储在堆区。</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps1.jpg" alt="img"> </p>
+<h1 id="Java内存模型带来的问题"><a href="#Java内存模型带来的问题" class="headerlink" title="Java内存模型带来的问题"></a><strong>Java内存模型带来的问题</strong></h1><h2 id="可见性-问题"><a href="#可见性-问题" class="headerlink" title="可见性**问题**"></a><strong>可见性**</strong>问题**</h2><p>左边CPU中运行的线程从主存中拷贝共享对象obj到它的CPU缓存，把对象obj的count变量改为2。但这个变更对运行在右边CPU中的线程不可见，因为这个更改还没有flush到主存中：要解决共享对象可见性这个问题，我们可以使用java volatile关键字或者是加锁 </p>
+<p>竞争问题：线程A和线程B共享一个对象obj。假设线程A从主存读取Obj.count变量到自己的CPU缓存，同时，线程B也读取了Obj.count变量到它的CPU缓存，并且这两个线程都对Obj.count做了加1操作。此时，Obj.count加1操作被执行了两次，不过都在不同的CPU缓存中。如果这两个加1操作是串行执行的，那么Obj.count变量便会在原始值上加2，最终主存中的Obj.count的值会是3。然而下图中两个加1操作是并行的，不管是线程A还是线程B先flush计算结果到主存，最终主存中的Obj.count只会增加1次变成2，尽管一共有两次加1操作。 要解决上面的问题我们可以使用java synchronized代码块。</p>
+<h2 id="重排序"><a href="#重排序" class="headerlink" title="重排序"></a><strong>重排序</strong></h2><p>除了共享内存和工作内存带来的问题，还存在重排序的问题：在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。</p>
+<h1 id="Java内存模型中的重排序"><a href="#Java内存模型中的重排序" class="headerlink" title="Java内存模型中的重排序"></a><strong>Java内存模型中的重排序</strong></h1><h2 id="重排序类型"><a href="#重排序类型" class="headerlink" title="重排序类型"></a><strong>重排序类型</strong></h2><p>重排序分3种类型。</p>
+<p>1）编译器优化的重排序。编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
+<p>2）指令级并行的重排序。现代处理器采用了指令级并行技术（Instruction-LevelParallelism，ILP）来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。</p>
+<p>3）内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行。</p>
+<h2 id="重排序与依赖性"><a href="#重排序与依赖性" class="headerlink" title="重排序与依赖性"></a><strong>重排序与依赖性</strong></h2><h3 id="数据依赖性"><a href="#数据依赖性" class="headerlink" title="数据依赖性"></a><strong>数据依赖性</strong></h3><p>如果两个操作访问同一个变量，且这两个操作中有一个为写操作，此时这两个操作之间就存在数据依赖性。数据依赖分为下列3种类型</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps2.jpg" alt="img"> </p>
+<p>上面3种情况，只要重排序两个操作的执行顺序，程序的执行结果就会被改变。</p>
+<h3 id="控制依赖性"><a href="#控制依赖性" class="headerlink" title="控制依赖性"></a><strong>控制依赖性</strong></h3><p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps3.jpg" alt="img"> </p>
+<p>flag变量是个标记，用来标识变量a是否已被写入，在use方法中比变量i依赖<strong>if</strong> (flag)的判断，这里就叫控制依赖，如果发生了重排序，结果就不对了。</p>
+<h2 id="as-if-serial"><a href="#as-if-serial" class="headerlink" title="as-if-serial"></a><strong>as-if-serial</strong></h2><p>不管如何重排序，都必须保证代码在单线程下的运行正确，连单线程下都无法正确，更不用讨论多线程并发的情况，所以就提出了一个as-if-serial的概念， </p>
+<p><strong>as-if-serial</strong>语义的意思是：不管怎么重排序（编译器和处理器为了提高并行度），（单线程）程序的执行结果不能被改变。编译器、runtime和处理器都必须遵守as-if-serial语义。为了遵守as-if-serial语义，编译器和处理器不会对存在数据依赖关系的操作做重排序，因为这种重排序会改变执行结果。（强调一下，这里所说的数据依赖性仅针对单个处理器中执行的指令序列和单个线程中执行的操作，不同处理器之间和不同线程之间的数据依赖性不被编译器和处理器考虑。）但是，如果操作之间不存在数据依赖关系，这些操作依然可能被编译器和处理器重排序。</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps4.jpg" alt="img"> </p>
+<p>1和3之间存在数据依赖关系，同时2和3之间也存在数据依赖关系。因此在最终执行的指令序列中，3不能被重排序到1和2的前面（3排到1和2的前面，程序的结果将会被改变）。但1和2之间没有数据依赖关系，编译器和处理器可以重排序1和2之间的执行顺序。</p>
+<p>asif-serial语义使单线程下无需担心重排序的干扰，也无需担心内存可见性问题。</p>
+<h1 id="并发下重排序带来的问题"><a href="#并发下重排序带来的问题" class="headerlink" title="并发下重排序带来的问题"></a><strong>并发下重排序带来的问题</strong></h1><p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps5.jpg" alt="img"> </p>
+<p>这里假设有两个线程A和B，A首先执行init ()方法，随后B线程接着执行use ()方法。线程B在执行操作4时，能否看到线程A在操作1对共享变量a的写入呢？答案是：不一定能看到。</p>
+<p>由于操作1和操作2没有数据依赖关系，编译器和处理器可以对这两个操作重排序；同样，操作3和操作4没有数据依赖关系，编译器和处理器也可以对这两个操作重排序。让我们先来看看，当操作1和操作2重排序时，可能会产生什么效果？操作1和操作2做了重排序。程序执行时，线程A首先写标记变量flag，随后线程B读这个变量。由于条件判断为真，线程B将读取变量a。此时，变量a还没有被线程A写入，这时就会发生错误！</p>
+<p>当操作3和操作4重排序时会产生什么效果？</p>
+<p>在程序中，操作3和操作4存在控制依赖关系。当代码中存在控制依赖性时，会影响指令序列执行的并行度。为此，编译器和处理器会采用猜测（Speculation）执行来克服控制相关性对并行度的影响。以处理器的猜测执行为例，执行线程B的处理器可以提前读取并计算a*a，然后把计算结果临时保存到一个名为重排序缓冲（Reorder Buffer，ROB）的硬件缓存中。当操作3的条件判断为真时，就把该计算结果写入变量i中。猜测执行实质上对操作3和4做了重排序，问题在于这时候，a的值还没被线程A赋值。在单线程程序中，对存在控制依赖的操作重排序，不会改变执行结果（这也是as-if-serial语义允许对存在控制依赖的操作做重排序的原因）；但在多线程程序中，对存在控制依赖的操作重排序，可能会改变程序的执行结果。</p>
+<h1 id="解决在并发下的问题"><a href="#解决在并发下的问题" class="headerlink" title="解决在并发下的问题"></a><strong>解决在并发下的问题</strong></h1><h2 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a><strong>内存屏障</strong></h2><p>Java编译器在生成指令序列的适当位置会插入内存屏障指令来禁止特定类型的处理器重排序，从而让程序按我们预想的流程去执行。</p>
+<p>1、保证特定操作的执行顺序。</p>
+<p>2、影响某些数据（或则是某条指令的执行结果）的内存可见性。</p>
+<p>编译器和CPU能够重排序指令，保证最终相同的结果，尝试优化性能。插入一条Memory Barrier会告诉编译器和CPU：不管什么指令都不能和这条Memory Barrier指令重排序。</p>
+<p>Memory Barrier所做的另外一件事是强制刷出各种CPU cache，如一个Write-Barrier（写入屏障）将刷出所有在Barrier之前写入 cache 的数据，因此，任何CPU上的线程都能读取到这些数据的最新版本。</p>
+<p>JMM把内存屏障指令分为4类，解释表格，StoreLoad Barriers是一个“全能型”的屏障，它同时具有其他3个屏障的效果。现代的多处理器大多支持该屏障（其他类型的屏障不一定被所有处理器支持）。</p>
+<h2 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a><strong>临界区</strong></h2><p>临界区内的代码可以重排序（但JMM不允许临界区内的代码“逸出”到临界区之外，那样会破坏监视器的语义）。JMM会在退出临界区和进入临界区这两个关键时间点做一些特别处理，虽然线程A在临界区内做了重排序，但由于监视器互斥执行的特性，这里的线程B根本无法“观察”到线程A在临界区内的重排序。这种重排序既提高了执行效率，又没有改变程序的执行结果。</p>
+<h1 id="Happens-Before"><a href="#Happens-Before" class="headerlink" title="Happens-Before"></a><strong>Happens-Before</strong></h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a><strong>定义</strong></h2><p>在Java 规范提案中为让大家理解内存可见性的这个概念，提出了happens-before的概念来阐述操作之间的内存可见性。对应Java程序员来说，理解happens-before是理解JMM的关键。JMM这么做的原因是：程序员对于这两个操作是否真的被重排序并不关心，程序员关心的是程序执行时的语义不能被改变（即执行结果不能被改变）。因此，happens-before关系本质上和as-if-serial语义是一回事。·as-if-serial语义保证单线程内程序的执行结果不被改变，happens-before关系保证正确同步的多线程程序的执行结果不被改变。</p>
+<h2 id="Happens-Before规则"><a href="#Happens-Before规则" class="headerlink" title="Happens-Before规则"></a><strong>Happens-Before规则</strong></h2><p>具体规则参见PPT</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps6.jpg" alt="img"> </p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">
+      Java-笔试题
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/" class="leancloud_visitors" data-flag-title="Java-笔试题">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="写一个ArrayList的动态代理类"><a href="#写一个ArrayList的动态代理类" class="headerlink" title="写一个ArrayList的动态代理类"></a>写一个ArrayList的动态代理类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 写一个ArrayList的动态代理类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> AlmostLover</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayListProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; proxyInstance = (List&lt;String&gt;) Proxy.newProxyInstance(list.getClass().getClassLoader(),</span><br><span class="line">                list.getClass().getInterfaces(), <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> method.invoke(list,args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        proxyInstance.add(<span class="string">"你好"</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+      Java-并发编程
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Java-并发编程">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h1><p>并发编程三大特性：可见性，原子性，有序性</p>
+<h2 id="1、线程基础、线程"><a href="#1、线程基础、线程" class="headerlink" title="1、线程基础、线程"></a>1、线程基础、线程</h2><p>之间的共享和协作</p>
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><ul>
+<li>CPU核心数，线程数</li>
+</ul>
+<p>核心数:线程数=1:1  ;使用了超线程技术后—&gt; 1:2</p>
+<ul>
+<li>CPU时间片轮转机制</li>
+</ul>
+<p>又称RR调度，会导致上下文切换</p>
+<ul>
+<li>什么是进程和线程</li>
+</ul>
+<p>进程：程序运行资源分配的最小单位，进程内部有多个线程，会共享这个进程的资源</p>
+<p>线程：CPU调度的最小单位，必须依赖进程而存在。</p>
+<ul>
+<li>什么是并行和并发</li>
+</ul>
+<p>并行：同一时刻，可以同时处理事情的能力</p>
+<p>并发：与单位时间相关，在单位时间内可以处理事情的能力</p>
+<ul>
+<li>高并发编程的意义、好处和注意事项</li>
+</ul>
+<p>好处：充分利用cpu的资源、加快用户响应的时间，程序模块化，异步化</p>
+<p>问题：</p>
+<p>线程共享资源，存在冲突；</p>
+<p>容易导致死锁；</p>
+<p>启用太多的线程，就有搞垮机器的可能</p>
+<h3 id="2、Java中线程基础"><a href="#2、Java中线程基础" class="headerlink" title="2、Java中线程基础"></a>2、Java中线程基础</h3><ul>
+<li><p>启动和终止线程</p>
+<ul>
+<li>三种启动线程的方式</li>
+<li>理解中断</li>
+<li>如何安全的终止线程</li>
+</ul>
+<p>线程自然终止：自然执行完或抛出未处理异常</p>
+<p>stop()，resume(),suspend()已不建议使用，stop()会导致线程不会正确释放资源，suspend()容易导致死锁。</p>
+<p>java线程是协作式，而非抢占式</p>
+<p>调用一个线程的interrupt() 方法中断一个线程，并不是强行关闭这个线程，只是跟这个线程打个招呼，将线程的中断标志位置为true，线程是否中断，由线程本身决定。</p>
+<p>isInterrupted() 判定当前线程是否处于中断状态。</p>
+<p>static方法interrupted() 判定当前线程是否处于中断状态，同时中断标志位改为false。</p>
+<p>方法里如果抛出InterruptedException，线程的中断标志位会被复位成false，如果确实是需要中断线程，要求我们自己在catch语句块里再次调用interrupt()。</p>
+</li>
+<li><p>线程再认识</p>
+<ul>
+<li>线程常用方法</li>
+<li>线程的状态</li>
+</ul>
+<p>线程只有5种状态。整个生命周期就是这几种状态的切换。</p>
+<p>run()和start() ：run方法就是普通对象的普通方法，只有调用了start()后，Java才会将线程对象和操作系统中实际的线程进行映射，再来执行run方法。</p>
+<p>yield() ：让出cpu的执行权，将线程从运行转到可运行状态，但是下个时间片，该线程依然有可能被再次选中运行。</p>
+<ul>
+<li>线程的优先级</li>
+</ul>
+<p>取值为1~10，缺省为5，但线程的优先级不可靠，不建议作为线程开发时候的手段</p>
+<h4 id="Daemon线程"><a href="#Daemon线程" class="headerlink" title="Daemon线程"></a>Daemon线程</h4><p>在Java中有两类线程：用户线程 (User Thread)、守护线程 (Daemon Thread)。 </p>
+<p>所谓守护 线程，是指在程序运行的时候在后台提供一种通用服务的线程，比如垃圾回收线程就是一个很称职的守护者，并且这种线程并不属于程序中不可或缺的部分。因此，当所有的非守护线程结束时，程序也就终止了，同时会杀死进程中的所有守护线程。反过来说，只要任何非守护线程还在运行，程序就不会终止。</p>
+<p>用户线程和守护线程两者几乎没有区别，唯一的不同之处就在于虚拟机的离开：如果用户线程已经全部退出运行了，只剩下守护线程存在了，虚拟机也就退出了。 因为没有了被守护者，守护线程也就没有工作可做了，也就没有继续运行程序的必要了。</p>
+<p>将线程转换为守护线程可以通过调用Thread对象的setDaemon(true)方法来实现。在使用守护线程时需要注意一下几点：</p>
+</li>
+</ul>
+<p>  (1) thread.setDaemon(true)必须在thread.start()之前设置，否则会跑出一个IllegalThreadStateException异常。你不能把正在运行的常规线程设置为守护线程。 </p>
+<p>  (2) 在Daemon线程中产生的新线程也是Daemon的。</p>
+<p>  (3) 守护线程应该永远不去访问固有资源，如文件、数据库，因为它会在任何时候甚至在一个操作的中间发生中断。</p>
+<p>  和主线程共死，finally不能保证一定执行</p>
+<ul>
+<li><p>线程间的共享</p>
+<ul>
+<li><p>synchronized</p>
+<ul>
+<li>对象锁，锁的是类的对象实例。</li>
+<li>类锁，锁的是每个类的的Class对象，每个类的的Class对象在一个虚拟机中只有一个，所以类锁也只有一个。</li>
+</ul>
+</li>
+<li><p>volatile</p>
+</li>
+</ul>
+<p>适合于只有一个线程写，多个线程读的场景，因为它只能确保可见性。</p>
+<ul>
+<li>ThreadLocal</li>
+</ul>
+<p>线程变量。可以理解为是个map，类型 Map&lt;Thread,Integer&gt;</p>
+</li>
+<li><p>线程间协作：轮询：难以保证及时性，资源开销很大，</p>
+<ul>
+<li><p>等待和通知机制</p>
+<ul>
+<li>Wait,Notify/NotifyAll</li>
+<li>等待和通知的标准范式</li>
+</ul>
+</li>
+</ul>
+<p>等待方：</p>
+<pre><code>1、 获取对象的锁；
+
+2、 循环里判断条件是否满足，不满足调用wait方法，
+
+3、 条件满足执行业务逻辑
+
+通知方来说
+
+1、 获取对象的锁；
+
+2、 改变条件
+
+3、 通知所有等待在对象的线程
+
+- notify和notifyAll应该用谁
+
+应该尽量使用notifyAll，使用notify因为有可能发生信号丢失的的情况
+
+**等待超时模式实现一个连接池**
+
+假设  等待时间时长为T，当前时间now+T以后超时</code></pre></li>
+</ul>
+<pre><code>  long  overtime = now+T;
+
+  long remain = T;//等待的持续时间
+
+  while(result不满足条件&amp;&amp; remain&gt;0){
+
+  ​    wait(remain);
+
+  ​    remain = overtime – now;//等待剩下的持续时间
+
+  }
+
+  return result;
+
+- Join方法
+
+线程A，执行了线程B的join方法，线程A必须要等待B执行完成了以后，线程A才能继续自己的工作
+
+- 调用yield() 、sleep()、wait()、notify()等方法对锁有何影响？
+
+线程在执行yield()以后，持有的锁是不释放的
+
+sleep()方法被调用以后，持有的锁是不释放的
+
+调动方法之前，必须要持有锁。调用了wait()方法以后，锁就会被释放，当wait方法返回的时候，线程会重新持有锁
+
+调动方法之前，必须要持有锁，调用notify()方法本身不会释放锁的</code></pre><h2 id="2、线程的并发工具类"><a href="#2、线程的并发工具类" class="headerlink" title="2、线程的并发工具类"></a>2、线程的并发工具类</h2><h3 id="Fork-Join"><a href="#Fork-Join" class="headerlink" title="Fork/Join"></a>Fork/Join</h3><ul>
+<li>什么是分而治之？</li>
+</ul>
+<p>规模为N的问题，N&lt;阈值，直接解决，N&gt;阈值，将N分解为K个小规模子问题，子问题互相对立，与原问题形式相同，将子问题的解合并得到原问题的解</p>
+<p>动态规范</p>
+<ul>
+<li>工作密取</li>
+<li>使用的标准范式</li>
+</ul>
+<h3 id="CountDownLatch作用、应用场景和实战"><a href="#CountDownLatch作用、应用场景和实战" class="headerlink" title="CountDownLatch作用、应用场景和实战"></a>CountDownLatch作用、应用场景和实战</h3><p>作用：是一组线程等待其他的线程完成工作以后在执行，加强版join</p>
+<p>await用来等待，countDown负责计数器的减一</p>
+<h3 id="CyclicBarrier作用、应用场景和实战"><a href="#CyclicBarrier作用、应用场景和实战" class="headerlink" title="CyclicBarrier作用、应用场景和实战"></a>CyclicBarrier作用、应用场景和实战</h3><p>让一组线程达到某个屏障，被阻塞，一直到组内最后一个线程达到屏障时，屏障开放，所有被阻塞的线程会继续运行CyclicBarrier(int parties)</p>
+<p>CyclicBarrier(int parties, Runnable barrierAction)，屏障开放，barrierAction定义的任务会执行</p>
+<h3 id="CountDownLatch和CyclicBarrier辨析"><a href="#CountDownLatch和CyclicBarrier辨析" class="headerlink" title="CountDownLatch和CyclicBarrier辨析"></a>CountDownLatch和CyclicBarrier辨析</h3><p>1、countdownlatch放行由第三者控制，CyclicBarrier放行由一组线程本身控制<br>2、countdownlatch放行条件》=线程数，CyclicBarrier放行条件=线程数</p>
+<h3 id="Semaphore作用、应用场景和实战"><a href="#Semaphore作用、应用场景和实战" class="headerlink" title="Semaphore作用、应用场景和实战"></a>Semaphore作用、应用场景和实战</h3><p>控制同时访问某个特定资源的线程数量，用在流量控制</p>
+<h3 id="Exchange作用、应用场景和实战"><a href="#Exchange作用、应用场景和实战" class="headerlink" title="Exchange作用、应用场景和实战"></a>Exchange作用、应用场景和实战</h3><p>两个线程间的数据交换，</p>
+<h3 id="Callable、Future和FutureTask"><a href="#Callable、Future和FutureTask" class="headerlink" title="Callable、Future和FutureTask"></a>Callable、Future和FutureTask</h3><p>isDone，结束，正常还是异常结束，或者自己取消，返回true；</p>
+<p>isCancelled 任务完成前被取消，返回true；</p>
+<p>cancel（boolean）：</p>
+<p>1、 任务还没开始，返回false</p>
+<p>2、 任务已经启动，cancel（true），中断正在运行的任务，中断成功，返回true，cancel（false），不会去中断已经运行的任务</p>
+<p>3、 任务已经结束，返回false</p>
+<p>包含图片和文字的文档的处理：图片（云上），可以用future去取图片，主线程继续解析文字。</p>
+<h2 id="3、原子操作CAS"><a href="#3、原子操作CAS" class="headerlink" title="3、原子操作CAS"></a>3、原子操作CAS</h2><h3 id="原子操作类"><a href="#原子操作类" class="headerlink" title="原子操作类"></a>原子操作类</h3><ul>
+<li><p>CAS的原理</p>
+</li>
+<li><p>CAS的问题</p>
+<ul>
+<li>ABA问题</li>
+<li>开销</li>
+<li>只能保证一个共享变量的原子操作</li>
+</ul>
+</li>
+<li><p>原子操作类的使用</p>
+<ul>
+<li>基本类型</li>
+<li>数组</li>
+<li>引用</li>
+<li>带版本戳</li>
+</ul>
+</li>
+</ul>
+<h2 id="4、显式锁和AQS"><a href="#4、显式锁和AQS" class="headerlink" title="4、显式锁和AQS"></a>4、显式锁和AQS</h2><h3 id="显式锁"><a href="#显式锁" class="headerlink" title="显式锁"></a>显式锁</h3><ul>
+<li><p>Lock接口、核心方法和使用</p>
+</li>
+<li><p>Lock接口和synchronized的比较</p>
+</li>
+<li><p>ReentrantLock</p>
+<ul>
+<li>可重入锁</li>
+<li>锁的公平和非公平</li>
+</ul>
+</li>
+<li><p>ReentrantReadWriteLock</p>
+<ul>
+<li>ReadWriteLock接口</li>
+<li>使用场景</li>
+</ul>
+</li>
+<li><p>Condition接口</p>
+<ul>
+<li>用处</li>
+<li>用Lock和Condition实现等待通知</li>
+</ul>
+</li>
+</ul>
+<h3 id="了解LockSupport"><a href="#了解LockSupport" class="headerlink" title="了解LockSupport"></a>了解LockSupport</h3><h3 id="AbstractQueuedSynchronizer"><a href="#AbstractQueuedSynchronizer" class="headerlink" title="AbstractQueuedSynchronizer"></a>AbstractQueuedSynchronizer</h3><ul>
+<li><p>什么是AQS？学习它的必要</p>
+</li>
+<li><p>AQS使用方式和其中的设计模式</p>
+</li>
+<li><p>了解其中的方法</p>
+</li>
+<li><p>实现一个自己的独占锁 </p>
+</li>
+<li><p>深入源码</p>
+<ul>
+<li><p>AQS中的数据结构</p>
+</li>
+<li><p>节点在同步队列中的增加和移出</p>
+</li>
+<li><p>独占式同步状态获取与释放</p>
+</li>
+<li><p>共享式同步状态获取与释放</p>
+</li>
+<li><p>Condition分析</p>
+<ul>
+<li>等待队列</li>
+<li>await方法</li>
+<li>signal方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>了解ReentrantLock的实现</p>
+<ul>
+<li>锁的可重入</li>
+<li>公平和非公平锁</li>
+</ul>
+</li>
+<li><p>了解ReentrantReadWriteLock的实现</p>
+</li>
+</ul>
+<h2 id="9、JMM和底层实现原理"><a href="#9、JMM和底层实现原理" class="headerlink" title="9、JMM和底层实现原理"></a>9、JMM和底层实现原理</h2><h3 id="现代计算机物理"><a href="#现代计算机物理" class="headerlink" title="现代计算机物理"></a>现代计算机物理</h3><p>上的内存模型</p>
+<ul>
+<li>概念</li>
+<li>带来的问题</li>
+</ul>
+<h3 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h3><p>（JMM）</p>
+<ul>
+<li><p>JVM对Java内存<br>模型的实现</p>
+</li>
+<li><p>带来的问题</p>
+</li>
+<li><p>重排序</p>
+<ul>
+<li>类型</li>
+<li>依赖性</li>
+<li>as-if-serial</li>
+<li>重排序带来的问题</li>
+<li>内存屏障</li>
+<li>临界区</li>
+</ul>
+</li>
+<li><p>Happens-Before</p>
+<ul>
+<li>定义</li>
+<li>规则</li>
+</ul>
+</li>
+<li><p>volatile的内存语义</p>
+<ul>
+<li><p>概念和深入理解</p>
+</li>
+<li><p>内存语义的实现</p>
+<ul>
+<li>重排序规则</li>
+<li>内存屏障插入策略</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>锁的内存语义</p>
+</li>
+<li><p>final的内存语义</p>
+</li>
+<li><p>volatile的实现原理</p>
+</li>
+<li><p>synchronized的实现原理</p>
+</li>
+</ul>
+<h2 id="8、实战项目-2个"><a href="#8、实战项目-2个" class="headerlink" title="8、实战项目(2个)"></a>8、实战项目(2个)</h2><h3 id="并发任务执行框架"><a href="#并发任务执行框架" class="headerlink" title="并发任务执行框架"></a>并发任务执行框架</h3><ul>
+<li><p>需求的产生和分析 </p>
+</li>
+<li><p>需要做什么</p>
+<ul>
+<li>封装多线程，屏蔽细节</li>
+<li>保存任务的上下文</li>
+<li>自动清除已完成和过期任务</li>
+</ul>
+</li>
+<li><p>具体实现</p>
+<ul>
+<li>可查询进度的并发任务执行框架</li>
+</ul>
+</li>
+</ul>
+<h3 id="应用性能优化实战"><a href="#应用性能优化实战" class="headerlink" title="应用性能优化实战"></a>应用性能优化实战</h3><ul>
+<li><p>项目简介</p>
+</li>
+<li><p>项目分析，为何优化</p>
+</li>
+<li><p>分析和改进</p>
+<ul>
+<li>架构改进</li>
+<li>单服务改进</li>
+</ul>
+</li>
+<li><p>如何继续改进</p>
+</li>
+<li><p>带来的启示</p>
+</li>
+</ul>
+<h2 id="7、并发安全"><a href="#7、并发安全" class="headerlink" title="7、并发安全"></a>7、并发安全</h2><h3 id="类的线程安全"><a href="#类的线程安全" class="headerlink" title="类的线程安全"></a>类的线程安全</h3><h3 id="如何做到类的线程安全"><a href="#如何做到类的线程安全" class="headerlink" title="如何做到类的线程安全"></a>如何做到类的线程安全</h3><ul>
+<li>无状态</li>
+<li>让类不可变</li>
+<li>更多……</li>
+</ul>
+<h3 id="线程不安全引发的问题"><a href="#线程不安全引发的问题" class="headerlink" title="线程不安全引发的问题"></a>线程不安全引发的问题</h3><ul>
+<li><p>死锁</p>
+<ul>
+<li>原因</li>
+<li>表现</li>
+<li>检测和解决</li>
+</ul>
+</li>
+<li><p>活锁</p>
+</li>
+<li><p>多线程程序<br>性能和思考</p>
+<ul>
+<li>影响性能的因素</li>
+<li>减少锁的竞争</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程安全的单例模式"><a href="#线程安全的单例模式" class="headerlink" title="线程安全的单例模式"></a>线程安全的单例模式</h3><ul>
+<li>如何让双重检查锁定安全</li>
+<li>懒汉式</li>
+<li>饿汉式</li>
+</ul>
+<h2 id="6、线程池"><a href="#6、线程池" class="headerlink" title="6、线程池"></a>6、线程池</h2><h3 id="什么是线程池？为什么要用线程池？"><a href="#什么是线程池？为什么要用线程池？" class="headerlink" title="什么是线程池？为什么要用线程池？"></a>什么是线程池？为什么要用线程池？</h3><h3 id="实现一个我们自己的线程池"><a href="#实现一个我们自己的线程池" class="headerlink" title="实现一个我们自己的线程池"></a>实现一个我们自己的线程池</h3><h3 id="JDK中的线程池"><a href="#JDK中的线程池" class="headerlink" title="JDK中的线程池"></a>JDK中的线程池</h3><ul>
+<li>线程池的创建</li>
+<li>提交任务</li>
+<li>关闭线程池</li>
+</ul>
+<h3 id="线程池工作机制"><a href="#线程池工作机制" class="headerlink" title="线程池工作机制"></a>线程池工作机制</h3><h3 id="合理配置线程池"><a href="#合理配置线程池" class="headerlink" title="合理配置线程池"></a>合理配置线程池</h3><h3 id="系统为我们预定义的线程池"><a href="#系统为我们预定义的线程池" class="headerlink" title="系统为我们预定义的线程池"></a>系统为我们预定义的线程池</h3><ul>
+<li><p>FixedThreadPool<br>SingleThreadExecutor<br>CachedThreadPool<br>WorkStealingPool</p>
+<ul>
+<li>含义</li>
+<li>使用场景</li>
+</ul>
+</li>
+<li><p>ScheduledThreadPoolExecutor</p>
+<ul>
+<li>含义</li>
+<li>使用场景</li>
+<li>内部方法辨析</li>
+</ul>
+</li>
+</ul>
+<h3 id="Executor框架"><a href="#Executor框架" class="headerlink" title="Executor框架"></a>Executor框架</h3><h3 id="CompletionService"><a href="#CompletionService" class="headerlink" title="CompletionService"></a>CompletionService</h3><ul>
+<li>使用</li>
+<li>优点</li>
+</ul>
+<h2 id="5、并发容器"><a href="#5、并发容器" class="headerlink" title="5、并发容器"></a>5、并发容器</h2><h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
+<li><p>使用</p>
+</li>
+<li><p>实现</p>
+<ul>
+<li><p>基本思想</p>
+</li>
+<li><p>预备知识</p>
+<ul>
+<li>Hash</li>
+<li>位运算</li>
+</ul>
+</li>
+<li><p>jdk1.7</p>
+<ul>
+<li>构造方法</li>
+<li>如何定位</li>
+<li>get方法</li>
+<li>put方法</li>
+<li>扩容</li>
+</ul>
+</li>
+<li><p>jdk1.8</p>
+<ul>
+<li>构造方法</li>
+<li>如何定位</li>
+<li>get方法</li>
+<li>put方法</li>
+<li>扩容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他并发容器"><a href="#其他并发容器" class="headerlink" title="其他并发容器"></a>其他并发容器</h3><ul>
+<li><p>ConcurrentSkipListMap等</p>
+<ul>
+<li>了解什么是SkipList</li>
+</ul>
+</li>
+<li><p>ConcurrentLinkedQueue  </p>
+</li>
+<li><p>写时复制容器</p>
+</li>
+</ul>
+<h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><ul>
+<li><p>概念</p>
+</li>
+<li><p>生产者消费者模式</p>
+</li>
+<li><p>常用方法</p>
+</li>
+<li><p>常用阻塞队列辨析</p>
+<ul>
+<li>·ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。<br>·LinkedBlockingQueue：一个由链表结构组成的有界阻塞队列。<br>·PriorityBlockingQueue：一个支持优先级排序的无界阻塞队列。<br>·DelayQueue：一个使用优先级队列实现的无界阻塞队列。<br>·SynchronousQueue：一个不存储元素的阻塞队列。<br>·LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。<br>·LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。</li>
+</ul>
+</li>
+<li><p>延时队列实战</p>
+</li>
+<li><p>阻塞队列实现原理</p>
+</li>
+</ul>
+<p><em>XMind: ZEN - Trial Version</em></p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">
+      Java-抽象类和接口有什么区别
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="Java-抽象类和接口有什么区别">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="abstract-class和interface有什么区别"><a href="#abstract-class和interface有什么区别" class="headerlink" title="abstract class和interface有什么区别"></a>abstract class和interface有什么区别</h1><ul>
+<li><p>含有abstract修饰符的class即为抽象类，abstract类不能创建的实例对象。</p>
+</li>
+<li><p>含有abstract方法的类必须定义为abstract class,abstract class类中的方法不必是抽象的。</p>
+</li>
+<li><p>abstract class类中定义抽象方法必须在具体（concrete）子类中实现，所以，不能有抽象构造方法或抽象静态方法。如果子类没有实现抽象父类中的所有抽象方法，那么子类也必须定义为abstract类型。</p>
+</li>
+<li><p>接口（interface）可以说成是抽象类的一种特例，接口中的所有方法都必须是抽象的。接口中的方法默认为public abstract类型，接口中的成员变量类型默认为public static final</p>
+</li>
+<li><p>语法区别：</p>
+<ul>
+<li>抽象类可以有构造方法，接口中不能有构造方法</li>
+<li>抽象类中可以由普通成员变量，接口中没有普通成员变量</li>
+<li>抽象类中可以包含非抽象的普通方法，接口中的所有方法都必须是抽象的，不能有非抽象的普通方法</li>
+<li>抽象类中的抽象方法的访问类型可以是public、protected和（默认类型，虽然eclipse下不报错，但应该也不行），但接口抽象方法只能是public类型，并且默认是public abstract类型</li>
+<li>抽象类中可以包含静态方法，接口中不能包含静态方法</li>
+<li>抽象类和接口中都可以包含静态成员变量，抽象类中的静态成员变量的访问类型可以是任意，但接口中定义的变量只能是public static final类型，并且默认即为public static final类型。</li>
+<li>一个类可以实现多个接口，但只能继承一个抽象类</li>
+</ul>
+</li>
+<li><p>应用区别：</p>
+<ul>
+<li>接口更多的是在系统架构设计方法发挥作用，主要用于定义模块之间的通信契约，而抽象类在代码实现方面发挥作用，可以实现代码的重用。</li>
+</ul>
+</li>
+<li><p>接口是否可以继承接口，抽象类是否可以实现接口，抽象类是否可以继承实体类</p>
+<ul>
+<li>接口可以继承接口，抽象类可以实现接口，抽象类可以继承实体类，但前提是实体类必须有明确的构造函数</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2015/05/29/Spring-IOC%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
       Spring IOC核心源码学习
     </a>
@@ -1237,535 +2210,6 @@
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">
-      Java HashSet工作原理及实现
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 8, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="Java HashSet工作原理及实现">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><blockquote>
-<p>This class implements the Set interface, backed by a hash table (actually a <strong>HashMap</strong> instance). It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time. This class permits the null element.</p>
-</blockquote>
-<p>HashSet是基于HashMap来实现的，操作很简单，更像是对HashMap做了一次“封装”，而且只使用了HashMap的key来实现各种特性，我们先来感性的认识一下这个结构：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">set.add(<span class="string">"语文"</span>);</span><br><span class="line">set.add(<span class="string">"数学"</span>);</span><br><span class="line">set.add(<span class="string">"英语"</span>);</span><br><span class="line">set.add(<span class="string">"历史"</span>);</span><br><span class="line">set.add(<span class="string">"政治"</span>);</span><br><span class="line">set.add(<span class="string">"地理"</span>);</span><br><span class="line">set.add(<span class="string">"生物"</span>);</span><br><span class="line">set.add(<span class="string">"化学"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>其大致的结构是这样的：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7060522/0bcfd890-deb5-11e4-97b3-d4e811766893.png" alt="hashset"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;</span><br><span class="line"><span class="comment">// Dummy value to associate with an Object in the backing Map</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object PRESENT = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
-
-<p><code>map</code>是整个HashSet的核心，而<code>PRESENT</code>则是用来造一个假的value来用的。</p>
-<h3 id="2-基本操作"><a href="#2-基本操作" class="headerlink" title="2. 基本操作"></a>2. 基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> map.put(e, PRESENT)==<span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> map.remove(o)==PRESENT;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> map.containsKey(o);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> map.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>基本操作也非常简单，就是调用HashMap的相关方法，其中value就是之前那个dummy的Object。所以，只要了解#7 HashMap的实现就可以了。</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html" target="_blank" rel="noopener">HashSet(Java Platform 8)</a></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/04/07/Java-PriorityQueue%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">
-      Java PriorityQueue工作原理及实现
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 7, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/04/07/Java-PriorityQueue%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="Java PriorityQueue工作原理及实现">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/04/07/Java-PriorityQueue%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/04/07/Java-PriorityQueue%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://www.iteye.com/topic/1061958" target="_blank" rel="noopener">基于最小堆（小根堆）的topn算法</a><br><a href="http://my.oschina.net/leejun2005/blog/135085" target="_blank" rel="noopener">基于堆实现的优先级队列：PriorityQueue 解决 Top K 问题</a><br><a href="http://www.importnew.com/6932.html" target="_blank" rel="noopener">Java优先队列（PriorityQueue）示例</a><br><a href="http://wlh0706-163-com.iteye.com/blog/1850125" target="_blank" rel="noopener">JDK源码研究PriorityQueue（优先队列）</a><br><a href="http://cuisuqiang.iteye.com/blog/2019157" target="_blank" rel="noopener">优先级队列：PriorityQueue</a></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/04/06/Java-TreeMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">
-      Java TreeMap工作原理及实现
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 6, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/04/06/Java-TreeMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="Java TreeMap工作原理及实现">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/04/06/Java-TreeMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/04/06/Java-TreeMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><blockquote>
-<p>A <strong>Red-Black tree</strong> based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.<br>This implementation provides guaranteed <strong>log(n) time cost</strong> for the containsKey, get, put and remove operations. Algorithms are adaptations of those in Cormen, Leiserson, and Rivest’s Introduction to Algorithms.</p>
-</blockquote>
-<p>之前已经学习过HashMap和LinkedHashMap了，HashMap不保证数据有序，LinkedHashMap保证数据可以保持插入顺序，而如果我们希望Map可以保持key的大小顺序的时候，我们就需要利用TreeMap了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeMap&lt;Integer, String&gt; tmap = <span class="keyword">new</span> TreeMap&lt;Integer, String&gt;();</span><br><span class="line">tmap.put(<span class="number">1</span>, <span class="string">"语文"</span>);</span><br><span class="line">tmap.put(<span class="number">3</span>, <span class="string">"英语"</span>);</span><br><span class="line">tmap.put(<span class="number">2</span>, <span class="string">"数学"</span>);</span><br><span class="line">tmap.put(<span class="number">4</span>, <span class="string">"政治"</span>);</span><br><span class="line">tmap.put(<span class="number">5</span>, <span class="string">"历史"</span>);</span><br><span class="line">tmap.put(<span class="number">6</span>, <span class="string">"地理"</span>);</span><br><span class="line">tmap.put(<span class="number">7</span>, <span class="string">"生物"</span>);</span><br><span class="line">tmap.put(<span class="number">8</span>, <span class="string">"化学"</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;Integer, String&gt; entry : tmap.entrySet()) &#123;</span><br><span class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其大致的结构如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7041463/05ee676a-de0c-11e4-9412-4c6964931e43.png" alt="treemap"><br>使用红黑树的好处是能够使得树具有不错的平衡性，这样操作的速度就可以达到log(n)的水平了。具体红黑树的实现不在这里赘述，可以参考<a href="http://dongxicheng.org/structure/red-black-tree/" target="_blank" rel="noopener">数据结构之红黑树</a>、<a href="http://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="noopener">wikipedia-红黑树</a>等的实现。</p>
-<h3 id="2-put函数"><a href="#2-put函数" class="headerlink" title="2. put函数"></a>2. put函数</h3><blockquote>
-<p>Associates the specified value with the specified key in this map.If the map previously contained a mapping for the key, the old value is replaced.</p>
-</blockquote>
-<p>如果存在的话，old value被替换；如果不存在的话，则新添一个节点，然后对做红黑树的平衡操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; t = root;</span><br><span class="line">    <span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123;</span><br><span class="line">        compare(key, key); <span class="comment">// type (and possibly null) check</span></span><br><span class="line"></span><br><span class="line">        root = <span class="keyword">new</span> Entry&lt;&gt;(key, value, <span class="keyword">null</span>);</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        modCount++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> cmp;</span><br><span class="line">    Entry&lt;K,V&gt; parent;</span><br><span class="line">    <span class="comment">// split comparator and comparable paths</span></span><br><span class="line">    Comparator&lt;? <span class="keyword">super</span> K&gt; cpr = comparator;</span><br><span class="line">        <span class="comment">// 如果该节点存在，则替换值直接返回</span></span><br><span class="line">    <span class="keyword">if</span> (cpr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            parent = t;</span><br><span class="line">            cmp = cpr.compare(key, t.key);</span><br><span class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">                t = t.left;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</span><br><span class="line">                t = t.right;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> t.setValue(value);</span><br><span class="line">        &#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">            Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            parent = t;</span><br><span class="line">            cmp = k.compareTo(t.key);</span><br><span class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">                t = t.left;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</span><br><span class="line">                t = t.right;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> t.setValue(value);</span><br><span class="line">        &#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="comment">// 如果该节点未存在，则新建</span></span><br><span class="line">    Entry&lt;K,V&gt; e = <span class="keyword">new</span> Entry&lt;&gt;(key, value, parent);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">        parent.left = e;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        parent.right = e;</span><br><span class="line">        <span class="comment">// 红黑树平衡调整</span></span><br><span class="line">    fixAfterInsertion(e);</span><br><span class="line">    size++;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-get函数"><a href="#3-get函数" class="headerlink" title="3. get函数"></a>3. get函数</h3><p>get函数则相对来说比较简单，以log(n)的复杂度进行get</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> Entry&lt;K,V&gt; <span class="title">getEntry</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Offload comparator-based version for sake of performance</span></span><br><span class="line">    <span class="keyword">if</span> (comparator != <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> getEntryUsingComparator(key);</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</span><br><span class="line">    Entry&lt;K,V&gt; p = root;</span><br><span class="line">        <span class="comment">// 按照二叉树搜索的方式进行搜索，搜到返回</span></span><br><span class="line">    <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> cmp = k.compareTo(p.key);</span><br><span class="line">        <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">            p = p.left;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</span><br><span class="line">            p = p.right;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; p = getEntry(key);</span><br><span class="line">    <span class="keyword">return</span> (p==<span class="keyword">null</span> ? <span class="keyword">null</span> : p.value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4-successor后继"><a href="#4-successor后继" class="headerlink" title="4. successor后继"></a>4. successor后继</h3><p>TreeMap是如何保证其迭代输出是有序的呢？其实从宏观上来讲，就相当于树的中序遍历(LDR)。我们先看一下迭代输出的步骤</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Entry&lt;Integer, String&gt; entry : tmap.entrySet()) &#123;</span><br><span class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>根据<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2" target="_blank" rel="noopener">The enhanced for statement</a>，for语句会做如下转换为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Iterator&lt;Map.Entry&lt;String, String&gt;&gt; it = tmap.entrySet().iterator() ; tmap.hasNext(); ) &#123;</span><br><span class="line">    Entry&lt;Integer, String&gt; entry = it.next();</span><br><span class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在<strong>it.next()</strong>的调用中会使用<strong>nextEntry</strong>调用<code>successor</code>这个是过的后继的重点，具体实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &lt;K,V&gt; TreeMap.<span class="function">Entry&lt;K,V&gt; <span class="title">successor</span><span class="params">(Entry&lt;K,V&gt; t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (t.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 有右子树的节点，后继节点就是右子树的“最左节点”</span></span><br><span class="line">        <span class="comment">// 因为“最左子树”是右子树的最小节点</span></span><br><span class="line">        Entry&lt;K,V&gt; p = t.right;</span><br><span class="line">        <span class="keyword">while</span> (p.left != <span class="keyword">null</span>)</span><br><span class="line">            p = p.left;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果右子树为空，则寻找当前节点所在左子树的第一个祖先节点</span></span><br><span class="line">        <span class="comment">// 因为左子树找完了，根据LDR该D了</span></span><br><span class="line">        Entry&lt;K,V&gt; p = t.parent;</span><br><span class="line">        Entry&lt;K,V&gt; ch = t;</span><br><span class="line">        <span class="comment">// 保证左子树</span></span><br><span class="line">        <span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; ch == p.right) &#123;</span><br><span class="line">            ch = p;</span><br><span class="line">            p = p.parent;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>怎么理解这个successor呢？只要记住，这个是中序遍历就好了，L-D-R。具体细节如下：</p>
-<blockquote>
-<p><strong>a. 空节点，没有后继</strong><br><strong>b. 有右子树的节点，后继就是右子树的“最左节点”</strong><br><strong>c. 无右子树的节点，后继就是该节点所在左子树的第一个祖先节点</strong></p>
-</blockquote>
-<p>a.好理解，不过b, c，有点像绕口令啊，没关系，上图举个例子就懂了！</p>
-<p><strong>有右子树的节点</strong>，节点的下一个节点，肯定在右子树中，而右子树中“最左”的那个节点则是右子树中最小的一个，那么当然是<strong>右子树的“最左节点”</strong>，就好像下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045283/652d00c4-de2f-11e4-8475-1a2f46afc380.png" alt="treemap1"></p>
-<p><strong>无右子树的节点</strong>，先找到这个节点所在的左子树(右图)，那么这个节点所在的左子树的父节点(绿色节点)，就是下一个节点。<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045284/68279686-de2f-11e4-8310-c9f76b3f52ab.png" alt="treemap2"></p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html" target="_blank" rel="noopener">TreeMap (Java Platform SE 8)</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-Red-Black-Tree.html" target="_blank" rel="noopener">浅谈算法和数据结构: 九 平衡查找树之红黑树</a><br><a href="http://blog.csdn.net/chenssy/article/details/26668941" target="_blank" rel="noopener">Java提高篇（二七）—–TreeMap</a><br><a href="http://dongxicheng.org/structure/red-black-tree/" target="_blank" rel="noopener">数据结构之红黑树</a><br><a href="http://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="noopener">wikipedia-红黑树</a><br><a href="http://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf" target="_blank" rel="noopener">Red-Black Trees</a><br><a href="http://stackoverflow.com/questions/18063394/how-treemap-searches-successor-for-given-entry" target="_blank" rel="noopener">How TreeMap searches successor for given Entry?</a></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">
-      Java LinkedList工作原理及实现
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 5, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="Java LinkedList工作原理及实现">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><blockquote>
-<p>以双向链表实现。链表无容量限制，但双向链表本身使用了更多空间，也需要额外的链表指针操作。</p>
-<p>按下标访问元素–get(i)/set(i,e) 要悲剧的遍历链表将指针移动到位(如果i&gt;数组大小的一半，会从末尾移起)。</p>
-<p>插入、删除元素时修改前后节点的指针即可，但还是要遍历部分链表的指针才能移动到下标所指的位置，只有在链表两头的操作–add(), addFirst(),removeLast()或用iterator()上的remove()能省掉指针的移动。</p>
-</blockquote>
-<p>LinkedList是一个简单的数据结构，与ArrayList不同的是，他是基于链表实现的。</p>
-<blockquote>
-<p>Doubly-linked list implementation of the List and Deque interfaces. Implements all optional list operations, and permits all elements (including null).</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; list = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">list.add(<span class="string">"语文: 1"</span>);</span><br><span class="line">list.add(<span class="string">"数学: 2"</span>);</span><br><span class="line">list.add(<span class="string">"英语: 3"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>结构也相对简单一些，如下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/6997435/92fab224-dbed-11e4-932a-4c5593a2abb7.png" alt="linkedlist"></p>
-<h3 id="2-set和get函数"><a href="#2-set和get函数" class="headerlink" title="2. set和get函数"></a>2. set和get函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    checkElementIndex(index);</span><br><span class="line">    Node&lt;E&gt; x = node(index);</span><br><span class="line">    E oldVal = x.item;</span><br><span class="line">    x.item = element;</span><br><span class="line">    <span class="keyword">return</span> oldVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    checkElementIndex(index);</span><br><span class="line">    <span class="keyword">return</span> node(index).item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这两个函数都调用了<code>node</code>函数，该函数会以O(n/2)的性能去获取一个节点，具体实现如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// assert isElementIndex(index);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (index &lt; (size &gt;&gt; <span class="number">1</span>)) &#123;</span><br><span class="line">        Node&lt;E&gt; x = first;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">            x = x.next;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; x = last;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--)</span><br><span class="line">            x = x.prev;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>就是判断index是在前半区间还是后半区间，如果在前半区间就从head搜索，而在后半区间就从tail搜索。而不是一直从头到尾的搜索。如此设计，将节点访问的复杂度由O(n)变为O(n/2)。</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html" target="_blank" rel="noopener">LinkedList (Java Platform SE 8)</a></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1883,7 +2327,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/Java/" style="font-size: 21.78px; color: #646464">Java</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #999">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 20.67px; color: #6c6c6c">随笔</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.22px; color: #8a8a8a">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 20.67px; color: #6c6c6c">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
     </div>
   </section>
 

@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>前端-进阶 - Ye</title>
+  
+    <meta name="keywords" content="前端">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ye">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">前端-进阶</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/07/15/%E5%89%8D%E7%AB%AF-%E8%BF%9B%E9%98%B6/">
+      前端-进阶
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          
+          <h2 id="一、JS"><a href="#一、JS" class="headerlink" title="一、JS"></a>一、JS</h2><h3 id="1-谈谈变量提升"><a href="#1-谈谈变量提升" class="headerlink" title="#1 谈谈变量提升"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_1-谈谈变量提升" target="_blank" rel="noopener">#</a>1 谈谈变量提升</h3><blockquote>
+<p>当执行 <code>JS</code> 代码时，会生成执行环境，只要代码不是写在函数中的，就是在全局执行环境中，函数中的代码会产生函数执行环境，只此两种执行环境。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">b() <span class="comment">// call b</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'Hello world'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'call b'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>想必以上的输出大家肯定都已经明白了，这是因为函数和变量提升的原因。通常提升的解释是说将声明的代码移动到了顶部，这其实没有什么错误，便于大家理解。但是更准确的解释应该是：在生成执行环境时，会有两个阶段。第一个阶段是创建的阶段，<code>JS</code> 解释器会找出需要提升的变量和函数，并且给他们提前在内存中开辟好空间，函数的话会将整个函数存入内存中，变量只声明并且赋值为 <code>undefined</code>，所以在第二个阶段，也就是代码执行阶段，我们可以直接提前使用</p>
+</blockquote>
+<ul>
+<li>在提升的过程中，相同的函数会覆盖上一个函数，并且函数优先于变量提升</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">b() <span class="comment">// call b second</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'call b fist'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'call b second'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">'Hello world'</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>var</code> 会产生很多错误，所以在 ES6中引入了 <code>let</code>。<code>let</code>不能在声明前使用，但是这并不是常说的 <code>let</code> 不会提升，<code>let</code>提升了，在第一阶段内存也已经为他开辟好了空间，但是因为这个声明的特性导致了并不能在声明前使用</p>
+</blockquote>
+<h3 id="2-bind、call、apply-区别"><a href="#2-bind、call、apply-区别" class="headerlink" title="#2 bind、call、apply 区别"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_2-bind、call、apply-区别" target="_blank" rel="noopener">#</a>2 bind、call、apply 区别</h3><ul>
+<li><code>call</code> 和 <code>apply</code> 都是为了解决改变 <code>this</code> 的指向。作用都是相同的，只是传参的方式不同。</li>
+<li>除了第一个参数外，<code>call</code> 可以接收一个参数列表，<code>apply</code> 只接受一个参数数组</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value)</span><br><span class="line">&#125;</span><br><span class="line">getValue.call(a, <span class="string">'yck'</span>, <span class="string">'24'</span>)</span><br><span class="line">getValue.apply(a, [<span class="string">'yck'</span>, <span class="string">'24'</span>])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>bind</code> 和其他两个方法作用也是一致的，只是该方法会返回一个函数。并且我们可以通过 <code>bind</code> 实现柯里化</p>
+</blockquote>
+<h3 id="3-如何实现一个-bind-函数"><a href="#3-如何实现一个-bind-函数" class="headerlink" title="#3 如何实现一个 bind 函数"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_3-如何实现一个-bind-函数" target="_blank" rel="noopener">#</a>3 如何实现一个 bind 函数</h3><p>对于实现以下几个函数，可以从几个方面思考</p>
+<ul>
+<li>不传入第一个参数，那么默认为 <code>window</code></li>
+<li>改变了 <code>this</code> 指向，让新的对象可以执行该函数。那么思路是否可以变成给新的对象添加一个函数，然后在执行完以后删除？</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myBind = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Error'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> _this = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">var</span> args = [...arguments].slice(<span class="number">1</span>)</span><br><span class="line">  <span class="comment">// 返回一个函数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 因为返回了一个函数，我们可以 new F()，所以需要判断</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">instanceof</span> F) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> _this(...args, ...arguments)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _this.apply(context, args.concat(...arguments))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-如何实现一个-call-函数"><a href="#4-如何实现一个-call-函数" class="headerlink" title="#4 如何实现一个 call 函数"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_4-如何实现一个-call-函数" target="_blank" rel="noopener">#</a>4 如何实现一个 call 函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myCall = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> context = context || <span class="built_in">window</span></span><br><span class="line">  <span class="comment">// 给 context 添加一个属性</span></span><br><span class="line">  <span class="comment">// getValue.call(a, 'yck', '24') =&gt; a.fn = getValue</span></span><br><span class="line">  context.fn = <span class="keyword">this</span></span><br><span class="line">  <span class="comment">// 将 context 后面的参数取出来</span></span><br><span class="line">  <span class="keyword">var</span> args = [...arguments].slice(<span class="number">1</span>)</span><br><span class="line">  <span class="comment">// getValue.call(a, 'yck', '24') =&gt; a.fn('yck', '24')</span></span><br><span class="line">  <span class="keyword">var</span> result = context.fn(...args)</span><br><span class="line">  <span class="comment">// 删除 fn</span></span><br><span class="line">  <span class="keyword">delete</span> context.fn</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-如何实现一个-apply-函数"><a href="#5-如何实现一个-apply-函数" class="headerlink" title="#5 如何实现一个 apply 函数"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_5-如何实现一个-apply-函数" target="_blank" rel="noopener">#</a>5 如何实现一个 apply 函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myApply = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> context = context || <span class="built_in">window</span></span><br><span class="line">  context.fn = <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> result</span><br><span class="line">  <span class="comment">// 需要判断是否存储第二个参数</span></span><br><span class="line">  <span class="comment">// 如果存在，就将第二个参数展开</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">arguments</span>[<span class="number">1</span>]) &#123;</span><br><span class="line">    result = context.fn(...arguments[<span class="number">1</span>])</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    result = context.fn()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> context.fn</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-简单说下原型链？"><a href="#6-简单说下原型链？" class="headerlink" title="#6 简单说下原型链？"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_6-简单说下原型链？" target="_blank" rel="noopener">#</a>6 简单说下原型链？</h3><p><img src="https://user-gold-cdn.xitu.io/2018/9/19/165f189f736f19fd?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<ul>
+<li>每个函数都有 <code>prototype</code> 属性，除了 <code>Function.prototype.bind()</code>，该属性指向原型。</li>
+<li>每个对象都有 <code>__proto__</code> 属性，指向了创建该对象的构造函数的原型。其实这个属性指向了 <code>[[prototype]]</code>，但是 <code>[[prototype]]</code>是内部属性，我们并不能访问到，所以使用 <code>_proto_</code>来访问。</li>
+<li>对象可以通过 <code>__proto__</code> 来寻找不属于该对象的属性，<code>__proto__</code> 将对象连接起来组成了原型链。</li>
+</ul>
+<h3 id="7-怎么判断对象类型"><a href="#7-怎么判断对象类型" class="headerlink" title="#7 怎么判断对象类型"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_7-怎么判断对象类型" target="_blank" rel="noopener">#</a>7 怎么判断对象类型</h3><ul>
+<li>可以通过 <code>Object.prototype.toString.call(xx)</code>。这样我们就可以获得类似 <code>[object Type]</code> 的字符串。</li>
+<li><code>instanceof</code> 可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是能找到类型的 <code>prototype</code></li>
+</ul>
+<h3 id="8-箭头函数的特点"><a href="#8-箭头函数的特点" class="headerlink" title="#8 箭头函数的特点"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_8-箭头函数的特点" target="_blank" rel="noopener">#</a>8 箭头函数的特点</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        	<span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a()()())</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>箭头函数其实是没有 <code>this</code> 的，这个函数中的 <code>this</code> 只取决于他外面的第一个不是箭头函数的函数的 <code>this</code>。在这个例子中，因为调用 <code>a</code> 符合前面代码中的第一个情况，所以 <code>this</code> 是<code>window</code>。并且 <code>this</code>一旦绑定了上下文，就不会被任何代码改变</p>
+</blockquote>
+<h3 id="9-This"><a href="#9-This" class="headerlink" title="#9 This"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_9-this" target="_blank" rel="noopener">#</a>9 This</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">foo()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	a: <span class="number">2</span>,</span><br><span class="line">	foo: foo</span><br><span class="line">&#125;</span><br><span class="line">obj.foo()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上两者情况 `this` 只依赖于调用函数前的对象，优先级是第二个情况大于第一个情况</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下情况是优先级最高的，`this` 只会绑定在 `c` 上，不会被任何方式修改 `this` 指向</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> foo()</span><br><span class="line">c.a = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(c.a)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 还有种就是利用 call，apply，bind 改变 this，这个优先级仅次于 new</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="10-async、await-优缺点"><a href="#10-async、await-优缺点" class="headerlink" title="#10 async、await 优缺点"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_10-async、await-优缺点" target="_blank" rel="noopener">#</a>10 async、await 优缺点</h3><blockquote>
+<p><code>async</code> 和 <code>await</code> 相比直接使用 <code>Promise</code> 来说，优势在于处理 then 的调用链，能够更清晰准确的写出代码。缺点在于滥用 <code>await</code> 可能会导致性能问题，因为 <code>await</code> 会阻塞代码，也许之后的异步代码并不依赖于前者，但仍然需要等待前者完成，导致代码失去了并发性</p>
+</blockquote>
+<p>下面来看一个使用 <code>await</code> 的代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  a = a + <span class="keyword">await</span> <span class="number">10</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'2'</span>, a) <span class="comment">// -&gt; '2' 10</span></span><br><span class="line">  a = (<span class="keyword">await</span> <span class="number">10</span>) + a</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'3'</span>, a) <span class="comment">// -&gt; '3' 20</span></span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line">a++</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>, a) <span class="comment">// -&gt; '1' 1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>首先函数<code>b</code> 先执行，在执行到 <code>await 10</code> 之前变量 <code>a</code> 还是 <code>0</code>，因为在 <code>await</code> 内部实现了 <code>generators</code> ，<code>generators</code> 会保留堆栈中东西，所以这时候 <code>a = 0</code> 被保存了下来</li>
+<li>因为 <code>await</code> 是异步操作，遇到<code>await</code>就会立即返回一个<code>pending</code>状态的<code>Promise</code>对象，暂时返回执行代码的控制权，使得函数外的代码得以继续执行，所以会先执行 <code>console.log(&#39;1&#39;, a)</code></li>
+<li>这时候同步代码执行完毕，开始执行异步代码，将保存下来的值拿出来使用，这时候 <code>a = 10</code></li>
+<li>然后后面就是常规执行代码了</li>
+</ul>
+<h3 id="11-generator-原理"><a href="#11-generator-原理" class="headerlink" title="#11 generator 原理"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_11-generator-原理" target="_blank" rel="noopener">#</a>11 generator 原理</h3><blockquote>
+<p><code>Generator</code> 是 <code>ES6</code>中新增的语法，和 <code>Promise</code> 一样，都可以用来异步编程</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 * 表示这是一个 Generator 函数</span></span><br><span class="line"><span class="comment">// 内部可以通过 yield 暂停代码</span></span><br><span class="line"><span class="comment">// 通过调用 next 恢复执行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = test();</span><br><span class="line"><span class="built_in">console</span>.log(b.next()); <span class="comment">// &gt;  &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b.next()); <span class="comment">// &gt;  &#123; value: 3, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b.next()); <span class="comment">// &gt;  &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>从以上代码可以发现，加上 <code>*</code>的函数执行后拥有了 <code>next</code> 函数，也就是说函数执行后返回了一个对象。每次调用 <code>next</code> 函数可以继续执行被暂停的代码。以下是 <code>Generator</code> 函数的简单实现</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// cb 也就是编译过的 test 函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generator</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> object = &#123;</span><br><span class="line">      next: <span class="number">0</span>,</span><br><span class="line">      stop: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> ret = cb(object);</span><br><span class="line">        <span class="keyword">if</span> (ret === <span class="literal">undefined</span>) <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          value: ret,</span><br><span class="line">          done: <span class="literal">false</span></span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;)();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果你使用 babel 编译后可以发现 test 函数变成了这样</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a;</span><br><span class="line">  <span class="keyword">return</span> generator(<span class="function"><span class="keyword">function</span>(<span class="params">_context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">switch</span> ((_context.prev = _context.next)) &#123;</span><br><span class="line">        <span class="comment">// 可以发现通过 yield 将代码分割成几块</span></span><br><span class="line">        <span class="comment">// 每次执行 next 函数就执行一块代码</span></span><br><span class="line">        <span class="comment">// 并且表明下次需要执行哪块代码</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">          a = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line">          _context.next = <span class="number">4</span>;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">          _context.next = <span class="number">6</span>;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">		<span class="comment">// 执行完毕</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"end"</span>:</span><br><span class="line">          <span class="keyword">return</span> _context.stop();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-Promise"><a href="#12-Promise" class="headerlink" title="#12 Promise"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_12-promise" target="_blank" rel="noopener">#</a>12 Promise</h3><ul>
+<li><code>Promise</code> 是 <code>ES6</code> 新增的语法，解决了回调地狱的问题。</li>
+<li>可以把 <code>Promise</code>看成一个状态机。初始是 <code>pending</code> 状态，可以通过函数 <code>resolve</code> 和 <code>reject</code>，将状态转变为 <code>resolved</code> 或者 <code>rejected</code> 状态，状态一旦改变就不能再次变化。</li>
+<li><code>then</code> 函数会返回一个 <code>Promise</code> 实例，并且该返回值是一个新的实例而不是之前的实例。因为 <code>Promise</code> 规范规定除了 <code>pending</code> 状态，其他状态是不可以改变的，如果返回的是一个相同实例的话，多个 <code>then</code> 调用就失去意义了。 对于 <code>then</code> 来说，本质上可以把它看成是 <code>flatMap</code></li>
+</ul>
+<h3 id="13-如何实现一个-Promise"><a href="#13-如何实现一个-Promise" class="headerlink" title="#13 如何实现一个 Promise"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_13-如何实现一个-promise" target="_blank" rel="noopener">#</a>13 如何实现一个 Promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 三种状态</span></span><br><span class="line"><span class="keyword">const</span> PENDING = <span class="string">"pending"</span>;</span><br><span class="line"><span class="keyword">const</span> RESOLVED = <span class="string">"resolved"</span>;</span><br><span class="line"><span class="keyword">const</span> REJECTED = <span class="string">"rejected"</span>;</span><br><span class="line"><span class="comment">// promise 接收一个函数参数，该函数会立即执行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyPromise</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> _this = <span class="keyword">this</span>;</span><br><span class="line">  _this.currentState = PENDING;</span><br><span class="line">  _this.value = <span class="literal">undefined</span>;</span><br><span class="line">  <span class="comment">// 用于保存 then 中的回调，只有当 promise</span></span><br><span class="line">  <span class="comment">// 状态为 pending 时才会缓存，并且每个实例至多缓存一个</span></span><br><span class="line">  _this.resolvedCallbacks = [];</span><br><span class="line">  _this.rejectedCallbacks = [];</span><br><span class="line"></span><br><span class="line">  _this.resolve = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (value <span class="keyword">instanceof</span> MyPromise) &#123;</span><br><span class="line">      <span class="comment">// 如果 value 是个 Promise，递归执行</span></span><br><span class="line">      <span class="keyword">return</span> value.then(_this.resolve, _this.reject)</span><br><span class="line">    &#125;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 异步执行，保证执行顺序</span></span><br><span class="line">      <span class="keyword">if</span> (_this.currentState === PENDING) &#123;</span><br><span class="line">        _this.currentState = RESOLVED;</span><br><span class="line">        _this.value = value;</span><br><span class="line">        _this.resolvedCallbacks.forEach(<span class="function"><span class="params">cb</span> =&gt;</span> cb());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  _this.reject = <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 异步执行，保证执行顺序</span></span><br><span class="line">      <span class="keyword">if</span> (_this.currentState === PENDING) &#123;</span><br><span class="line">        _this.currentState = REJECTED;</span><br><span class="line">        _this.value = reason;</span><br><span class="line">        _this.rejectedCallbacks.forEach(<span class="function"><span class="params">cb</span> =&gt;</span> cb());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 用于解决以下问题</span></span><br><span class="line">  <span class="comment">// new Promise(() =&gt; throw Error('error))</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    fn(_this.resolve, _this.reject);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    _this.reject(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyPromise.prototype.then = <span class="function"><span class="keyword">function</span> (<span class="params">onResolved, onRejected</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="comment">// 规范 2.2.7，then 必须返回一个新的 promise</span></span><br><span class="line">  <span class="keyword">var</span> promise2;</span><br><span class="line">  <span class="comment">// 规范 2.2.onResolved 和 onRejected 都为可选参数</span></span><br><span class="line">  <span class="comment">// 如果类型不是函数需要忽略，同时也实现了透传</span></span><br><span class="line">  <span class="comment">// Promise.resolve(4).then().then((value) =&gt; console.log(value))</span></span><br><span class="line">  onResolved = <span class="keyword">typeof</span> onResolved === <span class="string">'function'</span> ? onResolved : <span class="function"><span class="params">v</span> =&gt;</span> v;</span><br><span class="line">  onRejected = <span class="keyword">typeof</span> onRejected === <span class="string">'function'</span> ? onRejected : <span class="function"><span class="params">r</span> =&gt;</span> <span class="keyword">throw</span> r;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (self.currentState === RESOLVED) &#123;</span><br><span class="line">    <span class="keyword">return</span> (promise2 = <span class="keyword">new</span> MyPromise(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 规范 2.2.4，保证 onFulfilled，onRjected 异步执行</span></span><br><span class="line">      <span class="comment">// 所以用了 setTimeout 包裹下</span></span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> x = onResolved(self.value);</span><br><span class="line">          resolutionProcedure(promise2, x, resolve, reject);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (reason) &#123;</span><br><span class="line">          reject(reason);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (self.currentState === REJECTED) &#123;</span><br><span class="line">    <span class="keyword">return</span> (promise2 = <span class="keyword">new</span> MyPromise(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 异步执行onRejected</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> x = onRejected(self.value);</span><br><span class="line">          resolutionProcedure(promise2, x, resolve, reject);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (reason) &#123;</span><br><span class="line">          reject(reason);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (self.currentState === PENDING) &#123;</span><br><span class="line">    <span class="keyword">return</span> (promise2 = <span class="keyword">new</span> MyPromise(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">      self.resolvedCallbacks.push(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 考虑到可能会有报错，所以使用 try/catch 包裹</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> x = onResolved(self.value);</span><br><span class="line">          resolutionProcedure(promise2, x, resolve, reject);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (r) &#123;</span><br><span class="line">          reject(r);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      self.rejectedCallbacks.push(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> x = onRejected(self.value);</span><br><span class="line">          resolutionProcedure(promise2, x, resolve, reject);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (r) &#123;</span><br><span class="line">          reject(r);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 规范 2.3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolutionProcedure</span>(<span class="params">promise2, x, resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 规范 2.3.1，x 不能和 promise2 相同，避免循环引用</span></span><br><span class="line">  <span class="keyword">if</span> (promise2 === x) &#123;</span><br><span class="line">    <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Error"</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 规范 2.3.2</span></span><br><span class="line">  <span class="comment">// 如果 x 为 Promise，状态为 pending 需要继续等待否则执行</span></span><br><span class="line">  <span class="keyword">if</span> (x <span class="keyword">instanceof</span> MyPromise) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x.currentState === PENDING) &#123;</span><br><span class="line">      x.then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 再次调用该函数是为了确认 x resolve 的</span></span><br><span class="line">        <span class="comment">// 参数是什么类型，如果是基本类型就再次 resolve</span></span><br><span class="line">        <span class="comment">// 把值传给下个 then</span></span><br><span class="line">        resolutionProcedure(promise2, value, resolve, reject);</span><br><span class="line">      &#125;, reject);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      x.then(resolve, reject);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 规范 2.3.3.3.3</span></span><br><span class="line">  <span class="comment">// reject 或者 resolve 其中一个执行过得话，忽略其他的</span></span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="comment">// 规范 2.3.3，判断 x 是否为对象或者函数</span></span><br><span class="line">  <span class="keyword">if</span> (x !== <span class="literal">null</span> &amp;&amp; (<span class="keyword">typeof</span> x === <span class="string">"object"</span> || <span class="keyword">typeof</span> x === <span class="string">"function"</span>)) &#123;</span><br><span class="line">    <span class="comment">// 规范 2.3.3.2，如果不能取出 then，就 reject</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// 规范 2.3.3.1</span></span><br><span class="line">      <span class="keyword">let</span> then = x.then;</span><br><span class="line">      <span class="comment">// 如果 then 是函数，调用 x.then</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> then === <span class="string">"function"</span>) &#123;</span><br><span class="line">        <span class="comment">// 规范 2.3.3.3</span></span><br><span class="line">        then.call(</span><br><span class="line">          x,</span><br><span class="line">          y =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (called) <span class="keyword">return</span>;</span><br><span class="line">            called = <span class="literal">true</span>;</span><br><span class="line">            <span class="comment">// 规范 2.3.3.3.1</span></span><br><span class="line">            resolutionProcedure(promise2, y, resolve, reject);</span><br><span class="line">          &#125;,</span><br><span class="line">          e =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (called) <span class="keyword">return</span>;</span><br><span class="line">            called = <span class="literal">true</span>;</span><br><span class="line">            reject(e);</span><br><span class="line">          &#125;</span><br><span class="line">        );</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 规范 2.3.3.4</span></span><br><span class="line">        resolve(x);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">if</span> (called) <span class="keyword">return</span>;</span><br><span class="line">      called = <span class="literal">true</span>;</span><br><span class="line">      reject(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 规范 2.3.4，x 为基本类型</span></span><br><span class="line">    resolve(x);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-和-区别，什么情况用"><a href="#14-和-区别，什么情况用" class="headerlink" title="#14 == 和 ===区别，什么情况用 =="></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_14-和-区别，什么情况用" target="_blank" rel="noopener">#</a>14 == 和 ===区别，什么情况用 ==</h3><p><img src="https://user-gold-cdn.xitu.io/2018/3/30/16275f89ebf931e9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<blockquote>
+<p>这里来解析一道题目 <code>[] == ![] // -&gt; true</code> ，下面是这个表达式为何为 <code>true</code> 的步骤</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [] 转成 true，然后取反变成 false</span></span><br><span class="line">[] == <span class="literal">false</span></span><br><span class="line"><span class="comment">// 根据第 8 条得出</span></span><br><span class="line">[] == ToNumber(<span class="literal">false</span>)</span><br><span class="line">[] == <span class="number">0</span></span><br><span class="line"><span class="comment">// 根据第 10 条得出</span></span><br><span class="line">ToPrimitive([]) == <span class="number">0</span></span><br><span class="line"><span class="comment">// [].toString() -&gt; ''</span></span><br><span class="line"><span class="string">''</span> == <span class="number">0</span></span><br><span class="line"><span class="comment">// 根据第 6 条得出</span></span><br><span class="line"><span class="number">0</span> == <span class="number">0</span> <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>===</code>用于判断两者类型和值是否相同。 在开发中，对于后端返回的 <code>code</code>，可以通过 <code>==</code>去判断</p>
+</blockquote>
+<h3 id="15-基本数据类型和引⽤类型在存储上的差别"><a href="#15-基本数据类型和引⽤类型在存储上的差别" class="headerlink" title="#15 基本数据类型和引⽤类型在存储上的差别"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_15-基本数据类型和引⽤类型在存储上的差别" target="_blank" rel="noopener">#</a>15 基本数据类型和引⽤类型在存储上的差别</h3><blockquote>
+<p>前者存储在栈上，后者存储在堆上</p>
+</blockquote>
+<h3 id="16-浏览器-Eventloop-和-Node-中的有什么区别"><a href="#16-浏览器-Eventloop-和-Node-中的有什么区别" class="headerlink" title="#16 浏览器 Eventloop 和 Node 中的有什么区别"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_16-浏览器-eventloop-和-node-中的有什么区别" target="_blank" rel="noopener">#</a>16 浏览器 Eventloop 和 Node 中的有什么区别</h3><blockquote>
+<p>众所周知 JS 是门非阻塞单线程语言，因为在最初 JS 就是为了和浏览器交互而诞生的。如果 JS 是门多线程的语言话，我们在多个线程中处理 DOM 就可能会发生问题（一个线程中新加节点，另一个线程中删除节点），当然可以引入读写锁解决这个问题。</p>
+</blockquote>
+<ul>
+<li><code>JS</code> 在执行的过程中会产生执行环境，这些执行环境会被顺序的加入到执行栈中。如果遇到异步的代码，会被挂起并加入到 <code>Task</code>（有多种 <code>task</code>） 队列中。一旦执行栈为空，<code>Event Loop</code> 就会从 <code>Task</code> 队列中拿出需要执行的代码并放入执行栈中执行，所以本质上来说 <code>JS</code> 中的异步还是同步行为</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以上代码虽然 <code>setTimeout</code> 延时为 <code>0</code>，其实还是异步。这是因为 <code>HTML5</code> 标准规定这个函数第二个参数不得小于 <code>4</code> 毫秒，不足会自动增加。所以 <code>setTimeout</code>还是会在 <code>script end</code> 之后打印。</li>
+<li>不同的任务源会被分配到不同的 <code>Task</code>队列中，任务源可以分为 微任务（<code>microtask</code>） 和 宏任务（<code>macrotask</code>）。在 ES6 规范中，<code>microtask</code> 称为 jobs，<code>macrotask</code> 称为 <code>task</code>。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Promise'</span>)</span><br><span class="line">    resolve()</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br><span class="line"><span class="comment">// script start =&gt; Promise =&gt; script end =&gt; promise1 =&gt; promise2 =&gt; setTimeout</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以上代码虽然 <code>setTimeout</code> 写在 <code>Promise</code> 之前，但是因为 <code>Promise</code> 属于微任务而 <code>setTimeout</code>属于宏任务，所以会有以上的打印。</li>
+<li><strong>微任务包括</strong> <code>process.nextTick</code> ，<code>promise</code> ，<code>Object.observe</code>，<code>MutationObserver</code></li>
+<li><strong>宏任务包括</strong> <code>script</code> ， <code>setTimeout</code> ，<code>setInterval</code>，<code>setImmediate</code> ，<code>I/O</code> ，<code>UI renderin</code></li>
+</ul>
+<blockquote>
+<p>很多人有个误区，认为微任务快于宏任务，其实是错误的。因为宏任务中包括了 <code>script</code>，浏览器会先执行一个宏任务，接下来有异步代码的话就先执行微任务</p>
+</blockquote>
+<p><strong>所以正确的一次 Event loop 顺序是这样的</strong></p>
+<ul>
+<li>执行同步代码，这属于宏任务</li>
+<li>执行栈为空，查询是否有微任务需要执行</li>
+<li>执行所有微任务</li>
+<li>必要的话渲染 <code>UI</code></li>
+<li>然后开始下一轮 <code>Event loop</code>，执行宏任务中的异步代码</li>
+</ul>
+<blockquote>
+<p>通过上述的 <code>Event loop</code> 顺序可知，如果宏任务中的异步代码有大量的计算并且需要操作 <code>DOM</code> 的话，为了更快的 界面响应，我们可以把操作 <code>DOM</code> 放入微任务中</p>
+</blockquote>
+<h3 id="17-setTimeout-倒计时误差"><a href="#17-setTimeout-倒计时误差" class="headerlink" title="#17 setTimeout 倒计时误差"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_17-settimeout-倒计时误差" target="_blank" rel="noopener">#</a>17 setTimeout 倒计时误差</h3><blockquote>
+<p><code>JS</code> 是单线程的，所以 <code>setTimeout</code> 的误差其实是无法被完全解决的，原因有很多，可能是回调中的，有可能是浏览器中的各种事件导致。这也是为什么页面开久了，定时器会不准的原因，当然我们可以通过一定的办法去减少这个误差。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下是一个相对准备的倒计时实现</span></span><br><span class="line"><span class="keyword">var</span> period = <span class="number">60</span> * <span class="number">1000</span> * <span class="number">60</span> * <span class="number">2</span></span><br><span class="line"><span class="keyword">var</span> startTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> end = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() + period</span><br><span class="line"><span class="keyword">var</span> interval = <span class="number">1000</span></span><br><span class="line"><span class="keyword">var</span> currentInterval = interval</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  count++</span><br><span class="line">  <span class="keyword">var</span> offset = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - (startTime + count * interval); <span class="comment">// 代码执行所消耗的时间</span></span><br><span class="line">  <span class="keyword">var</span> diff = end - <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()</span><br><span class="line">  <span class="keyword">var</span> h = <span class="built_in">Math</span>.floor(diff / (<span class="number">60</span> * <span class="number">1000</span> * <span class="number">60</span>))</span><br><span class="line">  <span class="keyword">var</span> hdiff = diff % (<span class="number">60</span> * <span class="number">1000</span> * <span class="number">60</span>)</span><br><span class="line">  <span class="keyword">var</span> m = <span class="built_in">Math</span>.floor(hdiff / (<span class="number">60</span> * <span class="number">1000</span>))</span><br><span class="line">  <span class="keyword">var</span> mdiff = hdiff % (<span class="number">60</span> * <span class="number">1000</span>)</span><br><span class="line">  <span class="keyword">var</span> s = mdiff / (<span class="number">1000</span>)</span><br><span class="line">  <span class="keyword">var</span> sCeil = <span class="built_in">Math</span>.ceil(s)</span><br><span class="line">  <span class="keyword">var</span> sFloor = <span class="built_in">Math</span>.floor(s)</span><br><span class="line">  currentInterval = interval - offset <span class="comment">// 得到下一次循环所消耗的时间</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'时：'</span>+h, <span class="string">'分：'</span>+m, <span class="string">'毫秒：'</span>+s, <span class="string">'秒向上取整：'</span>+sCeil, <span class="string">'代码执行时间：'</span>+offset, <span class="string">'下次循环间隔'</span>+currentInterval) <span class="comment">// 打印 时 分 秒 代码执行时间 下次循环间隔</span></span><br><span class="line"></span><br><span class="line">  setTimeout(loop, currentInterval)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(loop, currentInterval)</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-数组降维"><a href="#18-数组降维" class="headerlink" title="#18 数组降维"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_18-数组降维" target="_blank" rel="noopener">#</a>18 数组降维</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, [<span class="number">2</span>], <span class="number">3</span>].flatMap(<span class="function"><span class="params">v</span> =&gt;</span> v)</span><br><span class="line"><span class="comment">// -&gt; [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果想将一个多维数组彻底的降维，可以这样实现</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> flattenDeep = <span class="function">(<span class="params">arr</span>) =&gt;</span> <span class="built_in">Array</span>.isArray(arr)</span><br><span class="line">  ? arr.reduce( <span class="function">(<span class="params">a, b</span>) =&gt;</span> [...a, ...flattenDeep(b)] , [])</span><br><span class="line">  : [arr]</span><br><span class="line"></span><br><span class="line">flattenDeep([<span class="number">1</span>, [[<span class="number">2</span>], [<span class="number">3</span>, [<span class="number">4</span>]], <span class="number">5</span>]])</span><br></pre></td></tr></table></figure>
+
+<h3 id="19-深拷贝"><a href="#19-深拷贝" class="headerlink" title="#19 深拷贝"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_19-深拷贝" target="_blank" rel="noopener">#</a>19 深拷贝</h3><blockquote>
+<p>这个问题通常可以通过 <code>JSON.parse(JSON.stringify(object))</code> 来解决</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    age: <span class="number">1</span>,</span><br><span class="line">    jobs: &#123;</span><br><span class="line">        first: <span class="string">'FE'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(a))</span><br><span class="line">a.jobs.first = <span class="string">'native'</span></span><br><span class="line"><span class="built_in">console</span>.log(b.jobs.first) <span class="comment">// FE</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>但是该方法也是有局限性的</strong>：</p>
+<ul>
+<li>会忽略 <code>undefined</code></li>
+<li>会忽略 <code>symbol</code></li>
+<li>不能序列化函数</li>
+<li>不能解决循环引用的对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: <span class="number">2</span>,</span><br><span class="line">    d: <span class="number">3</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">obj.c = obj.b</span><br><span class="line">obj.e = obj.a</span><br><span class="line">obj.b.c = obj.c</span><br><span class="line">obj.b.d = obj.b</span><br><span class="line">obj.b.e = obj.b.c</span><br><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj))</span><br><span class="line"><span class="built_in">console</span>.log(newObj)</span><br><span class="line">复</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在遇到函数、 <code>undefined</code> 或者 <code>symbol</code> 的时候，该对象也不能正常的序列化</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    age: <span class="literal">undefined</span>,</span><br><span class="line">    sex: <span class="built_in">Symbol</span>(<span class="string">'male'</span>),</span><br><span class="line">    jobs: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    name: <span class="string">'yck'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(a))</span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// &#123;name: "yck"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>但是在通常情况下，复杂数据都是可以序列化的，所以这个函数可以解决大部分问题，并且该函数是内置函数中处理深拷贝性能最快的。当然如果你的数据中含有以上三种情况下，可以使用 <code>lodash</code> 的深拷贝函数</p>
+</blockquote>
+<h3 id="20-typeof-于-instanceof-区别"><a href="#20-typeof-于-instanceof-区别" class="headerlink" title="#20 typeof 于 instanceof 区别"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_20-typeof-于-instanceof-区别" target="_blank" rel="noopener">#</a>20 typeof 于 instanceof 区别</h3><blockquote>
+<p><code>typeof</code> 对于基本类型，除了 <code>null</code>都可以显示正确的类型</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">1</span> <span class="comment">// 'number'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">'1'</span> <span class="comment">// 'string'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">// 'undefined'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span> <span class="comment">// 'boolean'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>() <span class="comment">// 'symbol'</span></span><br><span class="line"><span class="keyword">typeof</span> b <span class="comment">// b 没有声明，但是还会显示 undefined</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof&#96; 对于对象，除了函数都会显示 &#96;object</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> [] <span class="comment">// 'object'</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125; <span class="comment">// 'object'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">console</span>.log <span class="comment">// 'function'</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对于 <code>null</code> 来说，虽然它是基本类型，但是会显示 <code>object</code>，这是一个存在很久了的 <code>Bug</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof null &#x2F;&#x2F; &#39;object&#39;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instanceof&#96; 可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是能找到类型的 &#96;prototype</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">我们也可以试着实现一下 <span class="keyword">instanceof</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instanceof</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获得类型的原型</span></span><br><span class="line">    <span class="keyword">let</span> prototype = right.prototype</span><br><span class="line">    <span class="comment">// 获得对象的原型</span></span><br><span class="line">    left = left.__proto__</span><br><span class="line">    <span class="comment">// 判断对象的类型是否等于类型的原型</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (left === <span class="literal">null</span>)</span><br><span class="line">    		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    	<span class="keyword">if</span> (prototype === left)</span><br><span class="line">    		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    	left = left.__proto__</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、浏览器"><a href="#二、浏览器" class="headerlink" title="#二、浏览器"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#二、浏览器" target="_blank" rel="noopener">#</a>二、浏览器</h2><h3 id="1-cookie和localSrorage、session、indexDB-的区别"><a href="#1-cookie和localSrorage、session、indexDB-的区别" class="headerlink" title="#1 cookie和localSrorage、session、indexDB 的区别"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_1-cookie和localsrorage、session、indexdb-的区别" target="_blank" rel="noopener">#</a>1 cookie和localSrorage、session、indexDB 的区别</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>cookie</th>
+<th>localStorage</th>
+<th>sessionStorage</th>
+<th>indexDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据生命周期</td>
+<td>一般由服务器生成，可以设置过期时间</td>
+<td>除非被清理，否则一直存在</td>
+<td>页面关闭就清理</td>
+<td>除非被清理，否则一直存在</td>
+</tr>
+<tr>
+<td>数据存储大小</td>
+<td><code>4K</code></td>
+<td><code>5M</code></td>
+<td><code>5M</code></td>
+<td>无限</td>
+</tr>
+<tr>
+<td>与服务端通信</td>
+<td>每次都会携带在 header 中，对于请求性能影响</td>
+<td>不参与</td>
+<td>不参与</td>
+<td>不参与</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>从上表可以看到，<code>cookie</code> 已经不建议用于存储。如果没有大量数据存储需求的话，可以使用 <code>localStorage</code>和 <code>sessionStorage</code> 。对于不怎么改变的数据尽量使用 <code>localStorage</code> 存储，否则可以用 <code>sessionStorage</code> 存储。</p>
+</blockquote>
+<p><strong>对于 <code>cookie</code>，我们还需要注意安全性</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>value</code></td>
+<td>如果用于保存用户登录态，应该将该值加密，不能使用明文的用户标识</td>
+</tr>
+<tr>
+<td><code>http-only</code></td>
+<td>不能通过 <code>JS</code>访问 <code>Cookie</code>，减少 <code>XSS</code>攻击</td>
+</tr>
+<tr>
+<td><code>secure</code></td>
+<td>只能在协议为 <code>HTTPS</code> 的请求中携带</td>
+</tr>
+<tr>
+<td><code>same-site</code></td>
+<td>规定浏览器不能在跨域请求中携带 <code>Cookie</code>，减少 <code>CSRF</code> 攻击</td>
+</tr>
+</tbody></table>
+<h3 id="2-怎么判断页面是否加载完成？"><a href="#2-怎么判断页面是否加载完成？" class="headerlink" title="#2 怎么判断页面是否加载完成？"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_2-怎么判断页面是否加载完成？" target="_blank" rel="noopener">#</a>2 怎么判断页面是否加载完成？</h3><ul>
+<li><code>Load</code> 事件触发代表页面中的 <code>DOM</code>，<code>CSS</code>，<code>JS</code>，图片已经全部加载完毕。</li>
+<li><code>DOMContentLoaded</code> 事件触发代表初始的 <code>HTML</code> 被完全加载和解析，不需要等待 <code>CSS</code>，<code>JS</code>，图片加载</li>
+</ul>
+<h3 id="3-如何解决跨域"><a href="#3-如何解决跨域" class="headerlink" title="#3 如何解决跨域"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_3-如何解决跨域" target="_blank" rel="noopener">#</a>3 如何解决跨域</h3><blockquote>
+<p>因为浏览器出于安全考虑，有同源策略。也就是说，如果协议、域名或者端口有一个不同就是跨域，<code>Ajax</code>请求会失败。</p>
+</blockquote>
+<p>我们可以通过以下几种常用方法解决跨域的问题</p>
+<p><strong>JSONP</strong></p>
+<blockquote>
+<p><code>JSONP</code> 的原理很简单，就是利用 <code>标签没有跨域限制的漏洞。通过</code>标签指向一个需要访问的地址并提供一个回调函数来接收数据当需要通讯时</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://domain/api?param1=a&amp;param2=b&amp;callback=jsonp"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">jsonp</span><span class="params">(data)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    	<span class="built_in">console</span>.log(data)</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>JSONP</code> 使用简单且兼容性不错，但是只限于 <code>get</code> 请求</p>
+</blockquote>
+<ul>
+<li>在开发中可能会遇到多个 <code>JSONP</code> 请求的回调函数名是相同的，这时候就需要自己封装一个 <code>JSONP</code>，以下是简单实现</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span>(<span class="params">url, jsonpCallback, success</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">  script.src = url;</span><br><span class="line">  script.async = <span class="literal">true</span>;</span><br><span class="line">  script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">  <span class="built_in">window</span>[jsonpCallback] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    success &amp;&amp; success(data);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">&#125;</span><br><span class="line">jsonp(</span><br><span class="line">  <span class="string">"http://xxx"</span>,</span><br><span class="line">  <span class="string">"callback"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><strong>CORS</strong></p>
+<ul>
+<li><code>ORS</code>需要浏览器和后端同时支持。<code>IE 8</code> 和 <code>9</code> 需要通过 <code>XDomainRequest</code> 来实现。</li>
+<li>浏览器会自动进行 <code>CORS</code> 通信，实现<code>CORS</code>通信的关键是后端。只要后端实现了 <code>CORS</code>，就实现了跨域。</li>
+<li>服务端设置 <code>Access-Control-Allow-Origin</code> 就可以开启 <code>CORS</code>。 该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源。</li>
+</ul>
+<p><strong>document.domain</strong></p>
+<ul>
+<li>该方式只能用于二级域名相同的情况下，比如 <code>a.test.com</code> 和 <code>b.test.com</code> 适用于该方式。</li>
+<li>只需要给页面添加 <code>document.domain = &#39;test.com&#39;</code> 表示二级域名都相同就可以实现跨域</li>
+</ul>
+<p><strong>postMessage</strong></p>
+<blockquote>
+<p>这种方式通常用于获取嵌入页面中的第三方页面数据。一个页面发送消息，另一个页面判断来源并接收消息</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送消息端</span></span><br><span class="line"><span class="built_in">window</span>.parent.postMessage(<span class="string">'message'</span>, <span class="string">'http://test.com'</span>);</span><br><span class="line"><span class="comment">// 接收消息端</span></span><br><span class="line"><span class="keyword">var</span> mc = <span class="keyword">new</span> MessageChannel();</span><br><span class="line">mc.addEventListener(<span class="string">'message'</span>, (event) =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> origin = event.origin || event.originalEvent.origin;</span><br><span class="line">    <span class="keyword">if</span> (origin === <span class="string">'http://test.com'</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'验证通过'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-什么是事件代理"><a href="#4-什么是事件代理" class="headerlink" title="#4 什么是事件代理"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_4-什么是事件代理" target="_blank" rel="noopener">#</a>4 什么是事件代理</h3><blockquote>
+<p>如果一个节点中的子节点是动态生成的，那么子节点需要注册事件的话应该注册在父节点上</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"ul"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">let</span> ul = <span class="built_in">document</span>.querySelector(<span class="string">'#ul'</span>)</span></span><br><span class="line"><span class="actionscript">	ul.addEventListener(<span class="string">'click'</span>, (event) =&gt; &#123;</span></span><br><span class="line"><span class="javascript">		<span class="built_in">console</span>.log(event.target);</span></span><br><span class="line">	&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>事件代理的方式相对于直接给目标注册事件来说，有以下优点<ul>
+<li>节省内存</li>
+<li>不需要给子节点注销事件</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-Service-worker"><a href="#5-Service-worker" class="headerlink" title="#5 Service worker"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_5-service-worker" target="_blank" rel="noopener">#</a>5 Service worker</h3><p>service worker</p>
+<p><code>Service workers</code> 本质上充当Web应用程序与浏览器之间的代理服务器，也可以在网络可用时作为浏览器和网络间的代理。它们旨在（除其他之外）使得能够创建有效的离线体验，拦截网络请求并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。他们还允许访问推送通知和后台同步API</p>
+<p>目前该技术通常用来做缓存文件，提高首屏速度，可以试着来实现这个功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">if</span> (navigator.serviceWorker) &#123;</span><br><span class="line">  navigator.serviceWorker</span><br><span class="line">    .register(<span class="string">"sw.js"</span>)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">registration</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"service worker 注册成功"</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"servcie worker 注册失败"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// sw.js</span></span><br><span class="line"><span class="comment">// 监听 `install` 事件，回调中缓存所需文件</span></span><br><span class="line">self.addEventListener(<span class="string">"install"</span>, e =&gt; &#123;</span><br><span class="line">  e.waitUntil(</span><br><span class="line">    caches.open(<span class="string">"my-cache"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> cache.addAll([<span class="string">"./index.html"</span>, <span class="string">"./index.js"</span>]);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拦截所有请求事件</span></span><br><span class="line"><span class="comment">// 如果缓存中已经有请求的数据就直接用缓存，否则去请求数据</span></span><br><span class="line">self.addEventListener(<span class="string">"fetch"</span>, e =&gt; &#123;</span><br><span class="line">  e.respondWith(</span><br><span class="line">    caches.match(e.request).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (response) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"fetch source"</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>打开页面，可以在开发者工具中的 <code>Application</code> 看到 <code>Service Worker</code>已经启动了</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/28/1626b1e8eba68e1c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="6-浏览器缓存"><a href="#6-浏览器缓存" class="headerlink" title="#6 浏览器缓存"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_6-浏览器缓存" target="_blank" rel="noopener">#</a>6 浏览器缓存</h3><blockquote>
+<p>缓存对于前端性能优化来说是个很重要的点，良好的缓存策略可以降低资源的重复加载提高网页的整体加载速度。</p>
+</blockquote>
+<ul>
+<li>通常浏览器缓存策略分为两种：强缓存和协商缓存。</li>
+</ul>
+<p><strong>强缓存</strong></p>
+<blockquote>
+<p>实现强缓存可以通过两种响应头实现：<code>Expires</code> 和 <code>Cache-Control</code> 。强缓存表示在缓存期间不需要请求，<code>state code</code> 为 <code>200</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expires: Wed, 22 Oct 2018 08:41:00 GMT</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>Expires</code> 是 <code>HTTP / 1.0</code> 的产物，表示资源会在<code>Wed</code>,<code>22 Oct 2018 08:41:00 GMT</code> 后过期，需要再次请求。并且 <code>Expires</code> 受限于本地时间，如果修改了本地时间，可能会造成缓存失效。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-control: max-age&#x3D;30</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Cache-Control</code> 出现于 <code>HTTP / 1.1</code>，优先级高于 <code>Expires</code> 。该属性表示资源会在 <code>30</code> 秒后过期，需要再次请求。</li>
+</ul>
+<p><strong>协商缓存</strong></p>
+<ul>
+<li>如果缓存过期了，我们就可以使用协商缓存来解决问题。协商缓存需要请求，如果缓存有效会返回 <code>304</code>。</li>
+<li>协商缓存需要客户端和服务端共同实现，和强缓存一样，也有两种实现方式</li>
+</ul>
+<p><strong>Last-Modified 和 If-Modified-Since</strong></p>
+<ul>
+<li><code>Last-Modified</code>表示本地文件最后修改日期，<code>If-Modified-Since</code> 会将 <code>Last-Modified</code> 的值发送给服务器，询问服务器在该日期后资源是否有更新，有更新的话就会将新的资源发送回来。</li>
+<li>但是如果在本地打开缓存文件，就会造成 <code>Last-Modified</code>被修改，所以在 <code>HTTP / 1.1</code> 出现了 <code>ETag</code></li>
+</ul>
+<p><strong>ETag 和 If-None-Match</strong></p>
+<blockquote>
+<p><code>ETag</code> 类似于文件指纹，<code>If-None-Match</code> 会将当前 <code>ETag</code>发送给服务器，询问该资源 <code>ETag</code> 是否变动，有变动的话就将新的资源发送回来。并且 <code>ETag</code> 优先级比 <code>Last-Modified</code> 高</p>
+</blockquote>
+<p><strong>选择合适的缓存策略</strong></p>
+<blockquote>
+<p>对于大部分的场景都可以使用强缓存配合协商缓存解决，但是在一些特殊的地方可能需要选择特殊的缓存策略</p>
+</blockquote>
+<ul>
+<li>对于某些不需要缓存的资源，可以使用 <code>Cache-control: no-store</code> ，表示该资源不需要缓存</li>
+<li>对于频繁变动的资源，可以使用 <code>Cache-Control: no-cache</code>并配合 <code>ETag</code> 使用，表示该资源已被缓存，但是每次都会发送请求询问资源是否更新。</li>
+<li>对于代码文件来说，通常使用 <code>Cache-Control: max-age=31536000</code> 并配合策略缓存使用，然后对文件进行指纹处理，一旦文件名变动就会立刻下载新的文件</li>
+</ul>
+<h3 id="7-浏览器性能问题"><a href="#7-浏览器性能问题" class="headerlink" title="#7 浏览器性能问题"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_7-浏览器性能问题" target="_blank" rel="noopener">#</a>7 浏览器性能问题</h3><p><strong>重绘（Repaint）和回流（Reflow）</strong></p>
+<ul>
+<li>重绘和回流是渲染步骤中的一小节，但是这两个步骤对于性能影响很大。</li>
+<li>重绘是当节点需要更改外观而不会影响布局的，比如改变 <code>color</code>就叫称为重绘</li>
+<li>回流是布局或者几何属性需要改变就称为回流。</li>
+<li>回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流。</li>
+</ul>
+<p><strong>所以以下几个动作可能会导致性能问题</strong>：</p>
+<ul>
+<li>改变 <code>window</code> 大小</li>
+<li>改变字体</li>
+<li>添加或删除样式</li>
+<li>文字改变</li>
+<li>定位或者浮动</li>
+<li>盒模型</li>
+</ul>
+<p><strong>很多人不知道的是，重绘和回流其实和 Event loop 有关</strong>。</p>
+<ul>
+<li>当 <code>Event loop</code> 执行完 <code>Microtasks</code>后，会判断 <code>document</code> 是否需要更新。- 因为浏览器是 <code>60Hz</code> 的刷新率，每 <code>16ms</code>才会更新一次。</li>
+<li>然后判断是否有<code>resize</code> 或者 <code>scroll</code> ，有的话会去触发事件，所以 <code>resize</code> 和 <code>scroll</code> 事件也是至少 16ms 才会触发一次，并且自带节流功能。</li>
+<li>判断是否触发了 <code>media query</code></li>
+<li>更新动画并且发送事件</li>
+<li>判断是否有全屏操作事件</li>
+<li>执行 <code>requestAnimationFrame</code>回调</li>
+<li>执行 <code>IntersectionObserver</code> 回调，该方法用于判断元素是否可见，可以用于懒加载上，但是兼容性不好</li>
+<li>更新界面</li>
+<li>以上就是一帧中可能会做的事情。如果在一帧中有空闲时间，就会去执行 <code>requestIdleCallback</code> 回调。</li>
+</ul>
+<p><strong>减少重绘和回流</strong></p>
+<blockquote>
+<p>使用 <code>translate</code> 替代 <code>top</code></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">	<span class="selector-class">.test</span> &#123;</span></span><br><span class="line">		position: absolute;</span><br><span class="line">		top: 10px;</span><br><span class="line">		width: 100px;</span><br><span class="line">		height: 100px;</span><br><span class="line">		background: red;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 引起回流</span></span></span><br><span class="line"><span class="javascript">		<span class="built_in">document</span>.querySelector(<span class="string">'.test'</span>).style.top = <span class="string">'100px'</span></span></span><br><span class="line">	&#125;, 1000)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 <code>visibility</code> 替换 <code>display: none</code> ，因为前者只会引起重绘，后者会引发回流（改变了布局）</li>
+<li>把 <code>DOM</code> 离线后修改，比如：先把 <code>DOM</code> 给 <code>display:none</code>(有一次 <code>Reflow</code>)，然后你修改<code>100</code>次，然后再把它显示出来</li>
+<li>不要把 <code>DOM</code>结点的属性值放在一个循环里当成循环里的变量</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 获取 offsetTop 会导致回流，因为需要去获取正确的值</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">document</span>.querySelector(<span class="string">'.test'</span>).style.offsetTop)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不要使用 <code>table</code> 布局，可能很小的一个小改动会造成整个 <code>table</code> 的重新布局 动画实现的速度的选择，动画速度越快，回流次数越多，也可以选择使用 <code>requestAnimationFrame</code></li>
+<li><code>CSS</code>选择符从右往左匹配查找，避免 <code>DOM</code> 深度过深</li>
+<li>将频繁运行的动画变为图层，图层能够阻止该节点回流影响别的元素。比如对于 <code>video</code> 标签，浏览器会自动将该节点变为图层。</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/29/1626fb6f33a6f9d7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<p><strong>CDN</strong></p>
+<blockquote>
+<p>静态资源尽量使用 <code>CDN</code> 加载，由于浏览器对于单个域名有并发请求上限，可以考虑使用多个 <code>CDN</code> 域名。对于 <code>CDN</code> 加载静态资源需要注意 CDN 域名要与主站不同，否则每次请求都会带上主站的 <code>Cookie</code></p>
+</blockquote>
+<p><strong>使用 Webpack 优化项目</strong></p>
+<ul>
+<li>对于 <code>Webpack4</code>，打包项目使用 <code>production</code> 模式，这样会自动开启代码压缩</li>
+<li>使用 <code>ES6</code> 模块来开启 <code>tree shaking</code>，这个技术可以移除没有使用的代码</li>
+<li>优化图片，对于小图可以使用 <code>base64</code> 的方式写入文件中</li>
+<li>按照路由拆分代码，实现按需加载</li>
+</ul>
+<h2 id="三、Webpack"><a href="#三、Webpack" class="headerlink" title="#三、Webpack"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#三、webpack" target="_blank" rel="noopener">#</a>三、Webpack</h2><p></p>
+<h3 id="1-优化打包速度"><a href="#1-优化打包速度" class="headerlink" title="#1 优化打包速度"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_1-优化打包速度" target="_blank" rel="noopener">#</a>1 优化打包速度</h3><ul>
+<li>减少文件搜索范围<ul>
+<li>比如通过别名</li>
+<li><code>loader</code> 的 <code>test</code>，<code>include &amp; exclude</code></li>
+</ul>
+</li>
+<li><code>Webpack4</code> 默认压缩并行</li>
+<li><code>Happypack</code> 并发调用</li>
+<li><code>babel</code> 也可以缓存编译</li>
+</ul>
+<h3 id="2-Babel-原理"><a href="#2-Babel-原理" class="headerlink" title="#2 Babel 原理"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_2-babel-原理" target="_blank" rel="noopener">#</a>2 Babel 原理</h3><ul>
+<li>本质就是编译器，当代码转为字符串生成 <code>AST</code>，对 <code>AST</code> 进行转变最后再生成新的代码</li>
+<li>分为三步：词法分析生成 <code>Token</code>，语法分析生成 <code>AST</code>，遍历 <code>AST</code>，根据插件变换相应的节点，最后把 <code>AST</code>转换为代码</li>
+</ul>
+<h3 id="3-如何实现一个插件"><a href="#3-如何实现一个插件" class="headerlink" title="#3 如何实现一个插件"></a><a href="http://blog.poetries.top/FE-Interview-Questions/improve/#_3-如何实现一个插件" target="_blank" rel="noopener">#</a>3 如何实现一个插件</h3><ul>
+<li>调用插件 <code>apply</code> 函数传入 <code>compiler</code> 对象</li>
+<li>通过 <code>compiler</code> 对象监听事件</li>
+</ul>
+<p>比如你想实现一个编译结束退出命令的插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">apply (compiler) &#123;</span><br><span class="line">  <span class="keyword">const</span> afterEmit = <span class="function">(<span class="params">compilation, cb</span>) =&gt;</span> &#123;</span><br><span class="line">    cb()</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      process.exit(<span class="number">0</span>)</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  compiler.plugin(<span class="string">'after-emit'</span>, afterEmit)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = BuildEndPlugin</span><br></pre></td></tr></table></figure>
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF-%E8%BF%9B%E9%98%B6/>http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF-%E8%BF%9B%E9%98%B6/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-16T11:37:46+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jul 16, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%89%8D%E7%AB%AF/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>前端</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF-%E8%BF%9B%E9%98%B6/&title=前端-进阶 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF-%E8%BF%9B%E9%98%B6/&title=前端-进阶 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF-%E8%BF%9B%E9%98%B6/&title=前端-进阶 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2020/07/15/%E5%89%8D%E7%AB%AF-%E7%B2%BE%E7%AE%80/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>前端-精简</p>
+                <p class='content'>一、CSS相关#1.1 左边定宽，右边自适应方案：float + margin，float + calc1234567891011121314151617/* 方案1 */ .left &#12...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/07/15/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%9ACSS%E9%9B%AA%E7%A2%A7%E5%9B%BE/'>
+                <p class='title'>前端小技巧：CSS雪碧图<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>前端小技巧：CSS雪碧图原创 果果 给产品经理讲技术 2016-12-05
+周一、雾霾、寒冷、堵车、噪声，你悲伤也没用，还好我又准时的来跟你叨逼叨了。
+有人的地方就有江湖，有问题的地方就有人解决...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      <section id="comments">
+        <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+      </section>
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、JS"><span class="toc-text">一、JS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-谈谈变量提升"><span class="toc-text">1 谈谈变量提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-bind、call、apply-区别"><span class="toc-text">2 bind、call、apply 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-如何实现一个-bind-函数"><span class="toc-text">3 如何实现一个 bind 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-如何实现一个-call-函数"><span class="toc-text">4 如何实现一个 call 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-如何实现一个-apply-函数"><span class="toc-text">5 如何实现一个 apply 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-简单说下原型链？"><span class="toc-text">6 简单说下原型链？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-怎么判断对象类型"><span class="toc-text">7 怎么判断对象类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-箭头函数的特点"><span class="toc-text">8 箭头函数的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-This"><span class="toc-text">9 This</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-async、await-优缺点"><span class="toc-text">10 async、await 优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-generator-原理"><span class="toc-text">11 generator 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Promise"><span class="toc-text">12 Promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-如何实现一个-Promise"><span class="toc-text">13 如何实现一个 Promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-和-区别，什么情况用"><span class="toc-text">14 &#x3D;&#x3D; 和 &#x3D;&#x3D;&#x3D;区别，什么情况用 &#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-基本数据类型和引⽤类型在存储上的差别"><span class="toc-text">15 基本数据类型和引⽤类型在存储上的差别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-浏览器-Eventloop-和-Node-中的有什么区别"><span class="toc-text">16 浏览器 Eventloop 和 Node 中的有什么区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-setTimeout-倒计时误差"><span class="toc-text">17 setTimeout 倒计时误差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-数组降维"><span class="toc-text">18 数组降维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-深拷贝"><span class="toc-text">19 深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-typeof-于-instanceof-区别"><span class="toc-text">20 typeof 于 instanceof 区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、浏览器"><span class="toc-text">二、浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-cookie和localSrorage、session、indexDB-的区别"><span class="toc-text">1 cookie和localSrorage、session、indexDB 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-怎么判断页面是否加载完成？"><span class="toc-text">2 怎么判断页面是否加载完成？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-如何解决跨域"><span class="toc-text">3 如何解决跨域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-什么是事件代理"><span class="toc-text">4 什么是事件代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Service-worker"><span class="toc-text">5 Service worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-浏览器缓存"><span class="toc-text">6 浏览器缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-浏览器性能问题"><span class="toc-text">7 浏览器性能问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Webpack"><span class="toc-text">三、Webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-优化打包速度"><span class="toc-text">1 优化打包速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Babel-原理"><span class="toc-text">2 Babel 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-如何实现一个插件"><span class="toc-text">3 如何实现一个插件</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

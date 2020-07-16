@@ -470,8 +470,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/">
-      Python3源码学习-对象
+    <a href="/2020/07/15/%E6%8E%A5%E5%8F%A3%E9%9A%90%E8%97%8F%E4%BB%A5%E5%8F%8A%E6%8E%A5%E5%8F%A3%E9%98%B2%E5%88%B7/">
+      接口隐藏以及接口防刷
     </a>
   </h2>
 
@@ -501,7 +501,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 3, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -518,7 +518,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/" class="leancloud_visitors" data-flag-title="Python3源码学习-对象">
+      <span id="/2020/07/15/%E6%8E%A5%E5%8F%A3%E9%9A%90%E8%97%8F%E4%BB%A5%E5%8F%8A%E6%8E%A5%E5%8F%A3%E9%98%B2%E5%88%B7/" class="leancloud_visitors" data-flag-title="接口隐藏以及接口防刷">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -533,9 +533,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/#comments">
+  <a href="/2020/07/15/%E6%8E%A5%E5%8F%A3%E9%9A%90%E8%97%8F%E4%BB%A5%E5%8F%8A%E6%8E%A5%E5%8F%A3%E9%98%B2%E5%88%B7/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%8E%A5%E5%8F%A3%E9%9A%90%E8%97%8F%E4%BB%A5%E5%8F%8A%E6%8E%A5%E5%8F%A3%E9%98%B2%E5%88%B7/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -560,273 +560,7 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
-<h3 id="1-万物皆对象"><a href="#1-万物皆对象" class="headerlink" title="1. 万物皆对象"></a>1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
         
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/">
-      网络知识拾遗
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 23, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/" class="leancloud_visitors" data-flag-title="网络知识拾遗">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/11/19/%E8%AF%91-Threading-model/">
-      [译]Threading model
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 19, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/11/19/%E8%AF%91-Threading-model/" class="leancloud_visitors" data-flag-title="[译]Threading model">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/11/19/%E8%AF%91-Threading-model/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/11/19/%E8%AF%91-Threading-model/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Threading-model"><a href="#Threading-model" class="headerlink" title="Threading model"></a>Threading model</h1><blockquote>
-<p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
-<p>Green threads use a cooperative model of threading: thread context switches can only occur when specific eventlet or greenlet library calls are made (e.g., sleep, certain I/O calls). From the operating system’s point of view, each OpenStack service runs in a single thread.</p>
-<p>The use of green threads reduces the likelihood of race conditions, but does not completely eliminate them. In some cases, you may need to use the @lockutils.synchronized(…) decorator to avoid races.</p>
-<p>In addition, since there is only one operating system thread, a call that blocks that main thread will block the entire process.</p>
-</blockquote>
-<p>理解：OpenStack的所有服务都使用Green thread，使用eventlet和greenlet库，绿色线程使用协作并发模型，线程的切换只在eventlet或greenlet库调用一些切换时发生。从操作系统角度上来看，每个OpenStack运行在一个单一线程。用Green Thread的好处是能够减少race conditions，当然有些时候我们也必须使用@lockutils.synchronized(…)来完全避免。因为只用一个系统级别的单线程，所以调用一旦阻塞就会阻塞整个进程。</p>
-<p>关于Python中的并发模型，可以参考<a href="http://www.oschina.net/translate/python-concurrency-model" target="_blank" rel="noopener">Python并发模型</a>一文，把Thread（线程切换耗资源）、MicroThread（依靠解释器调度）、Green thread（协作并发）的特点对比了下。</p>
-<p>还有<a href="http://www.cnblogs.com/sevenyuan/archive/2010/12/08/1900386.html" target="_blank" rel="noopener">Python几种并发实现方案的性能比较</a>将Python中的集中并发方案进行了对比和说明。</p>
-<h2 id="Yielding-the-thread-in-long-running-tasks"><a href="#Yielding-the-thread-in-long-running-tasks" class="headerlink" title="Yielding the thread in long-running tasks"></a>Yielding the thread in long-running tasks</h2><blockquote>
-<p>If a code path takes a long time to execute and does not contain any methods that trigger an eventlet context switch, the long-running thread will block any pending threads.</p>
-<p>This scenario can be avoided by adding calls to the eventlet sleep method in the long-running code path. The sleep call will trigger a context switch if there are pending threads, and using an argument of 0 will avoid introducing delays in the case that there is only a single green thread:</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</span><br><span class="line">...</span><br><span class="line">greenthread.sleep(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>理解：对于那些耗时很长的任务，需要我们添加一些yield方法，来避免在单个的调用中阻塞很久。</p>
-<h2 id="MySQL-access-and-eventlet"><a href="#MySQL-access-and-eventlet" class="headerlink" title="MySQL access and eventlet"></a>MySQL access and eventlet</h2><blockquote>
-<p>Queries to the MySQL database will block the main thread of a service. This is because OpenStack services use an external C library for accessing the MySQL database. Since eventlet cannot use monkey-patching to intercept blocking calls in a C library, the resulting database query blocks the thread.</p>
-<p>The Diablo release contained a thread-pooling implementation that did not block, but this implementation resulted in a bug and was removed.</p>
-</blockquote>
-<p>理解：对于MySQL数据的查询会阻塞服务，因为eventlet对C库的调用是无法去做monkey-patching的。</p>
-
       
     </div>
     
@@ -852,8 +586,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/10/17/%E8%AF%91-Host-Aggregates/">
-      [译]Host Aggregates
+    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/">
+      消息中间件-RocketMQ
     </a>
   </h2>
 
@@ -883,7 +617,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 17, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -900,7 +634,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/10/17/%E8%AF%91-Host-Aggregates/" class="leancloud_visitors" data-flag-title="[译]Host Aggregates">
+      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/" class="leancloud_visitors" data-flag-title="消息中间件-RocketMQ">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -915,9 +649,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/10/17/%E8%AF%91-Host-Aggregates/#comments">
+  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/10/17/%E8%AF%91-Host-Aggregates/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -942,16 +676,10 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <p>先上一个自己画的图，非常有助于理解Host Aggregates:<br><img src="https://cloud.githubusercontent.com/assets/1736354/10556767/3a9f3156-74c0-11e5-94f2-1b8befff9aff.png" alt="host aggregates"></p>
+        <h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1>
       
     </div>
     
-      
-        <div class="button readmore">
-          <a href="/2015/10/17/%E8%AF%91-Host-Aggregates/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
     
   </section>
@@ -974,8 +702,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/">
-      [译]Scope of the Nova project
+    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/">
+      消息中间件-RabbitMQ
     </a>
   </h2>
 
@@ -1005,7 +733,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 16, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -1022,7 +750,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/" class="leancloud_visitors" data-flag-title="[译]Scope of the Nova project">
+      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/" class="leancloud_visitors" data-flag-title="消息中间件-RabbitMQ">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1037,9 +765,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/#comments">
+  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1064,20 +792,69 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Scope-of-the-Nova-project"><a href="#Scope-of-the-Nova-project" class="headerlink" title="Scope of the Nova project"></a>Scope of the Nova project</h1><blockquote>
-<p>Nova is focusing on doing an awesome job of its core mission. This document aims to clarify that core mission.</p>
-<p>This is a living document to help record where we agree about what Nova should and should not be doing, and why. Please treat this as a discussion of interesting, and hopefully useful, examples. It is not intended to be an exhaustive policy statement.</p>
-</blockquote>
-<p>理解：文档的主要内容是，理清Nova的核心使命。</p>
+        <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><p>RabbitMq<br>    AMQP规范和<br>RabbitMQ基本概念<br>        要素<br>            生产者、消费者、消息<br>            信道<br>            交换器、队列、绑定、路由键<br>        消息的确认<br>        交换器类型<br>            Direct<br>            Fanout<br>            Topic<br>        虚拟主机<br>    RabbitMQ在Windows下安装和运行<br>    原生Java客户端使用<br>    消息发布时的权衡<br>        失败通知<br>        发布者确认<br>        事务<br>        备用交换器<br>    消息消费时的权衡<br>        消息的获得方式<br>        QoS预取模式<br>        可靠性和性能的权衡<br>    消息的拒绝<br>        消息的拒绝方式<br>        死信交换器<br>    控制队列<br>        临时队列<br>        永久队列<br>        队列级别消息过期<br>    消息的属性<br>        属性列表<br>        消息的持久化<br>    与Spring集成<br>        Xml配置方式<br>        SpringBoot<br>        实战：应用解耦<br>    安装配置<br>        下载安装和日常管理<br>        web监控平台<br>    集群化与镜像队列</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>MQ全称为Message Queue，消息队列（MQ）是一种应用程序对应用程序的通信方法。应用程序通过读写入队列的消息（针对应用程序的数据）来通信，而无需专用连接来链接它们。消息传递指的是程序之间通过在消息中发送数据进行通信，而不是通过直接调用彼此来通信。队列的使用除去了接收和发送应用程序同时执行的请求。其中较为成熟的MQ产品有IBM WEBSPHERE MQ等等。</p>
+<p>RabbitMQ是一个在AMQP基础上完成的，可复用的企业消息系统。他遵循Mozilla Public License开源协议。</p>
+<p>AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端和消息中间件可传递消息，并不受客户端/中间件不同产品，不同开发语言等条件的限制。Erlang中的实现由RabbitMQ等。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>先下载erlang，再安装rabbitmq</p>
+<p><a href="https://www.erlang.org/downloads" target="_blank" rel="noopener">erlang下载地址</a></p>
+<p><a href="https://www.rabbitmq.com/download.html" target="_blank" rel="noopener">rabbitmq下载地址</a></p>
+<p>本机查看管理页面</p>
+<p><a href="http://127.0.0.1:15672/" target="_blank" rel="noopener">http://127.0.0.1:15672/</a></p>
+<p>端口号：5672</p>
+<h4 id="用户角色"><a href="#用户角色" class="headerlink" title="用户角色"></a>用户角色</h4><p>1、超级管理员(administrator)<br>可登陆管理控制台，可查看所有的信息，并且可以对用户，策略(policy)进行操作。<br>2、监控者(monitoring)<br>可登陆管理控制台，同时可以查看rabbitmq节点的相关信息(进程数，内存使用情况，磁盘使用情况等)<br>3、策略制定者(policymaker)<br>可登陆管理控制台, 同时可以对policy进行管理。但无法查看节点的相关信息(上图红框标识的部分)。<br>4、普通管理者(management)<br>仅可登陆管理控制台，无法看到节点信息，也无法对策略进行管理。<br>5、其他<br>无法登陆管理控制台，通常就是普通的生产者和消费者。</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5C%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%5C1567341536943.png" alt="1567341536943"></p>
+<p>1.背景<br>RabbitMQ是一个由erlang开发的AMQP(Advanved Message Queue)的开源实现。</p>
+<p>2.应用场景<br>2.1异步处理<br>场景说明：用户注册后，需要发注册邮件和注册短信,传统的做法有两种1.串行的方式;2.并行的方式<br>(1)串行方式:将注册信息写入数据库后,发送注册邮件,再发送注册短信,以上三个任务全部完成后才返回给客户端。 这有一个问题是,邮件,短信并不是必须的,它只是一个通知,而这种做法让客户端等待没有必要等待的东西. </p>
+<p><img src="../%E8%B5%84%E6%96%99/20170209145852454.png" alt="这里写图片描述"> </p>
+<p>(2)并行方式:将注册信息写入数据库后,发送邮件的同时,发送短信,以上三个任务完成后,返回给客户端,并行的方式能提高处理的时间。 </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209150218755.png" alt="这里写图片描述"> </p>
+<p>假设三个业务节点分别使用50ms,串行方式使用时间150ms,并行使用时间100ms。虽然并性已经提高的处理时间,但是,前面说过,邮件和短信对我正常的使用网站没有任何影响，客户端没有必要等着其发送完成才显示注册成功,英爱是写入数据库后就返回.<br>(3)消息队列<br>引入消息队列后，把发送邮件,短信不是必须的业务逻辑异步处理 </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209150824008.png" alt="这里写图片描述"> </p>
+<p>由此可以看出,引入消息队列后，用户的响应时间就等于写入数据库的时间+写入消息队列的时间(可以忽略不计),引入消息队列后处理后,响应时间是串行的3倍,是并行的2倍。</p>
+<p>2.2 应用解耦<br>场景：双11是购物狂节,用户下单后,订单系统需要通知库存系统,传统的做法就是订单系统调用库存系统的接口. </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209151602258.png" alt="这里写图片描述">  </p>
+<p>这种做法有一个缺点:</p>
+<p>当库存系统出现故障时,订单就会失败。(这样马云将少赚好多好多钱^ ^)<br>订单系统和库存系统高耦合.<br>引入消息队列 </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209152116530.png" alt="这里写图片描述"> </p>
+<p>订单系统:用户下单后,订单系统完成持久化处理,将消息写入消息队列,返回用户订单下单成功。</p>
+<p>库存系统:订阅下单的消息,获取下单消息,进行库操作。<br>就算库存系统出现故障,消息队列也能保证消息的可靠投递,不会导致消息丢失(马云这下高兴了).<br>流量削峰<br>流量削峰一般在秒杀活动中应用广泛<br>场景:秒杀活动，一般会因为流量过大，导致应用挂掉,为了解决这个问题，一般在应用前端加入消息队列。<br>作用:<br>1.可以控制活动人数，超过此一定阀值的订单直接丢弃(我为什么秒杀一次都没有成功过呢^^)<br>2.可以缓解短时间的高流量压垮应用(应用程序按自己的最大处理能力获取订单) </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209161124911.png" alt="这里写图片描述">  </p>
+<p>1.用户的请求,服务器收到之后,首先写入消息队列,加入消息队列长度超过最大值,则直接抛弃用户请求或跳转到错误页面.<br>2.秒杀业务根据消息队列中的请求信息，再做后续处理.</p>
+<p>3.系统架构</p>
+<p> <img src="https://img-blog.csdn.net/20170209162609150?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2hvYW1peWFuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述">  </p>
+<p>几个概念说明:<br>Broker:它提供一种传输服务,它的角色就是维护一条从生产者到消费者的路线，保证数据能按照指定的方式进行传输,<br>Exchange：消息交换机,它指定消息按什么规则,路由到哪个队列。<br>Queue:消息的载体,每个消息都会被投到一个或多个队列。<br>Binding:绑定，它的作用就是把exchange和queue按照路由规则绑定起来.<br>Routing Key:路由关键字,exchange根据这个关键字进行消息投递。<br>vhost:虚拟主机,一个broker里可以有多个vhost，用作不同用户的权限分离。<br>Producer:消息生产者,就是投递消息的程序.<br>Consumer:消息消费者,就是接受消息的程序.<br>Channel:消息通道,在客户端的每个连接里,可建立多个channel.</p>
+<p>4.任务分发机制<br>4.1Round-robin dispathching循环分发<br>RabbbitMQ的分发机制非常适合扩展,而且它是专门为并发程序设计的,如果现在load加重,那么只需要创建更多的Consumer来进行任务处理。</p>
+<p>4.2Message acknowledgment消息确认<br>为了保证数据不被丢失,RabbitMQ支持消息确认机制,为了保证数据能被正确处理而不仅仅是被Consumer收到,那么我们不能采用no-ack，而应该是在处理完数据之后发送ack.<br>在处理完数据之后发送ack,就是告诉RabbitMQ数据已经被接收,处理完成,RabbitMQ可以安全的删除它了.<br>如果Consumer退出了但是没有发送ack,那么RabbitMQ就会把这个Message发送到下一个Consumer，这样就保证在Consumer异常退出情况下数据也不会丢失.<br>RabbitMQ它没有用到超时机制.RabbitMQ仅仅通过Consumer的连接中断来确认该Message并没有正确处理，也就是说RabbitMQ给了Consumer足够长的时间做数据处理。<br>如果忘记ack,那么当Consumer退出时,Mesage会重新分发,然后RabbitMQ会占用越来越多的内存.</p>
+<p>5.Message durability消息持久化<br>要持久化队列queue的持久化需要在声明时指定durable=True;<br>这里要注意,队列的名字一定要是Broker中不存在的,不然不能改变此队列的任何属性.<br>队列和交换机有一个创建时候指定的标志durable,durable的唯一含义就是具有这个标志的队列和交换机会在重启之后重新建立,它不表示说在队列中的消息会在重启后恢复<br>消息持久化包括3部分 </p>
+<ol>
+<li>exchange持久化,在声明时指定durable =&gt; true</li>
+</ol>
+<p>hannel.ExchangeDeclare(ExchangeName, “direct”, durable: true, autoDelete: false, arguments: null);//声明消息队列，且为可持久化的<br>1<br>2.queue持久化,在声明时指定durable =&gt; true</p>
+<p>channel.QueueDeclare(QueueName, durable: true, exclusive: false, autoDelete: false, arguments: null);//声明消息队列，且为可持久化的<br>1<br>3.消息持久化,在投递时指定delivery_mode =&gt; 2(1是非持久化).</p>
+<p>channel.basicPublish(“”, queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, msg.getBytes());<br>1<br>如果exchange和queue都是持久化的,那么它们之间的binding也是持久化的,如果exchange和queue两者之间有一个持久化，一个非持久化,则不允许建立绑定.<br>注意：一旦创建了队列和交换机,就不能修改其标志了,例如,创建了一个non-durable的队列,然后想把它改变成durable的,唯一的办法就是删除这个队列然后重现创建。</p>
+<p>6.Fair dispath 公平分发<br>你可能也注意到了,分发机制不是那么优雅,默认状态下,RabbitMQ将第n个Message分发给第n个Consumer。n是取余后的,它不管Consumer是否还有unacked Message，只是按照这个默认的机制进行分发.<br>那么如果有个Consumer工作比较重,那么就会导致有的Consumer基本没事可做,有的Consumer却毫无休息的机会,那么,Rabbit是如何处理这种问题呢? </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209202605166.png" alt="这里写图片描述">  </p>
+<p>通过basic.qos方法设置prefetch_count=1，这样RabbitMQ就会使得每个Consumer在同一个时间点最多处理一个Message，换句话说,在接收到该Consumer的ack前,它不会将新的Message分发给它</p>
+<p>channel.basic_qos(prefetch_count=1)<br>1<br>注意，这种方法可能会导致queue满。当然，这种情况下你可能需要添加更多的Consumer，或者创建更多的virtualHost来细化你的设计。</p>
+<p>7.分发到多个Consumer<br>7.1Exchange<br>先来温习以下交换机路由的几种类型:<br>Direct Exchange:直接匹配,通过Exchange名称+RountingKey来发送与接收消息.<br>Fanout Exchange:广播订阅,向所有的消费者发布消息,但是只有消费者将队列绑定到该路由器才能收到消息,忽略Routing Key.<br>Topic Exchange：主题匹配订阅,这里的主题指的是RoutingKey,RoutingKey可以采用通配符,如:*或#，RoutingKey命名采用.来分隔多个词,只有消息这将队列绑定到该路由器且指定RoutingKey符合匹配规则时才能收到消息;<br>Headers Exchange:消息头订阅,消息发布前,为消息定义一个或多个键值对的消息头,然后消费者接收消息同时需要定义类似的键值对请求头:(如:x-mactch=all或者x_match=any)，只有请求头与消息头匹配,才能接收消息,忽略RoutingKey.<br>默认的exchange:如果用空字符串去声明一个exchange，那么系统就会使用”amq.direct”这个exchange，我们创建一个queue时,默认的都会有一个和新建queue同名的routingKey绑定到这个默认的exchange上去</p>
+<p>channel.BasicPublish(“”, “TaskQueue”, properties, bytes);<br>1<br>因为在第一个参数选择了默认的exchange，而我们申明的队列叫TaskQueue，所以默认的，它在新建一个也叫TaskQueue的routingKey，并绑定在默认的exchange上，导致了我们可以在第二个参数routingKey中写TaskQueue，这样它就会找到定义的同名的queue，并把消息放进去。<br>如果有两个接收程序都是用了同一个的queue和相同的routingKey去绑定direct exchange的话，分发的行为是负载均衡的，也就是说第一个是程序1收到，第二个是程序2收到，以此类推。<br>如果有两个接收程序用了各自的queue，但使用相同的routingKey去绑定direct exchange的话，分发的行为是复制的，也就是说每个程序都会收到这个消息的副本。行为相当于fanout类型的exchange。<br>下面详细来说:</p>
+<p>7.2 Bindings 绑定<br>绑定其实就是关联了exchange和queue，或者这么说:queue对exchange的内容感兴趣,exchange要把它的Message deliver到queue。</p>
+<p>7.3Direct exchange<br>Driect exchange的路由算法非常简单:通过bindingkey的完全匹配，可以用下图来说明. </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209212616872.png" alt="这里写图片描述">  </p>
+<p>Exchange和两个队列绑定在一起,Q1的bindingkey是orange，Q2的binding key是black和green.<br>当Producer publish key是orange时,exchange会把它放到Q1上,如果是black或green就会到Q2上,其余的Message被丢弃.</p>
+<p>7.4 Multiple bindings<br>多个queue绑定同一个key也是可以的,对于下图的例子,Q1和Q2都绑定了black,对于routing key是black的Message，会被deliver到Q1和Q2，其余的Message都会被丢弃. </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209213124880.png" alt="这里写图片描述"> </p>
+<p>7.5 Topic exchange<br>对于Message的routing_key是有限制的，不能使任意的。格式是以点号“.”分割的字符表。比如：”stock.usd.nyse”, “nyse.vmw”, “quick.orange.rabbit”。你可以放任意的key在routing_key中，当然最长不能超过255 bytes。<br>对于routing_key，有两个特殊字符</p>
+<p>*(星号)代表任意一个单词<br>#(hash)0个或多个单词 </p>
+<p> <img src="../%E8%B5%84%E6%96%99/20170209213714342.png" alt="这里写图片描述">  </p>
+<p>Producer发送消息时需要设置routing_key，routing_key包含三个单词和连个点号o,第一个key描述了celerity(灵巧),第二个是color(色彩),第三个是物种:<br>在这里我们创建了两个绑定： Q1 的binding key 是”.orange.“； Q2 是 “..rabbit” 和 “lazy.#”：</p>
+<p>Q1感兴趣所有orange颜色的动物<br>Q2感兴趣所有rabbits和所有的lazy的.<br>例子:rounting_key 为 “quick.orange.rabbit”将会发送到Q1和Q2中<br>rounting_key 为”lazy.orange.rabbit.hujj.ddd”会被投递到Q2中,#匹配0个或多个单词。<br>8.消息序列化<br>RabbitMQ使用ProtoBuf序列化消息,它可作为RabbitMQ的Message的数据格式进行传输,由于是结构化的数据,这样就极大的方便了Consumer的数据高效处理,当然也可以使用XML，与XML相比,ProtoBuf有以下优势:<br>1.简单<br>2.size小了3-10倍<br>3.速度快了20-100倍<br>4.易于编程<br>6.减少了语义的歧义.<br>，ProtoBuf具有速度和空间的优势，使得它现在应用非常广泛</p>
+<h2 id="SpringBoot整合"><a href="#SpringBoot整合" class="headerlink" title="SpringBoot整合"></a>SpringBoot整合</h2><p><a href="https://blog.csdn.net/qq_38455201/article/details/80308771" target="_blank" rel="noopener">https://blog.csdn.net/qq_38455201/article/details/80308771</a></p>
+
       
     </div>
     
-      
-        <div class="button readmore">
-          <a href="/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
     
   </section>
@@ -1100,8 +877,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/10/15/%E8%AF%91-Nova-System-Architecture/">
-      [译]Nova System Architecture
+    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/">
+      消息中间件-MetaQ
     </a>
   </h2>
 
@@ -1131,7 +908,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 15, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -1148,7 +925,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/10/15/%E8%AF%91-Nova-System-Architecture/" class="leancloud_visitors" data-flag-title="[译]Nova System Architecture">
+      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/" class="leancloud_visitors" data-flag-title="消息中间件-MetaQ">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1163,9 +940,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/10/15/%E8%AF%91-Nova-System-Architecture/#comments">
+  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/10/15/%E8%AF%91-Nova-System-Architecture/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1190,19 +967,10 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Nova系统架构"><a href="#Nova系统架构" class="headerlink" title="Nova系统架构"></a>Nova系统架构</h3><blockquote>
-<p>Nova is built on a <strong>shared-nothing</strong>, <strong>messaging-based</strong> architecture. All of the major nova components can be run on <strong>multiple servers</strong>. This means that most component to component communication must go via <strong>message queue</strong>. In order to <strong>avoid blocking</strong> each component while waiting for a response, we use <strong>deferred objects</strong>, with a <strong>callback</strong> that gets triggered when a response is received.</p>
-</blockquote>
-<p>Nova建立在一个无共享，基于消息的架构。所有的nova主要组件都可以运行在不同的服务器。这就意味着大多数组件之间的通信必须通过消息队列。为了避免每个组件在等待响应时的阻塞，我们是用deferred对象，当一个响应接收时会触发相应的回调。</p>
+        
       
     </div>
     
-      
-        <div class="button readmore">
-          <a href="/2015/10/15/%E8%AF%91-Nova-System-Architecture/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
     
   </section>
@@ -1225,8 +993,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/">
-      读《OpenStack设计与实现》
+    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/">
+      消息中间件-Kafka
     </a>
   </h2>
 
@@ -1256,7 +1024,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 8, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -1273,7 +1041,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/" class="leancloud_visitors" data-flag-title="读《OpenStack设计与实现》">
+      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/" class="leancloud_visitors" data-flag-title="消息中间件-Kafka">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1288,9 +1056,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/#comments">
+  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1315,17 +1083,11 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="初始OpenStack和开发基础"><a href="#初始OpenStack和开发基础" class="headerlink" title="初始OpenStack和开发基础"></a>初始OpenStack和开发基础</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10370055/daf455b2-6e0f-11e5-98c3-d3e17ee7d97d.PNG" alt="openstack_ch1ch2"></p>
-<p>OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和虚拟化，体系结构上来看OpenStack是处于Iaas层，目前来看，还是处于追随AWS的阶段。OpenStack的子项目从新项目、孵化项目最终发展成为核心及集成项目。</p>
+        <h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><p>Kafka<br>    Kafka入门<br>        Kafka中的基本概念<br>        为什么选择Kafka<br>    Kafka的安装和配置参数<br>    Kafka的生产者和消费者<br>        消息的发送和接收<br>        生产者和消费者的配置<br>        消费者群组和再均衡<br>        消费者中的提交和偏移量<br>        序列化和反序列化<br>    深入理解Kafka<br>        控制器和复制<br>        请求处理流程<br>        物理存储原理<br>    保证Kafka的可靠数据传递<br>    数据管道和流式处理入门<br>        数据管道基本概念<br>        流式处理基本概念和设计模式</p>
+
       
     </div>
     
-      
-        <div class="button readmore">
-          <a href="/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
     
   </section>
@@ -1348,8 +1110,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/">
-      OpenStack概览
+    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/">
+      消息中间件-ActiveMQ
     </a>
   </h2>
 
@@ -1379,7 +1141,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 4, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -1396,7 +1158,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/" class="leancloud_visitors" data-flag-title="OpenStack概览">
+      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/" class="leancloud_visitors" data-flag-title="消息中间件-ActiveMQ">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1411,9 +1173,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/#comments">
+  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1438,19 +1200,11 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-概览"><a href="#1-概览" class="headerlink" title="1. 概览"></a>1. 概览</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10267380/3f2d8b74-6ac4-11e5-9372-6bc21c57f11f.png" alt="openstack-software-diagram"></p>
-<blockquote>
-<p>OpenStack is a <strong>cloud operating system</strong> that controls large pools of <strong>compute</strong>, <strong>storage</strong>, and <strong>networking</strong> resources throughout a datacenter, all managed through a <strong>dashboard</strong> that gives administrators control while empowering their users to provision resources through a web interface.</p>
-</blockquote>
+        <p>ActiveMq<br>    JMS规范<br>        什么是JMS（Java Messaging Service）规范？<br>        包含要素<br>        消息类型<br>        P2P模型<br>        Topic(PUB\SUB)模型<br>    ActiveMQ使用<br>        安装和部署<br>        原生ActiveMQ的API编程<br>        与Spring集成<br>            Xml配置方式<br>            SpringBoot<br>        Request-Response模式<br>        实战：用户注册的异步处理<br>    ActiveMQ高级特性和用法<br>        嵌入式MQ<br>        消息存储的持久化机制<br>        消息持久订阅<br>        消息的可靠性<br>        通配符式分层订阅<br>        死信队列DLQ(Dead Letter Queue)<br>        镜像队列<br>        虚拟主题<br>        组合Destinations<br>    实战：限时订单<br>    企业级高可用集群部署方案<br>        Shared<br>            File System<br>            DB<br>        Replicated LevelDB Store<br>        Broker-Cluster</p>
+
       
     </div>
     
-      
-        <div class="button readmore">
-          <a href="/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
     
   </section>
@@ -1473,8 +1227,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/06/18/%E5%86%8D%E8%A7%81%EF%BC%8C%E5%8C%97%E4%BA%AC/">
-      再见，北京
+    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/">
+      消息中间件-基础
     </a>
   </h2>
 
@@ -1504,7 +1258,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jun 18, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -1521,7 +1275,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/06/18/%E5%86%8D%E8%A7%81%EF%BC%8C%E5%8C%97%E4%BA%AC/" class="leancloud_visitors" data-flag-title="再见，北京">
+      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="消息中间件-基础">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1536,9 +1290,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/06/18/%E5%86%8D%E8%A7%81%EF%BC%8C%E5%8C%97%E4%BA%AC/#comments">
+  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/06/18/%E5%86%8D%E8%A7%81%EF%BC%8C%E5%8C%97%E4%BA%AC/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1563,16 +1317,23 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="在北大"><a href="#在北大" class="headerlink" title="在北大"></a>在北大</h2><p>一年多的时间，基本都在中国第一学府——北京大学。这里有未名湖畔的波光粼粼，也有博雅塔下的春风垂柳；有艺园吃腻很久的炒菜米饭，也有小白房冒菜不限量的芝麻酱和鳕鱼培根夹馍；有农园清淡爽口的菜肴和炸酱面，也有畅春园改善伙食的麻辣香锅。总之一切都还美好，只是有老校医院实验室中永远调不完的bug后，其他的一切又稍显黯淡。</p>
+        <h2 id="介绍一下消息队列MQ的使用场景"><a href="#介绍一下消息队列MQ的使用场景" class="headerlink" title="介绍一下消息队列MQ的使用场景"></a>介绍一下消息队列MQ的使用场景</h2><h3 id="1-通过异步处理提高系统性能"><a href="#1-通过异步处理提高系统性能" class="headerlink" title="1.通过异步处理提高系统性能"></a>1.通过异步处理提高系统性能</h3><p>在不适用消息队列 服务器的时候，用户的请求数据直接写入数据库，在高并发的情况下数据库压力剧增，使得响应速度变慢。但是在使用消息队列之后，用户的请求数据发送到消息队列之后立即返回，再由消息队列的消费者进程从消息队列中获得数据，异步写入数据库，由于消息队列服务器处理速度快于数据库（消息队列也比数据库有更好的伸缩性），因此响应速度得到大幅改善。</p>
+<p><strong>消息队列具有很好的削峰功能</strong>–即通过异步处理，将短时间高并发产生的事务消息存储在消息队列中，从而削平高峰期的并发事务。</p>
+<p>举例：在电子商务一些秒杀，促销活动中，合理使用消息队列可以有效抵御促销活动刚开始大量订单涌入对系统的冲击。</p>
+<h3 id="2-降低系统耦合性"><a href="#2-降低系统耦合性" class="headerlink" title="2.降低系统耦合性"></a>2.降低系统耦合性</h3><p>使用消息队列的好处</p>
+<p>消息中间件使用场景介绍<br>消息中间件(ActiveMQ、RabbitMQ、RocketMQ、Kafka)简介及对比<br>消息中间件的编年史</p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ol>
+<li>引入消息队列之后如何确保高可用性</li>
+<li>如何保证消息不被重复消费呢</li>
+<li>如何保证消息的高可靠性传输</li>
+<li>我该怎么保证从消息队列里拿到的数据按顺序执行</li>
+<li>如何解决消息队列的延时以及过期失效问题？消息队列满了以后该如何处理？有几百万消息持续积压几小时，说说该如何解决？</li>
+<li>如果让你来开发一个消息队列中间件，你会怎么设计架构</li>
+</ol>
+
       
     </div>
     
-      
-        <div class="button readmore">
-          <a href="/2015/06/18/%E5%86%8D%E8%A7%81%EF%BC%8C%E5%8C%97%E4%BA%AC/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
     
   </section>
@@ -1595,8 +1356,8 @@
         
           
   <h2 class="title">
-    <a href="/2015/06/15/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Packet-Assistant/">
-      一个简单的网络数据包工具——Packet Assistant
+    <a href="/2020/07/15/TypeScript/">
+      TypeScript
     </a>
   </h2>
 
@@ -1626,7 +1387,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jun 15, 2015</p>
+    <p>发布于：Jul 15, 2020</p>
   </a>
 </div>
 
@@ -1643,7 +1404,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2015/06/15/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Packet-Assistant/" class="leancloud_visitors" data-flag-title="一个简单的网络数据包工具——Packet Assistant">
+      <span id="/2020/07/15/TypeScript/" class="leancloud_visitors" data-flag-title="TypeScript">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1658,9 +1419,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2015/06/15/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Packet-Assistant/#comments">
+  <a href="/2020/07/15/TypeScript/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/06/15/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Packet-Assistant/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/TypeScript/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1685,21 +1446,260 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-起因"><a href="#1-起因" class="headerlink" title="1. 起因"></a>1. 起因</h3><p>最近一段时间，总是有一些<strong>发数据包、抓数据包</strong>之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。</p>
-<p>之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。</p>
-<p>总而言之，言而总之：</p>
-<blockquote>
-<p>Packet Assistant是一个简单的发包、抓包工具。</p>
-</blockquote>
+        
       
     </div>
     
       
-        <div class="button readmore">
-          <a href="/2015/06/15/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Packet-Assistant/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/ReactNative/">
+      ReactNative
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/ReactNative/" class="leancloud_visitors" data-flag-title="ReactNative">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/ReactNative/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/ReactNative/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
         </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/ReactJS/">
+      ReactJS
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/ReactJS/" class="leancloud_visitors" data-flag-title="ReactJS">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/ReactJS/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/ReactJS/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.angularjs.net.cn/" target="_blank" rel="noopener">中文网</a></p>
+<p>特点</p>
+<ul>
+<li>数据绑定：Angular数据绑定是双向的</li>
+<li>MVVM模式：使代码解耦</li>
+<li>依赖注入</li>
+<li>指令</li>
+<li>HTML模板和拓展HTML</li>
+</ul>
+<h4 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyController</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">    $scope.clock = &#123;</span><br><span class="line">        now:<span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> updateClock = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $scope.clock.now = <span class="keyword">new</span> <span class="built_in">Date</span>;  </span><br><span class="line">    &#125;;</span><br><span class="line">    setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $scope.$apply(updateClock);</span><br><span class="line">    &#125;,<span class="number">1000</span>);</span><br><span class="line">    updateClock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>AngularJS允许我们使用angular.module()方法来声明模块，这个方法能够接受两个参数，第一个是模块名称（字符串），第二个是依赖列表，也就是可以被注入到模块中的对象列表（字符串数组，每个元素都是一个模块名称，本模块依赖于这些模块，依赖需要在本模块加载之前由注入器进行预加载）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&#39;myApp&#39;,[])</span><br></pre></td></tr></table></figure>
+
+<p>这个方法相当于AngularJS模块的setter方法，是用来定于模块的。</p>
+<p>调用这个方法时如果只传递一个参数，就可以用它来引用模块。例如，可以通过以下代码来引用myApp模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&#39;myApp&#39;);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
       
     
   </section>
@@ -1722,7 +1722,7 @@
           </a>
         
         <p class="current">
-          5 / 9
+          5 / 19
         </p>
         
           <a class="next" rel="next" href="/page/6/">
@@ -1829,7 +1829,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/Java/" style="font-size: 21.78px; color: #646464">Java</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #999">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 20.67px; color: #6c6c6c">随笔</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.22px; color: #8a8a8a">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 20.67px; color: #6c6c6c">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
     </div>
   </section>
 

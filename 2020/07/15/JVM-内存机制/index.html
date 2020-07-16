@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>JVM-内存机制 - Ye</title>
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ye">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">JVM-内存机制</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/07/15/JVM-%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/">
+      JVM-内存机制
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          
+          <h1 id="JVM内存结构和内存分配"><a href="#JVM内存结构和内存分配" class="headerlink" title="JVM内存结构和内存分配"></a>JVM内存结构和内存分配</h1><h3 id="JVM内存结构模型"><a href="#JVM内存结构模型" class="headerlink" title="JVM内存结构模型"></a>JVM内存结构模型</h3><ul>
+<li><h4 id="heap和stack的区别"><a href="#heap和stack的区别" class="headerlink" title="heap和stack的区别"></a>heap和stack的区别</h4><ul>
+<li><h5 id="申请方式"><a href="#申请方式" class="headerlink" title="申请方式"></a>申请方式</h5><ul>
+<li>stack：由系统自动分配。例如，声明在函数中一个局部变量int b；系统自动在栈中为b开辟空间</li>
+<li>heap：需要程序员自己申请，并指明大小。在c中malloc函数，对于java需要手动new Object()的形式开辟</li>
+</ul>
+</li>
+<li><h5 id="申请后系统的响应"><a href="#申请后系统的响应" class="headerlink" title="申请后系统的响应"></a>申请后系统的响应</h5><ul>
+<li>stack：只要栈的剩余空间大于所需空间，系统将为程序提供内存，否则将报错异常提示栈溢出</li>
+<li>heap：首先应该知道操作系统有一个记录空闲内存地址的链表，当系统收到程序的申请时，会遍历该链表，寻找第一个空间大于所申请空间的堆栈点，然后将该结点从空闲结点链表中删除，并将该结点的空间分配给程序。另外，由于找到的堆结点的大小不一定正好等于申请的大小，系统会自动的将多余的那部分重新放入空闲链表中。</li>
+</ul>
+</li>
+<li><h5 id="申请大小的限制"><a href="#申请大小的限制" class="headerlink" title="申请大小的限制"></a>申请大小的限制</h5><ul>
+<li>stack：栈是向低地址扩展的数据结构，是一块连续的内存的区域。</li>
+</ul>
+</li>
+<li><h5 id="申请效率的比较"><a href="#申请效率的比较" class="headerlink" title="申请效率的比较"></a>申请效率的比较</h5><ul>
+<li>stack：由系统自动分配，速度较快，但程序员是无法控制的</li>
+<li>heap：由new分配的内存，一般速度比较慢，而且容易产生内存碎片，不过用起来方便</li>
+</ul>
+</li>
+<li><h5 id="heap和stack中的存储内容"><a href="#heap和stack中的存储内容" class="headerlink" title="heap和stack中的存储内容"></a>heap和stack中的存储内容</h5><ul>
+<li>stack：在函数调用时，</li>
+<li>heap：一般是在堆的头部用一个字节存放堆的大小。堆中的具体内容有程序员安排</li>
+</ul>
+</li>
+<li><p>数据结构层面的区别</p>
+</li>
+<li><p>java中堆栈的应用</p>
+</li>
+</ul>
+</li>
+<li><h4 id="解释内存中的栈（Stack）、堆（heap）和方法区（method-area）的用法"><a href="#解释内存中的栈（Stack）、堆（heap）和方法区（method-area）的用法" class="headerlink" title="解释内存中的栈（Stack）、堆（heap）和方法区（method area）的用法"></a>解释内存中的栈（Stack）、堆（heap）和方法区（method area）的用法</h4><ul>
+<li>通常我们定义一个基本数据类型的变量，一个对象的引用，还有就是函数调用的现场保存都是JVM中的栈空间</li>
+<li>通过new关键字和构造器创建的对象放在堆空间，堆是垃圾回收器管理的主要区域，由于现在的垃圾回收器都采用分代收集算法，所以堆空间还可以</li>
+<li>方法区和堆都是各个线程共享的内存区域，用于存储已经被JVM加载的类信息、常量、静态变量、JIT编译器编译后的代码等数据</li>
+<li>程序中的字面量（literal）如直接书写的“100”、“hello”和常量都是放在常量池中，常量池是方法区的一部分。</li>
+<li>栈空间操作最快，但是栈很小，通常大量的对象都是放在堆空间，栈和堆的大小都可以通过JVM启动参数进行调整</li>
+<li>栈空间用完引发StackOverFlowError，堆和常量池空间不足引发OutOfMemoryError</li>
+<li>String str = new String(“Hello”) str对象引用存放栈中，字符串对象存放堆中，而”Hello”这个字面量放在方法区</li>
+</ul>
+</li>
+<li><h4 id="ClassLoader（类加载器）"><a href="#ClassLoader（类加载器）" class="headerlink" title="ClassLoader（类加载器）"></a>ClassLoader（类加载器）</h4><ul>
+<li><h5 id="什么是ClassLoader"><a href="#什么是ClassLoader" class="headerlink" title="什么是ClassLoader"></a>什么是ClassLoader</h5><ul>
+<li>ClassLoader在Java中起非常重要的作用，它主要工作在class装载的加载阶段，其主要作用是从系统外部获得class二进制数据流。它是Java的核心组件，所有class都是由ClassLoader进行加载的，ClassLoader负责通过将class文件里的二进制数据流装载进系统，然后交给Java虚拟机进行链接、初始化等操作。</li>
+</ul>
+</li>
+<li><h5 id="ClassLoader的种类"><a href="#ClassLoader的种类" class="headerlink" title="ClassLoader的种类"></a>ClassLoader的种类</h5><ul>
+<li>BootstrapClassLoader（根类加载器）：C++编写，加载核心库java.*</li>
+<li>ExtClassLoader（拓展类加载器）：Java编写，加载扩展库javax.*，加载jar包，–加载位置：jre\lib\ext中</li>
+<li>AppClassLoader（系统（应用）类加载器）：Java编写，加载程序所在目录的类和jar包，–加载位置 ：classpath中</li>
+<li>用户自定义ClassLoader：Java编写，定制化加载，必须extends ClassLoader</li>
+</ul>
+</li>
+<li><h5 id="ClassLoader的双亲委派机制"><a href="#ClassLoader的双亲委派机制" class="headerlink" title="ClassLoader的双亲委派机制"></a>ClassLoader的双亲委派机制</h5><ul>
+<li>自底向上检查类是否已经加载</li>
+<li>自顶向下尝试加载类</li>
+</ul>
+</li>
+<li><h5 id="为什么使用双亲委派机制去加载类"><a href="#为什么使用双亲委派机制去加载类" class="headerlink" title="为什么使用双亲委派机制去加载类"></a>为什么使用双亲委派机制去加载类</h5><ul>
+<li>避免多份同样字节码的加载</li>
+</ul>
+</li>
+<li><h5 id="类的加载方式"><a href="#类的加载方式" class="headerlink" title="类的加载方式"></a>类的加载方式</h5><ul>
+<li>隐式加载：new<ul>
+<li>无需调用newInstance()方法即可获得实例。</li>
+</ul>
+</li>
+<li>显式加载：loadClass、forName等<ul>
+<li>new支持带参数的构造器生成对象实例，class对象的newInstance方法不支持传入参数，需要通过反射调用构造器的newInstance()方法才能支持参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="loadClass和forName的区别"><a href="#loadClass和forName的区别" class="headerlink" title="loadClass和forName的区别"></a>loadClass和forName的区别</h5><ul>
+<li>类的装载过程<ul>
+<li>加载<ul>
+<li>通过classLoader加载class文件字节码生成对象</li>
+</ul>
+</li>
+<li>链接<ul>
+<li>检验：检验加载class的正确性和安全性</li>
+<li>准备：为类变量分配存储空间并设置类变量初始值</li>
+<li>解析：JVM将常量池内的符号引用转换为直接引用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>class.forName得到的class是已经初始化完成的</li>
+<li>ClassLoader.loadClass得到的class是还没有链接的<ul>
+<li>static{} 静态代码块，类初始化时执行</li>
+<li>使用loadClass时静态代码块中的代码不会执行</li>
+<li>使用forName时静态代码块中的代码会执行，因为类已经进行初始化操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="loadClass应用场景"><a href="#loadClass应用场景" class="headerlink" title="loadClass应用场景"></a>loadClass应用场景</h5></li>
+</ul>
+</li>
+<li><h4 id="类什么时候被初始化"><a href="#类什么时候被初始化" class="headerlink" title="类什么时候被初始化"></a>类什么时候被初始化</h4><ul>
+<li>创建类的实例，也就是new一个对象</li>
+<li>访问某个类或接口的静态变量，或者对该静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>反射（Class.forName(“com.lyj.load”)）</li>
+<li>初始化一个类的子类（会首先初始化子类的父类）</li>
+<li>JVM启动时标明的启动类，即文件名和类名相同的那个类</li>
+</ul>
+</li>
+<li><h4 id="类的初始化步骤"><a href="#类的初始化步骤" class="headerlink" title="类的初始化步骤"></a>类的初始化步骤</h4><ul>
+<li>如果这个类还没有被加载和链接，那先进行加载和链接</li>
+<li>假如这个类存在直接父类，并且这个类还没有被初始化（注意：在一个类加载器中，类只能初始化一次），那就初始化直接的父类（不适用与接口）</li>
+<li>假如类中存在初始化语句（如static变量和static块），那就依次执行这个初始化语句</li>
+</ul>
+</li>
+<li><h4 id="JVM何时结束生命周期"><a href="#JVM何时结束生命周期" class="headerlink" title="JVM何时结束生命周期"></a>JVM何时结束生命周期</h4><ul>
+<li>正常执行完毕程序</li>
+<li>执行了System.exit()</li>
+<li>程序执行期间发生了异常或者错误而终止</li>
+<li>由于底层操作系统出错，导致虚拟机结束进程</li>
+</ul>
+</li>
+<li><h3 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h3><p>内存泄露一般可以理解为系统资源（各方面的资源，堆、栈、线程等）在错误使用的情况下，导致使用完毕的资源无法回收（或没有回收），从而导致新的资源请求无法完成，引起系统错误。</p>
+<p>整个JVM内存打下=年轻代大小+老年代大小+持久代大小</p>
+</li>
+<li><h3 id="内存溢出的原因"><a href="#内存溢出的原因" class="headerlink" title="内存溢出的原因"></a>内存溢出的原因</h3><ul>
+<li>内存中加载的数据量过于庞大，如一次从数据库中取出过多的数据</li>
+<li>集合类中有对对象的引用，使用完后未清空，使得JVM不能回收</li>
+<li>代码中存在死循环或循环产生过多重复的对象实体</li>
+<li>使用的第三方软件中的bug</li>
+<li>启动参数内存值设定的过小</li>
+</ul>
+</li>
+</ul>
+<p><strong>43.内存溢出和内存泄漏的区别</strong></p>
+<p>内存溢出是指程序在申请内存时，没有足够的内存空间供其使用，出现out of memory。<br>内存泄漏是指分配出去的内存不再使用，但是无法回收。</p>
+<p><strong>44.Java内存模型及各个区域的OOM，如何重现OOM</strong></p>
+<p>这部分内容很重要，详细阅读《深入理解Java虚拟机》，也可以详细阅读这篇文章</p>
+<p><strong>45.出现OOM如何解决</strong></p>
+<p>一. 可通过命令定期抓取heap dump或者启动参数OOM时自动抓取heap dump文件。<br>二. 通过对比多个heap dump，以及heap dump的内容，分析代码找出内存占用最多的地方。<br>三. 分析占用的内存对象，是否是因为错误导致的内存未及时释放，或者数据过多导致的内存溢出。</p>
+<p><strong>48.Java类加载器及如何加载类(双亲委派)</strong></p>
+<p>阅读文章：<br><a href="https://link.zhihu.com/?target=https%3A//www.ibm.com/developerworks/cn/java/j-lo-classloader/%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89">https://www.ibm.com/developerworks/cn/java/j-lo-classloader/（推荐）</a><br><a href="https://link.zhihu.com/?target=http%3A//blog.csdn.net/zhoudaxia/article/details/35824249">深入理解Java类加载器(1)：Java类加载原理解析 - Jack Zhou的专栏 - 博客频道 - CSDN.NET</a></p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li>老年代堆空间被占满</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError:Java heap space</span><br></pre></td></tr></table></figure>
+
+<p>这是最典型的内存泄露方式，简单说就是所有堆空间都被无法回收的垃圾对象占满，虚拟机无法再在分配新空间。这种情况一般来说是因为内存泄露或者内存不足造成的。某些情况因为长期的无法释放对象，运行时间长了以后导致数量增多，从而导致内存泄露。另外一种就是因为系统的原因，大并发加上大对象，Survivor Space区域内存不够，大量的对象进入到了老年代，然而老年代的内存也不足时，从而产生了Full GC，但是这个时候Full GC也无法回收，这个时候就会产生此错误。</p>
+<blockquote>
+<p>解决方案：</p>
+<p>代码内的内存泄露可以通过一些分析工具进行分析，然后找出泄露点进行改善</p>
+<p>第二种原因导致的OutOfMemoryError可以通过代码优化和增加Survivor Space扥方式去优化</p>
+</blockquote>
+<ol start="2">
+<li>持久代被占满</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError:PermGen space</span><br></pre></td></tr></table></figure>
+
+<p>Perm空间被占满。无法为新的class分配存储空间而引发的异常。这个异常以前是没有的，但是在Java反射大量使用的今天这个异常比较常见了。主要原因就是大量动态反射的类不断被加载，最终导致Perm区被占满。</p>
+<blockquote>
+<p>解决方法：</p>
+<p>增加持久代的空间XX:MaxPermSize=100M</p>
+<p>如果有自定义类加载器的需要排查下自己的代码问题</p>
+</blockquote>
+<ol start="3">
+<li>堆栈溢出</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.StackOverflowError</span><br></pre></td></tr></table></figure>
+
+<p>一般就是递归没返回，或者循环调用造成的</p>
+<ol start="4">
+<li>线程堆栈满</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fetal:Stack size too small</span><br></pre></td></tr></table></figure>
+
+<p>Java中一个线程的空间大小是有限制的。JDK5.0以后这个值是1M。与这个线程相关的数据将会保存在其中。但是当线程空间满了以后，将会出现上面异常。</p>
+<blockquote>
+<p>解决方法：</p>
+<p>增加线程栈大小 -Xss2m</p>
+<p>但这个配置无法解决根本问题，还是看代码部分是否有造成泄漏的部分</p>
+</blockquote>
+<ol start="5">
+<li>系统内存被占满</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError:unable to create <span class="keyword">new</span> <span class="keyword">native</span> thread</span><br></pre></td></tr></table></figure>
+
+<p>这个异常是由于操作系统没有足够的资源来产生这个线程造成的。系统创建线程时，除了要在Java堆中分配内存外，操作系统本身也需要分配资源来创建线程。因此，当线程数量大到一定程度后，堆中或许还有空间，但是操作系统分配不出资源来了，就出现这个异常。分配给Java虚拟机的内存越多，系统剩余的资源就越少，因此，当系统内存固定时，分配给Java虚拟机的内存越多，那么，系统总共能够产生的线程也就越少，两者成反比关系。同时，可以通过修改-Xss来减少分配给单个线程的空间，也可以增加系统总共内生产的线程数。</p>
+<blockquote>
+<p>解决方案：</p>
+<p>重新设计系统减少线程数量</p>
+<p>线程数量不能减少的情况下，通过-Xss减少单个线程的大小，以便能产生更多的线程</p>
+</blockquote>
+<p><strong>Java内存模型</strong>规定和指引Java程序在不同的内存架构、CPU和操作系统间有确定性地行为。它在多线程的情况下尤其重要。Java内存模型对一个线程所做的变动能被其它线程可见提供了保证，它们之间是先行发生关系。这个关系定义了一些规则让程序员在并发编程时思路更清晰。比如，先行发生关系确保了：<br>线程内的代码能够按先后顺序执行，这被称为程序次序规则。<br>对于同一个锁，一个解锁操作一定要发生在时间上后发生的另一个锁定操作之前，也叫做管程锁定规则。<br>前一个对volatile的写操作在后一个volatile的读操作之前，也叫volatile变量规则。<br>一个线程内的任何操作必需在这个线程的start()调用之后，也叫作线程启动规则。<br>一个线程的所有操作都会在线程终止之前，线程终止规则。<br>一个对象的终结操作必需在这个对象构造完成之后，也叫对象终结规则。<br>可传递性</p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/JVM-%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/>http://yoursite.com/2020/07/15/JVM-%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-11T15:01:48+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：May 11, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/JVM-%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/&title=JVM-内存机制 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/JVM-%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/&title=JVM-内存机制 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/JVM-%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/&title=JVM-内存机制 - Ye&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2020/07/15/JVM-%E5%AE%9E%E7%8E%B0%E5%B9%B3%E5%8F%B0%E6%97%A0%E5%85%B3%E6%80%A7/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>JVM-实现平台无关性</p>
+                <p class='content'>平台无关性（一次编译，到处运行）
+平台无关性如何实现
+编译时生成.class的字节码文件，保存java翻译生成的二进制字节码（类文件中的属性、方法以及常量信息，还会增加一个公有的静态常量属性.c...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/07/15/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/'>
+                <p class='title'>JVM-垃圾回收机制<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>JVM垃圾回收机制和常见算法
+对象被判定为垃圾的标准
+没有被其他对象所引用
+引用计数算法
+通过判断对象的引用数量来决定对象是否可以被回收
+每个对象实例都有一个引用计数器，被引用则+1，完成引用则...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      <section id="comments">
+        <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+      </section>
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存结构模型"><span class="toc-text">JVM内存结构模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#heap和stack的区别"><span class="toc-text">heap和stack的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#申请方式"><span class="toc-text">申请方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#申请后系统的响应"><span class="toc-text">申请后系统的响应</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#申请大小的限制"><span class="toc-text">申请大小的限制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#申请效率的比较"><span class="toc-text">申请效率的比较</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#heap和stack中的存储内容"><span class="toc-text">heap和stack中的存储内容</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解释内存中的栈（Stack）、堆（heap）和方法区（method-area）的用法"><span class="toc-text">解释内存中的栈（Stack）、堆（heap）和方法区（method area）的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassLoader（类加载器）"><span class="toc-text">ClassLoader（类加载器）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#什么是ClassLoader"><span class="toc-text">什么是ClassLoader</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ClassLoader的种类"><span class="toc-text">ClassLoader的种类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ClassLoader的双亲委派机制"><span class="toc-text">ClassLoader的双亲委派机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#为什么使用双亲委派机制去加载类"><span class="toc-text">为什么使用双亲委派机制去加载类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#类的加载方式"><span class="toc-text">类的加载方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#loadClass和forName的区别"><span class="toc-text">loadClass和forName的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#loadClass应用场景"><span class="toc-text">loadClass应用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类什么时候被初始化"><span class="toc-text">类什么时候被初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类的初始化步骤"><span class="toc-text">类的初始化步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM何时结束生命周期"><span class="toc-text">JVM何时结束生命周期</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存泄露"><span class="toc-text">内存泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存溢出的原因"><span class="toc-text">内存溢出的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-text">分类</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
