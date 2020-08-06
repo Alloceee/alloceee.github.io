@@ -16,7 +16,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>new对象 - Alloceee</title>
+  <title>HTTP常用的14种状态码 - Alloceee</title>
+  
+    <meta name="keywords" content="HTTP">
   
 
   
@@ -414,7 +416,7 @@
 
 <div id="pjax-data" style="display: none">
   <div id="pjax-ispage">true</div>
-  <div id="pjax-pageTitle">new对象</div>
+  <div id="pjax-pageTitle">HTTP常用的14种状态码</div>
   <div id="pjax-enable-cover">true</div>
   
   <div id="valine-path">none</div>
@@ -465,8 +467,8 @@
         
           
   <h1 class="title">
-    <a href="/2020/07/15/new%E5%AF%B9%E8%B1%A1/">
-      new对象
+    <a href="/2020/07/30/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/">
+      HTTP常用的14种状态码
     </a>
   </h1>
 
@@ -496,7 +498,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
+    <p>发布于：Jul 30, 2020</p>
   </a>
 </div>
 
@@ -520,43 +522,57 @@
         <div class="article-entry" itemprop="articleBody">
           
           
-          <p> <a href="https://mp.weixin.qq.com/s?__biz=MzIzMzgxOTQ5NA==&amp;mid=2247489649&amp;idx=1&amp;sn=585c8021d532d1511e91333d41c359e9&amp;chksm=e8fe8478df890d6eb312b0a82db685b2b40c1ca7783e6bebd06624825619caa081ac0a0cf963&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1574484699737&amp;sharer_shareid=87db472902b201c4b33f695d378e1476#rd" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIzMzgxOTQ5NA==&amp;mid=2247489649&amp;idx=1&amp;sn=585c8021d532d1511e91333d41c359e9&amp;chksm=e8fe8478df890d6eb312b0a82db685b2b40c1ca7783e6bebd06624825619caa081ac0a0cf963&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1574484699737&amp;sharer_shareid=87db472902b201c4b33f695d378e1476#rd</a> </p>
-<h1 id="new一个对象背后发生了什么"><a href="#new一个对象背后发生了什么" class="headerlink" title="new一个对象背后发生了什么"></a>new一个对象背后发生了什么</h1><p>Java在new一个对象的时候，会先查看对象所属的类有没有被加载到内存，如果没有的话，就会先通过类的全限名来加载。</p>
-<p>加载并初始化类完成后，在进行对象的创建工作。我们先假设是第一次使用该类，这样的话new一个对象就可以分为两个过程：加载并初始化类和创建对象。</p>
-<h2 id="类加载过程（第一次使用该类）"><a href="#类加载过程（第一次使用该类）" class="headerlink" title="类加载过程（第一次使用该类）"></a>类加载过程（第一次使用该类）</h2><p>Java是使用双亲委派模型来进行类的加载的，所以在描述类加载过程前，我们先看一下他的工作过程：双亲委托模型的的工作过程是：如果一个类加载器（ClassLoader）收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委托给父类加载器去完成，每一个层析的类加载器都是如此，因此所有的加载请求最终都应该传递到顶层的启动类加载器中，只是当父类加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需要加载的类）时，子加载器才会尝试去加载。</p>
-<blockquote>
-<p> 使用双亲委派机制的好处是：能够有效确保一个类的全局唯一性，当程序中出现多个限定名相同的类时，类加载器在执行加载时，始终只会加载其中的某一个类。</p>
-</blockquote>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>当类加载器负责根据一个类的权限名来读取此类的二进制字节流到JVM内部，并存储在运行时内存区的方法区，然后将其转化为一个与目标类型对应的java.lang.Class对象实例</p>
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>格式验证：验证是否符合class文件规范</p>
-<p>语言验证：检查一个被标记为final的类型是否包含子类；检查一个类中的final方法是否被子类进行重写；确保父类和子类之间没有不兼容的一些方法声明（比如方法签名相同，但方法的返回值不同）</p>
-<p>操作验证：在操作数栈中的数据必须进行正确的操作，对常量池中的各种符号引用执行验证（通常在解析阶段执行，检查是否可以通过符号引用中描述的全限名定位到指定类型上，以及类成员信息的访问修饰符是否允许访问等）</p>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>为类中的所有静态变量分配内存空间，并为其设置一个初始值（由于还没有产生对象，实例变量不在此操作范围内）</p>
-<p>被final修饰statis变量（常量），会直接赋值；</p>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>将常量池中的符号引用转为直接引用（得到类或者字段、方法在内存中的指针或者偏移量，以便直接调用该方法），这个可以在初始化之后在执行。</p>
-<p>解析需要静态绑定的内容。//所有不会被重写的方法和域都会被静态绑定</p>
-<blockquote>
-<p>以上验证、准备、解析三个阶段又合称为链接阶段，链接阶段要做的是将加载到JVM中的二进制字节流的类数据信息合并到JVM的运行时状态中。</p>
-</blockquote>
-<h3 id="初始化（先父后子）"><a href="#初始化（先父后子）" class="headerlink" title="初始化（先父后子）"></a>初始化（先父后子）</h3><p>为静态变量赋值</p>
-<p>执行static代码块</p>
-<blockquote>
-<p>static代码块只有JVM能够调用</p>
-</blockquote>
-<p>如果是多线程需要同时初始化一个类，仅仅只能允许其中一个线程对其执行初始化操作，其余线程必须等待，只有在活动线程执行完对类的初始化操作之后，才会通知正在等待的其他线程。</p>
-<p>因为子类存在对父类的依赖，所以类的加载顺序是先加载父类后加载子类，初始化也一样。不过，父类初始化时，子类静态变量的值也有，是默认值。</p>
-<p>最终，方法区会存储当前类类信息，包括类的静态变量、类初始化代码（定义静态变量时的赋值语句和静态初始化代码块）、实例变量定义、实例初始化代码（定义实例变量时的赋值语句实例代码块和构造方法）和实例方法，还有父类的类信息引用。</p>
-<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><h3 id="在堆区分配对象需要的内存"><a href="#在堆区分配对象需要的内存" class="headerlink" title="在堆区分配对象需要的内存"></a>在堆区分配对象需要的内存</h3><p>分配的内存包括本类和父类的所有实例变量，但不包括任何静态变量</p>
-<h3 id="对所有实例变量赋默认值"><a href="#对所有实例变量赋默认值" class="headerlink" title="对所有实例变量赋默认值"></a>对所有实例变量赋默认值</h3><p>将方法区内对实例变量的定义拷贝一份到堆区，然后赋默认值</p>
-<h3 id="执行实例初始化代码"><a href="#执行实例初始化代码" class="headerlink" title="执行实例初始化代码"></a>执行实例初始化代码</h3><p>初始化顺序是先初始化父类再初始化子类，初始化时先执行实例化代码块然后是构造方法</p>
-<p>然后有类似于Child c = new Child()形式的c引用的话，在栈区定义Child类型引用变量c，然后将堆区对象的地址赋值给他</p>
-<p>需要注意的是，每个子类对象持有父类对象的引用，可在内部通过super关键字来调用父类对象，但在外部不可访问。</p>
-<blockquote>
-<p>补充：</p>
-<p>通过实例引用调用实例方法的时候，先从方法区中对象的实际类型信息找，找不到的话再去父类类型信息中找。</p>
-<p>如果继承的层次比较深，要调用的方法位于比较上层的父类，则调用的效率是比较低的，因为每次调用都要经过很多次查找，这个时候大多系统会采用一种称为<code>虚方法表</code>的方法来优化调用的效率</p>
-<p>所谓虚方法表，就是在类加载的时候，为每个类创建一个表，这个表包括该类的对象所有动态绑定的方法及其地址，包括父类的方法，但一个方法只要一条记录，子类重写了父类方法后只会保留子类的。当通过对象动态绑定方法的时候，只需要查找这个表舅可以了，而不需要挨个查找每个父类。</p>
-</blockquote>
+          <p>  状态码的职责是当客户端向服务器发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求还是出现了错误。</p>
+<p>状态码的类别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>类别</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1XX</td>
+<td>Informational（信息性状态码）</td>
+<td>接受的请求正在处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>Success（成功状态码）</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>Redirection（重定向状态码）</td>
+<td>需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>Client Error（客户端错误状态码）</td>
+<td>服务器无法处理请求</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>Server Error（服务器错误状态码）</td>
+<td>服务器处理请求出错</td>
+</tr>
+</tbody></table>
+<h2 id="2XX——表明请求被正常处理了"><a href="#2XX——表明请求被正常处理了" class="headerlink" title="2XX——表明请求被正常处理了"></a>2XX——表明请求被正常处理了</h2><p>1、200 OK：请求已正常处理。</p>
+<p>2、204 No Content：请求处理成功，但没有任何资源可以返回给客户端，一般在只需要从客户端往服务器发送信息，而对客户端不需要发送新信息内容的情况下使用。</p>
+<p>3、206 Partial Content：是对资源某一部分的请求，该状态码表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求。响应报文中包含由Content-Range指定范围的实体内容。</p>
+<h2 id="3XX——表明浏览器需要执行某些特殊的处理以正确处理请求"><a href="#3XX——表明浏览器需要执行某些特殊的处理以正确处理请求" class="headerlink" title="3XX——表明浏览器需要执行某些特殊的处理以正确处理请求"></a>3XX——表明浏览器需要执行某些特殊的处理以正确处理请求</h2><p>4、301 Moved Permanently：资源的uri已更新，你也更新下你的书签引用吧。永久性重定向，请求的资源已经被分配了新的URI，以后应使用资源现在所指的URI。</p>
+<p>5、302 Found：资源的URI已临时定位到其他位置了，姑且算你已经知道了这个情况了。临时性重定向。和301相似，但302代表的资源不是永久性移动，只是临时性性质的。换句话说，已移动的资源对应的URI将来还有可能发生改变。</p>
+<p>6、303 See Other：资源的URI已更新，你是否能临时按新的URI访问。该状态码表示由于请求对应的资源存在着另一个URL，应使用GET方法定向获取请求的资源。303状态码和302状态码有着相同的功能，但303状态码明确表示客户端应当采用GET方法获取资源，这点与302状态码有区别。</p>
+<p>当301,302,303响应状态码返回时，几乎所有的浏览器都会把POST改成GET，并删除请求报文内的主体，之后请求会自动再次发送。</p>
+<p>7、304 Not Modified：资源已找到，但未符合条件请求。该状态码表示客户端发送附带条件的请求时（采用GET方法的请求报文中包含If-Match，If-Modified-Since，If-None-Match，If-Range，If-Unmodified-Since中任一首部）服务端允许请求访问资源，但因发生请求未满足条件的情况后，直接返回304.。</p>
+<p>8、307 Temporary Redirect：临时重定向。与302有相同的含义。</p>
+<h2 id="4XX——表明客户端是发生错误的原因所在。"><a href="#4XX——表明客户端是发生错误的原因所在。" class="headerlink" title="4XX——表明客户端是发生错误的原因所在。"></a>4XX——表明客户端是发生错误的原因所在。</h2><p>9、400 Bad Request：服务器端无法理解客户端发送的请求，请求报文中可能存在语法错误。</p>
+<p>10、401 Unauthorized：该状态码表示发送的请求需要有通过HTTP认证（BASIC认证，DIGEST认证）的认证信息。</p>
+<p>11、403 Forbidden：不允许访问那个资源。该状态码表明对请求资源的访问被服务器拒绝了。（权限，未授权IP等）</p>
+<p>12、404 Not Found：服务器上没有请求的资源。路径错误等。</p>
+<h2 id="5XX——服务器本身发生错误"><a href="#5XX——服务器本身发生错误" class="headerlink" title="5XX——服务器本身发生错误"></a>5XX——服务器本身发生错误</h2><p>13、500 Internal Server Error：貌似内部资源出故障了。该状态码表明服务器端在执行请求时发生了错误。也有可能是web应用存在bug或某些临时故障。</p>
+<p>14、503 Service Unavailable：抱歉，我现在正在忙着。该状态码表明服务器暂时处于超负载或正在停机维护，现在无法处理请求。</p>
 
           
             <div class='article_footer'>
@@ -593,7 +609,7 @@
           
         
           
-            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/new%E5%AF%B9%E8%B1%A1/>http://yoursite.com/2020/07/15/new%E5%AF%B9%E8%B1%A1/</a></p>
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/30/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/>http://yoursite.com/2020/07/30/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/</a></p>
           
         
       </blockquote>
@@ -644,10 +660,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-11T15:01:32+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-06T11:46:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 11, 2020</p>
+    <p>更新于：Aug 6, 2020</p>
   </a>
 </div>
 
@@ -655,6 +671,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/HTTP/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>HTTP</p></a></div>
+
 
         
       
@@ -671,7 +690,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/new%E5%AF%B9%E8%B1%A1/&title=new对象 - Alloceee&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/30/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常用的14种状态码 - Alloceee&summary="
           
           >
           
@@ -683,7 +702,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/new%E5%AF%B9%E8%B1%A1/&title=new对象 - Alloceee&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/30/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常用的14种状态码 - Alloceee&summary="
           
           >
           
@@ -695,7 +714,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/new%E5%AF%B9%E8%B1%A1/&title=new对象 - Alloceee&summary="
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/30/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常用的14种状态码 - Alloceee&summary="
           
           >
           
@@ -719,17 +738,16 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2020/07/15/NIO%E3%80%81BIO/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>NIO、BIO</p>
-                <p class='content'>BIO/NIO/AIO结合Socket编程实现2018年11月10日 18:20:51  更多
-版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本...</p>
+              <a class='prev' href='/2020/08/06/new%E5%AF%B9%E8%B1%A1/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>new一个对象背后发生了什么</p>
+                <p class='content'>Java在new一个对象的时候，会先查看对象所属的类有没有被加载到内存，如果没有的话，就会先通过类的全限名来加载。
+加载并初始化类完成后，在进行对象的创建工作。我们先假设是第一次使用该类，这样的...</p>
               </a>
             
             
-              <a class='next' href='/2020/07/15/Netty/'>
-                <p class='title'>Netty<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>Netty
-Netty是业界最流行的NIO框架之一，它的健壮性、功能、性能、可指定性和可拓展性在同类框架中都是屈指可数的，它已经得到成千上万的商业项目验证，例如Hadoop的RPC框架avro使...</p>
+              <a class='next' href='/2020/07/30/%E5%88%9D%E8%AF%86%E7%AE%97%E6%B3%95/'>
+                <p class='title'>初识算法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253...</p>
               </a>
             
           </div>
@@ -783,7 +801,7 @@ Netty是业界最流行的NIO框架之一，它的健壮性、功能、性能、
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载过程（第一次使用该类）"><span class="toc-text">类加载过程（第一次使用该类）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载"><span class="toc-text">加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证"><span class="toc-text">验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备"><span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解析"><span class="toc-text">解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化（先父后子）"><span class="toc-text">初始化（先父后子）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在堆区分配对象需要的内存"><span class="toc-text">在堆区分配对象需要的内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对所有实例变量赋默认值"><span class="toc-text">对所有实例变量赋默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行实例初始化代码"><span class="toc-text">执行实例初始化代码</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2XX——表明请求被正常处理了"><span class="toc-text">2XX——表明请求被正常处理了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3XX——表明浏览器需要执行某些特殊的处理以正确处理请求"><span class="toc-text">3XX——表明浏览器需要执行某些特殊的处理以正确处理请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4XX——表明客户端是发生错误的原因所在。"><span class="toc-text">4XX——表明客户端是发生错误的原因所在。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5XX——服务器本身发生错误"><span class="toc-text">5XX——服务器本身发生错误</span></a></li></ol>
     </div>
   </section>
 

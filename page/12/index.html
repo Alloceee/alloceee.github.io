@@ -470,6 +470,310 @@
         
           
   <h2 class="title">
+    <a href="/2018/02/01/Nova-Scheduler-Team-Meeting%E8%B7%9F%E8%B8%AA%EF%BC%88%E4%B8%80%E6%9C%88%EF%BC%89/">
+      Nova Scheduler Team Meeting跟踪（一月）
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Feb 1, 2018</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2018/02/01/Nova-Scheduler-Team-Meeting%E8%B7%9F%E8%B8%AA%EF%BC%88%E4%B8%80%E6%9C%88%EF%BC%89/" class="leancloud_visitors" data-flag-title="Nova Scheduler Team Meeting跟踪（一月）">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2018/02/01/Nova-Scheduler-Team-Meeting%E8%B7%9F%E8%B8%AA%EF%BC%88%E4%B8%80%E6%9C%88%EF%BC%89/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2018/02/01/Nova-Scheduler-Team-Meeting%E8%B7%9F%E8%B8%AA%EF%BC%88%E4%B8%80%E6%9C%88%EF%BC%89/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从今年开始，要细度每次的Nova Meeting了，确实对于整体把握整体社区某个领域的进度非常有用。我是这样设想的，按月汇总，每次一篇文章，包含以下几部分</p>
+<ol>
+<li><strong>记录</strong>。按照meeting日期，记录主要内容</li>
+<li><strong>总结</strong>。总结每次meeting的每次内容，简短的一句话或者一段话，避免流水账</li>
+<li><strong>TODO</strong>。每次meeting不一定能完全理解，把他们记录下来，学习后闭环。</li>
+</ol>
+<h1 id="1-会议记录"><a href="#1-会议记录" class="headerlink" title="1. 会议记录"></a>1. 会议记录</h1><h2 id="2018年1月8日"><a href="#2018年1月8日" class="headerlink" title="2018年1月8日"></a>2018年1月8日</h2><p>2018年的第一个team meeting，我们可以看到重点的工作还是在Nested Resource Provider这个BP，在这个时间，大家还是希望能够把Nested Resource Provider这个BP在Queens版本完成。</p>
+<h3 id="1-Feature讨论"><a href="#1-Feature讨论" class="headerlink" title="(1) Feature讨论"></a>(1) Feature讨论</h3><h4 id="1-Nested-Resource-Provider"><a href="#1-Nested-Resource-Provider" class="headerlink" title="1. Nested Resource Provider"></a>1. Nested Resource Provider</h4><ul>
+<li>@2uasimojo(efried) 正在完成ComputeDriver.update_provider_tree() <a href="https://review.openstack.org/#/c/521685/" target="_blank" rel="noopener">https://review.openstack.org/#/c/521685/</a></li>
+<li>@jaypipes 正在完成GET /allocation_candidates部分 <a href="https://review.openstack.org/#/c/531443/" target="_blank" rel="noopener">https://review.openstack.org/#/c/531443/</a><br>@bauzas 表示Xen可能是Nested Resource Provider最棒的目标用户。</li>
+</ul>
+<p>@jaypipes </p>
+<ul>
+<li>目前NRP的目标还是Queens版本完成，可以把NRP的report部分、candidates部分、xen作为client/consumer在Queens完成</li>
+<li>而NUMA/PCI部分的工作，估计搞不定，所以意味着我们在Queens还是需要PciPassthroughFilter及NUMATopologyFilter</li>
+<li>driver consumption的工作会在Queens完成，包括driver通过update_provider_tree来上报信息给RP，也包括了从scheduler中基于allocation来做设备的创建和分配。</li>
+</ul>
+<h4 id="2-Alternate-hosts"><a href="#2-Alternate-hosts" class="headerlink" title="2. Alternate hosts"></a>2. Alternate hosts</h4><p>解决了一个<a href="https://launchpad.net/bugs/1741125" target="_blank" rel="noopener">bug/1741125 Instance resize intermittently fails when rescheduling</a><br><a href="https://review.openstack.org/#/c/531022/" target="_blank" rel="noopener">https://review.openstack.org/#/c/531022/</a></p>
+<h4 id="3-limit-on-allocation-candidates"><a href="#3-limit-on-allocation-candidates" class="headerlink" title="3. limit on allocation_candidates"></a>3. limit on allocation_candidates</h4><p>dansmith增加了一个CONF.scheduler.max_placement_results，用于限制每次备选节点的请求，默认1000<br><a href="https://review.openstack.org/#/c/531517/" target="_blank" rel="noopener">https://review.openstack.org/#/c/531517/</a></p>
+<h3 id="2-Open-discussion"><a href="#2-Open-discussion" class="headerlink" title="(2) Open discussion"></a>(2) Open discussion</h3><h4 id="关于Resource-Provider的genration-id的讨论。"><a href="#关于Resource-Provider的genration-id的讨论。" class="headerlink" title="关于Resource Provider的genration id的讨论。"></a>关于Resource Provider的genration id的讨论。</h4><p>在随后的开放讨论中，由于Resource Provider的aggregate信息在更新时，会有在不同节点上的多个请求并发进行更新的问题，我们需要一种方案去解决race conditions。是的，就是我们在 #65 提到的方法。</p>
+<p>@2uasimojo(efried) 提到，这种方案并不是进程或者线程的锁，建议按照原来的实现，给更新RP的aggregate加上genration id，用于解决并发下的竞态更新问题。<br>即在PUT的时候，用户需要传入genration id，这个id就是Get时候的genration id。这种方案看似有点土，我更新个字段还得自己传genration，太不方便了。<br>但是，却是一种很好的方法来解决从Get直到PUT入库中间的竞争。<br>大家对这点，达成了一致，另外，我们在更新rp的aggregate的时候，仅更新正更新的rp的generation，而不需要更新aggregate中其他rp的genration。</p>
+<p>最终，决定让 @cdent 去做generations-on-aggregate placement microversion相关的patch。</p>
+<h4 id="关于conflict-409后重试机制的讨论"><a href="#关于conflict-409后重试机制的讨论" class="headerlink" title="关于conflict 409后重试机制的讨论"></a>关于conflict 409后重试机制的讨论</h4><p>@2uasimojo(efried) 提出了这个问题，对于409的处理，一直不是很清晰，因为我们重试的时候，不知道到底应该是仅仅重试之前的操作，还是说再看看这个数据是不是已经更新之类的。</p>
+<p>@jaypipes 说，发生409后，更新的调用者，需要回答一个问题“OK，我们需要更新的东西已经变了，在我进行重试时，检查一下我想要更新的东西是否已经更新过了”，所有的generation变化，只是表达了“something changed”，而不是“this thins changed”。所以在我们进行409的重试时，我们需要重读下所有的provider信息（比如traits、inventory等），然后检查下，我们想更新的东西是否已经存在了，如果是这样的话，我们什么都不做，如果没有，我们需要重新的调用update/set。<br>这个想要更新的状态取决于virt driver，和他希望做什么。（比如更新inventory和traits肯定是不一样的）。<br>总结来说，就是我们最初的设计：client-driven state retries，而不是傻傻的重试。</p>
+<p>本次Meeting总的来说还是充满干货的，尤其是对generation和409重试的讨论。</p>
+<h2 id="2018年1月15日"><a href="#2018年1月15日" class="headerlink" title="2018年1月15日"></a>2018年1月15日</h2><h3 id="1-Feature讨论-1"><a href="#1-Feature讨论-1" class="headerlink" title="(1) Feature讨论"></a>(1) Feature讨论</h3><h4 id="1-Nested-Resource-Providers"><a href="#1-Nested-Resource-Providers" class="headerlink" title="1. Nested Resource Providers"></a>1. Nested Resource Providers</h4><p>NRP的进度没有太大进展，目前包含update_provider_tree和GET /allocation_candidates两部分内容。</p>
+<h4 id="2-Granular-resource-requests"><a href="#2-Granular-resource-requests" class="headerlink" title="2. Granular resource requests"></a>2. Granular resource requests</h4><p>这个是为了支持用户进行复杂资源请求的bp，最近会专门写一个文章记录一下其实现。</p>
+<h4 id="3-Alternate-Hosts"><a href="#3-Alternate-Hosts" class="headerlink" title="3. Alternate Hosts"></a>3. Alternate Hosts</h4><p>目前这个特性基本完成了，相关Patch：<br><a href="https://review.openstack.org/#/c/526436" target="_blank" rel="noopener">patch/526436</a> Change compute RPC to use alternates for resize</p>
+<h3 id="2-Bug讨论"><a href="#2-Bug讨论" class="headerlink" title="(2) Bug讨论"></a>(2) Bug讨论</h3><p><a href="https://bugs.launchpad.net/nova/+bug/1743120" target="_blank" rel="noopener">bug/1743120</a>: placement inadvertently imports many python modules it does not need<br>这个bug主要是说Placement导入了很多不需要的模块，主要是和Nova耦合太近，不利于后面拆分，并且直接使用Nova的也不够简洁。所以，清理、化简，保持干净。</p>
+<h3 id="Open-discussion"><a href="#Open-discussion" class="headerlink" title="Open discussion"></a>Open discussion</h3><h4 id="ProviderTree-accessors"><a href="#ProviderTree-accessors" class="headerlink" title="ProviderTree accessors"></a>ProviderTree accessors</h4><p>Patch在这里：<a href="https://review.openstack.org/#/c/533244" target="_blank" rel="noopener">https://review.openstack.org/#/c/533244</a><br>主要为了对比ComputeDriver.update_provider_tree和缓存在report client的ProviderTree的变化。抽象出来了一个结构ProviderData，专门来返回数据。</p>
+<p>总的来说，本次Meeting的讨论内容较少，集中在Nested Resource Provider上面。</p>
+<h2 id="2018年1月22日"><a href="#2018年1月22日" class="headerlink" title="2018年1月22日"></a>2018年1月22日</h2><p>重要事件：1月25日，Queens版本的Feature Freeze即将到来。</p>
+<h3 id="1-Feature讨论-2"><a href="#1-Feature讨论-2" class="headerlink" title="(1) Feature讨论"></a>(1) Feature讨论</h3><h4 id="1-Nested-Resource-Providers-1"><a href="#1-Nested-Resource-Providers-1" class="headerlink" title="1. Nested Resource Providers"></a>1. Nested Resource Providers</h4><p>目前还是包括update_provider_tree series和Nested RP selection两部分。update_provider_tree series接近完成了（不包括resource tracker端到端的上报），Nested RP selection，会推到Rocky版本。</p>
+<h4 id="2-Request-Traits-in-Nova"><a href="#2-Request-Traits-in-Nova" class="headerlink" title="2. Request Traits in Nova"></a>2. Request Traits in Nova</h4><p>Nova中支持请求traits，另外这个请求也额外的提到了Granular resource requests特性，有部分功能是重合的，后续分析Granular resource requests时候，重点关注下。</p>
+<h4 id="3-Use-alternate-hosts-for-resize"><a href="#3-Use-alternate-hosts-for-resize" class="headerlink" title="3. Use alternate hosts for resize"></a>3. Use alternate hosts for resize</h4><p>Alternate hosts这个bp已经基本完成，后续也需要学习下。</p>
+<h3 id="2-Bug讨论-1"><a href="#2-Bug讨论-1" class="headerlink" title="(2) Bug讨论"></a>(2) Bug讨论</h3><h4 id="Remove-microversion-fallback-code-from-report-client"><a href="#Remove-microversion-fallback-code-from-report-client" class="headerlink" title="Remove microversion fallback code from report client"></a>Remove microversion fallback code from report client</h4><p><a href="https://review.openstack.org/#/c/528794/" target="_blank" rel="noopener">https://review.openstack.org/#/c/528794/</a> 在Queens版本，nova默认支持1.14了，所以移除了一些之前版本的兼容代码。</p>
+<h2 id="2018年1月29日"><a href="#2018年1月29日" class="headerlink" title="2018年1月29日"></a>2018年1月29日</h2><h3 id="1-Feature讨论-3"><a href="#1-Feature讨论-3" class="headerlink" title="(1) Feature讨论"></a>(1) Feature讨论</h3><h4 id="1-Nested-Resource-Providers-2"><a href="#1-Nested-Resource-Providers-2" class="headerlink" title="1. Nested Resource Providers"></a>1. Nested Resource Providers</h4><p>Provider Tree series部分的工作已完成，<a href="https://review.openstack.org/#/c/533808/" target="_blank" rel="noopener">https://review.openstack.org/#/c/533808/</a><br> First provider tree patch in progress： <a href="https://review.openstack.org/#/c/537648/" target="_blank" rel="noopener">https://review.openstack.org/#/c/537648/</a> 这部分是端到端的从resource tracker中调用driver的update tree，应该会推到Rocky去做<br>Nested RP traits selection: <a href="https://review.openstack.org/#/c/531899/" target="_blank" rel="noopener">https://review.openstack.org/#/c/531899/</a> 没有什么进展<br>从开放讨论中，@efried 提到，想要端到端的使用NRP，需要完成三部分：a. Resource Tracker刷新update_provider_tree b. jaypieps的NRP in alloc cands c. driver实现update_provider_tree。这三项工作，都没有在Queens完成，不过都比较接近完成了。</p>
+<h4 id="2-Singular-request-group-traits"><a href="#2-Singular-request-group-traits" class="headerlink" title="2. Singular request group traits"></a>2. Singular request group traits</h4><p>基本完成</p>
+<h4 id="3-Granular-resource-requests"><a href="#3-Granular-resource-requests" class="headerlink" title="3. Granular resource requests"></a>3. Granular resource requests</h4><p>完整实现推迟到Queens版本，<a href="https://review.openstack.org/#/c/517757/" target="_blank" rel="noopener">https://review.openstack.org/#/c/517757/</a></p>
+<h4 id="4-Use-alternate-hosts-for-resize"><a href="#4-Use-alternate-hosts-for-resize" class="headerlink" title="4. Use alternate hosts for resize"></a>4. Use alternate hosts for resize</h4><p><a href="https://review.openstack.org/#/c/537614/" target="_blank" rel="noopener">https://review.openstack.org/#/c/537614/</a> 已经merge，至此，已经可以支持resize时候的alternate hostsl了</p>
+<h3 id="2-开放讨论"><a href="#2-开放讨论" class="headerlink" title="(2) 开放讨论"></a>(2) 开放讨论</h3><h4 id="1-Idea-for-a-simple-way-to-expose-compute-driver-capabilities-in-the-REST-API"><a href="#1-Idea-for-a-simple-way-to-expose-compute-driver-capabilities-in-the-REST-API" class="headerlink" title="1. Idea for a simple way to expose compute driver capabilities in the REST API"></a>1. Idea for a simple way to expose compute driver capabilities in the REST API</h4><p><a href="http://lists.openstack.org/pipermail/openstack-dev/2018-January/126653.html" target="_blank" rel="noopener">http://lists.openstack.org/pipermail/openstack-dev/2018-January/126653.html</a> Matt提出希望用一种简单方法保持driver的兼容</p>
+<h1 id="2-TODO"><a href="#2-TODO" class="headerlink" title="2. TODO"></a>2. TODO</h1><ol>
+<li>了解Idea for a simple way to expose compute driver capabilities in the REST API详细内容</li>
+<li>Granular resource requests分析</li>
+<li>Alternate hosts分析</li>
+<li>Nested Resource Provider分析</li>
+</ol>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2018/01/23/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Resource-Provider%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/">
+      [Placement深度探索] Resource Provider中的并发控制机制
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 23, 2018</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2018/01/23/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Resource-Provider%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/" class="leancloud_visitors" data-flag-title="[Placement深度探索] Resource Provider中的并发控制机制">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2018/01/23/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Resource-Provider%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2018/01/23/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Resource-Provider%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h3><p>最近，在处理Nova Metadata并发更新的问题(<a href="https://bugs.launchpad.net/nova/+bug/1650188" target="_blank" rel="noopener">bug/1650188</a>)的时候，发现Resource Provider的并发控制机制在最开始就考虑，是通过乐观锁的机制实现并发控制的，简单的说就是：</p>
+<ol>
+<li>为Resource Provider增加了一个generation的字段，用来记录数据更新迭代的版本。</li>
+<li>每次进行刷新（如新增、删除、更新）的时候，检查generation和最初读取的是否一致，若一致则字段值自增，完成数据更新，否则抛出并发更新的异常，返回给用户一个409。</li>
+</ol>
+<p>其实，这个方式就是我们常说的乐观并发控制（OCC, Optimistic Concurrency Control，也称作乐观锁）机制。</p>
+<h3 id="2-详细流程"><a href="#2-详细流程" class="headerlink" title="2. 详细流程"></a>2. 详细流程</h3><p>用户通过API对Resource Provider的资源进行更新时，会传入一个generation参数</p>
+<blockquote>
+<p>curl -X PUT <a href="http://10.76.6.31/placement/resource_providers/7d2590ae-9999-4080-9306-058b4c915e32/traits" target="_blank" rel="noopener">http://10.76.6.31/placement/resource_providers/7d2590ae-9999-4080-9306-058b4c915e32/traits</a> -H “X-Auth-Token: $TOKEN” -H “OpenStack-API-Version: placement 1.16” -H “Accept: application/json” -H “Content-Type: application/json” -d ‘{<br>    <strong>“resource_provider_generation”: 0,</strong><br>    “traits”: [“CUSTOM_YIKUN_TEST”]<br>}’</p>
+</blockquote>
+<p>在最终的数据刷新时，完成事务提交前，会对generation进行刷新，例如对于本例中的traits更新，对应的代码在这里：<a href="https://github.com/openstack/nova/blob/6d227722d4287726e144e4cf928c8e6ae52a6a4c/nova/objects/resource_provider.py#L571" target="_blank" rel="noopener">nova/objects/resource_provider.py#def _set_traits</a>，相当于做了一次检查，如果generation和用户预期的一致，更新成功，如果更新失败，则会raise并发更新失败的error。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/35274760-51f95ca0-0078-11e8-8ad0-29e6f48e3b64.jpg" alt="generation"></p>
+<p>如上图所示，如果操作A和操作B并发的请求进来，当A请求成功后，刷新了genration，这样，当B进行刷新的时候，就会刷新失败。</p>
+<p>在Placement中，在对Resource Provider下的资源（例如allocation、inventory、trait等）进行修改时，均会对resource provider的generation进行刷新。我们看下实现的细节：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_increment_provider_generation</span><span class="params">(ctx, rp)</span>:</span></span><br><span class="line">    <span class="string">"""Increments the supplied provider's generation value, supplying the</span></span><br><span class="line"><span class="string">    currently-known generation. Returns whether the increment succeeded.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param ctx: `nova.context.RequestContext` that contains an oslo_db Session</span></span><br><span class="line"><span class="string">    :param rp: `ResourceProvider` whose generation should be updated.</span></span><br><span class="line"><span class="string">    :returns: The new resource provider generation value if successful.</span></span><br><span class="line"><span class="string">    :raises nova.exception.ConcurrentUpdateDetected: if another thread updated</span></span><br><span class="line"><span class="string">            the same resource provider's view of its inventory or allocations</span></span><br><span class="line"><span class="string">            in between the time when this object was originally read</span></span><br><span class="line"><span class="string">            and the call to set the inventory.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    rp_gen = rp.generation</span><br><span class="line">    new_generation = rp_gen + <span class="number">1</span></span><br><span class="line">    <span class="comment"># 注意这里的更新条件，通过id及generation匹配</span></span><br><span class="line">    upd_stmt = _RP_TBL.update().where(sa.and_(</span><br><span class="line">            _RP_TBL.c.id == rp.id,</span><br><span class="line">            _RP_TBL.c.generation == rp_gen)).values(</span><br><span class="line">                    generation=(new_generation))</span><br><span class="line"></span><br><span class="line">    res = ctx.session.execute(upd_stmt)</span><br><span class="line">    <span class="comment"># 如果rowcount为0，说明已经不是之前的RP了</span></span><br><span class="line">    <span class="keyword">if</span> res.rowcount != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">raise</span> exception.ConcurrentUpdateDetected</span><br><span class="line">    <span class="keyword">return</span> new_generation</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-参考"><a href="#3-参考" class="headerlink" title="3. 参考"></a>3. 参考</h3><ol>
+<li><a href="https://people.eecs.berkeley.edu/~fox/summaries/database/optimistic_concurrency.html" target="_blank" rel="noopener">On Optimistic Methods for Concurrency Control</a>：对乐观并发控制机制及其要点进行了一些总结。</li>
+<li>阿里巴巴Java开发手册：<blockquote>
+<p>并发修改同一记录时,避免更新丢失,要么在应用层加锁,要么在缓存加锁,要么在数据库层使用乐观锁,使用 version 作为更新依据。</p>
+<p>说明:如果每次访问冲突概率小于 20%,推荐使用乐观锁,否则使用悲观锁。乐观锁的重试次数不得小于 3 次。</p>
+</blockquote>
+</li>
+<li><a href="http://www.hollischuang.com/archives/934" target="_blank" rel="noopener">深入理解乐观锁与悲观锁</a>：介绍了乐观锁和悲观锁的基本原理，并举例说明。</li>
+</ol>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2017/12/26/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Nested-Resource-Providers/">
       [Placement深度探索] Nested Resource Providers
     </a>
@@ -1576,259 +1880,6 @@
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/">
-      [译] Simpler Road to Cinder Active-Active
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 16, 2017</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/" class="leancloud_visitors" data-flag-title="[译] Simpler Road to Cinder Active-Active">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：</p>
-<ol>
-<li>每个volume node都增加一个<code>cluster</code>的配置项，作为集群，标记这个节点属于某个集群；</li>
-<li>通过cluster@backend作为消息队列的topic，并且启动cluster@backend的服务；</li>
-<li>scheduler进行调度时，投递到某个合适的集群，集群中的某个后端进行消费；</li>
-<li>消费时，将操作记录在worker中，用来标记这个资源由某个worker来操作，这样当发生异常时，可以确保仅有某个worker进行cleanup的操作。</li>
-</ol>
-</blockquote>
-<p>原文链接：<a href="https://gorka.eguileor.com/simpler-road-to-cinder-active-active/" target="_blank" rel="noopener">Simpler Road to Cinder Active-Active</a></p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2016/07/22/%E4%B8%80%E6%AC%A1%E6%9C%89%E5%85%B3OpenStack%E8%AF%B7%E6%B1%82%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/">
-      一次有关OpenStack请求的性能问题分析
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 22, 2016</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2016/07/22/%E4%B8%80%E6%AC%A1%E6%9C%89%E5%85%B3OpenStack%E8%AF%B7%E6%B1%82%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/" class="leancloud_visitors" data-flag-title="一次有关OpenStack请求的性能问题分析">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2016/07/22/%E4%B8%80%E6%AC%A1%E6%9C%89%E5%85%B3OpenStack%E8%AF%B7%E6%B1%82%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2016/07/22/%E4%B8%80%E6%AC%A1%E6%9C%89%E5%85%B3OpenStack%E8%AF%B7%E6%B1%82%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="0-背景介绍"><a href="#0-背景介绍" class="headerlink" title="0. 背景介绍"></a>0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2016/07/22/%E4%B8%80%E6%AC%A1%E6%9C%89%E5%85%B3OpenStack%E8%AF%B7%E6%B1%82%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1950,7 +2001,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.22px; color: #8a8a8a">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 20.67px; color: #6c6c6c">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 14px; color: #999">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.22px; color: #8a8a8a">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
     </div>
   </section>
 
