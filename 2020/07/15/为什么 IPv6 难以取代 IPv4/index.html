@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>为什么 IPv6 难以取代 IPv4 - Alloceee</title>
+  
+    <meta name="keywords" content="计算机网络">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Alloceee">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/volantis-x/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomvolantis-xhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Volantis
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">为什么 IPv6 难以取代 IPv4</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/07/15/%E4%B8%BA%E4%BB%80%E4%B9%88%20IPv6%20%E9%9A%BE%E4%BB%A5%E5%8F%96%E4%BB%A3%20IPv4/">
+      为什么 IPv6 难以取代 IPv4
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          
+          <p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/IsrmVA0RIYNIVBOE1ZPaWtsMP8HWvb71jYZtIbbRkdOsyao0yarWicT4GOTibtYia4PxaILOHWSicW36GIUf0D1Pzw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<blockquote>
+<p>为什么这么设计（Why’s THE Design）是一系列关于计算机领域中程序设计决策的文章，我们在这个系列的每一篇文章中都会提出一个具体的问题并从不同的角度讨论这种设计的优缺点、对具体实现造成的影响。如果你有想要了解的问题，可以在文章下面留言。</p>
+</blockquote>
+<p>网络层协议承担了分组（Packet）转发和路由选择两大功能，它能够为上层提供在不同主机之间运输分组的职责，IP 协议作为网络层协议，它虽然只能提供无连接的、不可靠的服务，但是它在今天的互联网中起到了极其关键的作用。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7bq3Kz5bNOgIY5kqLIzpPtYOl8BwHALrdGMeIhyXmvuC9fKNfsgtYpHWfrtV5PJ9wib7RKaKEn2HTng/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"><strong>图 1 - 互联网协议簇</strong></p>
+<p>在一般情况下，当我们想要访问其他主机提供的服务时，都需要通过 IP 地址来访问目标主机，只有拥有了 IP 地址才能在互联网上被其他主机访问。IP 地址就像家庭住址，我们需要保证所有主机 IP 地址的唯一性，这样才能找到正确的主机。</p>
+<p>作为在 1974 年诞生的 IP 协议[^1]，第一个主要版本 IPv4 使用 32 位表示地址，总共可以提供 2^32 (4,294,967,296) 个 IP 地址[^2]。42 亿个 IP 地址虽然看起来很多，但是可用的 IPv4 地址数量在最近几年一直在减少，早在 2011 年，顶级的 IPv4 地址就已经被全部分配出去了[^3]。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/PvFQOcBK7bq3Kz5bNOgIY5kqLIzpPtYOL3Uu35iadibfam2V21ibRzUJrJ4yuPbia3dwSUIvLia68g4tp8LTa3o7iaKg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"><strong>图 2 - IPv4 地址的小数表示</strong></p>
+<p>为了解决 IP 地址即将被耗尽的问题，IETF 在 1998 年就发布了 IPv6 协议的草稿[^4]并在 2017 年正式成为互联网标准[^5]。IPv6 使用 128 位的 IP 地址，总共可以表示 2^128 个地址，IPv6 甚至可以为地球上的沙子分配独立的地址[^6]：</p>
+<p>新版本的互联网协议 IPv6 不仅能够一劳永逸地解决 IP 地址即将被耗尽的问题，还能提高网络的传输速度以及安全性。IPv6 协议的设计者最初认为随着 IPv4 地址的快速减少，IPv6 会被快速采纳，它们最初估计 IPv6 协议会在 2003 年在全球部署，但是从今天的角度来看，这些预测还是过于乐观了[^7]。</p>
+<p>本文想要分析的问题是，为什么 IPv6 协议有如此之多的好处并且能够解决 IPv4 的地址短缺问题，但是哪怕在最初预估的 2003 年后又过了 17 年，IPv6 协议也没有被大规模采纳。我们在这里会讨论以下几个原因：</p>
+<ul>
+<li>NAT 技术很大程度上缓解了 IPv4 地址短缺的问题；</li>
+<li>IPv6 协议在设计时没有考虑与 IPv4 的兼容性问题；</li>
+<li>更细粒度的管控 IPv4 地址并回收闲置的资源；</li>
+</ul>
+<h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>网络地址转换（Network Address Translation、NAT）是一种在 IP 数据包通过路由器时修改网络地址的技术，它能够将当前地址空间中的 IP 地址映射到另一个地址空间。当切换网络或者上游的 ISP 出现改变时，NAT 技术可以避免修改网络中全部节点的 IP，我们可以将 NAT 技术理解成一个转换表，其中存储着外部地址和端口到内部地址和端口的转换关系。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7bq3Kz5bNOgIY5kqLIzpPtYOzIzsBD8KJBZeE60lYibWysOvEgEkj4q5XHTnfFdK9gCvVVoaMc42VVg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"><strong>图 3 - 网络地址转换技术</strong></p>
+<p>当数据包从内部访问外部网络时，NAT 会为当前请求分配一个端口、覆写数据包中的源地址和端口并将地址和端口信息存储到本地的转换表中；当数据包从外部进入网络内部时，NAT 会根据数据包的 IP 地址和端口号查找到私有网络中对应的主机和端口号并覆写数据包中的目的地址和端口。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7bq3Kz5bNOgIY5kqLIzpPtYOzwqKhj3T0gKIV1tldthBtNaibdIx3VNpsuSbvbuRpcaGOKC3Or2gVFQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"><strong>图 4 - NAT 转换表</strong></p>
+<p>通过 NAT 这一中间层，我们不仅可保护私有的网络，还能缓解 IP 地址的短缺问题。不过 NAT 技术也并不是只有好处，它也带来了很多的问题，在 NAT 网络下的主机并不能与对端建立起真正的端到端连接，也不能参与部分因特网协议[^8]，除此之外，NAT 协议带来的以下问题也备受争议[^9]：</p>
+<ol>
+<li>NAT 使用的端口号是用于进程寻址的，而不是用于主机寻址的；</li>
+<li>NAT 路由器作为第三层（网络层）的设备，它应当只处理达到网络层的分组；</li>
+<li>NAT 违反了主机应当直接彼此对话的原则；</li>
+</ol>
+<p>虽然 NAT 带来了很多的争议和问题，但是 NAT 已经成为了整个互联网中广泛使用的技术，工程师也尝试通过各种 NAT 穿越技术来解决它带来的问题，例如：SOCKS、UPnP 和 ALG 等[^10]。</p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>软件和协议都会遵循当下以及可预测的未来进行设计，但是我们很难预测未来的具体走势，当下的设计也会随着场景的变换变得逐渐不适用。所有的软件和协议都是需要更新迭代的，在更新的过程中我们就需要考虑兼容性，兼容性一般可以分成向前兼容（Forward compatibility）和向后兼容（Backward compatibility）两种：</p>
+<ul>
+<li>向前兼容：老版本系统可以接收并处理新版本系统产生的数据；</li>
+<li>向后兼容：新版本系统可以接收并处理老版本系统产生的数据；</li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7bq3Kz5bNOgIY5kqLIzpPtYOFAcBocx1szeYGia7UbahkW8dd6OTGNqtarq6NpESuniaKJZcpQognaEg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"><strong>图 5 - 系统的兼容性</strong></p>
+<p>这两种不同的兼容性可以起到不同的作用，如果 IPv6 协议与 IPv4 是向前兼容的，那么用于处理 IPv4 协议的硬件设备可以不用更新就能处理 IPv6 的数据，不过不更新系统也无法享受 IPv6 带来的好处；如果 IPv6 协议与 IPv4 协议是向后兼容的，那么 IPv6 的硬件可以同时处理 IPv4 和 IPv6 的数据包，只要使用 IPv6 设备替换 IPv4 设备就可以给整个网络无缝升级。</p>
+<p>如果 IPv4 和 IPv6 能够具有向前兼容性或者向后兼容性，那么 IPv6 协议的推进也可能也没有这么复杂，但是 IPv6 协议在设计时就没有考虑与更早版本协议的兼容性。虽然 IPv4 和 IPv6 虽然都是 IP 协议，不过因为它们两者互不兼容，所以我们只能通过双协议栈、隧道技术或者 NAT64 实现协议的过渡：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7bq3Kz5bNOgIY5kqLIzpPtYOLuEYibG7nAbumicxuDujnrQMeS7eIfd9iaWvlYMZQtxCKuCaMg9JyNxlA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"><strong>图 6 - 双协议栈</strong></p>
+<p>IPv6 协议想要摆脱历史的包袱，实现完全不兼容的设计是可以理解的，在过去几十年应用 IP 协议的过程中，我们遇到了很多的问题，如果要背着历史的包袱继续前行也不是不可以，但是作为互联网的核心协议，虽然 IP 协议的设计者承认 IPv6 没有实现向前兼容是最大的错误[^11]，但是作者认为通过不兼容的方式快速摆脱历史的包袱从长期来看也是好事。</p>
+<h2 id="地址管控"><a href="#地址管控" class="headerlink" title="地址管控"></a>地址管控</h2><p>IPv4 的地址虽然从总体上来看确实是稀缺资源，不过与其他的稀缺资源一样，如何合理分配资源并提供使用率一直都是比较大的问题。IANA(Internet Assigned Numbers Authority) 和 RIR(Regional Internet Registries) 是负责分配 IP 地址的组织，除了一些为专有网络预留的 IP 地址之外，剩余的地址一般都是通过子网以地址块的形式分配。</p>
+<p>在互联网协议的早期开发阶段，子网是通过 IP 地址最左侧的 8 位划分子网，但是因为这种方式只允许划分 256 个网络，所以在 1981 年被分类网络架构（Classful Network Architecture）迅速替代。分类网络架构中包含 A、B 和 C 三类网络[^12]：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Class</th>
+<th align="right">网络数</th>
+<th align="right">主机数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">A</td>
+<td align="right">128</td>
+<td align="right">16,777,214</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="right">16,384</td>
+<td align="right">65,534</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="right">2,097,152</td>
+<td align="right">254</td>
+</tr>
+</tbody></table>
+<p>A 类地址只能分配给 128 个不同的网络，每个网络中可以包含 1,600 万主机，而 C 类地址可以分配给 200 万组织，网络中可以包含 200 多个主机。通过对 IP 地址的分类，我们能够更合理地分配 IP 地址块，不过虽然它对 IP 地址进行了分类，但是它对地址的划分还是比较粗糙。</p>
+<p>IETF 在 1993 年提出的无类别域间路由（Classless Inter-Domain Routing、CIDR）替代了分类网络架构，CIDR 基于可变长子网掩码（Variable-length Subnet Masking、VLSM），它的主要目的有两个[^13]：</p>
+<ol>
+<li>缓解互联网中路由器中转发表的增长速度；</li>
+<li>缓解 IPv4 地址耗尽的速度；</li>
+</ol>
+<p>分类网络架构中对地址的划分还是有些过于理想，过小的地址块往往不够用、稍大的地址块却会造成较大的浪费。与分类网络架构只使用 8、16 和 24 固定长度的子网掩码将 IP 地址块划分成三类不同，CIDR 会使用可变长度的子网掩码来划分地址块，如下所示的 CIDR 表示中，N 表示前缀长度，它可以是从 0 到 32 的任意值：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A.B.C.D&#x2F;N</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p><code>A.B.C.D/8</code>、<code>A.B.C.D/16</code> 和 <code>A.B.C.D/24</code> 就可以分别表示分类网络架构中的 A、B 和 C 三类不同的地址块，同时也可以使用其他的数字更灵活的表示特定网络数和主机数的子网。</p>
+<p>除了更细粒度的地址分配之外，回收不再使用的 IP 资源并投入再利用也是延长 IPv4 寿命的重要手段，不过在这里我们就不做展开了。从 IP 地址的分配中，我们能看到资源从充足到稀缺，人对于资源使用态度的转变，从最开始粗糙的分配方式到后来细粒度的管控，充足的资源总是会被滥用，只有当资源真正变得稀缺时，我们才开始精打细算。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>IPv4 协议从 1981 年发布到今天已经过去了将近 40 年，在过去的这段时间里，它作为互联网协议簇中的重要协议承担着分组转发和路由选择的重要责任，随着网络环境和终端设备变得越来越复杂，我们也需要更多的 IP 地址满足今天的需求。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7bq3Kz5bNOgIY5kqLIzpPtYOIENrib8XKic4xH4IJOnfvlCnDrychhf7YGukuMZrpMo9Ad83dwoVbhpQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"><strong>图 7 - 访问 Google 的 IPv6 协议采纳率[^14]</strong></p>
+<p>IPv6 协议摆脱了很多历史的包袱轻装前行，虽然越来越多的网站和网络设备都开始支持 IPv6，但是因为很多原因 IPv6 最终也很难完全取代 IPv4 协议，我们重新回顾一下本文的内容：</p>
+<ul>
+<li>NAT 技术可以很大程度上缓解 IPv4 的地址短缺问题并且能够保护私有内部的网络，提供防火墙的功能；</li>
+<li>IPv4 与 IPv6 协议完全不兼容，我们需要引入双协议栈、隧道技术或者 NAT64 解决兼容性问题，而应用这些技术也需要额外的成本；</li>
+<li>通过对资源的细粒度管控并回收不再使用的 IP 地址，可以延缓 IP 地址耗尽的时间；</li>
+</ul>
+<p>工程师的想象力是无穷的，在过去的十几年间，我们尝试通过各种办法为 IPv4 协议续命延缓 IP 资源耗尽的时间，不过在可预见的未来 IPv4 协议也终将被 IPv6 替代，我们也会拥有几乎用不完的 IP 地址。到最后，我们还是来看一些比较开放的相关问题，有兴趣的读者可以仔细思考一下下面的问题：</p>
+<ul>
+<li>IPv5 协议是做什么的？为什么没有听说过 IPv5 协议？</li>
+<li>你觉得 IPv6 协议的份额会在多久之后超过 IPv4？</li>
+</ul>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/07/15/%E4%B8%BA%E4%BB%80%E4%B9%88%20IPv6%20%E9%9A%BE%E4%BB%A5%E5%8F%96%E4%BB%A3%20IPv4/>http://yoursite.com/2020/07/15/%E4%B8%BA%E4%BB%80%E4%B9%88%20IPv6%20%E9%9A%BE%E4%BB%A5%E5%8F%96%E4%BB%A3%20IPv4/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-11T19:17:29+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 11, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>计算机网络</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/15/%E4%B8%BA%E4%BB%80%E4%B9%88%20IPv6%20%E9%9A%BE%E4%BB%A5%E5%8F%96%E4%BB%A3%20IPv4/&title=为什么 IPv6 难以取代 IPv4 - Alloceee&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/15/%E4%B8%BA%E4%BB%80%E4%B9%88%20IPv6%20%E9%9A%BE%E4%BB%A5%E5%8F%96%E4%BB%A3%20IPv4/&title=为什么 IPv6 难以取代 IPv4 - Alloceee&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/15/%E4%B8%BA%E4%BB%80%E4%B9%88%20IPv6%20%E9%9A%BE%E4%BB%A5%E5%8F%96%E4%BB%A3%20IPv4/&title=为什么 IPv6 难以取代 IPv4 - Alloceee&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2020/07/15/NodeJS/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>nodejs入门</p>
+                <p class='content'>Node.jsnodejs不是一个js框架，千万不要认为是类似jquery的框架，
+nodejs是js运行时，运行环境，类比java中jvm，
+nodejs对应的mvc框架
+Sails. js，...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/07/15/webpack/'>
+                <p class='title'>webpack工程化<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>webpack工程化
+webpack基础用法（webpack介绍，webpack配置模板，webpack核心概念与用法）
+webpack高级用法（Tree Shaking，Code Splitt...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      <section id="comments">
+        <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+      </section>
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NAT"><span class="toc-text">NAT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#兼容性"><span class="toc-text">兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#地址管控"><span class="toc-text">地址管控</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!-- 评论 （PS：只对 valine 做了 Pjax 兼容） -->
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    var valinePath = $.trim($('#valine-path').text()) === "none" ?
+            window.location.pathname : $.trim($('#valine-path').text());
+
+    var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+            "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+    var ALLPATH = '';
+    if(ALLPATH != '') valinePath = ALLPATH;
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: valinePlaceholder,
+      path: valinePath,
+      appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+      appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+<!-- darkmodejs -->
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!-- scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '32px',
+        duration: '800',
+        interval: '20',
+        scale: '1',
+        easing: 'ease-out'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      var currentUrl = window.location.pathname;
+      var targetUrl = e.triggerElement.href;
+      var banUrl = [""];
+      if (banUrl[0] != "") {
+        banUrl.forEach(item => {
+          if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      $('.s-top').unbind('click'); // 解绑
+      $('.menu a').unbind('click');  // 解绑
+      $('.s-toc', $('header .wrapper')).unbind('click'); // 解绑
+      $('.s-comment', $('header .wrapper')).unbind('click'); // 解绑
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(document).unbind('scroll');  // 解绑
+      $(document).unbind('click');   // 解绑
+      $('body').unbind('click');     // 解绑
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+
+      try{
+        pjax_fancybox();
+        
+          
+          if ('.cover') {
+            $('.cover').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

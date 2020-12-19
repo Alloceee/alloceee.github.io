@@ -470,6 +470,739 @@
         
           
   <h2 class="title">
+    <a href="/2014/04/01/nginxaccept/">
+      nginx建立连接过程分析
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Apr 1, 2014</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2014/04/01/nginxaccept/" class="leancloud_visitors" data-flag-title="nginx建立连接过程分析">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2014/04/01/nginxaccept/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2014/04/01/nginxaccept/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2014/04/01/nginxaccept/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2014/03/26/nginxevent/">
+      nginx的事件主体分析
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 26, 2014</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2014/03/26/nginxevent/" class="leancloud_visitors" data-flag-title="nginx的事件主体分析">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2014/03/26/nginxevent/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2014/03/26/nginxevent/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>在上篇文章中，介绍了事件模块的初始化工作，其中ngx_event_process_init会调用module-&gt;actions.init(对应epoll为ngx_epoll_init)，该步调用的是epoll的初始化函数，之后，将rev的回调函数指向ngx_event_accept函数，这样便会accept新的链接。那么，本文将以epoll为例，来学习一下事件机制的主体。</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2014/03/26/nginxevent/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2014/03/21/nginxeventinit/">
+      nginx的事件初始化与框架
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 21, 2014</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2014/03/21/nginxeventinit/" class="leancloud_visitors" data-flag-title="nginx的事件初始化与框架">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2014/03/21/nginxeventinit/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2014/03/21/nginxeventinit/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>因为开始对nginx的模块机制不是很了解，所以开始看事件模块的这部分还是云里来，雾里去的，最后，算是理清了，我觉得应该抓几个核心的数据结构，无论是初始化，还是在事件循环中，都和这些数据结构息息相关。我们需要抓住这两个结构体，搞清楚他们在什么时候初始化，什么时候起作用，这样就可以理清大概的</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2014/03/21/nginxeventinit/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2014/03/19/vim/">
+      我的vim配置
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 19, 2014</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2014/03/19/vim/" class="leancloud_visitors" data-flag-title="我的vim配置">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2014/03/19/vim/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2014/03/19/vim/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近把vim的配置整理的一下，然后更新到github上了。</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2014/03/19/vim/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2014/03/16/nginxchannel/">
+      nginx中channel机制
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 16, 2014</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2014/03/16/nginxchannel/" class="leancloud_visitors" data-flag-title="nginx中channel机制">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2014/03/16/nginxchannel/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2014/03/16/nginxchannel/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>由于nginx使用的是多进程的模型，因此，进程间的通信或者同步很重要，为什么要进行进程同步呢？我们知道，nginx有master和worker进程，在上篇文章已经分析过了master具体是怎样创建worker进程的。不过，在创建worker进程的时候，是需要对进程同步的。举个具体的例子，我们假设服务器共有4个worker进程，我们知道nginx有一个全局变量，是ngx_processes数组，他存储着所有进程的信息，在worker1创建的时候，worker2，worker3，worker4进程是没有创建的，因此，这个时候就牵扯到同步，最合理的方式是，在master创建一个进程的时候，就应该通知所有子进程有新的进程被fork了，以及这个进程的基本信息。</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2014/03/16/nginxchannel/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2014/03/13/nginxstart/">
+      nginx启动流程分析
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 13, 2014</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2014/03/13/nginxstart/" class="leancloud_visitors" data-flag-title="nginx启动流程分析">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2014/03/13/nginxstart/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2014/03/13/nginxstart/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>最近，开始学习nginx的代码，大致根据<a href="http://www.alidata.org/archives/category/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="noopener">阿里数据平台</a>的一些文章，加上Tengine 2.0的代码来看的。这次看代码主要是了解一下nginx的基本框架和主要工作流程。</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2014/03/13/nginxstart/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2013/02/27/gdb-record/">
       JNI调试方法
     </a>
@@ -1009,128 +1742,6 @@ Base address:0xd240 Memory:f0820000-f0840000</code></pre></li>
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2010/10/05/xieyipianrizhi/">
-      写一篇日志
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 5, 2010</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2010/10/05/xieyipianrizhi/" class="leancloud_visitors" data-flag-title="写一篇日志">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2010/10/05/xieyipianrizhi/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2010/10/05/xieyipianrizhi/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天是十月五日，天气晴朗，星空美丽。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2010/10/05/xieyipianrizhi/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1246,7 +1857,7 @@ Base address:0xd240 Memory:f0820000-f0840000</code></pre></li>
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 14px; color: #999">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.22px; color: #8a8a8a">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 21.78px; color: #646464">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 20.67px; color: #6c6c6c">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.44px; color: #7b7b7b">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.11px; color: #919191">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
     </div>
   </section>
 

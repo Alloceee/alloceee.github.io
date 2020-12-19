@@ -495,6 +495,199 @@
         
           
   <h2 class="title">
+    <a href="/2020/08/21/Java-Annotation/">
+      Java 什么是注解（Annotation）
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 21, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/08/21/Java-Annotation/" class="leancloud_visitors" data-flag-title="Java 什么是注解（Annotation）">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/08/21/Java-Annotation/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/08/21/Java-Annotation/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>概念</p>
+<ul>
+<li>注解（Annotation），也叫元数据。一种代码级别的说明，与类、接口、枚举在同一个层次，它可以声明在包、类、字段、方法、局部变量、方法参数等方面，用来对这些元素进行说明、注释。</li>
+<li>概念描述：<ul>
+<li>JDK1.5之后的新特性</li>
+<li>说明程序的</li>
+<li>使用注解：@注解名称</li>
+</ul>
+</li>
+<li>作用分类：<ul>
+<li>编写文档：通过代码里标识的元数据生成文档【生成文档doc文档】 javadoc命令生成doc文档</li>
+<li>代码分析：通过代码里标识的元数据对代码进行分析【使用反射】</li>
+<li>编译检查：通过代码里标识的元数据让编译器能够实现基本的编译检查【override】</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JDK内置注解</p>
+<ul>
+<li>@override ：检测被该注解标注的方法是否是继承自父类或者父接口</li>
+<li>@Deprecated：将该注解标注的内容，表示已过时</li>
+<li>@SuppressWarnings：压制警告，可以传参数，一般是all</li>
+</ul>
+</li>
+<li><p>自定义注解</p>
+<ul>
+<li><p>格式：</p>
+<ul>
+<li>元注解</li>
+<li>public @interface 注解名称{属性列表；}</li>
+</ul>
+</li>
+<li><p>本质</p>
+<ul>
+<li>注解本质上是一个接口，该接口默认继承Annotation接口</li>
+</ul>
+</li>
+<li><pre><code class="java"><span class="keyword">import</span> java.lang.annotation.*;
+
+<span class="comment">/**</span>
+<span class="comment"> * <span class="doctag">@author</span> AlmostLover</span>
+<span class="comment"> */</span>
+<span class="meta">@Target</span>(ElementType.TYPE)<span class="comment">//作用在方法上</span>
+<span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="meta">@Documented</span>
+<span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation {
+    <span class="comment">//给属性默认赋值</span>
+    <span class="function">String <span class="title">className</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;
+    <span class="function">String <span class="title">methodName</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;
+}
+&lt;!--￼<span class="number">0</span>--&gt;
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>常用方法：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于判断该类上是否存在该注解</span></span><br><span class="line"><span class="keyword">boolean</span> b = reflectTestClass.isAnnotationPresent(MyAnnotation<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>案例：简单的测试框架</p>
+</li>
+<li><p>总结</p>
+<ul>
+<li>注解给谁用<ul>
+<li>编译器</li>
+<li>给解析程序用</li>
+</ul>
+</li>
+<li>注解不是程序的一部分，可以理解为注解就是一个标签</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2020/07/15/JMM/">
       Java-内存模型JMM
     </a>
@@ -623,6 +816,153 @@
 <h1 id="Happens-Before"><a href="#Happens-Before" class="headerlink" title="Happens-Before"></a><strong>Happens-Before</strong></h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a><strong>定义</strong></h2><p>在Java 规范提案中为让大家理解内存可见性的这个概念，提出了happens-before的概念来阐述操作之间的内存可见性。对应Java程序员来说，理解happens-before是理解JMM的关键。JMM这么做的原因是：程序员对于这两个操作是否真的被重排序并不关心，程序员关心的是程序执行时的语义不能被改变（即执行结果不能被改变）。因此，happens-before关系本质上和as-if-serial语义是一回事。·as-if-serial语义保证单线程内程序的执行结果不被改变，happens-before关系保证正确同步的多线程程序的执行结果不被改变。</p>
 <h2 id="Happens-Before规则"><a href="#Happens-Before规则" class="headerlink" title="Happens-Before规则"></a><strong>Happens-Before规则</strong></h2><p>具体规则参见PPT</p>
 <p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps6.jpg" alt="img"> </p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">
+      Java-抽象类和接口有什么区别
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="Java-抽象类和接口有什么区别">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="abstract-class和interface有什么区别"><a href="#abstract-class和interface有什么区别" class="headerlink" title="abstract class和interface有什么区别"></a>abstract class和interface有什么区别</h1><ul>
+<li><p>含有abstract修饰符的class即为抽象类，abstract类不能创建的实例对象。</p>
+</li>
+<li><p>含有abstract方法的类必须定义为abstract class,abstract class类中的方法不必是抽象的。</p>
+</li>
+<li><p>abstract class类中定义抽象方法必须在具体（concrete）子类中实现，所以，不能有抽象构造方法或抽象静态方法。如果子类没有实现抽象父类中的所有抽象方法，那么子类也必须定义为abstract类型。</p>
+</li>
+<li><p>接口（interface）可以说成是抽象类的一种特例，接口中的所有方法都必须是抽象的。接口中的方法默认为public abstract类型，接口中的成员变量类型默认为public static final</p>
+</li>
+<li><p>语法区别：</p>
+<ul>
+<li>抽象类可以有构造方法，接口中不能有构造方法</li>
+<li>抽象类中可以由普通成员变量，接口中没有普通成员变量</li>
+<li>抽象类中可以包含非抽象的普通方法，接口中的所有方法都必须是抽象的，不能有非抽象的普通方法</li>
+<li>抽象类中的抽象方法的访问类型可以是public、protected和（默认类型，虽然eclipse下不报错，但应该也不行），但接口抽象方法只能是public类型，并且默认是public abstract类型</li>
+<li>抽象类中可以包含静态方法，接口中不能包含静态方法</li>
+<li>抽象类和接口中都可以包含静态成员变量，抽象类中的静态成员变量的访问类型可以是任意，但接口中定义的变量只能是public static final类型，并且默认即为public static final类型。</li>
+<li>一个类可以实现多个接口，但只能继承一个抽象类</li>
+</ul>
+</li>
+<li><p>应用区别：</p>
+<ul>
+<li>接口更多的是在系统架构设计方法发挥作用，主要用于定义模块之间的通信契约，而抽象类在代码实现方面发挥作用，可以实现代码的重用。</li>
+</ul>
+</li>
+<li><p>接口是否可以继承接口，抽象类是否可以实现接口，抽象类是否可以继承实体类</p>
+<ul>
+<li>接口可以继承接口，抽象类可以实现接口，抽象类可以继承实体类，但前提是实体类必须有明确的构造函数</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -1177,153 +1517,6 @@ sleep()方法被调用以后，持有的锁是不释放的
 </li>
 </ul>
 <p><em>XMind: ZEN - Trial Version</em></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">
-      Java-抽象类和接口有什么区别
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="Java-抽象类和接口有什么区别">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="abstract-class和interface有什么区别"><a href="#abstract-class和interface有什么区别" class="headerlink" title="abstract class和interface有什么区别"></a>abstract class和interface有什么区别</h1><ul>
-<li><p>含有abstract修饰符的class即为抽象类，abstract类不能创建的实例对象。</p>
-</li>
-<li><p>含有abstract方法的类必须定义为abstract class,abstract class类中的方法不必是抽象的。</p>
-</li>
-<li><p>abstract class类中定义抽象方法必须在具体（concrete）子类中实现，所以，不能有抽象构造方法或抽象静态方法。如果子类没有实现抽象父类中的所有抽象方法，那么子类也必须定义为abstract类型。</p>
-</li>
-<li><p>接口（interface）可以说成是抽象类的一种特例，接口中的所有方法都必须是抽象的。接口中的方法默认为public abstract类型，接口中的成员变量类型默认为public static final</p>
-</li>
-<li><p>语法区别：</p>
-<ul>
-<li>抽象类可以有构造方法，接口中不能有构造方法</li>
-<li>抽象类中可以由普通成员变量，接口中没有普通成员变量</li>
-<li>抽象类中可以包含非抽象的普通方法，接口中的所有方法都必须是抽象的，不能有非抽象的普通方法</li>
-<li>抽象类中的抽象方法的访问类型可以是public、protected和（默认类型，虽然eclipse下不报错，但应该也不行），但接口抽象方法只能是public类型，并且默认是public abstract类型</li>
-<li>抽象类中可以包含静态方法，接口中不能包含静态方法</li>
-<li>抽象类和接口中都可以包含静态成员变量，抽象类中的静态成员变量的访问类型可以是任意，但接口中定义的变量只能是public static final类型，并且默认即为public static final类型。</li>
-<li>一个类可以实现多个接口，但只能继承一个抽象类</li>
-</ul>
-</li>
-<li><p>应用区别：</p>
-<ul>
-<li>接口更多的是在系统架构设计方法发挥作用，主要用于定义模块之间的通信契约，而抽象类在代码实现方面发挥作用，可以实现代码的重用。</li>
-</ul>
-</li>
-<li><p>接口是否可以继承接口，抽象类是否可以实现接口，抽象类是否可以继承实体类</p>
-<ul>
-<li>接口可以继承接口，抽象类可以实现接口，抽象类可以继承实体类，但前提是实体类必须有明确的构造函数</li>
-</ul>
-</li>
-</ul>
 
       
     </div>
@@ -2080,136 +2273,6 @@ sleep()方法被调用以后，持有的锁是不释放的
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">
-      Java LinkedHashSet工作原理及实现
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 9, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="Java LinkedHashSet工作原理及实现">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><blockquote>
-<p><strong>Hash table and linked list implementation of the Set interface</strong>, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is the order in which elements were inserted into the set (insertion-order). Note that insertion order is not affected if an element is re-inserted into the set. (An element e is reinserted into a set s if s.add(e) is invoked when s.contains(e) would return true immediately prior to the invocation.)</p>
-</blockquote>
-<p>LinkedHashSet是基于HashMap和双向链表的实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashSet&lt;String&gt; lset = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;();</span><br><span class="line">lset.add(<span class="string">"语文"</span>);</span><br><span class="line">lset.add(<span class="string">"数学"</span>);</span><br><span class="line">lset.add(<span class="string">"英语"</span>);</span><br><span class="line">lset.add(<span class="string">"历史"</span>);</span><br><span class="line">lset.add(<span class="string">"政治"</span>);</span><br><span class="line">lset.add(<span class="string">"地理"</span>);</span><br><span class="line">lset.add(<span class="string">"生物"</span>);</span><br><span class="line">lset.add(<span class="string">"化学"</span>);</span><br><span class="line"><span class="keyword">for</span>(String str : lset) &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>利用链表来记录，保证了迭代输出的有序性。其具体结构如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7082382/14d44b8e-df86-11e4-8e50-1e925f430b6e.png" alt="hashset"><br>可以看出，其实现基本和LinkedHashMap一样。</p>
-<h3 id="2-关键实现"><a href="#2-关键实现" class="headerlink" title="2. 关键实现"></a>2. 关键实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
-
-<p>从继承关系来看就知道LinkedHashMap的实现非常简单，就是集成HashSet的接口，并且在构造时调用的是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HashSet(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor, <span class="keyword">boolean</span> dummy) &#123;</span><br><span class="line">    map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(initialCapacity, loadFactor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>因此，结构也便是如HashSet于HashMap一样，LinkedHashSet也便如LinkedHashMap一样，只是将Value做了一个dummy的object。</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html" target="_blank" rel="noopener">LinkedHashSet</a></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -2327,7 +2390,7 @@ sleep()方法被调用以后，持有的锁是不释放的
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 14px; color: #999">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.22px; color: #8a8a8a">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 21.78px; color: #646464">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 20.67px; color: #6c6c6c">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.44px; color: #7b7b7b">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.11px; color: #919191">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
     </div>
   </section>
 

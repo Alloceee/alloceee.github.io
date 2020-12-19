@@ -459,6 +459,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
@@ -477,8 +487,8 @@
         
           
   <h2 class="title">
-    <a href="/2020/08/06/%E6%B8%B8%E8%AE%B0/%E6%B8%B8%E8%AE%B0-%E6%A2%A6%E5%9B%9E%E5%BC%A0%E5%AE%B6%E7%95%8C/">
-      梦回张家界
+    <a href="/2020/08/21/Java-Annotation/">
+      Java 什么是注解（Annotation）
     </a>
   </h2>
 
@@ -508,7 +518,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 6, 2020</p>
+    <p>发布于：Aug 21, 2020</p>
   </a>
 </div>
 
@@ -525,7 +535,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2020/08/06/%E6%B8%B8%E8%AE%B0/%E6%B8%B8%E8%AE%B0-%E6%A2%A6%E5%9B%9E%E5%BC%A0%E5%AE%B6%E7%95%8C/" class="leancloud_visitors" data-flag-title="梦回张家界">
+      <span id="/2020/08/21/Java-Annotation/" class="leancloud_visitors" data-flag-title="Java 什么是注解（Annotation）">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -540,9 +550,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2020/08/06/%E6%B8%B8%E8%AE%B0/%E6%B8%B8%E8%AE%B0-%E6%A2%A6%E5%9B%9E%E5%BC%A0%E5%AE%B6%E7%95%8C/#comments">
+  <a href="/2020/08/21/Java-Annotation/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/08/06/%E6%B8%B8%E8%AE%B0/%E6%B8%B8%E8%AE%B0-%E6%A2%A6%E5%9B%9E%E5%BC%A0%E5%AE%B6%E7%95%8C/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/08/21/Java-Annotation/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -567,7 +577,1511 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
+        <ul>
+<li><p>概念</p>
+<ul>
+<li>注解（Annotation），也叫元数据。一种代码级别的说明，与类、接口、枚举在同一个层次，它可以声明在包、类、字段、方法、局部变量、方法参数等方面，用来对这些元素进行说明、注释。</li>
+<li>概念描述：<ul>
+<li>JDK1.5之后的新特性</li>
+<li>说明程序的</li>
+<li>使用注解：@注解名称</li>
+</ul>
+</li>
+<li>作用分类：<ul>
+<li>编写文档：通过代码里标识的元数据生成文档【生成文档doc文档】 javadoc命令生成doc文档</li>
+<li>代码分析：通过代码里标识的元数据对代码进行分析【使用反射】</li>
+<li>编译检查：通过代码里标识的元数据让编译器能够实现基本的编译检查【override】</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JDK内置注解</p>
+<ul>
+<li>@override ：检测被该注解标注的方法是否是继承自父类或者父接口</li>
+<li>@Deprecated：将该注解标注的内容，表示已过时</li>
+<li>@SuppressWarnings：压制警告，可以传参数，一般是all</li>
+</ul>
+</li>
+<li><p>自定义注解</p>
+<ul>
+<li><p>格式：</p>
+<ul>
+<li>元注解</li>
+<li>public @interface 注解名称{属性列表；}</li>
+</ul>
+</li>
+<li><p>本质</p>
+<ul>
+<li>注解本质上是一个接口，该接口默认继承Annotation接口</li>
+</ul>
+</li>
+<li><pre><code class="java"><span class="keyword">import</span> java.lang.annotation.*;
+
+<span class="comment">/**</span>
+<span class="comment"> * <span class="doctag">@author</span> AlmostLover</span>
+<span class="comment"> */</span>
+<span class="meta">@Target</span>(ElementType.TYPE)<span class="comment">//作用在方法上</span>
+<span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="meta">@Documented</span>
+<span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation {
+    <span class="comment">//给属性默认赋值</span>
+    <span class="function">String <span class="title">className</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;
+    <span class="function">String <span class="title">methodName</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;
+}
+&lt;!--￼<span class="number">0</span>--&gt;
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>常用方法：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于判断该类上是否存在该注解</span></span><br><span class="line"><span class="keyword">boolean</span> b = reflectTestClass.isAnnotationPresent(MyAnnotation<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>案例：简单的测试框架</p>
+</li>
+<li><p>总结</p>
+<ul>
+<li>注解给谁用<ul>
+<li>编译器</li>
+<li>给解析程序用</li>
+</ul>
+</li>
+<li>注解不是程序的一部分，可以理解为注解就是一个标签</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
         
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/08/21/SpringBoot-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+      SpringBoot-解决跨域问题
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 21, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/08/21/SpringBoot-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="SpringBoot-解决跨域问题">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/08/21/SpringBoot-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/08/21/SpringBoot-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>1.创建Configuration配置文件<blockquote>
+<p>一定要加@Configuration  这个注解，在启动的时候才会被加载</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCorsMappings</span><span class="params">(CorsRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addMapping(<span class="string">"/**"</span>)</span><br><span class="line">                .allowedOrigins(<span class="string">"*"</span>)</span><br><span class="line">                .allowedMethods(<span class="string">"PUT"</span>, <span class="string">"DELETE"</span>, <span class="string">"GET"</span>, <span class="string">"POST"</span>)</span><br><span class="line">                .allowedHeaders(<span class="string">"*"</span>)</span><br><span class="line">                .exposedHeaders(<span class="string">"access-control-allow-headers"</span>,</span><br><span class="line">                        <span class="string">"access-control-allow-methods"</span>,</span><br><span class="line">                        <span class="string">"access-control-allow-origin"</span>,</span><br><span class="line">                        <span class="string">"access-control-max-age"</span>,</span><br><span class="line">                        <span class="string">"X-Frame-Options"</span>)</span><br><span class="line">                .allowCredentials(<span class="keyword">true</span>).maxAge(<span class="number">3600</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>2.在web层方法添加注解<code>@CrossOrigin</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/api/admin/permissions"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PermissionsController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> PermissionsService permissionsService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/all"</span>)</span><br><span class="line">    <span class="meta">@CrossOrigin</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">show</span><span class="params">(@RequestBody PageEntity page)</span> </span>&#123;</span><br><span class="line">        Page&lt;Permissions&gt; page1 = <span class="keyword">new</span> Page&lt;&gt;(page.getCurrentPage(), page.getPageSize());</span><br><span class="line">        QueryWrapper&lt;Permissions&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">        wrapper.like(<span class="string">"permission_name"</span>, page.getKey());</span><br><span class="line">        <span class="keyword">return</span> JSONData.toJsonString(<span class="number">200</span>, <span class="string">""</span>, permissionsService.page(page1, wrapper));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/08/20/ES%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/">
+      ES倒排索引
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 20, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/08/20/ES%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/" class="leancloud_visitors" data-flag-title="ES倒排索引">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/08/20/ES%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/08/20/ES%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>ES 写入数据的工作原理是什么啊？ES 查询数据的工作原理是什么啊？底层的 Lucene 介绍一下呗？倒排索引了解吗？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>问这个，其实面试官就是要看看你了解不了解 es 的一些基本原理，因为用 es 无非就是写入数据，搜索数据。你要是不明白你发起一个写入和搜索请求的时候，es 在干什么，那你真的是……</p>
+<p>对 es 基本就是个黑盒，你还能干啥？你唯一能干的就是用 es 的 api 读写数据了。要是出点什么问题，你啥都不知道，那还能指望你什么呢？</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><h3 id="es-写数据过程"><a href="#es-写数据过程" class="headerlink" title="es 写数据过程"></a>es 写数据过程</h3><ul>
+<li>客户端选择一个 node 发送请求过去，这个 node 就是 <code>coordinating node</code> （协调节点）。</li>
+<li><code>coordinating node</code> 对 document 进行<strong>路由</strong>，将请求转发给对应的 node（有 primary shard）。</li>
+<li>实际的 node 上的 <code>primary shard</code> 处理请求，然后将数据同步到 <code>replica node</code> 。</li>
+<li><code>coordinating node</code> 如果发现 <code>primary node</code> 和所有 <code>replica node</code> 都搞定之后，就返回响应结果给客户端。</li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/wbiax4xEAl5zqw4zmWWJicQx1hx9iafvIsOS3icfFoEwJjPm5gT4jJOn5T7L9IUOGrPr9WZwfxjIOdsc8RZg9lX9NA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img">es-write</p>
+<h3 id="es-读数据过程"><a href="#es-读数据过程" class="headerlink" title="es 读数据过程"></a>es 读数据过程</h3><p>可以通过 <code>doc id</code> 来查询，会根据 <code>doc id</code> 进行 hash，判断出来当时把 <code>doc id</code> 分配到了哪个 shard 上面去，从那个 shard 去查询。</p>
+<ul>
+<li>客户端发送请求到<strong>任意</strong>一个 node，成为 <code>coordinate node</code> 。</li>
+<li><code>coordinate node</code> 对 <code>doc id</code> 进行哈希路由，将请求转发到对应的 node，此时会使用 <code>round-robin</code> <strong>随机轮询算法</strong>，在 <code>primary shard</code> 以及其所有 replica 中随机选择一个，让读请求负载均衡。</li>
+<li>接收请求的 node 返回 document 给 <code>coordinate node</code> 。</li>
+<li><code>coordinate node</code> 返回 document 给客户端。</li>
+</ul>
+<h3 id="es-搜索数据过程"><a href="#es-搜索数据过程" class="headerlink" title="es 搜索数据过程"></a>es 搜索数据过程</h3><p>es 最强大的是做全文检索，就是比如你有三条数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java真好玩儿啊</span><br><span class="line">java好难学啊</span><br><span class="line">j2ee特别牛Copy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
+
+<p>你根据 <code>java</code> 关键词来搜索，将包含 <code>java</code> 的 <code>document</code> 给搜索出来。es 就会给你返回：java真好玩儿啊，java好难学啊。</p>
+<ul>
+<li>客户端发送请求到一个 <code>coordinate node</code> 。</li>
+<li>协调节点将搜索请求转发到<strong>所有</strong>的 shard 对应的 <code>primary shard</code> 或 <code>replica shard</code> ，都可以。</li>
+<li>query phase：每个 shard 将自己的搜索结果（其实就是一些 <code>doc id</code> ）返回给协调节点，由协调节点进行数据的合并、排序、分页等操作，产出最终结果。</li>
+<li>fetch phase：接着由协调节点根据 <code>doc id</code> 去各个节点上<strong>拉取实际</strong>的 <code>document</code> 数据，最终返回给客户端。</li>
+</ul>
+<blockquote>
+<p>写请求是写入 primary shard，然后同步给所有的 replica shard；读请求可以从 primary shard 或 replica shard 读取，采用的是随机轮询算法。</p>
+</blockquote>
+<h3 id="写数据底层原理"><a href="#写数据底层原理" class="headerlink" title="写数据底层原理"></a>写数据底层原理</h3><p><img src="https://mmbiz.qpic.cn/mmbiz_png/wbiax4xEAl5zqw4zmWWJicQx1hx9iafvIsOM52a6qARzWqPKxWOg0yxEBmQhmFUQNy5au8vGtial7NVdPgkgY1uqUQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img">es-write-detail</p>
+<p>先写入内存 buffer，在 buffer 里的时候数据是搜索不到的；同时将数据写入 translog 日志文件。</p>
+<p>如果 buffer 快满了，或者到一定时间，就会将内存 buffer 数据 <code>refresh</code> 到一个新的 <code>segment file</code> 中，但是此时数据不是直接进入 <code>segment file</code> 磁盘文件，而是先进入 <code>os cache</code> 。这个过程就是 <code>refresh</code> 。</p>
+<p>每隔 1 秒钟，es 将 buffer 中的数据写入一个<strong>新的</strong> <code>segment file</code> ，每秒钟会产生一个<strong>新的磁盘文件</strong> <code>segment file</code> ，这个 <code>segment file</code> 中就存储最近 1 秒内 buffer 中写入的数据。</p>
+<p>但是如果 buffer 里面此时没有数据，那当然不会执行 refresh 操作，如果 buffer 里面有数据，默认 1 秒钟执行一次 refresh 操作，刷入一个新的 segment file 中。</p>
+<p>操作系统里面，磁盘文件其实都有一个东西，叫做 <code>os cache</code> ，即操作系统缓存，就是说数据写入磁盘文件之前，会先进入 <code>os cache</code> ，先进入操作系统级别的一个内存缓存中去。只要 <code>buffer</code> 中的数据被 refresh 操作刷入 <code>os cache</code> 中，这个数据就可以被搜索到了。</p>
+<p>为什么叫 es 是<strong>准实时</strong>的？<code>NRT</code> ，全称 <code>near real-time</code> 。默认是每隔 1 秒 refresh 一次的，所以 es 是准实时的，因为写入的数据 1 秒之后才能被看到。可以通过 es 的 <code>restful api</code> 或者 <code>java api</code> ，<strong>手动</strong>执行一次 refresh 操作，就是手动将 buffer 中的数据刷入 <code>os cache</code> 中，让数据立马就可以被搜索到。只要数据被输入 <code>os cache</code> 中，buffer 就会被清空了，因为不需要保留 buffer 了，数据在 translog 里面已经持久化到磁盘去一份了。</p>
+<p>重复上面的步骤，新的数据不断进入 buffer 和 translog，不断将 <code>buffer</code> 数据写入一个又一个新的 <code>segment file</code> 中去，每次 <code>refresh</code> 完 buffer 清空，translog 保留。随着这个过程推进，translog 会变得越来越大。当 translog 达到一定长度的时候，就会触发 <code>commit</code> 操作。</p>
+<p>commit 操作发生第一步，就是将 buffer 中现有数据 <code>refresh</code> 到 <code>os cache</code> 中去，清空 buffer。然后，将一个 <code>commit point</code> 写入磁盘文件，里面标识着这个 <code>commit point</code> 对应的所有 <code>segment file</code> ，同时强行将 <code>os cache</code> 中目前所有的数据都 <code>fsync</code> 到磁盘文件中去。最后<strong>清空</strong> 现有 translog 日志文件，重启一个 translog，此时 commit 操作完成。</p>
+<p>这个 commit 操作叫做 <code>flush</code> 。默认 30 分钟自动执行一次 <code>flush</code> ，但如果 translog 过大，也会触发 <code>flush</code> 。flush 操作就对应着 commit 的全过程，我们可以通过 es api，手动执行 flush 操作，手动将 os cache 中的数据 fsync 强刷到磁盘上去。</p>
+<p>translog 日志文件的作用是什么？你执行 commit 操作之前，数据要么是停留在 buffer 中，要么是停留在 os cache 中，无论是 buffer 还是 os cache 都是内存，一旦这台机器死了，内存中的数据就全丢了。所以需要将数据对应的操作写入一个专门的日志文件 <code>translog</code> 中，一旦此时机器宕机，再次重启的时候，es 会自动读取 translog 日志文件中的数据，恢复到内存 buffer 和 os cache 中去。</p>
+<p>translog 其实也是先写入 os cache 的，默认每隔 5 秒刷一次到磁盘中去，所以默认情况下，可能有 5 秒的数据会仅仅停留在 buffer 或者 translog 文件的 os cache 中，如果此时机器挂了，会<strong>丢失</strong> 5 秒钟的数据。但是这样性能比较好，最多丢 5 秒的数据。也可以将 translog 设置成每次写操作必须是直接 <code>fsync</code> 到磁盘，但是性能会差很多。</p>
+<p>实际上你在这里，如果面试官没有问你 es 丢数据的问题，你可以在这里给面试官炫一把，你说，其实 es 第一是准实时的，数据写入 1 秒后可以搜索到；可能会丢失数据的。有 5 秒的数据，停留在 buffer、translog os cache、segment file os cache 中，而不在磁盘上，此时如果宕机，会导致 5 秒的<strong>数据丢失</strong>。</p>
+<p><strong>总结一下</strong>，数据先写入内存 buffer，然后每隔 1s，将数据 refresh 到 os cache，到了 os cache 数据就能被搜索到（所以我们才说 es 从写入到能被搜索到，中间有 1s 的延迟）。每隔 5s，将数据写入 translog 文件（这样如果机器宕机，内存数据全没，最多会有 5s 的数据丢失），translog 大到一定程度，或者默认每隔 30mins，会触发 commit 操作，将缓冲区的数据都 flush 到 segment file 磁盘文件中。</p>
+<blockquote>
+<p>数据写入 segment file 之后，同时就建立好了倒排索引。</p>
+</blockquote>
+<h3 id="删除-更新数据底层原理"><a href="#删除-更新数据底层原理" class="headerlink" title="删除/更新数据底层原理"></a>删除/更新数据底层原理</h3><p>如果是删除操作，commit 的时候会生成一个 <code>.del</code> 文件，里面将某个 doc 标识为 <code>deleted</code> 状态，那么搜索的时候根据 <code>.del</code> 文件就知道这个 doc 是否被删除了。</p>
+<p>如果是更新操作，就是将原来的 doc 标识为 <code>deleted</code> 状态，然后新写入一条数据。</p>
+<p>buffer 每 refresh 一次，就会产生一个 <code>segment file</code> ，所以默认情况下是 1 秒钟一个 <code>segment file</code> ，这样下来 <code>segment file</code> 会越来越多，此时会定期执行 merge。每次 merge 的时候，会将多个 <code>segment file</code> 合并成一个，同时这里会将标识为 <code>deleted</code> 的 doc 给<strong>物理删除掉</strong>，然后将新的 <code>segment file</code> 写入磁盘，这里会写一个 <code>commit point</code> ，标识所有新的 <code>segment file</code> ，然后打开 <code>segment file</code> 供搜索使用，同时删除旧的 <code>segment file</code> 。</p>
+<h3 id="底层-lucene"><a href="#底层-lucene" class="headerlink" title="底层 lucene"></a>底层 lucene</h3><p>简单来说，lucene 就是一个 jar 包，里面包含了封装好的各种建立倒排索引的算法代码。我们用 Java 开发的时候，引入 lucene jar，然后基于 lucene 的 api 去开发就可以了。</p>
+<p>通过 lucene，我们可以将已有的数据建立索引，lucene 会在本地磁盘上面，给我们组织索引的数据结构。</p>
+<h3 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h3><p>在搜索引擎中，每个文档都有一个对应的文档 ID，文档内容被表示为一系列关键词的集合。例如，文档 1 经过分词，提取了 20 个关键词，每个关键词都会记录它在文档中出现的次数和出现位置。</p>
+<p>那么，倒排索引就是<strong>关键词到文档</strong> ID 的映射，每个关键词都对应着一系列的文件，这些文件中都出现了关键词。</p>
+<p>举个栗子。</p>
+<p>有以下文档：</p>
+<table>
+<thead>
+<tr>
+<th align="left">DocId</th>
+<th align="left">Doc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">谷歌地图之父跳槽 Facebook</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">谷歌地图之父加盟 Facebook</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">谷歌地图创始人拉斯离开谷歌加盟 Facebook</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">谷歌地图之父跳槽 Facebook 与 Wave 项目取消有关</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">谷歌地图之父拉斯加盟社交网站 Facebook</td>
+</tr>
+</tbody></table>
+<p>对文档进行分词之后，得到以下<strong>倒排索引</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">WordId</th>
+<th align="left">Word</th>
+<th align="left">DocIds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">谷歌</td>
+<td align="left">1, 2, 3, 4, 5</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">地图</td>
+<td align="left">1, 2, 3, 4, 5</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">之父</td>
+<td align="left">1, 2, 4, 5</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">跳槽</td>
+<td align="left">1, 4</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">Facebook</td>
+<td align="left">1, 2, 3, 4, 5</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">加盟</td>
+<td align="left">2, 3, 5</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">创始人</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">拉斯</td>
+<td align="left">3, 5</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">离开</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">与</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">..</td>
+<td align="left">..</td>
+<td align="left">..</td>
+</tr>
+</tbody></table>
+<p>另外，实用的倒排索引还可以记录更多的信息，比如文档频率信息，表示在文档集合中有多少个文档包含某个单词。</p>
+<p>那么，有了倒排索引，搜索引擎可以很方便地响应用户的查询。比如用户输入查询 <code>Facebook</code> ，搜索系统查找倒排索引，从中读出包含这个单词的文档，这些文档就是提供给用户的搜索结果。</p>
+<p>要注意倒排索引的两个重要细节：</p>
+<ul>
+<li>倒排索引中的所有词项对应一个或多个文档；</li>
+<li>倒排索引中的词项<strong>根据字典顺序升序排列</strong></li>
+</ul>
+<blockquote>
+<p>上面只是一个简单的例子，并没有严格按照字典顺序升序排列。</p>
+</blockquote>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/08/11/%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E4%B8%8E%E5%AE%9A%E4%BD%8D/">
+      经典面试题：环形链表的判断与定位
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 11, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/08/11/%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E4%B8%8E%E5%AE%9A%E4%BD%8D/" class="leancloud_visitors" data-flag-title="经典面试题：环形链表的判断与定位">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/08/11/%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E4%B8%8E%E5%AE%9A%E4%BD%8D/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/08/11/%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E4%B8%8E%E5%AE%9A%E4%BD%8D/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天这篇文章要讲解的题目是「环形链表」的两道题目：</p>
+<ul>
+<li><strong>LeetCode 141. Linked List Cycle</strong>（Easy）</li>
+<li><strong>LeetCode 142. Linked List Cycle II</strong>（Medium）</li>
+</ul>
+<p>两道题目都分别有「哈希表」的朴素解法，以及「双指针」的巧妙解法。非常适合大家掌握面试中的答题思路。想顺利通过面试的同学，不要错过这篇文章哟。</p>
+<h2 id="判断链表是否有环"><a href="#判断链表是否有环" class="headerlink" title="判断链表是否有环"></a>判断链表是否有环</h2><p>链表是线性结构，怎么会出现环呢？实际上是这道题中的链表经过了特殊改造，链表尾部会额外增加一个指针，连接到链表中间的某个结点，如下图所示。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/TKAD4axFcibibC6mf0PGm6Qhb7nEsDau4pSKH2aNuPpicgInlkwb32XAXBfqcTNAicKeGqWrS5icZsKO7wneyjqjwhQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img">链表尾部额外增加一个指针，形成环路</p>
+<p>我们今天要讲的这两道题，都是在这个结构的基础上出的题。</p>
+<p>先看 141 题：</p>
+<p><strong>LeetCode 141. Linked List Cycle</strong>（Easy）</p>
+<blockquote>
+<p>给定一个链表，判断链表中是否有环。</p>
+<p><strong>示例：</strong></p>
+<p>输入：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/TKAD4axFcibibC6mf0PGm6Qhb7nEsDau4pibicvbicA1kFJ0ytPAhoibm90CstiaoZYTsezU919r4eaDUJziaVDp73xlTA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>输出：true</p>
+<p>解释：链表中有一个环，其尾部连接到第二个结点。</p>
+</blockquote>
+<p>这道题其实是一道非常新颖的题目，<strong>考察的是对链表知识的综合掌握</strong>。只靠背链表的遍历代码来解题的人，看到这道题会手足无措。因为链表加上环之后，普通的遍历代码根本就不管用了！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void traverse(ListNode head) &#123;</span><br><span class="line">    for (ListNode q &#x3D; head; q !&#x3D; null; q &#x3D; q.next) &#123;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的这段遍历代码，在有环路的链表上，会陷入「无限循环」：指针 <code>q</code> 在环路中一直绕圈，永远到达不了结束条件 <code>q == null</code> 。</p>
+<h3 id="解题基本思路"><a href="#解题基本思路" class="headerlink" title="解题基本思路"></a>解题基本思路</h3><p>其实看到前面的链表遍历代码，很多同学应该已经想出这道题的解题关键点了：</p>
+<p><strong>我只要顺着链表遍历，如果循环能正常退出（遇到 <code>q == null</code> 的情况），那么链表无环；如果循环永远不能退出，那么链表有环。</strong></p>
+<p>那么难点又来了，如果循环永远不能退出，我们的代码根本结束不了，不能返回「链表有环」的结果……</p>
+<blockquote>
+<p><strong>面试小贴士：</strong></p>
+<p>在面试中，我们经常会遇到以上的情况。自己有了一点思路，但是还不能确定思路对不对。这时候，我们要做的不是「闷头苦想」直到想出最终解法，而是应该及时把自己关键的思路说给面试官。</p>
+<p>面试中最忌讳的是长时间的沉默。及时跟面试官反馈我们初步的思路，可以确定我们的思路是否正确。即使一开始一点思路都没有，也可以直接说出来，请面试官给一点提示。</p>
+</blockquote>
+<p>此时，面试官会告诉我们，以上的思路是正确的。接下来，我们需要能够判断链表有环的情况，并及时退出循环。</p>
+<p>那么究竟如何判断呢？可以使用朴素的「哈希表」方案，或者是巧妙的「双指针」方法，下面会分别介绍。</p>
+<h3 id="哈希表解法"><a href="#哈希表解法" class="headerlink" title="哈希表解法"></a>哈希表解法</h3><p>哈希表解法的基本思路是：<strong>把访问过的结点记录下来，如果在遍历中遇到了访问过的结点，那么可以确定链表中存在环</strong>。记录访问过的结点，最常用的方法就是使用哈希表了。</p>
+<p>有了这一点思路之后，我们很快可以写出相应的题解代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 记录已访问过的结点</span></span><br><span class="line">    Set&lt;ListNode&gt; seen = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (ListNode q = head; q != <span class="keyword">null</span>; q = q.next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (seen.contains(q)) &#123;</span><br><span class="line">            <span class="comment">// 遇到已访问过的结点，确定链表存在环</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        seen.add(q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遍历循环正常退出，链表不存在环</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就成功地解决了这道题目。</p>
+<p>但接下来面试官会让我们分析算法的时间、空间复杂度。发现空间复杂度是 之后，面试官会让我们再写一个空间复杂度更低的解法，也就是说，我们不能使用哈希表这样的额外存储空间了。</p>
+<h3 id="双指针解法"><a href="#双指针解法" class="headerlink" title="双指针解法"></a>双指针解法</h3><p>在面试中，做出上面的哈希表解法属于「基本达标」，可以打 70 分了，但是如果要让面试官青睐你，打到 90 分，还要能写出不使用额外存储空间的解法，也就是双指针解法。</p>
+<p>实话说，要在面试中凭空想出双指针解法有点困难。因此，这要靠我们平时的积累，多见识不同的解题技巧，这样在面试中可以熟练运用。</p>
+<p>链表中的双指针技巧也叫「快慢指针」，指的是用两个指针一快一慢同时遍历链表。</p>
+<p>例如，<strong>寻找链表中点</strong>的操作。使用一快一慢两个指针。快指针一次前进两个结点，速度是慢指针的两倍。当快指针到达链表尾部时，慢指针正好到达的链表的中部，这样就找到的链表的中点，非常巧妙。遍历过程如下图所示。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/TKAD4axFcibibC6mf0PGm6Qhb7nEsDau4pAjnURzVjr7iaiaBBnmcR0LsIibyibb7w8vzuFb8R5ls0Rq07b1a3mibafjg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img">使用快慢指针寻找链表中点（动图）</p>
+<p>如果我们熟悉这个技巧，就可以在环形链表这道题中触类旁通，使用出快慢指针技巧。</p>
+<p>我们让快指针一次前进两个结点，慢指针一次前进一个结点。当快慢指针都进入环路时，快指针会将慢指针「套圈」，从后面追上慢指针，如下图所示。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/TKAD4axFcibibC6mf0PGm6Qhb7nEsDau4pvx4AFNyBiaycQa9PjK4jiaSs1ujIvGWQoaeDRic8El5dyF4ABZYo6vlrg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img">在环路中，快指针套圈慢指针（动图）</p>
+<p>这样，如果快指针追上了慢指针，我们就可以判断链表中存在环路。而如果链表中不存在环的话，快指针会永远走在慢指针的前面，它们不会相遇。</p>
+<p>依照这个思路，我们可以写出以下的题解代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        <span class="comment">// fast 和 slow 指向同一个结点，说明存在“套圈”</span></span><br><span class="line">        <span class="keyword">if</span> (fast == slow) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// fast 到达链表尾部，则不存在环</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码简洁，解释清晰，那么这道面试算法题，你可以得 100 分。</p>
+<h2 id="寻找链表环的起点"><a href="#寻找链表环的起点" class="headerlink" title="寻找链表环的起点"></a>寻找链表环的起点</h2><p>LeetCode 142 这道题，其实相当于 141 的「第二问」。当你用双指针解决了「判断环形链表」的题目之后，面试官看你答得不错，可能会继续追问，如何寻找环形链表的环的起点？如果你能答出这一问，可以得 120 分。</p>
+<p><strong>LeetCode 142. Linked List Cycle II</strong>（Medium）</p>
+<blockquote>
+<p>给定一个链表，返回链表开始入环的第一个节点。如果链表无环，则返回 <code>null</code>。不允许修改给定的链表。</p>
+<p><strong>示例：</strong></p>
+<p>输入：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/TKAD4axFcibibC6mf0PGm6Qhb7nEsDau4pibicvbicA1kFJ0ytPAhoibm90CstiaoZYTsezU919r4eaDUJziaVDp73xlTA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>输出：结点 &lt;2&gt;</p>
+<p>解释：链表中有一个环，其尾部连接到第二个结点。</p>
+</blockquote>
+<p>如果用哈希表的方法，这道题其实和前一题是一样的，没什么难度。因此，面试官要求你用双指针的方法寻找链表环的起点。</p>
+<p>乍一看来，这道题挺难的。我们可以用快慢指针的方法知道链表中是否存在环，但我们不知道两个指针相遇在什么位置，要找到环的起点就更难了。不过不要慌，我们先画个图看看两个指针相遇的过程：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/TKAD4axFcibibC6mf0PGm6Qhb7nEsDau4pCXescS9cSl7Slc1clQxSTonKN8X6UZFhM8JSC7doL8sbfrpgaaibQiag/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img">两个指针相遇的过程</p>
+<p>如上图所示，链表分为两段：无环段和有环段。我们设无环段的长度为 ，环的长度为 。当快慢指针相遇时，我们设慢指针已经走了 步，那么快指针这时候已经走了 步。快指针套圈了慢指针，也就是比慢指针多走了若干圈。我们可以列出公式：</p>
+<p>其中， 可以是任意正整数，因为快指针可能套了慢指针不止一圈。将上式化简得到</p>
+<p>这个 恰好是慢指针走的步数。也就是说，慢指针目前前进的 步，正好是环的长度 的整数倍。</p>
+<p>那么，<strong>慢指针再走 步，就可以正好到达环的起点</strong>（图中的 S 点）。这是因为，，正好够从链表头部出发，走一段无环段（），再把有环段走 圈（）。</p>
+<p>如果我们在此时再用一个指针 <code>q</code> 从链表头部出发。那么指针 <code>q</code> 和慢指针 <code>slow</code> 会在走了 步以后恰好在环的起点处相遇。这样，我们就可以知道环的起点了。</p>
+<p>根据以上思路，我们可以写出下面的题解代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        <span class="comment">// 快慢指针相遇，说明链表存在环</span></span><br><span class="line">        <span class="keyword">if</span> (fast == slow) &#123;</span><br><span class="line">            <span class="comment">// 此时 slow 指针距离环的起点的距离恰好为 a</span></span><br><span class="line">            ListNode q = head;</span><br><span class="line">            <span class="keyword">while</span> (q != slow) &#123;</span><br><span class="line">                slow = slow.next;</span><br><span class="line">                q = q.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// slow 和 q 相遇的位置一定是环的起点</span></span><br><span class="line">            <span class="keyword">return</span> slow;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 链表不存在环，返回 null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你能思考出以上内容并写出结果，那么面试官会非常认可你，这场面试基本就比较稳了。</p>
+<h2 id="面试套路总结"><a href="#面试套路总结" class="headerlink" title="面试套路总结"></a>面试套路总结</h2><p>从以上的讲解过程中我们可以发现，这个环形链表的题目其实可以分成几个小问，难度层层递进：</p>
+<ol>
+<li>用哈希表的方法判断链表是否存在环</li>
+<li>用快慢指针的方法判断链表是否存在环</li>
+<li>用快慢指针的方法寻找环的起点</li>
+</ol>
+<p>在面试中，面试官往往会先抛出比较简单的一两个小问进行「试探」。当发现你回答得还不错，则会继续提更难的问题，知道你不会为止。如果你一开始就回答得不好，那么面试官可能会认为你在这一块的掌握很一般，很快转而问其他的问题。</p>
+<p>把握清楚面试中的这个「层层递进」的规律，我们要注意两点：</p>
+<p>第一，在平时复习的时候要注意基础。也许你能做出很多高难度的题目，但如果在简单的题目上回答不上来，面试官可能就不会继续问了，你解决难题的能力可能也发挥不上来。</p>
+<p>第二，面试中如果遇到很难的题目、一点也答不上来，不要气馁。这时候很可能是面试官在试探你能力的边界在哪里，侧面说明了你前面可能表现得不错。所以说在面试的全程中都要不慌不忙，会就正常回答，不会就直接说不知道。例如本文例题「寻找环的起点」，其实能在面试中做出来的人不多，能把「判断环是否存在」做好就已经很不错了。</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/08/08/Docker/">
+      Docker
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 8, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/08/08/Docker/" class="leancloud_visitors" data-flag-title="Docker">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/08/08/Docker/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/08/08/Docker/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Docker-入门终极指南：边学边用"><a href="#Docker-入门终极指南：边学边用" class="headerlink" title="Docker 入门终极指南：边学边用"></a>Docker 入门终极指南：边学边用</h2><p>富 <code>Web</code> 时代，应用变得越来越强大，与此同时也越来越复杂。集群部署、隔离环境、灰度发布以及动态扩容缺一不可，而容器化则成为中间的必要桥梁。</p>
+<p>本节我们就来探索一下 <code>Docker</code> 的神秘世界，从零到一掌握 <code>Docker</code> 的基本原理与实践操作。别再守着前端那一亩三分地，是时候该开疆扩土了。</p>
+<p>我们将会围绕下面几点展开：1.讲个故事 2.虚拟机与容器 3.认识 <code>Docker</code>4.核心概念 5.安装 <code>Docker</code>6.快速开始 7.常规操作 8.最佳实践</p>
+<h4 id="一、讲个故事"><a href="#一、讲个故事" class="headerlink" title="一、讲个故事"></a>一、讲个故事</h4><p>为了更好的理解 <code>Docker</code> 是什么，我们先来讲个<strong>故事</strong>[1]：</p>
+<p>我需要盖一个房子，于是我搬石头、砍木头、画图纸、盖房子。一顿操作，终于把这个房子盖好了。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/UWba2ryLMqlTBkSNX8ZVg2DVa5ic9q9zsnHXPtLfZ0c8PyFwfKveZ2GvZdU0TCua4IJX3hdQuic3sJlgIqS236MQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>结果，住了一段时间，心血来潮想搬到海边去。这时候按以往的办法，我只能去海边，再次搬石头、砍木头、画图纸、盖房子。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/UWba2ryLMqlTBkSNX8ZVg2DVa5ic9q9zsTWkLcv24XmUqV9icYNu2JS69S3oUVKjF5389hxVCbFbmjKewRMOf1Mw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>烦恼之际，跑来一个魔法师教会我一种魔法。这种魔法可以把我盖好的房子复制一份，做成「镜像」，放在我的背包里。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/UWba2ryLMqlTBkSNX8ZVg2DVa5ic9q9zsSW7wYSTMWNxO0vcdbHmTic6SFpZCK9nZnes1QAuR13xtdn5ZYkiaDLvw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>黑魔法</p>
+<p>等我到了海边，就用这个「镜像」，复制一套房子，拎包入住。</p>
+<p>是不是很神奇？对应到我们的项目中来，房子就是项目本身，镜像就是项目的复制，背包就是镜像仓库。如果要动态扩容，从仓库中取出项目镜像，随便复制就可以了。Build once，Run anywhere!</p>
+<p>不用再关注版本、兼容、部署等问题，彻底解决了「上线即崩，无休止构建」的尴尬。</p>
+<h4 id="二、虚拟机与容器"><a href="#二、虚拟机与容器" class="headerlink" title="二、虚拟机与容器"></a>二、虚拟机与容器</h4><p>开始之前，我们来做一些基础知识的储备：</p>
+<p>1.<strong>虚拟机</strong>：虚拟化硬件 虚拟机 <code>Virtual Machine</code> 指通过软件模拟的<strong>具有完整硬件系统功能的、运行在一个完全隔离环境中的完整计算机系统</strong>。在实体计算机中能够完成的工作在虚拟机中都能够实现。</p>
+<p>在计算机中创建虚拟机时，需要将实体机的部分硬盘和内存容量作为虚拟机的硬盘和内存容量。<strong>每个虚拟机都有独立的 <code>CMOS</code>、硬盘和操作系统，可以像使用实体机一样对虚拟机进行操作</strong>。在容器技术之前，业界的网红是虚拟机。</p>
+<p>虚拟机技术的代表，是 <code>VMWare</code> 和 <code>OpenStack</code>。更多请参看<strong>百科虚拟机</strong>[2]。</p>
+<p>2.<strong>容器</strong>：将操作系统层虚拟化，是一个标准的软件单元</p>
+<ul>
+<li>随处运行：容器可以将代码与配置文件和相关依赖库进行打包，从而确保在任何环境下的运行都是一致的。</li>
+<li>高资源利用率：容器提供进程级的隔离，因此可以更加精细地设置 <code>CPU</code> 和内存的使用率，进而更好地利用服务器的计算资源。</li>
+<li>快速扩展：每个容器都可作为单独的进程予以运行，并且可以共享底层操作系统的系统资源，这样一来可以加快容器的启动和停止效率。</li>
+</ul>
+<p>3.<strong>区别与联系</strong></p>
+<ul>
+<li>虚拟机虽然可以隔离出很多「子电脑」，但占用空间更大，启动更慢。虚拟机软件可能还要花钱，例如<code>VMWare</code>；</li>
+<li>容器技术不需要虚拟出整个操作系统，只需要虚拟一个小规模的环境，类似「沙箱」；</li>
+<li>运行空间，虚拟机一般要几 <code>GB</code> 到 几十 <code>GB</code> 的空间，而容器只需要 <code>MB</code> 级甚至 <code>KB</code> 级；</li>
+</ul>
+<p>我们来看一下对比数据：</p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="center">虚拟机</th>
+<th align="center">容器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">隔离级别</td>
+<td align="center">操作系统级</td>
+<td align="center">进程</td>
+</tr>
+<tr>
+<td align="left">隔离策略</td>
+<td align="center"><strong>Hypervisor</strong>[3]（虚拟机监控器）</td>
+<td align="center"><strong>Cgroups</strong>[4]（控制组群）</td>
+</tr>
+<tr>
+<td align="left">系统资源</td>
+<td align="center">5 ～ 15%</td>
+<td align="center">0 ～ 5%</td>
+</tr>
+<tr>
+<td align="left">启动时间</td>
+<td align="center">分钟级</td>
+<td align="center">秒级</td>
+</tr>
+<tr>
+<td align="left">镜像存储</td>
+<td align="center">GB - TB</td>
+<td align="center">KB - MB</td>
+</tr>
+<tr>
+<td align="left">集群规模</td>
+<td align="center">上百</td>
+<td align="center">上万</td>
+</tr>
+<tr>
+<td align="left">高可用策略</td>
+<td align="center">备份、容灾、迁移</td>
+<td align="center">弹性、负载、动态</td>
+</tr>
+</tbody></table>
+<p>与虚拟机相比，容器更轻量且速度更快，因为它利用了 <code>Linux</code> 底层操作系统在隔离的环境中运行。虚拟机的 <code>Hypervisor</code> 创建了一个非常牢固的边界，以防止应用程序突破它，而容器的边界不那么强大。</p>
+<p>物理机部署不能充分利用资源，造成资源浪费。虚拟机方式部署，虚拟机本身会占用大量资源，导致资源浪费，另外虚拟机性能也很差。而容器化部署比较灵活，且轻量级，性能较好。</p>
+<p>虚拟机属于虚拟化技术，而 Docker 这样的容器技术，属于轻量级的虚拟化。</p>
+<h4 id="三、认识-Docker"><a href="#三、认识-Docker" class="headerlink" title="三、认识 Docker"></a>三、认识 Docker</h4><p><img src="https://mmbiz.qpic.cn/mmbiz_png/UWba2ryLMqlTBkSNX8ZVg2DVa5ic9q9zs4r6TZwULVueIbQCjmh1CxO2aIYvejb7rvA8PxfcW5iaW95ySvia6W3pw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>1.概念</strong><code>Docker</code> 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 <code>Linux</code> 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
+<p><code>Docker</code> 技术的<strong>三大核心概念</strong>，分别是：镜像 <code>Image</code>、容器 <code>Container</code>、仓库 <code>Repository</code>。</p>
+<p><strong>2.<code>Docker</code> 轻量级的原因？</strong>相信你也会有这样的疑惑：为什么 <code>Docker</code> 启动快？如何做到和宿主机共享内核？</p>
+<p>当我们请求 <code>Docker</code> 运行容器时，<code>Docker</code> 会在计算机上设置一个资源隔离的环境。然后将打包的应用程序和关联的文件复制到 <code>Namespace</code> 内的文件系统中，此时环境的配置就完成了。之后 <code>Docker</code> 会执行我们预先指定的命令，运行应用程序。</p>
+<p>镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
+<h4 id="四、核心概念"><a href="#四、核心概念" class="headerlink" title="四、核心概念"></a>四、核心概念</h4><p>1.<code>Build, Ship and Run</code>（搭建、运输、运行）；</p>
+<p>2.<code>Build once, Run anywhere</code>（一次搭建，处处运行）；</p>
+<p>3.<code>Docker</code> 本身并不是容器，它是创建容器的工具，是应用容器引擎；</p>
+<p>4.<code>Docker</code> 三大核心概念，分别是：镜像 <code>Image</code>，容器 <code>Container</code>、仓库 <code>Repository</code>；</p>
+<p>5.<code>Docker</code> 技术使用 <code>Linux</code> 内核和内核功能（例如 <code>Cgroups</code> 和 <code>namespaces</code>）来分隔进程，以便各进程相互独立运行。</p>
+<p>6.由于 <code>Namespace</code> 和 <code>Cgroups</code> 功能仅在 <code>Linux</code> 上可用，因此容器无法在其他操作系统上运行。那么 <code>Docker</code> 如何在 <code>macOS</code> 或 <code>Windows</code> 上运行？<code>Docker</code> 实际上使用了一个技巧，并在非 <code>Linux</code> 操作系统上安装 <code>Linux</code> 虚拟机，然后在虚拟机内运行容器。</p>
+<p>7.镜像是一个可执行包，其包含运行应用程序所需的代码、运行时、库、环境变量和配置文件，容器是镜像的<strong>运行时实例</strong>。</p>
+<p>更多关于 <code>Docker</code> 的原理，可以查看 <strong><code>Docker</code> 工作原理及容器化简易指南</strong>[5]，这里不再赘述。</p>
+<h4 id="五、安装-Docker"><a href="#五、安装-Docker" class="headerlink" title="五、安装 Docker"></a>五、安装 Docker</h4><p><strong>1.命令行安装</strong><code>Homebrew</code> 的 <code>Cask</code> 已经支持 <code>Docker for Mac</code>，因此可以很方便的使用 <code>Homebrew Cask</code> 来进行安装，执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure>
+
+<p>更多安装方式，请查看官方文档：<strong>安装 <code>Docker</code></strong>[6]</p>
+<p><strong>2.查看版本</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.配置镜像加速</strong>设置 <strong>Docker Engine</strong>[7] 写入配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;http:&#x2F;&#x2F;hub-mirror.c.163.com&#x2F;&quot;,</span><br><span class="line">    &quot;https:&#x2F;&#x2F;registry.docker-cn.com&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;insecure-registries&quot;:[],</span><br><span class="line">  &quot;experimental&quot;: false,</span><br><span class="line">  &quot;debug&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.安装桌面端</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/UWba2ryLMqlTBkSNX8ZVg2DVa5ic9q9zsAdvYib8YU6k33pu5dH2E4deTf8ic93K5bJgCYHdVgqMsTicDaIibOAcxgw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>桌面端操作非常简单，先去<strong>官网下载</strong>[8]。通过 <code>Docker</code> 桌面端，我们可以方便的操作：1.clone：克隆一个项目 2.build：打包镜像 3.run：运行实例 4.share：共享镜像</p>
+<p>好了，准备工作就绪，下面可以大展身手了！</p>
+<h4 id="六、快速开始"><a href="#六、快速开始" class="headerlink" title="六、快速开始"></a>六、快速开始</h4><p>安装完 <code>Docker</code> 之后，我们先打个实际项目的镜像，边学边用。</p>
+<p><strong>1.首先需要大致了解一下我们将会用到的 <code>11</code> 个命令</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FROM</td>
+<td align="left">基于哪个镜像来实现</td>
+</tr>
+<tr>
+<td align="left">MAINTAINER</td>
+<td align="left">镜像创建者</td>
+</tr>
+<tr>
+<td align="left">ENV</td>
+<td align="left">声明环境变量</td>
+</tr>
+<tr>
+<td align="left">RUN</td>
+<td align="left">执行命令</td>
+</tr>
+<tr>
+<td align="left">ADD</td>
+<td align="left">添加宿主机文件到容器里，有需要解压的文件会自动解压</td>
+</tr>
+<tr>
+<td align="left">COPY</td>
+<td align="left">添加宿住机文件到容器里</td>
+</tr>
+<tr>
+<td align="left">WORKDIR</td>
+<td align="left">工作目录</td>
+</tr>
+<tr>
+<td align="left">EXPOSE</td>
+<td align="left">容器内应用可使用的端口</td>
+</tr>
+<tr>
+<td align="left">CMD</td>
+<td align="left">容器启动后所执行的程序，如果执行 docker run 后面跟启动命令会被覆盖掉</td>
+</tr>
+<tr>
+<td align="left">ENTRYPOINT</td>
+<td align="left">与 CMD 功能相同，但需 docker run 不会覆盖，如果需要覆盖可增加参数 -entrypoint 来覆盖</td>
+</tr>
+<tr>
+<td align="left">VOLUME</td>
+<td align="left">数据卷，将宿主机的目录映射到容器中的目录</td>
+</tr>
+</tbody></table>
+<p>2.<strong>新建项目</strong>为了快捷，我们直接使用<strong><code>Vue</code> 脚手架</strong>[9]构建项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create docker-demo</span><br></pre></td></tr></table></figure>
+
+<p>尝试启动一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn serve</span><br></pre></td></tr></table></figure>
+
+<p>访问地址：<code>http://localhost:8080/</code>。项目就绪，我们接着为项目打包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn build</span><br></pre></td></tr></table></figure>
+
+<p>这时候，项目目录下的 <code>Dist</code> 就是我们要部署的静态资源了，我们继续下一步。</p>
+<p><strong>需要注意</strong>：前端项目一般分两类，一类直接 <code>Nginx</code> 静态部署，一类需要启动 <code>Node</code> 服务。本节我们只考虑第一种。关于 <code>Node</code> 服务，<strong>下文</strong>[10]我会详细说明。</p>
+<p>3.<strong>新建 <code>Dockerfile</code></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd docker-demo &amp;&amp; touch Dockerfile</span><br></pre></td></tr></table></figure>
+
+<p>此时的项目目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Dockerfile</span><br><span class="line">├── README.md</span><br><span class="line">├── babel.config.js</span><br><span class="line">├── dist</span><br><span class="line">├── node_modules</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">├── src</span><br><span class="line">└── yarn.lock</span><br></pre></td></tr></table></figure>
+
+<p>可以看到我们已经在 <code>docker-demo</code> 目录下成功创建了 <code>Dockerfile</code> 文件。</p>
+<p>4.<strong>准备 <code>Nginx</code> 镜像</strong>运行你的 <code>Docker</code> 桌面端，就会默认启动实例，我们在控制台拉取 <code>Nginx</code>镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<p>控制台会出现如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library&#x2F;nginx</span><br><span class="line">8559a31e96f4: Pull complete</span><br><span class="line">8d69e59170f7: Pull complete</span><br><span class="line">3f9f1ec1d262: Pull complete</span><br><span class="line">d1f5ff4f210d: Pull complete</span><br><span class="line">1e22bfa8652e: Pull complete</span><br><span class="line">Digest: sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133</span><br><span class="line">Status: Downloaded newer image for nginx:latest</span><br><span class="line">docker.io&#x2F;library&#x2F;nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>如果你出现这样的异常，请确认 <code>Docker</code> 实例是否正常运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cannot connect to the Docker daemon at unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock. Is the docker daemon running?</span><br></pre></td></tr></table></figure>
+
+<p>镜像准备 <code>OK</code>，我们在根目录创建 <code>Nginx</code> 配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch default.conf</span><br></pre></td></tr></table></figure>
+
+<p>写入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    access_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;host.access.log  main;</span><br><span class="line">    error_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log  error;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">    location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">        root   &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.<strong>配置镜像</strong>打开 <code>Dockerfile</code> ，写入如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx</span><br><span class="line">COPY dist&#x2F; &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F;</span><br><span class="line">COPY default.conf &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf</span><br></pre></td></tr></table></figure>
+
+<p>我们逐行解释一下代码：</p>
+<ul>
+<li><code>FROM nginx</code> 指定该镜像是基于 <code>nginx:latest</code> 镜像而构建的；</li>
+<li><code>COPY dist/ /usr/share/nginx/html/</code> 命令的意思是将项目根目录下 <code>dist</code> 文件夹中的所有文件复制到镜像中 <code>/usr/share/nginx/html/</code> 目录下；</li>
+<li><code>COPY default.conf /etc/nginx/conf.d/default.conf</code> 将 <code>default.conf</code> 复制到 <code>etc/nginx/conf.d/default.conf</code>，用本地的 <code>default.conf</code> 配置来替换 <code>Nginx</code> 镜像里的默认配置。</li>
+</ul>
+<p>6.<strong>构建镜像</strong><code>Docker</code> 通过 <code>build</code> 命令来构建镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t jartto-docker-demo .</span><br></pre></td></tr></table></figure>
+
+<p>按照惯例，我们解释一下上述代码：</p>
+<ul>
+<li><code>-t</code> 参数给镜像命名 <code>jartto-docker-demo</code></li>
+<li><code>.</code> 是基于当前目录的 <code>Dockerfile</code> 来构建镜像</li>
+</ul>
+<p>执行成功后，将会输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Sending build context to Docker daemon  115.4MB</span><br><span class="line">Step 1&#x2F;3 : FROM nginx</span><br><span class="line"> ---&gt; 2622e6cca7eb</span><br><span class="line">Step 2&#x2F;3 : COPY dist&#x2F; &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F;</span><br><span class="line"> ---&gt; Using cache</span><br><span class="line"> ---&gt; 82b31f98dce6</span><br><span class="line">Step 3&#x2F;3 : COPY default.conf &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf</span><br><span class="line"> ---&gt; 7df6efaf9592</span><br><span class="line">Successfully built 7df6efaf9592</span><br><span class="line">Successfully tagged jartto-docker-demo:latest</span><br></pre></td></tr></table></figure>
+
+<p>镜像制作成功！我们来查看一下容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls | grep jartto-docker-demo</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，我们打出了一个 <code>133MB</code> 的项目镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jartto-docker-demo latest 7df6efaf9592 About a minute ago 133MB</span><br></pre></td></tr></table></figure>
+
+<p>镜像也有好坏之分，后续我们将介绍如何优化，这里可以先暂时忽略。</p>
+<p>7.<strong>运行容器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3000:80 --name docker-vue jartto-docker-demo</span><br></pre></td></tr></table></figure>
+
+<p>这里解释一下参数：</p>
+<ul>
+<li><code>-d</code> 设置容器在后台运行</li>
+<li><code>-p</code> 表示端口映射，把本机的 <code>3000</code> 端口映射到 <code>container</code> 的 <code>80</code> 端口（这样外网就能通过本机的 <code>3000</code> 端口访问了</li>
+<li><code>--name</code> 设置容器名 <code>docker-vue</code></li>
+<li><code>jartto-docker-demo</code> 是我们上面构建的镜像名字</li>
+</ul>
+<p>补充一点：在控制台，我们可以通过 <code>docker ps</code> 查看刚运行的 <code>Container</code> 的 <code>ID</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<p>控制台会输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID IMAGE              COMMAND                  CREATED       STATUS PORTS  NAMES</span><br><span class="line">ab1375befb0b jartto-docker-demo &quot;&#x2F;docker-entrypoint.…&quot;   8 minutes ago Up 7 minutes  0.0.0.0:3000-&gt;80&#x2F;tcp  docker-vue</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用桌面端，那么打开 <code>Docker Dashboard</code> 就可以看到容器列表了，如下图：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/UWba2ryLMqlTBkSNX8ZVg2DVa5ic9q9zsSddjoI1M8xsP2Rn8wPxMlvZiaDblXicMPvdvxAibNPR2BIvNZtcoQ6BUg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>8.<strong>访问项目</strong>因为我们映射了本机 <code>3000</code> 端口，所以执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v -i localhost:3000</span><br></pre></td></tr></table></figure>
+
+<p>或者打开浏览器，访问：<code>localhost:3000</code></p>
+<p>9.<strong>发布镜像</strong></p>
+<p>如果你想为社区贡献力量，那么需要将镜像发布，方便其他开发者使用。</p>
+<p>发布镜像需要如下步骤：</p>
+<ul>
+<li>登陆 <code>[dockerhub](https://hub.docker.com &quot;dockerhub&quot;)</code>，注册账号；</li>
+<li>命令行执行 <code>docker login</code>，之后输入我们的账号密码，进行登录；</li>
+<li>推送镜像之前，需要打一个 <code>Tag</code>，执行 <code>docker tag &lt;image&gt; &lt;username&gt;/&lt;repository&gt;:&lt;tag&gt;</code></li>
+</ul>
+<p>全流程结束，以后我们要使用，再也不需要「搬石头、砍木头、画图纸、盖房子」了，拎包入住。<strong>这也是 <code>docker</code> 独特魅力所在。</strong></p>
+<h4 id="七、常规操作"><a href="#七、常规操作" class="headerlink" title="七、常规操作"></a>七、常规操作</h4><p>到这里，恭喜你已经完成了 <code>Docker</code> 的入门项目！如果还想继续深入，不妨接着往下看看。</p>
+<p><strong>1.参数使用</strong></p>
+<ul>
+<li><p><code>FROM</code></p>
+</li>
+<li><ul>
+<li>指定基础镜像，所有构建的镜像都必须有一个基础镜像，且 <code>FROM</code> 命令必须是 <code>Dockerfile</code> 的第一个命令</li>
+<li><code>FROM &lt;image&gt; [AS &lt;name&gt;]</code> 指定从一个镜像构建起一个新的镜像名字</li>
+<li><code>FROM &lt;image&gt;[:&lt;tag&gt;] [AS &lt;name&gt;]</code> 指定镜像的版本 <code>Tag</code></li>
+<li>示例：<code>FROM mysql:5.0 AS database</code></li>
+</ul>
+</li>
+<li><p><code>MAINTAINER</code></p>
+</li>
+<li><ul>
+<li>镜像维护人的信息</li>
+<li><code>MAINTAINER &lt;name&gt;</code></li>
+<li>示例：<code>MAINTAINER Jartto Jartto@qq.com</code></li>
+</ul>
+</li>
+<li><p><code>RUN</code></p>
+</li>
+<li><ul>
+<li>构建镜像时要执行的命令</li>
+<li><code>RUN &lt;command&gt;</code></li>
+<li>示例：<code>RUN [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></li>
+</ul>
+</li>
+<li><p><code>ADD</code></p>
+</li>
+<li><ul>
+<li>将本地的文件添加复制到容器中去，压缩包会解压，可以访问网络上的文件，会自动下载</li>
+<li><code>ADD &lt;src&gt; &lt;dest&gt;</code></li>
+<li>示例：<code>ADD *.js /app</code> 添加 <code>js</code> 文件到容器中的 <code>app</code> 目录下</li>
+</ul>
+</li>
+<li><pre><code>COPY
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- - 功能和 &#96;ADD&#96; 一样，只是复制，不会解压或者下载文件</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+CMD
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- - 启动容器后执行的命令，和 &#96;RUN&#96; 不一样，&#96;RUN&#96; 是在构建镜像是要运行的命令</span><br><span class="line">  - 当使用 &#96;docker run&#96; 运行容器的时候，这个可以在命令行被覆盖</span><br><span class="line">  - 示例：&#96;CMD [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]&#96;</span><br><span class="line"></span><br><span class="line">- &#96;ENTRYPOINT&#96;</span><br><span class="line"></span><br><span class="line">- - 也是执行命令，和 &#96;CMD&#96; 一样，只是这个命令不会被命令行覆盖</span><br><span class="line">  - &#96;ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]&#96;</span><br><span class="line">  - 示例：&#96;ENTRYPOINT [&quot;donnet&quot;, &quot;myapp.dll&quot;]&#96;</span><br><span class="line"></span><br><span class="line">- &#96;LABEL&#96;：为镜像添加元数据，&#96;key-value&#96; 形式</span><br><span class="line"></span><br><span class="line">- - &#96;LABEL &lt;key&gt;&#x3D;&lt;value&gt; &lt;key&gt;&#x3D;&lt;value&gt; ...&#96;</span><br><span class="line">  - 示例：&#96;LABEL version&#x3D;&quot;1.0&quot; description&#x3D;&quot;这是一个web应用&quot;&#96;</span><br><span class="line"></span><br><span class="line">- &#96;ENV&#96;：设置环境变量，有些容器运行时会需要某些环境变量</span><br><span class="line"></span><br><span class="line">- - &#96;ENV &lt;key&gt; &lt;value&gt;&#96; 一次设置一个环境变量</span><br><span class="line">  - &#96;ENV &lt;key&gt;&#x3D;&lt;value&gt; &lt;key&gt;&#x3D;&lt;value&gt; &lt;key&gt;&#x3D;&lt;value&gt;&#96; 设置多个环境变量</span><br><span class="line">  - 示例：&#96;ENV JAVA_HOME &#x2F;usr&#x2F;java1.8&#x2F;&#96;</span><br><span class="line"></span><br><span class="line">- &#96;EXPOSE&#96;：暴露对外的端口（容器内部程序的端口，虽然会和宿主机的一样，但是其实是两个端口）</span><br><span class="line"></span><br><span class="line">- - &#96;EXPOSE &lt;port&gt;&#96;</span><br><span class="line">  - 示例：&#96;EXPOSE 80&#96;</span><br><span class="line">  - 容器运行时，需要用 &#96;-p&#96; 映射外部端口才能访问到容器内的端口</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+VOLUME
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  ：指定数据持久化的目录，官方语言叫做挂载</span><br><span class="line"></span><br><span class="line">- - &#96;VOLUME &#x2F;var&#x2F;log&#96; 指定容器中需要被挂载的目录，会把这个目录映射到宿主机的一个随机目录上，实现数据的持久化和同步。</span><br><span class="line">  - &#96;VOLUME [&quot;&#x2F;var&#x2F;log&quot;,&quot;&#x2F;var&#x2F;test&quot;.....]&#96; 指定容器中多个需要被挂载的目录，会把这些目录映射到宿主机的多个随机目录上，实现数据的持久化和同步</span><br><span class="line">  - &#96;VOLUME &#x2F;var&#x2F;data var&#x2F;log&#96; 指定容器中的 &#96;var&#x2F;log&#96; 目录挂载到宿主机上的 &#96;&#x2F;var&#x2F;data&#96; 目录，这种形式可以手动指定宿主机上的目录</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+WORKDIR
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">：设置工作目录，设置之后 ，</span><br></pre></td></tr></table></figure>
+RUN、CMD、COPY、ADD
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  的工作目录都会同步变更</span><br><span class="line"></span><br><span class="line">- - &#96;WORKDIR &lt;path&gt;&#96;</span><br><span class="line">  - 示例：&#96;WORKDIR &#x2F;app&#x2F;test&#96;</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+USER
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  ：指定运行命令时所使用的用户，为了安全和权限起见，根据要执行的命令选择不同用户</span><br><span class="line"></span><br><span class="line">- - &#96;USER &lt;user&gt;:[&lt;group&gt;]&#96;</span><br><span class="line">  - 示例：&#96;USER test&#96;</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+ARG</code></pre><p>：设置构建镜像是要传递的参数</p>
+</li>
+<li><ul>
+<li><code>ARG &lt;name&gt;[=&lt;value&gt;]</code></li>
+<li><code>ARG name=sss</code></li>
+</ul>
+</li>
+</ul>
+<p>更多操作，请移步<strong>官方使用文档</strong>[11]。</p>
+<h4 id="八、最佳实践"><a href="#八、最佳实践" class="headerlink" title="八、最佳实践"></a>八、最佳实践</h4><p>在掌握 <code>Docker</code> 常规操作之后，我们很容易就可以打出自己想要的项目镜像。然而不同的操作打出的镜像也是千差万别。</p>
+<p>究竟是什么原因导致镜像差异，我们不妨继续探索。</p>
+<p>以下是在应用 <code>Docker</code> 过程中整理的<strong>最佳实践</strong>，请尽量遵循如下准则：</p>
+<p>1.<code>Require</code> 明确：需要什么镜像 2.步骤精简：变化较少的 <code>Step</code> 优先 3.版本明确：镜像命名明确 4.说明文档：整个镜像打包步骤可以重现</p>
+<p>推荐如下两篇文章：<strong>Intro Guide to Dockerfile Best Practices</strong>[12]<strong>Best practices for writing Dockerfiles</strong>[13]</p>
+<h4 id="九、总结"><a href="#九、总结" class="headerlink" title="九、总结"></a>九、总结</h4><p>容器化技术必将是云时代不可或缺的技能之一，而 <code>Docker</code> 只是沧海一粟。随之而来的还有集群容器管理 <code>K8s</code>、<code>Service Mesh</code> 、<code>Istio</code> 等技术。打开 <code>Docker</code> 的大门，不断<strong>抽丝剥茧，逐层深入</strong>，你将感受到容器化的无穷魅力。</p>
+<p>赶快打开技能边界，为你的前端技术赋能吧！</p>
+<blockquote>
+<p>文章首发于 Jartto’s blog ， 转载文章请务必以超链接形式标明文章出处，作者信息及本版权声明</p>
+<p>原文链接：<a href="http://jartto.wang/2020/07/04/learn-docker/" target="_blank" rel="noopener">http://jartto.wang/2020/07/04/learn-docker/</a></p>
+</blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1]故事: <em><a href="https://my.oschina.net/jamesview/blog/2994112" target="_blank" rel="noopener">https://my.oschina.net/jamesview/blog/2994112</a></em></p>
+<p>[2]百科虚拟机: <em><a href="https://baike.baidu.com/item/虚拟机/104440?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/虚拟机/104440?fr=aladdin</a></em></p>
+<p>[3]Hypervisor: <em><a href="https://baike.baidu.com/item/hypervisor/3353492?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/hypervisor/3353492?fr=aladdin</a></em></p>
+<p>[4]Cgroups: <em><a href="https://baike.baidu.com/item/Cgroup/4988200?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/Cgroup/4988200?fr=aladdin</a></em></p>
+<p>[5]<code>Docker</code> 工作原理及容器化简易指南: <em><a href="http://dockone.io/article/8788" target="_blank" rel="noopener">http://dockone.io/article/8788</a></em></p>
+<p>[6]安装 <code>Docker</code>: <em><a href="https://www.docker.com/get-started" target="_blank" rel="noopener">https://www.docker.com/get-started</a></em></p>
+<p>[7]Docker Engine: <em><a href="https://docs.docker.com/engine/reference/commandline/dockerd/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/commandline/dockerd/</a></em></p>
+<p>[8]官网下载: <em><a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">https://www.docker.com/products/docker-desktop</a></em></p>
+<p>[9]<code>Vue</code> 脚手架: <em><a href="https://cli.vuejs.org/guide/creating-a-project.html#vue-create" target="_blank" rel="noopener">https://cli.vuejs.org/guide/creating-a-project.html#vue-create</a></em></p>
+<p>[10]下文: <em><a href="http://jartto.wang/2020/07/04/learn-docker/#" target="_blank" rel="noopener">http://jartto.wang/2020/07/04/learn-docker/#</a></em></p>
+<p>[11]官方使用文档: <em><a href="https://docs.docker.com/" target="_blank" rel="noopener">https://docs.docker.com/</a></em></p>
+<p>[12]Intro Guide to Dockerfile Best Practices: <em><a href="https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/" target="_blank" rel="noopener">https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/</a></em></p>
+<p>[13]Best practices for writing Dockerfiles: <em><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/" target="_blank" rel="noopener">https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</a></em></p>
+<p><strong>推荐阅读</strong></p>
+<ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxMTA4Njc0OQ==&mid=2651440291&idx=1&sn=fa4b11f9e6d6574c39ab46f57e580951&chksm=80bb1a51b7cc9347f0fa6a03fcc427263d44b13b7fa275155af41c6c22decca0c55cdfc2193e&scene=21#wechat_redirect" target="_blank" rel="noopener">理解 Docker 很好的教程：用 Go 从头实现一个迷你 Docker — Gocker</a></li>
+</ul>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/08/08/Untitled/">
+      Untitled
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 8, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/08/08/Untitled/" class="leancloud_visitors" data-flag-title="Untitled">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/08/08/Untitled/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/08/08/Untitled/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th>int(11)</th>
+<th></th>
+<th></th>
+<th>否</th>
+<th><em>无</em></th>
+<th>AUTO_INCREMENT</th>
+<th><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`id`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`id`+ORDER+BY+`id`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></th>
+<th><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=id" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></th>
+<th><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`id`&cpurge=1&purgekey=id&zero_rows=已删除字段+id+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></th>
+<th><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`id`)&zero_rows=已将+id+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></th>
+<th><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`id`)&zero_rows=已将+id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></th>
+<th><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`id`)&zero_rows=已将+id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></th>
+<th><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td>huodong_ename</td>
+<td>varchar(32)</td>
+<td>utf8_general_ci</td>
+<td></td>
+<td>否</td>
+<td></td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`huodong_ename`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`huodong_ename`+ORDER+BY+`huodong_ename`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=huodong_ename" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`huodong_ename`&cpurge=1&purgekey=huodong_ename&zero_rows=已删除字段+huodong_ename+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`huodong_ename`)&zero_rows=已将+huodong_ename+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`huodong_ename`)&zero_rows=已将+huodong_ename+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`huodong_ename`)&zero_rows=已将+huodong_ename+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>huodong_name</td>
+<td>varchar(32)</td>
+<td>utf8_general_ci</td>
+<td></td>
+<td>否</td>
+<td></td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`huodong_name`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`huodong_name`+ORDER+BY+`huodong_name`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=huodong_name" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`huodong_name`&cpurge=1&purgekey=huodong_name&zero_rows=已删除字段+huodong_name+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`huodong_name`)&zero_rows=已将+huodong_name+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`huodong_name`)&zero_rows=已将+huodong_name+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`huodong_name`)&zero_rows=已将+huodong_name+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>game_id</td>
+<td>int(4)</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>0</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`game_id`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`game_id`+ORDER+BY+`game_id`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=game_id" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`game_id`&cpurge=1&purgekey=game_id&zero_rows=已删除字段+game_id+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`game_id`)&zero_rows=已将+game_id+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`game_id`)&zero_rows=已将+game_id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`game_id`)&zero_rows=已将+game_id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>start_day</td>
+<td>date</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>2001-01-01</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`start_day`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`start_day`+ORDER+BY+`start_day`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=start_day" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`start_day`&cpurge=1&purgekey=start_day&zero_rows=已删除字段+start_day+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`start_day`)&zero_rows=已将+start_day+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`start_day`)&zero_rows=已将+start_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`start_day`)&zero_rows=已将+start_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>end_day</td>
+<td>date</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>2001-01-01</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`end_day`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`end_day`+ORDER+BY+`end_day`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=end_day" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`end_day`&cpurge=1&purgekey=end_day&zero_rows=已删除字段+end_day+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`end_day`)&zero_rows=已将+end_day+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`end_day`)&zero_rows=已将+end_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`end_day`)&zero_rows=已将+end_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>api_start_day</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>2001-01-01 00:00:00</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`api_start_day`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`api_start_day`+ORDER+BY+`api_start_day`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=api_start_day" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`api_start_day`&cpurge=1&purgekey=api_start_day&zero_rows=已删除字段+api_start_day+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`api_start_day`)&zero_rows=已将+api_start_day+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`api_start_day`)&zero_rows=已将+api_start_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`api_start_day`)&zero_rows=已将+api_start_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>api_end_day</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>2001-01-01 00:00:00</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`api_end_day`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`api_end_day`+ORDER+BY+`api_end_day`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=api_end_day" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`api_end_day`&cpurge=1&purgekey=api_end_day&zero_rows=已删除字段+api_end_day+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`api_end_day`)&zero_rows=已将+api_end_day+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`api_end_day`)&zero_rows=已将+api_end_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`api_end_day`)&zero_rows=已将+api_end_day+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>huodongstatus</td>
+<td>tinyint(4)</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>-1</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`huodongstatus`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`huodongstatus`+ORDER+BY+`huodongstatus`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=huodongstatus" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`huodongstatus`&cpurge=1&purgekey=huodongstatus&zero_rows=已删除字段+huodongstatus+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`huodongstatus`)&zero_rows=已将+huodongstatus+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`huodongstatus`)&zero_rows=已将+huodongstatus+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`huodongstatus`)&zero_rows=已将+huodongstatus+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>huodong_text</td>
+<td>text</td>
+<td>utf8_general_ci</td>
+<td></td>
+<td>否</td>
+<td><em>无</em></td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`huodong_text`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`huodong_text`+ORDER+BY+`huodong_text`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=huodong_text" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`huodong_text`&cpurge=1&purgekey=huodong_text&zero_rows=已删除字段+huodong_text+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_primary.png" alt="主键"></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_unique.png" alt="唯一"></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_index.png" alt="索引"></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>min_server_id</td>
+<td>int(11)</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>0</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`min_server_id`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`min_server_id`+ORDER+BY+`min_server_id`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=min_server_id" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`min_server_id`&cpurge=1&purgekey=min_server_id&zero_rows=已删除字段+min_server_id+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`min_server_id`)&zero_rows=已将+min_server_id+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`min_server_id`)&zero_rows=已将+min_server_id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`min_server_id`)&zero_rows=已将+min_server_id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>max_server_id</td>
+<td>int(11)</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>0</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`max_server_id`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`max_server_id`+ORDER+BY+`max_server_id`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=max_server_id" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`max_server_id`&cpurge=1&purgekey=max_server_id&zero_rows=已删除字段+max_server_id+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`max_server_id`)&zero_rows=已将+max_server_id+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`max_server_id`)&zero_rows=已将+max_server_id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`max_server_id`)&zero_rows=已将+max_server_id+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>add_user</td>
+<td>varchar(16)</td>
+<td>utf8_general_ci</td>
+<td></td>
+<td>否</td>
+<td></td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`add_user`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`add_user`+ORDER+BY+`add_user`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=add_user" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`add_user`&cpurge=1&purgekey=add_user&zero_rows=已删除字段+add_user+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`add_user`)&zero_rows=已将+add_user+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`add_user`)&zero_rows=已将+add_user+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`add_user`)&zero_rows=已将+add_user+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>add_time</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+<td>否</td>
+<td>2001-01-01 00:00:00</td>
+<td></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=SELECT+COUNT(*)+AS+`行数`%2C+`add_time`+FROM+`tb_pay_gift_huodongconfig`+GROUP+BY+`add_time`+ORDER+BY+`add_time`" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_browse.png" alt="浏览非重复值 (DISTINCT)"></a></td>
+<td><a href="http://actmysql9.51.com/tbl_alter.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&field=add_time" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_edit.png" alt="修改"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+`add_time`&cpurge=1&purgekey=add_time&zero_rows=已删除字段+add_time+" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_drop.png" alt="删除"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY(`add_time`)&zero_rows=已将+add_time+设为主键" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_primary.png" alt="主键"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+UNIQUE(`add_time`)&zero_rows=已将+add_time+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_unique.png" alt="唯一"></a></td>
+<td><a href="http://actmysql9.51.com/sql.php?db=db_game_pay_gift&table=tb_pay_gift_huodongconfig&server=12&token=c6ffdf1d75fbdea37289d30a97f45093&goto=tbl_structure.php&back=tbl_structure.php&sql_query=ALTER+TABLE+`tb_pay_gift_huodongconfig`+ADD+INDEX(`add_time`)&zero_rows=已将+add_time+设为索引" target="_blank" rel="noopener"><img src="http://actmysql9.51.com/themes/original/img/b_index.png" alt="索引"></a></td>
+<td><img src="http://actmysql9.51.com/themes/original/img/bd_ftext.png" alt="全文搜索"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>update_time</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;db_game_pay_gift&#96;.&#96;tb_point_huodongconfig&#96; ( &#96;id&#96; INT NOT NULL AUTO_INCREMENT , &#96;hd_ename&#96; VARCHAR(30) NOT NULL COMMENT &#39;活动key&#39; , &#96;hd_name&#96; VARCHAR(30) NOT NULL COMMENT &#39;活动中文名&#39; , &#96;game_id&#96; INT(10) NOT NULL COMMENT &#39;游戏id&#39; , &#96;start_day&#96; DATE NOT NULL COMMENT &#39;活动开始时间&#39; , &#96;end_day&#96; DATE NOT NULL COMMENT &#39;活动结束时间&#39; , &#96;hd_status&#96; INT(2) NOT NULL DEFAULT &#39;0&#39; COMMENT &#39;活动状态&#39; , &#96;add_user&#96; VARCHAR(16) NOT NULL COMMENT &#39;添加者&#39; , &#96;add_time&#96; DATETIME NOT NULL DEFAULT &#39;2020-01-01 00:00:00&#39; COMMENT &#39;添加时间&#39; , &#96;update_time&#96; TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &#39;更新时间&#39; , PRIMARY KEY (&#96;id&#96;), UNIQUE &#96;唯一活动&#96; (&#96;hd_ename&#96;)) ENGINE &#x3D; InnoDB COMMENT &#x3D; &#39;积分活动配置表&#39;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -841,7 +2355,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 14px; color: #999">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.22px; color: #8a8a8a">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 21.78px; color: #646464">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 20.67px; color: #6c6c6c">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.44px; color: #7b7b7b">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.11px; color: #919191">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
     </div>
   </section>
 

@@ -2,9 +2,93 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/08/06/%E6%B8%B8%E8%AE%B0/%E6%B8%B8%E8%AE%B0-%E6%A2%A6%E5%9B%9E%E5%BC%A0%E5%AE%B6%E7%95%8C/</loc>
+    <loc>http://yoursite.com/2020/12/19/Redis/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     
-    <lastmod>2020-08-06T03:50:02.894Z</lastmod>
+    <lastmod>2020-12-19T07:14:40.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/08/21/SpringBoot-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2020-08-21T02:59:51.104Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/08/21/Java-Annotation/</loc>
+    
+    <lastmod>2020-08-21T02:21:07.540Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/08/20/ES%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/</loc>
+    
+    <lastmod>2020-08-20T02:19:26.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/08/11/%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E4%B8%8E%E5%AE%9A%E4%BD%8D/</loc>
+    
+    <lastmod>2020-08-11T11:19:28.951Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/15/%E4%B8%BA%E4%BB%80%E4%B9%88%20IPv6%20%E9%9A%BE%E4%BB%A5%E5%8F%96%E4%BB%A3%20IPv4/</loc>
+    
+    <lastmod>2020-08-11T11:17:29.842Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/15/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2020-08-10T06:00:30.916Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/08/08/Docker/</loc>
+    
+    <lastmod>2020-08-08T08:27:15.781Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/08/08/Untitled/</loc>
+    
+    <lastmod>2020-08-08T08:21:39.731Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    
+    <lastmod>2020-08-08T05:49:41.359Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%9ACSS%E9%9B%AA%E7%A2%A7%E5%9B%BE/</loc>
+    
+    <lastmod>2020-08-08T04:00:30.478Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/15/%E7%AE%97%E6%B3%95-%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</loc>
+    
+    <lastmod>2020-08-08T03:58:22.671Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/15/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2020-08-08T03:57:11.727Z</lastmod>
     
   </url>
   
@@ -16,14 +100,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/15/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://yoursite.com/2020/07/15/Redis/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2020-08-06T03:11:18.978Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/15/Redis-%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <loc>http://yoursite.com/2020/07/15/Redis/Redis-%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     
     <lastmod>2020-08-06T03:10:43.352Z</lastmod>
     
@@ -93,13 +177,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/15/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2020-07-16T03:59:07.395Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%AF%B9%E6%AF%94/</loc>
     
     <lastmod>2020-07-16T03:48:58.303Z</lastmod>
@@ -149,13 +226,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    
-    <lastmod>2020-07-16T03:45:37.479Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF-%E7%B2%BE%E7%AE%80/</loc>
     
     <lastmod>2020-07-16T03:44:49.864Z</lastmod>
@@ -166,20 +236,6 @@
     <loc>http://yoursite.com/2020/07/15/%E5%85%B6%E4%BB%96/</loc>
     
     <lastmod>2020-07-16T03:43:47.534Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/15/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2020-07-16T03:43:27.741Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/15/%E9%9D%A2%E8%AF%95/</loc>
-    
-    <lastmod>2020-07-16T03:43:08.269Z</lastmod>
     
   </url>
   
@@ -243,13 +299,6 @@
     <loc>http://yoursite.com/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-WebSocket/</loc>
     
     <lastmod>2020-07-16T03:40:25.368Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/15/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%9ACSS%E9%9B%AA%E7%A2%A7%E5%9B%BE/</loc>
-    
-    <lastmod>2020-07-16T03:39:39.181Z</lastmod>
     
   </url>
   
@@ -352,14 +401,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/contributors/index.html</loc>
     
     <lastmod>2020-07-16T02:20:48.903Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/friends/index.html</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-07-16T02:20:48.903Z</lastmod>
     
@@ -373,7 +422,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/contributors/index.html</loc>
+    <loc>http://yoursite.com/friends/index.html</loc>
     
     <lastmod>2020-07-16T02:20:48.903Z</lastmod>
     
@@ -394,7 +443,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/15/Redis-%E9%9B%86%E7%BE%A4%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%90%AD%E5%BB%BA/</loc>
+    <loc>http://yoursite.com/2020/07/15/Redis/Redis-%E9%9B%86%E7%BE%A4%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%90%AD%E5%BB%BA/</loc>
     
     <lastmod>2020-07-15T03:05:34.784Z</lastmod>
     
@@ -429,14 +478,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/15/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
-    
-    <lastmod>2020-07-09T10:04:10.430Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/15/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/</loc>
+    <loc>http://yoursite.com/2020/07/15/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/</loc>
     
     <lastmod>2020-07-09T09:41:08.857Z</lastmod>
     
@@ -548,7 +590,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/15/Redis/</loc>
+    <loc>http://yoursite.com/2020/07/15/Redis/Redis/</loc>
     
     <lastmod>2020-05-11T07:01:39.282Z</lastmod>
     
@@ -765,13 +807,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/06/06/Cell-v2%E8%BF%91%E6%9C%9F%E7%9B%B8%E5%85%B3%E6%94%B9%E8%BF%9B%E6%95%B4%E7%90%86/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2015/04/18/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E5%9D%91/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
@@ -786,42 +821,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/04/11/Java-ArrayDeque%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/04/28/Java-CopyOnWriteArrayList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/04/24/Java-EnumMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/04/02/Java-LinkedHashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    <loc>http://yoursite.com/2018/06/06/Cell-v2%E8%BF%91%E6%9C%9F%E7%9B%B8%E5%85%B3%E6%94%B9%E8%BF%9B%E6%95%B4%E7%90%86/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -835,14 +835,35 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    <loc>http://yoursite.com/2015/04/24/Java-EnumMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    <loc>http://yoursite.com/2015/04/28/Java-CopyOnWriteArrayList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/04/02/Java-LinkedHashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -856,6 +877,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2015/04/06/Java-TreeMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
@@ -863,7 +891,21 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2015/04/11/Java-ArrayDeque%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2015/04/10/Java-TreeSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -891,49 +933,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/12/06/Nova%E8%B0%83%E5%BA%A6%E7%9B%B8%E5%85%B3%E7%89%B9%E6%80%A7%E7%90%86%E8%A7%A3%E4%B8%8E%E6%A2%B3%E7%90%86/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2018/02/07/Nova-Scheduler-Team-Meeting%E8%B7%9F%E8%B8%AA%EF%BC%88%E4%BA%8C%E6%9C%88%EF%BC%89/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/09/27/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/02/14/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%9B%E5%BB%BA%E5%8D%B7%E6%B5%81%E7%A8%8B/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -947,6 +947,48 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/02/14/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%9B%E5%BB%BA%E5%8D%B7%E6%B5%81%E7%A8%8B/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/09/27/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/06/Nova%E8%B0%83%E5%BA%A6%E7%9B%B8%E5%85%B3%E7%89%B9%E6%80%A7%E7%90%86%E8%A7%A3%E4%B8%8E%E6%A2%B3%E7%90%86/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/02/21/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%A0%E9%99%A4%E5%8D%B7%E6%B5%81%E7%A8%8B/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
@@ -954,7 +996,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/12/25/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Get-Allocation-Candidates/</loc>
+    <loc>http://yoursite.com/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -968,7 +1010,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
+    <loc>http://yoursite.com/2017/12/25/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Get-Allocation-Candidates/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -989,20 +1031,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/01/23/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Resource-Provider%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/06/15/Python3%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0%E6%89%AB%E7%9B%B2/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
@@ -1010,14 +1038,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/08/01/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-%E5%85%B1%E4%BA%AB%E3%80%81%E5%B5%8C%E5%A5%97%E3%80%81%E5%88%86%E7%BB%84%E6%A8%A1%E5%9E%8B%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</loc>
+    <loc>http://yoursite.com/2018/01/23/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Resource-Provider%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/</loc>
+    <loc>http://yoursite.com/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1031,6 +1059,27 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2018/06/15/Python3%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0%E6%89%AB%E7%9B%B2/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/08/01/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-%E5%85%B1%E4%BA%AB%E3%80%81%E5%B5%8C%E5%A5%97%E3%80%81%E5%88%86%E7%BB%84%E6%A8%A1%E5%9E%8B%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2015/05/29/Spring-IOC%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
@@ -1038,14 +1087,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2014/11/20/algorithm_sort/</loc>
+    <loc>http://yoursite.com/2012/11/17/congshijianzhongyiluzoulai/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2012/11/17/congshijianzhongyiluzoulai/</loc>
+    <loc>http://yoursite.com/2014/11/20/algorithm_sort/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1066,28 +1115,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2014/04/01/nginxaccept/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2014/04/17/nginxconnections/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2014/03/16/nginxchannel/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1101,21 +1129,21 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2014/03/16/nginxchannel/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2014/04/17/nginxconnections/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2014/03/26/nginxevent/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/04/19/oslo-db%E4%B8%AD%E7%9A%84%E6%AD%BB%E9%94%81%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6%E4%BC%98%E5%8C%96/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2014/03/19/vim/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1136,21 +1164,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2010/10/05/xieyipianrizhi/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/06/09/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E8%B7%B5/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/</loc>
+    <loc>http://yoursite.com/2014/03/19/vim/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1164,7 +1178,35 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2016/06/09/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E8%B7%B5/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2014/03/13/nginxstart/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2015/05/21/%E5%88%A9%E7%94%A8Shell%E8%BF%9B%E8%A1%8CWeb%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/04/19/oslo-db%E4%B8%AD%E7%9A%84%E6%AD%BB%E9%94%81%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6%E4%BC%98%E5%8C%96/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1227,13 +1269,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2015/02/08/%E8%87%AA%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E5%8F%8D%E6%B1%87%E7%BC%96/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
@@ -1241,21 +1276,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/10/25/%E8%AF%91-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/10/17/%E8%AF%91-Host-Aggregates/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/</loc>
+    <loc>http://yoursite.com/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1269,21 +1290,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/11/19/%E8%AF%91-Threading-model/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2015/10/15/%E8%AF%91-Nova-System-Architecture/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/10/17/%E8%AF%91-Host-Aggregates/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1297,7 +1311,21 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2017/10/25/%E8%AF%91-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/11/19/%E8%AF%91-Threading-model/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1311,6 +1339,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/11/16/%E8%B7%A8Cell%E5%9C%BA%E6%99%AF%E4%B8%8B%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
@@ -1318,7 +1353,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2014/03/13/nginxstart/</loc>
+    <loc>http://yoursite.com/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1326,6 +1361,27 @@
   
   <url>
     <loc>http://yoursite.com/README.html</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/project/DesignonFingertips.html</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/project/index.html</loc>
+    
+    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/project/keroinxidian_master.html</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1346,21 +1402,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/project/index.html</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/project/DesignonFingertips.html</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/project/keroinxidian_master.html</loc>
+    <loc>http://yoursite.com/assets/themes/yikun/css-social-buttons/sample.html</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     
@@ -1368,13 +1410,6 @@
   
   <url>
     <loc>http://yoursite.com/assets/themes/yikun/css-social-buttons/README.html</loc>
-    
-    <lastmod>2020-02-18T09:23:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/assets/themes/yikun/css-social-buttons/sample.html</loc>
     
     <lastmod>2020-02-18T09:23:42.000Z</lastmod>
     

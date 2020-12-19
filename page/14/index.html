@@ -470,6 +470,734 @@
         
           
   <h2 class="title">
+    <a href="/2016/04/03/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%B8%80%E7%94%9F/">
+      存储数据包的一生
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Apr 3, 2016</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2016/04/03/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%B8%80%E7%94%9F/" class="leancloud_visitors" data-flag-title="存储数据包的一生">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2016/04/03/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%B8%80%E7%94%9F/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2016/04/03/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%B8%80%E7%94%9F/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近认认真真学习了一个叫<a href="https://www.brighttalk.com/webcast/663/169543" target="_blank" rel="noopener">《Life of a Storage Packet》</a>讲座，借助这个讲座将整个存储的过程理解了下，不放过任何一个有疑问的点。这篇文章算是对讲座的理解和自己收获的总结，同时也为那些对存储系统不够了解又想要了解的初学者，展现一个存储数据包的“生命”。这个演讲主要聚焦在“整体的存储”，强调存储系统中各个基本元素的关系，并且尽可能简单、清楚地用一种不同的方式可视化一些存储的概念。</p>
+<p>先上一张大图，可以说这篇文章目的就是解释这个图：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232888/3dc0f734-f9ea-11e5-877c-8b37b7addbdd.png" alt="12"></p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2016/04/03/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%B8%80%E7%94%9F/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/">
+      OpenStack源码分析-Cinder中的调度机制
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 5, 2016</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/" class="leancloud_visitors" data-flag-title="OpenStack源码分析-Cinder中的调度机制">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>整理了一下目前cinder中支持的调度的Filter和Weigher：<br><img src="https://cloud.githubusercontent.com/assets/1736354/15445332/29c1730c-1f2f-11e6-8706-4b38f5fc9e0d.png" alt="scheduler"><br>后面结合源码看下实现，留坑~</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">
+      OpenStack源码分析-Service启动流程
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 5, 2016</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" class="leancloud_visitors" data-flag-title="OpenStack源码分析-Service启动流程">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://cloud.githubusercontent.com/assets/1736354/13372372/d42f0c0a-dd7b-11e5-9656-1f2ff817e53a.png" alt="cinder service launcher"></p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%8C%82%E8%BD%BD%E5%8D%B7%E6%B5%81%E7%A8%8B/">
+      OpenStack源码分析-挂载卷流程
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Mar 5, 2016</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%8C%82%E8%BD%BD%E5%8D%B7%E6%B5%81%E7%A8%8B/" class="leancloud_visitors" data-flag-title="OpenStack源码分析-挂载卷流程">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%8C%82%E8%BD%BD%E5%8D%B7%E6%B5%81%E7%A8%8B/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%8C%82%E8%BD%BD%E5%8D%B7%E6%B5%81%E7%A8%8B/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-挂卷流程"><a href="#1-挂卷流程" class="headerlink" title="1. 挂卷流程"></a>1. 挂卷流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13493796/5a1fda3a-e17b-11e5-98be-2bca8a26e0bb.png" alt="volume attach"><br>    当Nova volume-attach server volume执行后，主要经过以下几步：<br>a.  Nova Client解析指令，通过RESTFUL接口访问nova-api；<br>b.  Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；<br>c.  Nova-compute向cinder-api初始化信息，并根据初始化连接调用Libvirt的接口完成挂卷流程；<br>d.  进而调用cinder-volume获取连接，获取了连接后，通过RESTFUL请求cinder-api进行数据库更新操作。</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%8C%82%E8%BD%BD%E5%8D%B7%E6%B5%81%E7%A8%8B/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/">
+      优雅地调试OpenStack
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Feb 23, 2016</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/" class="leancloud_visitors" data-flag-title="优雅地调试OpenStack">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>恩，题目首先要起的高逼格一些。2333。</p>
+<p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="noopener">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2016/02/21/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%A0%E9%99%A4%E5%8D%B7%E6%B5%81%E7%A8%8B/">
+      OpenStack源码分析-Cinder删除卷流程
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Feb 21, 2016</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2016/02/21/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%A0%E9%99%A4%E5%8D%B7%E6%B5%81%E7%A8%8B/" class="leancloud_visitors" data-flag-title="OpenStack源码分析-Cinder删除卷流程">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2016/02/21/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%A0%E9%99%A4%E5%8D%B7%E6%B5%81%E7%A8%8B/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2016/02/21/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%A0%E9%99%A4%E5%8D%B7%E6%B5%81%E7%A8%8B/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Cinder删除卷整体流程"><a href="#1-Cinder删除卷整体流程" class="headerlink" title="1. Cinder删除卷整体流程"></a>1. Cinder删除卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130440/f8979c4c-d61e-11e5-8665-84b9d2f928f9.png" alt="delete"></p>
+<p>删除卷流程比较简单，主要就是cinder-api解析Cilent的指令，并响应，发送RPC调用cinder-volume的delete操作，详细流程如下：<br>a. Client发送删除指令，通过RESTful接口访问cinder-api；<br>b. Cinder-api解析响应请求，通过RPC调用cinder-volume；<br>c. Cinder-volume通过调用Driver的delete函数进行删除。</p>
+<h3 id="2-源码详解"><a href="#2-源码详解" class="headerlink" title="2. 源码详解"></a>2. 源码详解</h3><p> <img src="https://cloud.githubusercontent.com/assets/1736354/13130451/0e77ce74-d61f-11e5-91e9-9b63918beef1.png" alt="cinder delete"></p>
+<h4 id="2-1-Cinder-API"><a href="#2-1-Cinder-API" class="headerlink" title="2.1 Cinder API"></a>2.1 Cinder API</h4><p>(1) Cinder\api\v2\volumes.py<br>VolumeController的delete函数响应请求，首先从API获取Volume对象信息，然后，调用API的delete对对象进行删除；<br>(2) Cinder\volume\api.py<br>API.delete的对卷的状态进行检查，并更新状态为“deleting”，然后调用rpcapi的delete_volume函数</p>
+<h4 id="2-2-Cinder-Volume"><a href="#2-2-Cinder-Volume" class="headerlink" title="2.2 Cinder Volume"></a>2.2 Cinder Volume</h4><p>(1) Cinder\volume\rpcapi.py<br>VolumeAPI函数投递一个远程消息，通过消息队列远程调用cinder volume的delete_volume函数。<br>(2) Cinder\volume\manager<br>最终通过VolumeManager调用dirver的delete_volume对卷进行删除。</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2016/02/14/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%9B%E5%BB%BA%E5%8D%B7%E6%B5%81%E7%A8%8B/">
       OpenStack源码分析-Cinder创建卷流程
     </a>
@@ -971,741 +1699,6 @@
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2016/01/20/%E8%AF%91-Virtual-Machine-States-and-Transitions/">
-      [译]Virtual Machine States and Transitions
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jan 20, 2016</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2016/01/20/%E8%AF%91-Virtual-Machine-States-and-Transitions/" class="leancloud_visitors" data-flag-title="[译]Virtual Machine States and Transitions">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2016/01/20/%E8%AF%91-Virtual-Machine-States-and-Transitions/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2016/01/20/%E8%AF%91-Virtual-Machine-States-and-Transitions/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2016/01/20/%E8%AF%91-Virtual-Machine-States-and-Transitions/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/">
-      Python3源码学习-整型
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 21, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/" class="leancloud_visitors" data-flag-title="Python3源码学习-整型">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h3><p>我们先看看对整型变量i进行赋值，并对i进行显示的过程：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>i=<span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>i</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/">
-      Python3源码学习-类型
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 20, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/" class="leancloud_visitors" data-flag-title="Python3源码学习-类型">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-类型"><a href="#1-类型" class="headerlink" title="1. 类型"></a>1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">typeobject</span> &#123;</span></span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%BC%96%E8%AF%91Python%E6%BA%90%E7%A0%81/">
-      Python3源码学习-编译Python源码
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 20, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%BC%96%E8%AF%91Python%E6%BA%90%E7%A0%81/" class="leancloud_visitors" data-flag-title="Python3源码学习-编译Python源码">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%BC%96%E8%AF%91Python%E6%BA%90%E7%A0%81/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%BC%96%E8%AF%91Python%E6%BA%90%E7%A0%81/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%BC%96%E8%AF%91Python%E6%BA%90%E7%A0%81/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/">
-      Python3源码学习-对象
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 3, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/" class="leancloud_visitors" data-flag-title="Python3源码学习-对象">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
-<h3 id="1-万物皆对象"><a href="#1-万物皆对象" class="headerlink" title="1. 万物皆对象"></a>1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/">
-      网络知识拾遗
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 23, 2015</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/" class="leancloud_visitors" data-flag-title="网络知识拾遗">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1827,7 +1820,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 14px; color: #999">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.22px; color: #8a8a8a">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 21.78px; color: #646464">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 20.67px; color: #6c6c6c">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.44px; color: #7b7b7b">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.11px; color: #919191">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
     </div>
   </section>
 

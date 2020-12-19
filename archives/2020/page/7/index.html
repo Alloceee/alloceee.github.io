@@ -469,6 +469,878 @@
         
           
   <h2 class="title">
+    <a href="/2020/07/15/JWT/">
+      JWT
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/JWT/" class="leancloud_visitors" data-flag-title="JWT">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/JWT/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/JWT/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用JWT实现Token认证"><a href="#使用JWT实现Token认证" class="headerlink" title="使用JWT实现Token认证"></a>使用JWT实现Token认证</h1><p>32018.08.15 15:42:39字数 187阅读 77373</p>
+<p>为什么使用JWT？<br>随着技术的发展，分布式web应用的普及，通过session管理用户登录状态成本越来越高，因此慢慢发展成为token的方式做登录身份校验，然后通过token去取redis中的缓存的用户信息，随着之后jwt的出现，校验方式更加简单便捷化，无需通过redis缓存，而是直接根据token取出保存的用户信息，以及对token可用性校验，单点登录更为简单。</p>
+<p>JWT架构图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3383598-c82676bb8445bae9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p>JWT架构图.png</p>
+<p>使用JWT核心代码：<br>maven依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.7.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>JWT工具类：<br>用于生成Token，和Token验证</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JwtUtils</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 签发JWT</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> subject 可以是JSON数据 尽可能少</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ttlMillis</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  String</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">createJWT</span><span class="params">(String id, String subject, <span class="keyword">long</span> ttlMillis)</span> </span>&#123;</span><br><span class="line">        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;</span><br><span class="line">        <span class="keyword">long</span> nowMillis = System.currentTimeMillis();</span><br><span class="line">        Date now = <span class="keyword">new</span> Date(nowMillis);</span><br><span class="line">        SecretKey secretKey = generalKey();</span><br><span class="line">        JwtBuilder builder = Jwts.builder()</span><br><span class="line">                .setId(id)</span><br><span class="line">                .setSubject(subject)   <span class="comment">// 主题</span></span><br><span class="line">                .setIssuer(<span class="string">"user"</span>)     <span class="comment">// 签发者</span></span><br><span class="line">                .setIssuedAt(now)      <span class="comment">// 签发时间</span></span><br><span class="line">                .signWith(signatureAlgorithm, secretKey); <span class="comment">// 签名算法以及密匙</span></span><br><span class="line">        <span class="keyword">if</span> (ttlMillis &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">long</span> expMillis = nowMillis + ttlMillis;</span><br><span class="line">            Date expDate = <span class="keyword">new</span> Date(expMillis);</span><br><span class="line">            builder.setExpiration(expDate); <span class="comment">// 过期时间</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> builder.compact();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 验证JWT</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> jwtStr</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CheckResult <span class="title">validateJWT</span><span class="params">(String jwtStr)</span> </span>&#123;</span><br><span class="line">        CheckResult checkResult = <span class="keyword">new</span> CheckResult();</span><br><span class="line">        Claims claims = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            claims = parseJWT(jwtStr);</span><br><span class="line">            checkResult.setSuccess(<span class="keyword">true</span>);</span><br><span class="line">            checkResult.setClaims(claims);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ExpiredJwtException e) &#123;</span><br><span class="line">            checkResult.setErrCode(SystemConstant.JWT_ERRCODE_EXPIRE);</span><br><span class="line">            checkResult.setSuccess(<span class="keyword">false</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SignatureException e) &#123;</span><br><span class="line">            checkResult.setErrCode(SystemConstant.JWT_ERRCODE_FAIL);</span><br><span class="line">            checkResult.setSuccess(<span class="keyword">false</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            checkResult.setErrCode(SystemConstant.JWT_ERRCODE_FAIL);</span><br><span class="line">            checkResult.setSuccess(<span class="keyword">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> checkResult;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SecretKey <span class="title">generalKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">byte</span>[] encodedKey = Base64.decode(SystemConstant.JWT_SECERT);</span><br><span class="line">        SecretKey key = <span class="keyword">new</span> SecretKeySpec(encodedKey, <span class="number">0</span>, encodedKey.length, <span class="string">"AES"</span>);</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * 解析JWT字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> jwt</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Claims <span class="title">parseJWT</span><span class="params">(String jwt)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        SecretKey secretKey = generalKey();</span><br><span class="line">        <span class="keyword">return</span> Jwts.parser()</span><br><span class="line">            .setSigningKey(secretKey)</span><br><span class="line">            .parseClaimsJws(jwt)</span><br><span class="line">            .getBody();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如何使用？<br>代码实例：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserRepository userRepository;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ApiOperation(value=<span class="meta-string">"用户登陆"</span>)</span></span><br><span class="line">    <span class="meta">@RequestMapping(value=<span class="meta-string">"login"</span>,method = RequestMethod.POST)</span></span><br><span class="line">    <span class="keyword">public</span> ReturnVo login(String username, String password,HttpServletResponse</span><br><span class="line">            response) &#123;</span><br><span class="line">        User user =  userRepository.findByUsername(username);</span><br><span class="line">        <span class="keyword">if</span>(user!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(user.getPassword().equals(password))&#123;</span><br><span class="line">                <span class="comment">//把token返回给客户端--&gt;客户端保存至cookie--&gt;客户端每次请求附带cookie参数</span></span><br><span class="line">                String JWT = JwtUtils.createJWT(<span class="string">"1"</span>, username, SystemConstant.JWT_TTL);</span><br><span class="line">                <span class="keyword">return</span> ReturnVo.ok(JWT);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> ReturnVo.error();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> ReturnVo.error();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ApiOperation(value=<span class="meta-string">"获取用户信息"</span>)</span></span><br><span class="line">    <span class="meta">@RequestMapping(value=<span class="meta-string">"description"</span>,method = RequestMethod.POST)</span></span><br><span class="line">    <span class="keyword">public</span> ReturnVo description(String username) &#123;</span><br><span class="line">        User user =  userRepository.findByUsername(username);</span><br><span class="line">        <span class="keyword">return</span> ReturnVo.ok(user.getDescription());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/jQuery/">
+      jQuery
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/jQuery/" class="leancloud_visitors" data-flag-title="jQuery">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/jQuery/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/jQuery/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h1><p><a href="http://jquery.cuishifeng.cn/" target="_blank" rel="noopener">中文API</a></p>
+<h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$.post(“url”,null, function(data) { },”json”);</td>
+<td>参数一：ajax post请求url;参数二：需要传递的数据；参数三：处理返回数据的函数；参数四：要求返回数据的类型</td>
+</tr>
+<tr>
+<td>$.each(data,function() {}</td>
+<td>jQuery遍历函数，遍历数组或者集合</td>
+</tr>
+</tbody></table>
+<h3 id="Json对象与Json字符串的转化"><a href="#Json对象与Json字符串的转化" class="headerlink" title="Json对象与Json字符串的转化"></a>Json对象与Json字符串的转化</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JSON.parse(jsonString)</td>
+<td>将json字符串转化为json对象</td>
+</tr>
+<tr>
+<td>JSON.stringify(object)</td>
+<td>将对象转化为json字符串</td>
+</tr>
+</tbody></table>
+<h2 id="validate插件使用"><a href="#validate插件使用" class="headerlink" title="validate插件使用"></a>validate插件使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">					</span><br><span class="line">					$(<span class="string">'form'</span>).validate(&#123;</span><br><span class="line">						rules: &#123;</span><br><span class="line">							username: &#123;</span><br><span class="line">								required: <span class="literal">true</span>,</span><br><span class="line">							&#125;,</span><br><span class="line">							password: &#123;</span><br><span class="line">								required: <span class="literal">true</span>,</span><br><span class="line">								remote: &#123;</span><br><span class="line">									url: <span class="string">''</span>,</span><br><span class="line">									dataType: <span class="string">'json'</span>,</span><br><span class="line">									data: &#123;</span><br><span class="line">										username: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">											<span class="keyword">return</span> $(<span class="string">'#username'</span>).val();</span><br><span class="line">										&#125;,</span><br><span class="line">										password: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">											<span class="keyword">return</span> $(<span class="string">"#password"</span>).val()</span><br><span class="line">										&#125;</span><br><span class="line">									&#125;</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;,</span><br><span class="line">						messages: &#123;</span><br><span class="line">							username: &#123;</span><br><span class="line">								required: <span class="string">"请输入用户名"</span></span><br><span class="line">							&#125;,</span><br><span class="line">							password: &#123;</span><br><span class="line">								required: <span class="string">"请输入密码"</span>,</span><br><span class="line">								remote: <span class="string">"用户名或密码不正确"</span></span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;);</span><br><span class="line">				&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Git/">
+      Git
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Git/" class="leancloud_visitors" data-flag-title="Git">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Git/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Git/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="git中使用merge和rebase的区别"><a href="#git中使用merge和rebase的区别" class="headerlink" title="git中使用merge和rebase的区别"></a>git中使用merge和rebase的区别</h2><p>原创 韩忠康 <a href="javascript:void(0);">红牛慕课</a> <em>2018-10-16</em></p>
+<h2 id="1-需求"><a href="#1-需求" class="headerlink" title="1 需求"></a>1 需求</h2><p>今天和朋友讨论了一下 分支间的整合方案，merge和rebase。以及pull操作模式。<br>下面整理如下：</p>
+<h2 id="2-git-pull做了什么"><a href="#2-git-pull做了什么" class="headerlink" title="2 git pull做了什么"></a>2 git pull做了什么</h2><blockquote>
+<p>git-pull - Fetch from and integrate with another repository or a local branch<br>译：从另一个版本库或本地分支拉取并与其整合</p>
+</blockquote>
+<p>文档如上说，可见<code>pull</code>（拉取）执行了两个操作，他们是<code>fetch</code>（获取）和<code>integrate</code>（整合）。<br>拉取就是将版本从远程拉取到本地，可以理解成下载。而整合指的是将拉取的版本与本地版本合并到一起。<br>这个合并的操作，通常会有两种模式来实现，就是<code>merge</code>和<code>rebase</code>。</p>
+<h2 id="3-git-merge合并"><a href="#3-git-merge合并" class="headerlink" title="3 git merge合并"></a>3 git merge合并</h2><blockquote>
+<p>git-merge - Join two or more development histories together<br>译：将两个或多个开发历史合并一起</p>
+</blockquote>
+<p>merge，合并模式。指的是合并两个分支，最终的合并代码形成一个新的版本，两个分支的版本日志按照时间顺序合并到一起即可。 演示如下，<code>git merge dev</code>：</p>
+<p><img src="E:%5CMarkDown%5CJava-%5C%E8%B5%84%E6%96%99%5C640-1590031790721.webp" alt="img"></p>
+<p>过程是，git会自动根据两个分支的共同祖先即v2，与两个分支的最新提交即master的v6和dev的v5进行一个三方合并，然后将合并中更新的内容生成一个新的版本即v6，内容合并完成后，会成立版本日志并记录。</p>
+<p>merge的好处是版本不会出现错乱的情况（一会可以对比rebase，你会发现有错乱的情况），但多了一个额外的版本。（其实无所谓啦）<br>再看rebase模式。</p>
+<h2 id="4-git-rebase变基"><a href="#4-git-rebase变基" class="headerlink" title="4 git rebase变基"></a>4 git rebase变基</h2><blockquote>
+<p>git-pull - Reapply commits on top of another base tip<br>译：在另一个的基本上重新应用提交</p>
+</blockquote>
+<p>rebase，重设基础。指的是整合时，以另一个为基础（dev），将当前的（master）应用上去。演示如下，<code>git rebase dev</code>：</p>
+<p><img src="E:%5CMarkDown%5CJava-%5C%E8%B5%84%E6%96%99%5C640-1590031790778.webp" alt="img"></p>
+<p>过程为，git会从两个分支的共同祖先即v2开始提取当前分支即master上的提交版本即v4和v5，将提取的修改v4和v6依次应用到目标分支dev的最新提交的后面。将master指向最新的合并版本。</p>
+<p>从合并结果上看，rebase导致版本变为了：<em>v1-&gt;v2-&gt;v3-&gt;v5-&gt;v4-&gt;v6</em>，与真实的版本提交时间不一致了，就是发生了错乱。但rebase不会生成新的版本。</p>
+<h2 id="5-merge-VS-rebase"><a href="#5-merge-VS-rebase" class="headerlink" title="5 merge VS rebase"></a>5 merge VS rebase</h2><p>该如何选择他们？</p>
+<ul>
+<li>当某个分支不再需要了（例如一个本地的bug分支，修复完毕就不在需要了），那么我们选择merge是合理的。</li>
+<li>当我们的项目重启了，代码依赖的基础发生升级了，那么我们就可以rebase到这个升级之后的基础上继续开发。</li>
+<li>rebase -i，一个交互式的rebase，可以用来编辑版本信息，可以获得更加整洁的版本日志。</li>
+<li>千万不要在主体分支上使用rebase，否则会导致历史胡乱的。</li>
+</ul>
+<p>如果<code>git pull</code>的时候，出现 <code>error: failed to push some refs to &#39;版本库&#39;</code>， 可以<code>git pull --rebase</code>来解决下，后面说明原因。</p>
+<p>这个还需要再总结一下。</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/CSRF/">
+      CSRF
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/CSRF/" class="leancloud_visitors" data-flag-title="CSRF">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/CSRF/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/CSRF/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Web安全"><a href="#Web安全" class="headerlink" title="Web安全"></a>Web安全</h1><h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>CSRF，全称跨站伪造请求（Cross-site request forgery）,也称为one click attack/session riding，还可以缩写为XSRF。</p>
+<p>通俗的说就是利用被害者的身份去发送请求。</p>
+<p>让用户点击一个请求连接，获取到存储用户信息的cookie，再携带用户的cookie信息模拟用户身份进行操作。</p>
+<p>IE浏览器（IE7、IE8）会对本地Cookie进行默认拦截。</p>
+<h4 id="CSRF与XSS的区别"><a href="#CSRF与XSS的区别" class="headerlink" title="CSRF与XSS的区别"></a>CSRF与XSS的区别</h4><p>XSS：利用对用户输入的不严谨然后执行JS语句</p>
+<p>CSRF：通过伪造受信任用户发送请求</p>
+<p>CSRF可以通过XSS来实现</p>
+<p>　　浏览器的同源策略限制了一些跨域行为，但仍有些特例（img、iframe、script标签）不受跨域限制，这就给XSS攻击创造了机会（这完全不是同源策略的锅，一定是程序员的锅）。</p>
+<p>　　在讲下面的内容前，还是要提一下Cookie，Cookie是用来辨别用户身份的重要依据。来做个形象的比喻，有一天，小A去了一家新开的理发店，店里的托尼老师不认识小A，于是小A就办了一张VIP卡，当小A第二次去这家理发店的时候，店里的托尼老师刷了下小A的卡，想起来了你是小A啊，今天搞什么样的造型啊~ Cookie就是那张VIP卡，用于辨别用户身份。</p>
+<p>　　Cookie包含以下几个属性</p>
+<p><img src="https://img2018.cnblogs.com/blog/1000047/201902/1000047-20190227142843774-1872021491.png" alt="img"></p>
+<p>　　采用 Name = Value 的键值对形式存储数据，Name是唯一的</p>
+<p>　　Domain：域名，限制哪些域名下可以使用（该VIP卡仅限本店使用）</p>
+<p>　　Path：路径，只有这个路径前缀的才可用（该VIP卡仅限烫头）</p>
+<p>　　Expires：过期时间（该VIP卡有效期一年）</p>
+<p>　　HTTP（HTTPOnly）：只有浏览器请求时，才会在请求头中带着，JavaScript无法读写</p>
+<p>　　Secure：非HTTPS请求时不带</p>
+<p>　　SameSite：用于定义cookie如何跨域发送</p>
+<p>　　Cookie就先简单说到这里，回到XSS攻击，后续讲到的XSS和CSRF攻击都会围绕着怎么获取Cookie来举例。</p>
+<p>　　XSS（Cross-site-Script跨站脚本攻击），通常是带有页面可解析内容的数据未经处理直接插入到页面上解析造成的。XSS根据攻击脚本的引入位置来区分为存储型XSS、反射型XSS以及MXSS（也叫DOM XSS）三种。</p>
+<p>​     根据上面的描述来举个例子：<br>​     假设有一个论坛存在XSS漏洞，用户小A在该论坛的一篇帖子中留言到</p>
+<p><img src="https://img2018.cnblogs.com/blog/1000047/201902/1000047-20190227142935682-1042493928.png" alt="img"></p>
+<p>　　当小A写的留言被该论坛保存下来之后，如果有其他的用户看到了这条评论（相当于打开了这个页面，执行了hark.js，hark.js里面内容大致是获取Cookie，发送请求），那么这些用户的Cookie都会发送到小A事先写好的信息收集网站中进行保存，然后小A就可以用这些Cookie进行登录啦。</p>
+<p>　　上述这种XSS攻击属于存储型，提交的代码会被存储在服务器端，下次请求目标网站时不用再提交XSS代码。所以这种类型的主要原因是前端提交的数据未经处理直接存储到数据库，然后从数据库中读取出来后直接插入到页面中导致的。</p>
+<p>继续讲故事：</p>
+<p>​     假设有一个网站lalala存在XSS漏洞，网址是<a href="http://www.lalala.com。然后有一天小A在邮件里发现一封邮件，内容是一张你懂得图片然后配下面的标签。" target="_blank" rel="noopener">http://www.lalala.com。然后有一天小A在邮件里发现一封邮件，内容是一张你懂得图片然后配下面的标签。</a></p>
+<p><img src="https://img2018.cnblogs.com/blog/1000047/201902/1000047-20190227143106108-1877578569.png" alt="img"></p>
+<p>　　小A好奇啊，然后就点了进去，如果在此之前小A登录过lalala网站，那么他的Cookie就被盗走了。</p>
+<p>　　这种XSS攻击属于反射型，发出请求时，XSS代码出现在URL中，作为输入提交到服务器，服务器解析后响应，XSS代码随着响应内容一起传回给浏览器，最后浏览器解析执行XSS代码。这个过程像一次反射，故叫做反射型XSS。</p>
+<p>　　MXSS则是在渲染DOM属性时将攻击脚本插入DOM属性中被解析而导致的。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1000047/201902/1000047-20190227143125701-161276374.png" alt="img"></p>
+<p>至此，三种类型的XSS攻击都描述完了，你看确实都是程序员的锅吧。</p>
+<p>​     服务端可以做以下动作：</p>
+<p>​     1、刚刚上面讲到Cookie中有个属性时HTTP，设置为True，不允许JavaScript读取cookies，但该属性只适配部分浏览器。对于HTTPS可以设置Secure</p>
+<p>​     2、处理富文本框输入内容，进行XSS过滤，过滤类似script、iframe、form等标签以及转义存储</p>
+<p>​     客户端可以做以下动作：</p>
+<p>​     1、输入检查，和服务端一样都要做。<br>​     2、输出检查，编码转义，如果使用jquery，就是那些append、html、before、after等，插入DOM的方法需要注意。现今大部分的MV*框架在模板（view层）会自动处理XSS问题。</p>
+<p>​     XSS攻击的危害是很大的，像上面的例子注入script可以执行任何的JS代码(意味着可以获取cookie等信息了)，注入style可以把页面全部弄崩。尤其是具有评论功能的网站需要注意防范此类攻击，不要相信客户端发送过来的任何数据！还有就是不要乱点开奇奇怪怪的链接啦~</p>
+<p>XSS<br>全称Cross Site Scripting，名为跨站脚本攻击，黑客将恶意脚本代码植入到页面中从而实现盗取用户信息等操作。</p>
+<p>常见的攻击情景：</p>
+<pre><code> 1、用户A访问安全网站B，然后用户C发现B网站存在XSS漏洞，此时用户C向A发送了一封邮件，里面有包含恶意脚本的URL地址（此URL地址还是网站B的地址，只是路径上有恶意脚本），当用户点击访问时，因为网站B中cookie含有用户的敏感信息，此时用户C就可以利用脚本在受信任的情况下获取用户A的cookie信息，以及进行一些恶意操作。
+
+这种攻击叫做反射性XSS
+
+2、假设网站B是一个博客网站，恶意用户C在存在XSS漏洞的网站B发布了一篇文章，文章中存在一些恶意脚本，例如img标签、script标签等，这篇博客必然会存入数据库中，当其他用户访问该文章时恶意脚本就会执行，然后进行恶意操作。
+
+这种攻击方式叫做持久性XSS，将携带脚本的数据存入数据库，之后又由后台返回。</code></pre><p>预防措施：</p>
+<pre><code>1、对输入、输出结果进行过滤和必要的转义
+
+2、尽量使用post，使用get方式时对路径长度进行限制
+
+3、使用httponly禁止黑客通过脚本获取用户cookie数据，但这样无法完全阻止xss攻击，因为发送http请求并不需要主动获取cookie</code></pre><p>CSRF<br>全称cross-site request forgery，名为跨站请求伪造，顾名思义就是黑客伪装成用户身份来执行一些非用户自愿的恶意以及非法操作</p>
+<p>常见攻击情景：</p>
+<pre><code> 用户A经常访问博客网站B，用户C发现网站B存在CSRF漏洞，想尽了各种办法勾引用户A访问了C写好的危险网站D，而此时用户A的cookie信息还没有失效，危险网站D中有向网站B求请求的非法操作，这样用户在不知情的情况下就被操控了。
+
+这个时候就会有一个疑问，浏览器本身有同源策略啊，为什么在网站D还可以请求网站B的api，要记住浏览器对img、iframe和script的src是没有同源限制的！所以黑客完全可以利用动态添加这些标签的方法来实现跨站请求。</code></pre><p>预防措施：</p>
+<pre><code>1、验证码
+
+2、tokenId令牌
+
+3、判断请求的Referer是否正确</code></pre><p>CSRF和XSS的区别：<br>1、CSRF需要登陆后操作，XSS不需要</p>
+<p>2、CSRF是请求页面api来实现非法操作，XSS是向当前页面植入js脚本来修改页面内容</p>
+<h3 id="几种常见攻击方式"><a href="#几种常见攻击方式" class="headerlink" title="几种常见攻击方式"></a>几种常见攻击方式</h3><h3 id="防御方法"><a href="#防御方法" class="headerlink" title="防御方法"></a>防御方法</h3><h1 id="JSONP原理"><a href="#JSONP原理" class="headerlink" title="JSONP原理"></a>JSONP原理</h1><ul>
+<li>javascript有一个很重要的安全性限制，称为“Same-Origin Policy”（同源策略），禁止跨域操作。</li>
+<li>然而深度编程需要跨域操作，JSONP跨域GET请求是一个很好的策略</li>
+<li>主要是利用了script标签可以跨域链接资源的特性。</li>
+<li>基本原理：动态添加一个<script>标签，使用script标签的src属性没有跨域的限制的特点实现跨域。首先在客户端注册一个callback，然后把callback的名字传给服务器。此时服务器先生产json数据，然后以javascript语法的方式，生成一个function，function名字就是传递上来 的参数jsonp，最后将json数据直接以入参的方式，放置到function中，这样就生成了一段js语法的文档，返回给客户端。</li>
+<li>客户端浏览器，解析script标签，并执行返回的javascript文档，此时数据作为参数，传入到客户端预先定义好的callback函数里</li>
+<li>具体操作</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript"> <span class="function"><span class="keyword">function</span> <span class="title">aa</span><span class="params">(dat)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">    alert([dat.name](http:<span class="comment">//dat.name));</span></span></span><br><span class="line"> &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"....../js/data.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>页面上定义一个函数，引用一个外部js文件，外部js文件的地址可以是不同域的地址，外部js文件的内容如下：</p>
+</li>
+<li><pre><code class="javascript">aa({<span class="string">"name"</span>:<span class="string">"tom"</span>,<span class="string">"age"</span>:<span class="number">18</span>});</code></pre>
+</li>
+<li><p>外部js文件调用页面上定义的函数，通过参数把数据传进去。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/axios/">
+      axios
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/axios/" class="leancloud_visitors" data-flag-title="axios">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/axios/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/axios/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/AngularJS/">
+      AngularJS
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/AngularJS/" class="leancloud_visitors" data-flag-title="AngularJS">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/AngularJS/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/AngularJS/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.angularjs.net.cn/" target="_blank" rel="noopener">中文网</a></p>
+<p>特点</p>
+<ul>
+<li>数据绑定：Angular数据绑定是双向的</li>
+<li>MVVM模式：使代码解耦</li>
+<li>依赖注入</li>
+<li>指令</li>
+<li>HTML模板和拓展HTML</li>
+</ul>
+<h4 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyController</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">    $scope.clock = &#123;</span><br><span class="line">        now:<span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> updateClock = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $scope.clock.now = <span class="keyword">new</span> <span class="built_in">Date</span>;  </span><br><span class="line">    &#125;;</span><br><span class="line">    setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $scope.$apply(updateClock);</span><br><span class="line">    &#125;,<span class="number">1000</span>);</span><br><span class="line">    updateClock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>AngularJS允许我们使用angular.module()方法来声明模块，这个方法能够接受两个参数，第一个是模块名称（字符串），第二个是依赖列表，也就是可以被注入到模块中的对象列表（字符串数组，每个元素都是一个模块名称，本模块依赖于这些模块，依赖需要在本模块加载之前由注入器进行预加载）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&#39;myApp&#39;,[])</span><br></pre></td></tr></table></figure>
+
+<p>这个方法相当于AngularJS模块的setter方法，是用来定于模块的。</p>
+<p>调用这个方法时如果只传递一个参数，就可以用它来引用模块。例如，可以通过以下代码来引用myApp模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&#39;myApp&#39;);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2020/07/15/XSS%E6%94%BB%E5%87%BB/">
       XSS攻击
     </a>
@@ -1241,8 +2113,8 @@
         
           
   <h2 class="title">
-    <a href="/2020/07/15/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/">
-      Redis计数器解决并发问题
+    <a href="/2020/07/15/Redis/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/">
+      Redis/Redis计数器解决并发问题
     </a>
   </h2>
 
@@ -1289,7 +2161,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2020/07/15/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="Redis计数器解决并发问题">
+      <span id="/2020/07/15/Redis/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="Redis/Redis计数器解决并发问题">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1304,9 +2176,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2020/07/15/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/#comments">
+  <a href="/2020/07/15/Redis/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Redis/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1372,8 +2244,8 @@
         
           
   <h2 class="title">
-    <a href="/2020/07/15/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/">
-      Redis应用-位图
+    <a href="/2020/07/15/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/">
+      Redis/Redis应用-位图
     </a>
   </h2>
 
@@ -1420,7 +2292,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2020/07/15/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/" class="leancloud_visitors" data-flag-title="Redis应用-位图">
+      <span id="/2020/07/15/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/" class="leancloud_visitors" data-flag-title="Redis/Redis应用-位图">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -1435,9 +2307,9 @@
               
 <div class="new-meta-item comments-count">
   
-  <a href="/2020/07/15/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/#comments">
+  <a href="/2020/07/15/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/#comments">
     <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/">0</span>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/">0</span>
     <span class="leancloud-comments-count">&nbsp;</span>
   </a>
 </div>
@@ -1497,1455 +2369,6 @@
 <ul>
 <li>将一个大的 bitmap 分散到不同的 key 中，作为小的 bitmap 来处理。使用 Lua 脚本可以很方便地完成这一工作。</li>
 <li>使用 BITCOUNT key [start] [end] 的 start 和 end 参数，每次只对所需的部分位进行计算，然后在进行累加。</li>
-</ul>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-      Redis-雪崩、穿透、并发等5大难题解决方案
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="Redis-雪崩、穿透、并发等5大难题解决方案">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>一、Redis雪崩、穿透、并发等5大难题解决方案</p>
-<p><strong>缓存雪崩</strong></p>
-<p>数据未加载到缓存中，或者缓存同一时间大面积的失效，从而导致所有请求都去查数据库，导致数据库CPU和内存负载过高，甚至宕机。</p>
-<p><strong>比如一个雪崩的简单过程：</strong></p>
-<p>1、redis集群大面积故障</p>
-<p>2、缓存失效，但依然大量请求访问缓存服务redis</p>
-<p>3、redis大量失效后，大量请求转向到mysql数据库</p>
-<p>4、mysql的调用量暴增，很快就扛不住了，甚至直接宕机</p>
-<p>5、由于大量的应用服务依赖mysql和redis的服务，这个时候很快会演变成各服务器集群的雪崩，最后网站彻底崩溃。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/17159472-6af7a954878442db?imageMogr2/auto-orient/strip%7CimageView2/2/w/640/format/webp" alt="img"></p>
-<p><strong>如何预防缓存雪崩：</strong></p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/17159472-fdd9687f5c71cc51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/319/format/webp" alt="img"></p>
-<p><strong>1.缓存的高可用性</strong></p>
-<p>缓存层设计成高可用，防止缓存大面积故障。即使个别节点、个别机器、甚至是机房宕掉，依然可以提供服务，例如 Redis Sentinel 和 Redis Cluster 都实现了高可用。</p>
-<p><strong>2.缓存降级</strong></p>
-<p>可以利用ehcache等本地缓存(暂时支持)，但主要还是对源服务访问进行限流、资源隔离（熔断）、降级等。</p>
-<p>当访问量剧增、服务出现问题仍然需要保证服务还是可用的。系统可以根据一些关键数据进行<strong>自动降级</strong>，也可以配置开关实现<strong>人工降级，</strong>这里会涉及到运维的配合。</p>
-<p><strong>降级的最终目的是保证核心服务可用，即使是有损的。</strong></p>
-<p>比如推荐服务中，很多都是个性化的需求，假如个性化需求不能提供服务了，可以降级补充热点数据，不至于造成前端页面是个大空白。</p>
-<p>在进行降级之前要对系统进行梳理，比如：哪些业务是核心(必须保证)，哪些业务可以容许暂时不提供服务(利用静态页面替换)等，以及配合服务器核心指标，来后设置整体预案，比如：</p>
-<p>（1）一般：比如有些服务偶尔因为网络抖动或者服务正在上线而超时，可以自动降级；</p>
-<p>（2）警告：有些服务在一段时间内成功率有波动（如在95~100%之间），可以自动降级或人工降级，并发送告警；</p>
-<p>（3）错误：比如可用率低于90%，或者数据库连接池被打爆了，或者访问量突然猛增到系统能承受的最大阀值，此时可以根据情况自动降级或者人工降级；</p>
-<p>（4）严重错误：比如因为特殊原因数据错误了，此时需要紧急人工降级。</p>
-<p><strong>3.Redis备份和快速预热</strong></p>
-<p>1)Redis数据备份和恢复</p>
-<p>2)快速缓存预热</p>
-<p><strong>4.提前演练</strong></p>
-<p>最后，建议还是在项目上线前，演练缓存层宕掉后，应用以及后端的负载情况以及可能出现的问题，对高可用提前预演，提前发现问题。</p>
-<p><strong>缓存穿透</strong></p>
-<p>缓存穿透是指查询一个一不存在的数据。例如：从缓存redis没有命中，需要从mysql数据库查询，查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到数据库去查询，造成缓存穿透。</p>
-<p>解决思路：</p>
-<p>如果查询数据库也为空，直接设置一个默认值存放到缓存，这样第二次到缓冲中获取就有值了，而不会继续访问数据库。设置一个过期时间或者当有值的时候将缓存中的值替换掉即可。</p>
-<p>可以给key设置一些格式规则，然后查询之前先过滤掉不符合规则的Key。</p>
-<p><strong>缓存并发</strong></p>
-<p>这里的并发指的是多个redis的client同时set key引起的并发问题。其实redis自身就是单线程操作，多个client并发操作，按照先到先执行的原则，先到的先执行，其余的阻塞。当然，另外的解决方案是把redis.set操作放在队列中使其串行化，必须的一个一个执行。</p>
-<p><strong>缓存预热</strong></p>
-<p>缓存预热就是系统上线后，将相关的缓存数据直接加载到缓存系统。</p>
-<p>这样就可以避免在用户请求的时候，先查询数据库，然后再将数据缓存的问题！用户直接查询事先被预热的缓存数据！</p>
-<p>解决思路：</p>
-<p>1、直接写个缓存刷新页面，上线时手工操作下；</p>
-<p>2、数据量不大，可以在项目启动的时候自动进行加载；</p>
-<p>目的就是在系统上线前，将数据加载到缓存中。</p>
-<p>二、Redis为什么是单线程，高并发快的3大原因详解</p>
-<p><strong>Redis的高并发和快速原因</strong></p>
-<p>1.redis是基于内存的，内存的读写速度非常快；</p>
-<p>2.redis是单线程的，省去了很多上下文切换线程的时间；</p>
-<p>3.redis使用多路复用技术，可以处理并发的连接。非阻塞IO 内部实现采用epoll，采用了epoll+自己实现的简单的事件框架。epoll中的读、写、关闭、连接都转化成了事件，然后利用epoll的多路复用特性，绝不在io上浪费一点时间。</p>
-<p>下面重点介绍单线程设计和IO多路复用核心设计快的原因。</p>
-</li>
-</ul>
-<p>  <img src="https:////upload-images.jianshu.io/upload_images/17159472-e285b5446cc61293.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/357/format/webp" alt="img"></p>
-<p>  <strong>为什么Redis是单线程的？</strong></p>
-<p>  <strong>1.官方答案</strong></p>
-<p>  因为Redis是基于内存的操作，CPU不是Redis的瓶颈，Redis的瓶颈最有可能是机器内存的大小或者网络带宽。既然单线程容易实现，而且CPU不会成为瓶颈，那就顺理成章地采用单线程的方案了。</p>
-<p>  <strong>2.性能指标</strong></p>
-<p>  关于redis的性能，官方网站也有，普通笔记本轻松处理每秒几十万的请求。</p>
-<p>  <strong>3.详细原因</strong></p>
-<p>  <strong>1）不需要各种锁的性能消耗</strong></p>
-<p>  Redis的数据结构并不全是简单的Key-Value，还有list，hash等复杂的结构，这些结构有可能会进行很细粒度的操作，比如在很长的列表后面添加一个元素，在hash当中添加或者删除</p>
-<p>  一个对象。这些操作可能就需要加非常多的锁，导致的结果是同步开销大大增加。</p>
-<p>  总之，在单线程的情况下，就不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗。</p>
-<p>  <strong>2）单线程多进程集群方案</strong></p>
-<p>  单线程的威力实际上非常强大，每核心效率也非常高，多线程自然是可以比单线程有更高的性能上限，但是在今天的计算环境中，即使是单机多线程的上限也往往不能满足需要了，需要进一步摸索的是多服务器集群化的方案，这些方案中多线程的技术照样是用不上的。</p>
-<p>  <strong>所以单线程、多进程的集群不失为一个时髦的解决方案。</strong></p>
-<p>  <strong>3）CPU消耗</strong></p>
-<p>  采用单线程，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗 CPU。</p>
-<p>  但是如果CPU成为Redis瓶颈，或者不想让服务器其他CUP核闲置，那怎么办？</p>
-<p>  可以考虑多起几个Redis进程，Redis是key-value数据库，不是关系数据库，数据之间没有约束。只要客户端分清哪些key放在哪个Redis进程上就可以了。</p>
-<p>  Redis单线程的优劣势</p>
-<p>  <strong>单进程单线程优势</strong></p>
-<p>  代码更清晰，处理逻辑更简单不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗不存在多进程或者多线程导致的切换而消耗CPU</p>
-<p>  <strong>单进程单线程弊端</strong></p>
-<p>  无法发挥多核CPU性能，不过可以通过在单机开多个Redis实例来完善；</p>
-<p>  <strong>IO多路复用技术</strong></p>
-<p>  redis 采用网络IO多路复用技术来保证在多连接的时候， 系统的高吞吐量。</p>
-<p>  多路-指的是多个socket连接，复用-指的是复用一个线程。多路复用主要有三种技术：select，poll，epoll。epoll是最新的也是目前最好的多路复用技术。</p>
-<p>  这里“多路”指的是多个网络连接，“复用”指的是复用同一个线程。采用多路 I/O 复用技术可以让单个线程高效的处理多个连接请求（尽量减少网络IO的时间消耗），且Redis在内存中操作数据的速度非常快（内存内的操作不会成为这里的性能瓶颈），主要以上两点造就了Redis具有很高的吞吐量。</p>
-<p>  <img src="https:////upload-images.jianshu.io/upload_images/17159472-2afda1de5c2baf72?imageMogr2/auto-orient/strip%7CimageView2/2/w/609/format/webp" alt="img"></p>
-<p>  <strong>Redis高并发快总结</strong></p>
-<p>  **<br>  **</p>
-<p>  <img src="https:////upload-images.jianshu.io/upload_images/17159472-4d45192c932b93aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/309/format/webp" alt="img"></p>
-<p>  \1. Redis是纯内存数据库，一般都是简单的存取操作，线程占用的时间很多，时间的花费主要集中在IO上，所以读取速度快。</p>
-<p>  \2. 再说一下IO，Redis使用的是非阻塞IO，IO多路复用，使用了单线程来轮询描述符，将数据库的开、关、读、写都转换成了事件，减少了线程切换时上下文的切换和竞争。</p>
-<p>  \3. Redis采用了单线程的模型，保证了每个操作的原子性，也减少了线程的上下文切换和竞争。</p>
-<p>  \4. 另外，数据结构也帮了不少忙，Redis全程使用hash结构，读取速度快，还有一些特殊的数据结构，对数据存储进行了优化，如压缩表，对短数据进行压缩存储，再如，跳表，使用有序的数据结构加快读取的速度。</p>
-<p>  \5. 还有一点，Redis采用自己实现的事件分离器，效率比较高，内部采用非阻塞的执行方式，吞吐能力比较大。</p>
-<p>  三、Redis缓存和MySQL数据一致性方案详解</p>
-<p>  <strong>需求起因</strong></p>
-<p>  在高并发的业务场景下，数据库大多数情况都是用户并发访问最薄弱的环节。所以，就需要使用redis做一个缓冲操作，让请求先访问到redis，而不是直接访问MySQL等数据库。</p>
-<p>  <img src="https:////upload-images.jianshu.io/upload_images/17159472-28d0f809a85eb6cc?imageMogr2/auto-orient/strip%7CimageView2/2/w/640/format/webp" alt="img"></p>
-<p>  这个业务场景，主要是解决读数据从Redis缓存，一般都是按照下图的流程来进行业务操作。</p>
-<p>  <img src="https:////upload-images.jianshu.io/upload_images/17159472-77b45a8af9a60cc1?imageMogr2/auto-orient/strip%7CimageView2/2/w/553/format/webp" alt="img"></p>
-<p>  读取缓存步骤一般没有什么问题，但是一旦涉及到数据更新：数据库和缓存更新，就容易出现<strong>缓存(Redis)和数据库（MySQL）间的数据一致性问题</strong>。</p>
-<p>  不管是先写MySQL数据库，再删除Redis缓存；还是先删除缓存，再写库，都有可能出现数据不一致的情况。举一个例子：</p>
-<p>  1.如果删除了缓存Redis，还没有来得及写库MySQL，另一个线程就来读取，发现缓存为空，则去数据库中读取数据写入缓存，此时缓存中为脏数据。</p>
-<p>  2.如果先写了库，在删除缓存前，写库的线程宕机了，没有删除掉缓存，则也会出现数据不一致情况。</p>
-<p>  因为写和读是并发的，没法保证顺序,就会出现缓存和数据库的数据不一致的问题。</p>
-<p>  如来解决？这里给出两个解决方案，先易后难，结合业务和技术代价选择使用。</p>
-<p>  <strong>缓存和数据库一致性解决方案</strong></p>
-<p>  <strong>1.第一种方案：采用延时双删策略</strong></p>
-<p>  **<br>  **</p>
-<p>  <img src="https:////upload-images.jianshu.io/upload_images/17159472-10b548391418138d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/617/format/webp" alt="img"></p>
-<p>  在写库前后都进行redis.del(key)操作，并且设定合理的超时时间。</p>
-<p>  伪代码如下：</p>
-<p>  public void write(String key,Object data){</p>
-<p>  redis.delKey(key);</p>
-<p>  db.updateData(data);</p>
-<p>  Thread.sleep(500);</p>
-<p>  redis.delKey(key);</p>
-<p>  }</p>
-<p>  <strong>具体的步骤就是：</strong></p>
-<p>  先删除缓存；再写数据库；休眠500毫秒；再次删除缓存。</p>
-<p>  <strong>那么，这个500毫秒怎么确定的，具体该休眠多久呢？</strong></p>
-<p>  需要评估自己的项目的读数据业务逻辑的耗时。这么做的目的，就是确保读请求结束，写请求可以删除读请求造成的缓存脏数据。</p>
-<p>  当然这种策略还要考虑redis和数据库主从同步的耗时。最后的的写数据的休眠时间：则在读数据业务逻辑的耗时基础上，加几百ms即可。比如：休眠1秒。</p>
-<p>  <strong>设置缓存过期时间</strong></p>
-<p>  从理论上来说，给缓存设置过期时间，是保证最终一致性的解决方案。所有的写操作以数据库为准，只要到达缓存过期时间，则后面的读请求自然会从数据库中读取新值然后回填缓存。</p>
-<p>  <strong>该方案的弊端</strong></p>
-<p>  结合双删策略+缓存超时设置，这样最差的情况就是在超时时间内数据存在不一致，而且又增加了写请求的耗时。</p>
-<p>  <strong>2、第二种方案：异步更新缓存(基于订阅binlog的同步机制)</strong></p>
-<p>  <strong>技术整体思路：</strong></p>
-<p>  MySQL binlog增量订阅消费+消息队列+增量数据更新到redis</p>
-<p>  <strong>读Redis</strong>：热数据基本都在Redis<strong>写MySQL</strong>:增删改都是操作MySQL<strong>更新Redis数据</strong>：MySQ的数据操作binlog，来更新到Redis</p>
-<p>  <strong>Redis更新</strong></p>
-<p>  <strong>1）数据操作主要分为两大块：</strong></p>
-<p>  一个是全量(将全部数据一次写入到redis)一个是增量（实时更新）</p>
-<p>  这里说的是增量,指的是mysql的update、insert、delate变更数据。</p>
-<p>  <strong>2）读取binlog后分析 ，利用消息队列,推送更新各台的redis缓存数据。</strong></p>
-<p>  这样一旦MySQL中产生了新的写入、更新、删除等操作，就可以把binlog相关的消息推送至Redis，Redis再根据binlog中的记录，对Redis进行更新。</p>
-<p>  其实这种机制，很类似MySQL的主从备份机制，因为MySQL的主备也是通过binlog来实现的数据一致性。</p>
-<p>  这里可以结合使用canal(阿里的一款开源框架)，通过该框架可以对MySQL的binlog进行订阅，而canal正是模仿了mysql的slave数据库的备份请求，使得Redis的数据更新达到了相同的效果。</p>
-<p>  当然，这里的消息推送工具你也可以采用别的第三方：kafka、rabbitMQ等来实现推送更新Redis。</p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/JMM/">
-      Java-内存模型JMM
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/JMM/" class="leancloud_visitors" data-flag-title="Java-内存模型JMM">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/JMM/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/JMM/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java内存模型（JMM）"><a href="#Java内存模型（JMM）" class="headerlink" title="Java内存模型（JMM）"></a>Java内存模型（JMM）</h1><p>即Java Memory Model，简称JMM。JMM定义了Java虚拟机（JVM）在计算机内存（RAM）中的工作方式。JVM是整个计算机虚拟模型，所以JMM隶属于JVM的。从抽象的角度来看，JMM定义了线程与主内存之间的抽象关系：线程之间的共享变量存储在主内存（Main Memory）中，每个线程都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了缓存、写缓冲区、寄存器以及其他的硬件和编译器优化。</p>
-<h1 id="JVM对Java内存模型的实现"><a href="#JVM对Java内存模型的实现" class="headerlink" title="JVM对Java内存模型的实现"></a><strong>JVM对Java内存模型的实现</strong></h1><p>所有原始类型(boolean,byte,short,char,int,long,float,double)的局部变量都直接保存在线程栈当中，对于它们的值各个线程之间都是独立的。对于原始类型的局部变量，一个线程可以传递一个副本给另一个线程，当它们之间是无法共享的。</p>
-<p>堆区包含了Java应用创建的所有对象信息，不管对象是哪个线程创建的，其中的对象包括原始类型的封装类（如Byte、Integer、Long等等）。不管对象是属于一个成员变量还是方法中的局部变量，它都会被存储在堆区。</p>
-<p>一个局部变量如果是原始类型，那么它会被完全存储到栈区。 一个局部变量也有可能是一个对象的引用，这种情况下，这个本地引用会被存储到栈中，但是对象本身仍然存储在堆区。</p>
-<p>对于一个对象的成员方法，这些方法中包含局部变量，仍需要存储在栈区，即使它们所属的对象在堆区。 对于一个对象的成员变量，不管它是原始类型还是包装类型，都会被存储到堆区。Static类型的变量以及类本身相关信息都会随着类本身存储在堆区。</p>
-<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps1.jpg" alt="img"> </p>
-<h1 id="Java内存模型带来的问题"><a href="#Java内存模型带来的问题" class="headerlink" title="Java内存模型带来的问题"></a><strong>Java内存模型带来的问题</strong></h1><h2 id="可见性-问题"><a href="#可见性-问题" class="headerlink" title="可见性**问题**"></a><strong>可见性**</strong>问题**</h2><p>左边CPU中运行的线程从主存中拷贝共享对象obj到它的CPU缓存，把对象obj的count变量改为2。但这个变更对运行在右边CPU中的线程不可见，因为这个更改还没有flush到主存中：要解决共享对象可见性这个问题，我们可以使用java volatile关键字或者是加锁 </p>
-<p>竞争问题：线程A和线程B共享一个对象obj。假设线程A从主存读取Obj.count变量到自己的CPU缓存，同时，线程B也读取了Obj.count变量到它的CPU缓存，并且这两个线程都对Obj.count做了加1操作。此时，Obj.count加1操作被执行了两次，不过都在不同的CPU缓存中。如果这两个加1操作是串行执行的，那么Obj.count变量便会在原始值上加2，最终主存中的Obj.count的值会是3。然而下图中两个加1操作是并行的，不管是线程A还是线程B先flush计算结果到主存，最终主存中的Obj.count只会增加1次变成2，尽管一共有两次加1操作。 要解决上面的问题我们可以使用java synchronized代码块。</p>
-<h2 id="重排序"><a href="#重排序" class="headerlink" title="重排序"></a><strong>重排序</strong></h2><p>除了共享内存和工作内存带来的问题，还存在重排序的问题：在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。</p>
-<h1 id="Java内存模型中的重排序"><a href="#Java内存模型中的重排序" class="headerlink" title="Java内存模型中的重排序"></a><strong>Java内存模型中的重排序</strong></h1><h2 id="重排序类型"><a href="#重排序类型" class="headerlink" title="重排序类型"></a><strong>重排序类型</strong></h2><p>重排序分3种类型。</p>
-<p>1）编译器优化的重排序。编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
-<p>2）指令级并行的重排序。现代处理器采用了指令级并行技术（Instruction-LevelParallelism，ILP）来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。</p>
-<p>3）内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行。</p>
-<h2 id="重排序与依赖性"><a href="#重排序与依赖性" class="headerlink" title="重排序与依赖性"></a><strong>重排序与依赖性</strong></h2><h3 id="数据依赖性"><a href="#数据依赖性" class="headerlink" title="数据依赖性"></a><strong>数据依赖性</strong></h3><p>如果两个操作访问同一个变量，且这两个操作中有一个为写操作，此时这两个操作之间就存在数据依赖性。数据依赖分为下列3种类型</p>
-<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps2.jpg" alt="img"> </p>
-<p>上面3种情况，只要重排序两个操作的执行顺序，程序的执行结果就会被改变。</p>
-<h3 id="控制依赖性"><a href="#控制依赖性" class="headerlink" title="控制依赖性"></a><strong>控制依赖性</strong></h3><p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps3.jpg" alt="img"> </p>
-<p>flag变量是个标记，用来标识变量a是否已被写入，在use方法中比变量i依赖<strong>if</strong> (flag)的判断，这里就叫控制依赖，如果发生了重排序，结果就不对了。</p>
-<h2 id="as-if-serial"><a href="#as-if-serial" class="headerlink" title="as-if-serial"></a><strong>as-if-serial</strong></h2><p>不管如何重排序，都必须保证代码在单线程下的运行正确，连单线程下都无法正确，更不用讨论多线程并发的情况，所以就提出了一个as-if-serial的概念， </p>
-<p><strong>as-if-serial</strong>语义的意思是：不管怎么重排序（编译器和处理器为了提高并行度），（单线程）程序的执行结果不能被改变。编译器、runtime和处理器都必须遵守as-if-serial语义。为了遵守as-if-serial语义，编译器和处理器不会对存在数据依赖关系的操作做重排序，因为这种重排序会改变执行结果。（强调一下，这里所说的数据依赖性仅针对单个处理器中执行的指令序列和单个线程中执行的操作，不同处理器之间和不同线程之间的数据依赖性不被编译器和处理器考虑。）但是，如果操作之间不存在数据依赖关系，这些操作依然可能被编译器和处理器重排序。</p>
-<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps4.jpg" alt="img"> </p>
-<p>1和3之间存在数据依赖关系，同时2和3之间也存在数据依赖关系。因此在最终执行的指令序列中，3不能被重排序到1和2的前面（3排到1和2的前面，程序的结果将会被改变）。但1和2之间没有数据依赖关系，编译器和处理器可以重排序1和2之间的执行顺序。</p>
-<p>asif-serial语义使单线程下无需担心重排序的干扰，也无需担心内存可见性问题。</p>
-<h1 id="并发下重排序带来的问题"><a href="#并发下重排序带来的问题" class="headerlink" title="并发下重排序带来的问题"></a><strong>并发下重排序带来的问题</strong></h1><p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps5.jpg" alt="img"> </p>
-<p>这里假设有两个线程A和B，A首先执行init ()方法，随后B线程接着执行use ()方法。线程B在执行操作4时，能否看到线程A在操作1对共享变量a的写入呢？答案是：不一定能看到。</p>
-<p>由于操作1和操作2没有数据依赖关系，编译器和处理器可以对这两个操作重排序；同样，操作3和操作4没有数据依赖关系，编译器和处理器也可以对这两个操作重排序。让我们先来看看，当操作1和操作2重排序时，可能会产生什么效果？操作1和操作2做了重排序。程序执行时，线程A首先写标记变量flag，随后线程B读这个变量。由于条件判断为真，线程B将读取变量a。此时，变量a还没有被线程A写入，这时就会发生错误！</p>
-<p>当操作3和操作4重排序时会产生什么效果？</p>
-<p>在程序中，操作3和操作4存在控制依赖关系。当代码中存在控制依赖性时，会影响指令序列执行的并行度。为此，编译器和处理器会采用猜测（Speculation）执行来克服控制相关性对并行度的影响。以处理器的猜测执行为例，执行线程B的处理器可以提前读取并计算a*a，然后把计算结果临时保存到一个名为重排序缓冲（Reorder Buffer，ROB）的硬件缓存中。当操作3的条件判断为真时，就把该计算结果写入变量i中。猜测执行实质上对操作3和4做了重排序，问题在于这时候，a的值还没被线程A赋值。在单线程程序中，对存在控制依赖的操作重排序，不会改变执行结果（这也是as-if-serial语义允许对存在控制依赖的操作做重排序的原因）；但在多线程程序中，对存在控制依赖的操作重排序，可能会改变程序的执行结果。</p>
-<h1 id="解决在并发下的问题"><a href="#解决在并发下的问题" class="headerlink" title="解决在并发下的问题"></a><strong>解决在并发下的问题</strong></h1><h2 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a><strong>内存屏障</strong></h2><p>Java编译器在生成指令序列的适当位置会插入内存屏障指令来禁止特定类型的处理器重排序，从而让程序按我们预想的流程去执行。</p>
-<p>1、保证特定操作的执行顺序。</p>
-<p>2、影响某些数据（或则是某条指令的执行结果）的内存可见性。</p>
-<p>编译器和CPU能够重排序指令，保证最终相同的结果，尝试优化性能。插入一条Memory Barrier会告诉编译器和CPU：不管什么指令都不能和这条Memory Barrier指令重排序。</p>
-<p>Memory Barrier所做的另外一件事是强制刷出各种CPU cache，如一个Write-Barrier（写入屏障）将刷出所有在Barrier之前写入 cache 的数据，因此，任何CPU上的线程都能读取到这些数据的最新版本。</p>
-<p>JMM把内存屏障指令分为4类，解释表格，StoreLoad Barriers是一个“全能型”的屏障，它同时具有其他3个屏障的效果。现代的多处理器大多支持该屏障（其他类型的屏障不一定被所有处理器支持）。</p>
-<h2 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a><strong>临界区</strong></h2><p>临界区内的代码可以重排序（但JMM不允许临界区内的代码“逸出”到临界区之外，那样会破坏监视器的语义）。JMM会在退出临界区和进入临界区这两个关键时间点做一些特别处理，虽然线程A在临界区内做了重排序，但由于监视器互斥执行的特性，这里的线程B根本无法“观察”到线程A在临界区内的重排序。这种重排序既提高了执行效率，又没有改变程序的执行结果。</p>
-<h1 id="Happens-Before"><a href="#Happens-Before" class="headerlink" title="Happens-Before"></a><strong>Happens-Before</strong></h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a><strong>定义</strong></h2><p>在Java 规范提案中为让大家理解内存可见性的这个概念，提出了happens-before的概念来阐述操作之间的内存可见性。对应Java程序员来说，理解happens-before是理解JMM的关键。JMM这么做的原因是：程序员对于这两个操作是否真的被重排序并不关心，程序员关心的是程序执行时的语义不能被改变（即执行结果不能被改变）。因此，happens-before关系本质上和as-if-serial语义是一回事。·as-if-serial语义保证单线程内程序的执行结果不被改变，happens-before关系保证正确同步的多线程程序的执行结果不被改变。</p>
-<h2 id="Happens-Before规则"><a href="#Happens-Before规则" class="headerlink" title="Happens-Before规则"></a><strong>Happens-Before规则</strong></h2><p>具体规则参见PPT</p>
-<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5CJVM%5Cwps6.jpg" alt="img"> </p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-      Java-并发编程
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Java-并发编程">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h1><p>并发编程三大特性：可见性，原子性，有序性</p>
-<h2 id="1、线程基础、线程"><a href="#1、线程基础、线程" class="headerlink" title="1、线程基础、线程"></a>1、线程基础、线程</h2><p>之间的共享和协作</p>
-<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><ul>
-<li>CPU核心数，线程数</li>
-</ul>
-<p>核心数:线程数=1:1  ;使用了超线程技术后—&gt; 1:2</p>
-<ul>
-<li>CPU时间片轮转机制</li>
-</ul>
-<p>又称RR调度，会导致上下文切换</p>
-<ul>
-<li>什么是进程和线程</li>
-</ul>
-<p>进程：程序运行资源分配的最小单位，进程内部有多个线程，会共享这个进程的资源</p>
-<p>线程：CPU调度的最小单位，必须依赖进程而存在。</p>
-<ul>
-<li>什么是并行和并发</li>
-</ul>
-<p>并行：同一时刻，可以同时处理事情的能力</p>
-<p>并发：与单位时间相关，在单位时间内可以处理事情的能力</p>
-<ul>
-<li>高并发编程的意义、好处和注意事项</li>
-</ul>
-<p>好处：充分利用cpu的资源、加快用户响应的时间，程序模块化，异步化</p>
-<p>问题：</p>
-<p>线程共享资源，存在冲突；</p>
-<p>容易导致死锁；</p>
-<p>启用太多的线程，就有搞垮机器的可能</p>
-<h3 id="2、Java中线程基础"><a href="#2、Java中线程基础" class="headerlink" title="2、Java中线程基础"></a>2、Java中线程基础</h3><ul>
-<li><p>启动和终止线程</p>
-<ul>
-<li>三种启动线程的方式</li>
-<li>理解中断</li>
-<li>如何安全的终止线程</li>
-</ul>
-<p>线程自然终止：自然执行完或抛出未处理异常</p>
-<p>stop()，resume(),suspend()已不建议使用，stop()会导致线程不会正确释放资源，suspend()容易导致死锁。</p>
-<p>java线程是协作式，而非抢占式</p>
-<p>调用一个线程的interrupt() 方法中断一个线程，并不是强行关闭这个线程，只是跟这个线程打个招呼，将线程的中断标志位置为true，线程是否中断，由线程本身决定。</p>
-<p>isInterrupted() 判定当前线程是否处于中断状态。</p>
-<p>static方法interrupted() 判定当前线程是否处于中断状态，同时中断标志位改为false。</p>
-<p>方法里如果抛出InterruptedException，线程的中断标志位会被复位成false，如果确实是需要中断线程，要求我们自己在catch语句块里再次调用interrupt()。</p>
-</li>
-<li><p>线程再认识</p>
-<ul>
-<li>线程常用方法</li>
-<li>线程的状态</li>
-</ul>
-<p>线程只有5种状态。整个生命周期就是这几种状态的切换。</p>
-<p>run()和start() ：run方法就是普通对象的普通方法，只有调用了start()后，Java才会将线程对象和操作系统中实际的线程进行映射，再来执行run方法。</p>
-<p>yield() ：让出cpu的执行权，将线程从运行转到可运行状态，但是下个时间片，该线程依然有可能被再次选中运行。</p>
-<ul>
-<li>线程的优先级</li>
-</ul>
-<p>取值为1~10，缺省为5，但线程的优先级不可靠，不建议作为线程开发时候的手段</p>
-<h4 id="Daemon线程"><a href="#Daemon线程" class="headerlink" title="Daemon线程"></a>Daemon线程</h4><p>在Java中有两类线程：用户线程 (User Thread)、守护线程 (Daemon Thread)。 </p>
-<p>所谓守护 线程，是指在程序运行的时候在后台提供一种通用服务的线程，比如垃圾回收线程就是一个很称职的守护者，并且这种线程并不属于程序中不可或缺的部分。因此，当所有的非守护线程结束时，程序也就终止了，同时会杀死进程中的所有守护线程。反过来说，只要任何非守护线程还在运行，程序就不会终止。</p>
-<p>用户线程和守护线程两者几乎没有区别，唯一的不同之处就在于虚拟机的离开：如果用户线程已经全部退出运行了，只剩下守护线程存在了，虚拟机也就退出了。 因为没有了被守护者，守护线程也就没有工作可做了，也就没有继续运行程序的必要了。</p>
-<p>将线程转换为守护线程可以通过调用Thread对象的setDaemon(true)方法来实现。在使用守护线程时需要注意一下几点：</p>
-</li>
-</ul>
-<p>  (1) thread.setDaemon(true)必须在thread.start()之前设置，否则会跑出一个IllegalThreadStateException异常。你不能把正在运行的常规线程设置为守护线程。 </p>
-<p>  (2) 在Daemon线程中产生的新线程也是Daemon的。</p>
-<p>  (3) 守护线程应该永远不去访问固有资源，如文件、数据库，因为它会在任何时候甚至在一个操作的中间发生中断。</p>
-<p>  和主线程共死，finally不能保证一定执行</p>
-<ul>
-<li><p>线程间的共享</p>
-<ul>
-<li><p>synchronized</p>
-<ul>
-<li>对象锁，锁的是类的对象实例。</li>
-<li>类锁，锁的是每个类的的Class对象，每个类的的Class对象在一个虚拟机中只有一个，所以类锁也只有一个。</li>
-</ul>
-</li>
-<li><p>volatile</p>
-</li>
-</ul>
-<p>适合于只有一个线程写，多个线程读的场景，因为它只能确保可见性。</p>
-<ul>
-<li>ThreadLocal</li>
-</ul>
-<p>线程变量。可以理解为是个map，类型 Map&lt;Thread,Integer&gt;</p>
-</li>
-<li><p>线程间协作：轮询：难以保证及时性，资源开销很大，</p>
-<ul>
-<li><p>等待和通知机制</p>
-<ul>
-<li>Wait,Notify/NotifyAll</li>
-<li>等待和通知的标准范式</li>
-</ul>
-</li>
-</ul>
-<p>等待方：</p>
-<pre><code>1、 获取对象的锁；
-
-2、 循环里判断条件是否满足，不满足调用wait方法，
-
-3、 条件满足执行业务逻辑
-
-通知方来说
-
-1、 获取对象的锁；
-
-2、 改变条件
-
-3、 通知所有等待在对象的线程
-
-- notify和notifyAll应该用谁
-
-应该尽量使用notifyAll，使用notify因为有可能发生信号丢失的的情况
-
-**等待超时模式实现一个连接池**
-
-假设  等待时间时长为T，当前时间now+T以后超时</code></pre></li>
-</ul>
-<pre><code>  long  overtime = now+T;
-
-  long remain = T;//等待的持续时间
-
-  while(result不满足条件&amp;&amp; remain&gt;0){
-
-  ​    wait(remain);
-
-  ​    remain = overtime – now;//等待剩下的持续时间
-
-  }
-
-  return result;
-
-- Join方法
-
-线程A，执行了线程B的join方法，线程A必须要等待B执行完成了以后，线程A才能继续自己的工作
-
-- 调用yield() 、sleep()、wait()、notify()等方法对锁有何影响？
-
-线程在执行yield()以后，持有的锁是不释放的
-
-sleep()方法被调用以后，持有的锁是不释放的
-
-调动方法之前，必须要持有锁。调用了wait()方法以后，锁就会被释放，当wait方法返回的时候，线程会重新持有锁
-
-调动方法之前，必须要持有锁，调用notify()方法本身不会释放锁的</code></pre><h2 id="2、线程的并发工具类"><a href="#2、线程的并发工具类" class="headerlink" title="2、线程的并发工具类"></a>2、线程的并发工具类</h2><h3 id="Fork-Join"><a href="#Fork-Join" class="headerlink" title="Fork/Join"></a>Fork/Join</h3><ul>
-<li>什么是分而治之？</li>
-</ul>
-<p>规模为N的问题，N&lt;阈值，直接解决，N&gt;阈值，将N分解为K个小规模子问题，子问题互相对立，与原问题形式相同，将子问题的解合并得到原问题的解</p>
-<p>动态规范</p>
-<ul>
-<li>工作密取</li>
-<li>使用的标准范式</li>
-</ul>
-<h3 id="CountDownLatch作用、应用场景和实战"><a href="#CountDownLatch作用、应用场景和实战" class="headerlink" title="CountDownLatch作用、应用场景和实战"></a>CountDownLatch作用、应用场景和实战</h3><p>作用：是一组线程等待其他的线程完成工作以后在执行，加强版join</p>
-<p>await用来等待，countDown负责计数器的减一</p>
-<h3 id="CyclicBarrier作用、应用场景和实战"><a href="#CyclicBarrier作用、应用场景和实战" class="headerlink" title="CyclicBarrier作用、应用场景和实战"></a>CyclicBarrier作用、应用场景和实战</h3><p>让一组线程达到某个屏障，被阻塞，一直到组内最后一个线程达到屏障时，屏障开放，所有被阻塞的线程会继续运行CyclicBarrier(int parties)</p>
-<p>CyclicBarrier(int parties, Runnable barrierAction)，屏障开放，barrierAction定义的任务会执行</p>
-<h3 id="CountDownLatch和CyclicBarrier辨析"><a href="#CountDownLatch和CyclicBarrier辨析" class="headerlink" title="CountDownLatch和CyclicBarrier辨析"></a>CountDownLatch和CyclicBarrier辨析</h3><p>1、countdownlatch放行由第三者控制，CyclicBarrier放行由一组线程本身控制<br>2、countdownlatch放行条件》=线程数，CyclicBarrier放行条件=线程数</p>
-<h3 id="Semaphore作用、应用场景和实战"><a href="#Semaphore作用、应用场景和实战" class="headerlink" title="Semaphore作用、应用场景和实战"></a>Semaphore作用、应用场景和实战</h3><p>控制同时访问某个特定资源的线程数量，用在流量控制</p>
-<h3 id="Exchange作用、应用场景和实战"><a href="#Exchange作用、应用场景和实战" class="headerlink" title="Exchange作用、应用场景和实战"></a>Exchange作用、应用场景和实战</h3><p>两个线程间的数据交换，</p>
-<h3 id="Callable、Future和FutureTask"><a href="#Callable、Future和FutureTask" class="headerlink" title="Callable、Future和FutureTask"></a>Callable、Future和FutureTask</h3><p>isDone，结束，正常还是异常结束，或者自己取消，返回true；</p>
-<p>isCancelled 任务完成前被取消，返回true；</p>
-<p>cancel（boolean）：</p>
-<p>1、 任务还没开始，返回false</p>
-<p>2、 任务已经启动，cancel（true），中断正在运行的任务，中断成功，返回true，cancel（false），不会去中断已经运行的任务</p>
-<p>3、 任务已经结束，返回false</p>
-<p>包含图片和文字的文档的处理：图片（云上），可以用future去取图片，主线程继续解析文字。</p>
-<h2 id="3、原子操作CAS"><a href="#3、原子操作CAS" class="headerlink" title="3、原子操作CAS"></a>3、原子操作CAS</h2><h3 id="原子操作类"><a href="#原子操作类" class="headerlink" title="原子操作类"></a>原子操作类</h3><ul>
-<li><p>CAS的原理</p>
-</li>
-<li><p>CAS的问题</p>
-<ul>
-<li>ABA问题</li>
-<li>开销</li>
-<li>只能保证一个共享变量的原子操作</li>
-</ul>
-</li>
-<li><p>原子操作类的使用</p>
-<ul>
-<li>基本类型</li>
-<li>数组</li>
-<li>引用</li>
-<li>带版本戳</li>
-</ul>
-</li>
-</ul>
-<h2 id="4、显式锁和AQS"><a href="#4、显式锁和AQS" class="headerlink" title="4、显式锁和AQS"></a>4、显式锁和AQS</h2><h3 id="显式锁"><a href="#显式锁" class="headerlink" title="显式锁"></a>显式锁</h3><ul>
-<li><p>Lock接口、核心方法和使用</p>
-</li>
-<li><p>Lock接口和synchronized的比较</p>
-</li>
-<li><p>ReentrantLock</p>
-<ul>
-<li>可重入锁</li>
-<li>锁的公平和非公平</li>
-</ul>
-</li>
-<li><p>ReentrantReadWriteLock</p>
-<ul>
-<li>ReadWriteLock接口</li>
-<li>使用场景</li>
-</ul>
-</li>
-<li><p>Condition接口</p>
-<ul>
-<li>用处</li>
-<li>用Lock和Condition实现等待通知</li>
-</ul>
-</li>
-</ul>
-<h3 id="了解LockSupport"><a href="#了解LockSupport" class="headerlink" title="了解LockSupport"></a>了解LockSupport</h3><h3 id="AbstractQueuedSynchronizer"><a href="#AbstractQueuedSynchronizer" class="headerlink" title="AbstractQueuedSynchronizer"></a>AbstractQueuedSynchronizer</h3><ul>
-<li><p>什么是AQS？学习它的必要</p>
-</li>
-<li><p>AQS使用方式和其中的设计模式</p>
-</li>
-<li><p>了解其中的方法</p>
-</li>
-<li><p>实现一个自己的独占锁 </p>
-</li>
-<li><p>深入源码</p>
-<ul>
-<li><p>AQS中的数据结构</p>
-</li>
-<li><p>节点在同步队列中的增加和移出</p>
-</li>
-<li><p>独占式同步状态获取与释放</p>
-</li>
-<li><p>共享式同步状态获取与释放</p>
-</li>
-<li><p>Condition分析</p>
-<ul>
-<li>等待队列</li>
-<li>await方法</li>
-<li>signal方法</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>了解ReentrantLock的实现</p>
-<ul>
-<li>锁的可重入</li>
-<li>公平和非公平锁</li>
-</ul>
-</li>
-<li><p>了解ReentrantReadWriteLock的实现</p>
-</li>
-</ul>
-<h2 id="9、JMM和底层实现原理"><a href="#9、JMM和底层实现原理" class="headerlink" title="9、JMM和底层实现原理"></a>9、JMM和底层实现原理</h2><h3 id="现代计算机物理"><a href="#现代计算机物理" class="headerlink" title="现代计算机物理"></a>现代计算机物理</h3><p>上的内存模型</p>
-<ul>
-<li>概念</li>
-<li>带来的问题</li>
-</ul>
-<h3 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h3><p>（JMM）</p>
-<ul>
-<li><p>JVM对Java内存<br>模型的实现</p>
-</li>
-<li><p>带来的问题</p>
-</li>
-<li><p>重排序</p>
-<ul>
-<li>类型</li>
-<li>依赖性</li>
-<li>as-if-serial</li>
-<li>重排序带来的问题</li>
-<li>内存屏障</li>
-<li>临界区</li>
-</ul>
-</li>
-<li><p>Happens-Before</p>
-<ul>
-<li>定义</li>
-<li>规则</li>
-</ul>
-</li>
-<li><p>volatile的内存语义</p>
-<ul>
-<li><p>概念和深入理解</p>
-</li>
-<li><p>内存语义的实现</p>
-<ul>
-<li>重排序规则</li>
-<li>内存屏障插入策略</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>锁的内存语义</p>
-</li>
-<li><p>final的内存语义</p>
-</li>
-<li><p>volatile的实现原理</p>
-</li>
-<li><p>synchronized的实现原理</p>
-</li>
-</ul>
-<h2 id="8、实战项目-2个"><a href="#8、实战项目-2个" class="headerlink" title="8、实战项目(2个)"></a>8、实战项目(2个)</h2><h3 id="并发任务执行框架"><a href="#并发任务执行框架" class="headerlink" title="并发任务执行框架"></a>并发任务执行框架</h3><ul>
-<li><p>需求的产生和分析 </p>
-</li>
-<li><p>需要做什么</p>
-<ul>
-<li>封装多线程，屏蔽细节</li>
-<li>保存任务的上下文</li>
-<li>自动清除已完成和过期任务</li>
-</ul>
-</li>
-<li><p>具体实现</p>
-<ul>
-<li>可查询进度的并发任务执行框架</li>
-</ul>
-</li>
-</ul>
-<h3 id="应用性能优化实战"><a href="#应用性能优化实战" class="headerlink" title="应用性能优化实战"></a>应用性能优化实战</h3><ul>
-<li><p>项目简介</p>
-</li>
-<li><p>项目分析，为何优化</p>
-</li>
-<li><p>分析和改进</p>
-<ul>
-<li>架构改进</li>
-<li>单服务改进</li>
-</ul>
-</li>
-<li><p>如何继续改进</p>
-</li>
-<li><p>带来的启示</p>
-</li>
-</ul>
-<h2 id="7、并发安全"><a href="#7、并发安全" class="headerlink" title="7、并发安全"></a>7、并发安全</h2><h3 id="类的线程安全"><a href="#类的线程安全" class="headerlink" title="类的线程安全"></a>类的线程安全</h3><h3 id="如何做到类的线程安全"><a href="#如何做到类的线程安全" class="headerlink" title="如何做到类的线程安全"></a>如何做到类的线程安全</h3><ul>
-<li>无状态</li>
-<li>让类不可变</li>
-<li>更多……</li>
-</ul>
-<h3 id="线程不安全引发的问题"><a href="#线程不安全引发的问题" class="headerlink" title="线程不安全引发的问题"></a>线程不安全引发的问题</h3><ul>
-<li><p>死锁</p>
-<ul>
-<li>原因</li>
-<li>表现</li>
-<li>检测和解决</li>
-</ul>
-</li>
-<li><p>活锁</p>
-</li>
-<li><p>多线程程序<br>性能和思考</p>
-<ul>
-<li>影响性能的因素</li>
-<li>减少锁的竞争</li>
-</ul>
-</li>
-</ul>
-<h3 id="线程安全的单例模式"><a href="#线程安全的单例模式" class="headerlink" title="线程安全的单例模式"></a>线程安全的单例模式</h3><ul>
-<li>如何让双重检查锁定安全</li>
-<li>懒汉式</li>
-<li>饿汉式</li>
-</ul>
-<h2 id="6、线程池"><a href="#6、线程池" class="headerlink" title="6、线程池"></a>6、线程池</h2><h3 id="什么是线程池？为什么要用线程池？"><a href="#什么是线程池？为什么要用线程池？" class="headerlink" title="什么是线程池？为什么要用线程池？"></a>什么是线程池？为什么要用线程池？</h3><h3 id="实现一个我们自己的线程池"><a href="#实现一个我们自己的线程池" class="headerlink" title="实现一个我们自己的线程池"></a>实现一个我们自己的线程池</h3><h3 id="JDK中的线程池"><a href="#JDK中的线程池" class="headerlink" title="JDK中的线程池"></a>JDK中的线程池</h3><ul>
-<li>线程池的创建</li>
-<li>提交任务</li>
-<li>关闭线程池</li>
-</ul>
-<h3 id="线程池工作机制"><a href="#线程池工作机制" class="headerlink" title="线程池工作机制"></a>线程池工作机制</h3><h3 id="合理配置线程池"><a href="#合理配置线程池" class="headerlink" title="合理配置线程池"></a>合理配置线程池</h3><h3 id="系统为我们预定义的线程池"><a href="#系统为我们预定义的线程池" class="headerlink" title="系统为我们预定义的线程池"></a>系统为我们预定义的线程池</h3><ul>
-<li><p>FixedThreadPool<br>SingleThreadExecutor<br>CachedThreadPool<br>WorkStealingPool</p>
-<ul>
-<li>含义</li>
-<li>使用场景</li>
-</ul>
-</li>
-<li><p>ScheduledThreadPoolExecutor</p>
-<ul>
-<li>含义</li>
-<li>使用场景</li>
-<li>内部方法辨析</li>
-</ul>
-</li>
-</ul>
-<h3 id="Executor框架"><a href="#Executor框架" class="headerlink" title="Executor框架"></a>Executor框架</h3><h3 id="CompletionService"><a href="#CompletionService" class="headerlink" title="CompletionService"></a>CompletionService</h3><ul>
-<li>使用</li>
-<li>优点</li>
-</ul>
-<h2 id="5、并发容器"><a href="#5、并发容器" class="headerlink" title="5、并发容器"></a>5、并发容器</h2><h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
-<li><p>使用</p>
-</li>
-<li><p>实现</p>
-<ul>
-<li><p>基本思想</p>
-</li>
-<li><p>预备知识</p>
-<ul>
-<li>Hash</li>
-<li>位运算</li>
-</ul>
-</li>
-<li><p>jdk1.7</p>
-<ul>
-<li>构造方法</li>
-<li>如何定位</li>
-<li>get方法</li>
-<li>put方法</li>
-<li>扩容</li>
-</ul>
-</li>
-<li><p>jdk1.8</p>
-<ul>
-<li>构造方法</li>
-<li>如何定位</li>
-<li>get方法</li>
-<li>put方法</li>
-<li>扩容</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="其他并发容器"><a href="#其他并发容器" class="headerlink" title="其他并发容器"></a>其他并发容器</h3><ul>
-<li><p>ConcurrentSkipListMap等</p>
-<ul>
-<li>了解什么是SkipList</li>
-</ul>
-</li>
-<li><p>ConcurrentLinkedQueue  </p>
-</li>
-<li><p>写时复制容器</p>
-</li>
-</ul>
-<h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><ul>
-<li><p>概念</p>
-</li>
-<li><p>生产者消费者模式</p>
-</li>
-<li><p>常用方法</p>
-</li>
-<li><p>常用阻塞队列辨析</p>
-<ul>
-<li>·ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。<br>·LinkedBlockingQueue：一个由链表结构组成的有界阻塞队列。<br>·PriorityBlockingQueue：一个支持优先级排序的无界阻塞队列。<br>·DelayQueue：一个使用优先级队列实现的无界阻塞队列。<br>·SynchronousQueue：一个不存储元素的阻塞队列。<br>·LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。<br>·LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。</li>
-</ul>
-</li>
-<li><p>延时队列实战</p>
-</li>
-<li><p>阻塞队列实现原理</p>
-</li>
-</ul>
-<p><em>XMind: ZEN - Trial Version</em></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">
-      Java-抽象类和接口有什么区别
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="Java-抽象类和接口有什么区别">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="abstract-class和interface有什么区别"><a href="#abstract-class和interface有什么区别" class="headerlink" title="abstract class和interface有什么区别"></a>abstract class和interface有什么区别</h1><ul>
-<li><p>含有abstract修饰符的class即为抽象类，abstract类不能创建的实例对象。</p>
-</li>
-<li><p>含有abstract方法的类必须定义为abstract class,abstract class类中的方法不必是抽象的。</p>
-</li>
-<li><p>abstract class类中定义抽象方法必须在具体（concrete）子类中实现，所以，不能有抽象构造方法或抽象静态方法。如果子类没有实现抽象父类中的所有抽象方法，那么子类也必须定义为abstract类型。</p>
-</li>
-<li><p>接口（interface）可以说成是抽象类的一种特例，接口中的所有方法都必须是抽象的。接口中的方法默认为public abstract类型，接口中的成员变量类型默认为public static final</p>
-</li>
-<li><p>语法区别：</p>
-<ul>
-<li>抽象类可以有构造方法，接口中不能有构造方法</li>
-<li>抽象类中可以由普通成员变量，接口中没有普通成员变量</li>
-<li>抽象类中可以包含非抽象的普通方法，接口中的所有方法都必须是抽象的，不能有非抽象的普通方法</li>
-<li>抽象类中的抽象方法的访问类型可以是public、protected和（默认类型，虽然eclipse下不报错，但应该也不行），但接口抽象方法只能是public类型，并且默认是public abstract类型</li>
-<li>抽象类中可以包含静态方法，接口中不能包含静态方法</li>
-<li>抽象类和接口中都可以包含静态成员变量，抽象类中的静态成员变量的访问类型可以是任意，但接口中定义的变量只能是public static final类型，并且默认即为public static final类型。</li>
-<li>一个类可以实现多个接口，但只能继承一个抽象类</li>
-</ul>
-</li>
-<li><p>应用区别：</p>
-<ul>
-<li>接口更多的是在系统架构设计方法发挥作用，主要用于定义模块之间的通信契约，而抽象类在代码实现方面发挥作用，可以实现代码的重用。</li>
-</ul>
-</li>
-<li><p>接口是否可以继承接口，抽象类是否可以实现接口，抽象类是否可以继承实体类</p>
-<ul>
-<li>接口可以继承接口，抽象类可以实现接口，抽象类可以继承实体类，但前提是实体类必须有明确的构造函数</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">
-      Java-笔试题
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/" class="leancloud_visitors" data-flag-title="Java-笔试题">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E7%AC%94%E8%AF%95%E9%A2%98/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="写一个ArrayList的动态代理类"><a href="#写一个ArrayList的动态代理类" class="headerlink" title="写一个ArrayList的动态代理类"></a>写一个ArrayList的动态代理类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 写一个ArrayList的动态代理类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> AlmostLover</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayListProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; proxyInstance = (List&lt;String&gt;) Proxy.newProxyInstance(list.getClass().getClassLoader(),</span><br><span class="line">                list.getClass().getInterfaces(), <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> method.invoke(list,args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        proxyInstance.add(<span class="string">"你好"</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/Java-%E9%9D%A2%E8%AF%95%E9%A2%98/">
-      Java-面试题
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/Java-%E9%9D%A2%E8%AF%95%E9%A2%98/" class="leancloud_visitors" data-flag-title="Java-面试题">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/Java-%E9%9D%A2%E8%AF%95%E9%A2%98/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/Java-%E9%9D%A2%E8%AF%95%E9%A2%98/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java中对象序列化接口-Serializable-的意义"><a href="#Java中对象序列化接口-Serializable-的意义" class="headerlink" title="Java中对象序列化接口(Serializable)的意义"></a>Java中对象序列化接口(Serializable)的意义</h1><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
-<h2 id="为什么string是final的"><a href="#为什么string是final的" class="headerlink" title="为什么string是final的"></a>为什么string是final的</h2><h3 id="MyBatis的缓存功能使用HashMap实现会不会出现并发安全的问题"><a href="#MyBatis的缓存功能使用HashMap实现会不会出现并发安全的问题" class="headerlink" title="MyBatis的缓存功能使用HashMap实现会不会出现并发安全的问题"></a>MyBatis的缓存功能使用HashMap实现会不会出现并发安全的问题</h3><h2 id="什么情况下使用表锁，什么情况下使用行锁？"><a href="#什么情况下使用表锁，什么情况下使用行锁？" class="headerlink" title="什么情况下使用表锁，什么情况下使用行锁？"></a>什么情况下使用表锁，什么情况下使用行锁？</h2><h2 id="强弱引用的区别"><a href="#强弱引用的区别" class="headerlink" title="强弱引用的区别"></a>强弱引用的区别</h2><h2 id="内存溢出与内存泄漏的区别"><a href="#内存溢出与内存泄漏的区别" class="headerlink" title="内存溢出与内存泄漏的区别"></a>内存溢出与内存泄漏的区别</h2><h2 id="索引失效的情况"><a href="#索引失效的情况" class="headerlink" title="索引失效的情况"></a>索引失效的情况</h2><h2 id="幻读和不可重复读的区别"><a href="#幻读和不可重复读的区别" class="headerlink" title="幻读和不可重复读的区别"></a>幻读和不可重复读的区别</h2><h2 id="请详细描述从数据库连接池中获取一个连接资源的过程"><a href="#请详细描述从数据库连接池中获取一个连接资源的过程" class="headerlink" title="请详细描述从数据库连接池中获取一个连接资源的过程"></a>请详细描述从数据库连接池中获取一个连接资源的过程</h2><p>请描述声明式事务底层实现的原理和</p>
-<p>拦截器与过滤器的区别</p>
-<p>mvc拦截器=aop</p>
-<p>filter=servlet规范里</p>
-<p><strong>1. synchronized 和 reentrantlock 异同</strong></p>
-<p><strong>相同点</strong></p>
-<p>都实现了多线程同步和内存可见性语义，都是可重入锁</p>
-<p><strong>不同点</strong></p>
-<p>实现机制不同 synchronized 通过 java 对象头锁标记和 Monitor 对象实现 reentrantlock 通过CAS、ASQ（AbstractQueuedSynchronizer）和 locksupport（用于阻塞和解除阻塞）实现synchronized 依赖 jvm 内存模型保证包含共享变量的多线程内存可见性 reentrantlock 通过 ASQ 的volatile state 保证包含共享变量的多线程内存可见性</p>
-<p>使用方式不同 synchronized 可以修饰实例方法（锁住实例对象）、静态方法（锁住类对象）、代码块（显示指定锁对象）reentrantlock 显示调用 trylock()/lock() 方法，需要在 finally 块中释放锁功能丰富程度不同 reentrantlock</p>
-<p>提供有限时间等候锁（设置过期时间）、可中断锁（lockInterruptibly）、condition（提供 await、signal等方法）等丰富语义 reentrantlock 提供公平锁和非公平锁实现 synchronized不可设置等待时间、不可被中断（interrupted）</p>
-<p><strong>2. concurrenthashmap 为何读不用加锁</strong></p>
-<p><strong>jdk1.7</strong></p>
-<p>1）HashEntry 中的 key、hash、next 均为 final 型，只能表头插入、删除结点</p>
-<p>2）HashEntry 类的 value 域被声明为 volatile 型</p>
-<p>3）不允许用 null 作为键和值，当读线程读到某个 HashEntry 的 value 域的值为 null时，便知道产生了冲突——发生了重排序现象（put 设置新 value 对象的字节码指令重排序），需要加锁后重新读入这个 value 值</p>
-<p>4）volatile 变量 count 协调读写线程之间的内存可见性，写操作后修改 count，读操作先读 count，根据happen-before 传递性原则写操作的修改读操作能够看到</p>
-<p><strong>jdk1.8</strong></p>
-<p>1）Node 的 val 和 next 均为 volatile 型</p>
-<p>2）tabAt 和 casTabAt 对应的 unsafe 操作实现了 volatile 语义</p>
-<p><strong>3. ContextClassLoader（线程上下文类加载器）的作用</strong></p>
-<p>越过类加载器的双亲委派机制去加载类，如 serviceloader 实现使用线程上下文类加载器加载类，要注意保证多个需要通信的线程间的类加载器应该是同一个，防止因为不同的类加载器导致类型转换异常(ClassCastException)</p>
-<p><strong>4. tomcat 类加载机制</strong></p>
-<p><strong><img src="http://10.7.0.6/Public/ueditor/php/upload1/20181011/1539223926704110.jpg" alt="1.jpg"></strong></p>
-<p>不同应用使用不同的 webapp 类加载器，实现应用隔离的效果，webapp 类加载器下面是jsp类加载器；不同应用共享的 jar 包可以放到 Shared 类加载器 /shared 目录下</p>
-<p><strong>5. osgi 类加载机制</strong></p>
-<p><strong><img src="http://10.7.0.6/Public/ueditor/php/upload1/20181011/1539223946985966.png" alt="2.png"></strong></p>
-<p>osgi 类加载模型是网状的，可以在模块（Bundle）间互相委托</p>
-<p>osgi 实现模块化热部署的关键是自定义类加载器机制的实现，每个 Bundle 都有一个自己的类加载器，当需要更换一个 Bundle时，就把 Bundle 连同类加载器一起换掉以实现代码的热替换</p>
-<p>当收到类加载请求时，osgi 将按照下面的顺序进行类搜索：</p>
-<p>1）将以 java.* 开头的类委派给父类加载器加载</p>
-<p>2）否则，将委派列表名单（配置文件 org.osgi.framework.bootdelegation 中定义）内的类委派给父类加载器加载</p>
-<p>3）否则，检查是否在 Import-Package 中声明，如果是，则委派给 Export 这个类的 Bundle 的类加载器加载</p>
-<p>4）否则，检查是否在 Require-Bundle 中声明，如果是，则将类加载请求委托给 required bundle 的类加载器</p>
-<p>5）否则，查找当前 Bundle 的 ClassPath，使用自己的类加载器加载</p>
-<p>6）否则，查找类是否在自己的 Fragment Bundle 中，如果在，则委派给 Fragment Bundle 的类加载器加载</p>
-<p>7）否则，查找 Dynamic Import-Package（Dynamic Import 只有在真正用到此 Package的时候才进行加载）的 Bundle，委派给对应 Bundle 的类加载器加载</p>
-<p>8）否则，类查找失败</p>
-<p><strong>6. 如何结束一个一直运行的线程</strong></p>
-<p>使用退出标志，这个 flag 变量要多线程可见</p>
-<p>使用 interrupt，结合 isInterrupted() 使用</p>
-<p><strong>7. threadlocal 使用场景及问题</strong></p>
-<p>threadlocal 并不能解决多线程共享变量的问题，同一个 threadlocal 所包含的对象，在不同的 thread中有不同的副本，互不干扰</p>
-<p>用于存放线程上下文变量，方便同一线程对变量的前后多次读取，如事务、数据库 connection 连接，在 web 编程中使用的更多</p>
-<p>问题： 注意线程池场景使用 threadlocal，因为实际变量值存放在了 thread 的 threadlocalmap类型变量中，如果该值没有 remove，也没有先 set 的话，可能会得到以前的旧值</p>
-<p>问题： 注意线程池场景下的内存泄露，虽然 threadlocal 的 get/set 会清除 key（key 为 threadlocal的弱引用，value 是强引用，导致 value 不释放）为 null 的 entry，但是最好 remove</p>
-<p><strong>8. 线程池从启动到工作的流程</strong></p>
-<p>刚创建时，里面没有线程调用 execute() 添加任务时：</p>
-<p>1）如果正在运行的线程数量小于核心参数 corePoolSize，继续创建线程运行这个任务</p>
-<p>2）否则，如果正在运行的线程数量大于或等于 corePoolSize，将任务加入到阻塞队列中</p>
-<p>3）否则，如果队列已满，同时正在运行的线程数量小于核心参数 maximumPoolSize，继续创建线程运行这个任务</p>
-<p>4）否则，如果队列已满，同时正在运行的线程数量大于或等于 maximumPoolSize，根据设置的拒绝策略处理</p>
-<p>5）完成一个任务，继续取下一个任务处理</p>
-<p>6）没有任务继续处理，线程被中断或者线程池被关闭时，线程退出执行，如果线程池被关闭，线程结束</p>
-<p>7）否则，判断线程池正在运行的线程数量是否大于核心线程数，如果是，线程结束，否则线程阻塞。因此线程池任务全部执行完成后，继续留存的线程池大小为corePoolSize</p>
-<p>8）本文所列出的 14 个 Java面试题只是我所遭遇的面试中的一部分，其他的面试题我也会陆续整理出来，说到这里另外顺便给大家推荐一个架构交流学习群：650385180，里面会分享一些资深架构师录制的视频录像：有Spring，MyBatis，Netty 源码分析，高并发、高性能、分布式、微服务架构的原理，JVM性能优化这些成为架构师必备的知识体系。还能领取免费的学习资源，相信对于已经工作和遇到技术瓶颈的码友，在这个群里会有你需要的内容。</p>
-<p><strong>9. 阻塞队列 BlockingQueue take 和 poll 区别</strong></p>
-<p>poll(time)：取走 BlockingQueue 里排在首位的对象, 若不能立即取出，则可以等 time参数规定的时间，取不到时返回 null</p>
-<p>take()：取走 BlockingQueue 里排在首位的对象，若 BlockingQueue 为空，阻塞直到BlockingQueue 有新的对象被加入</p>
-<p><strong>10. 如何从 FutureTask 不阻塞获取结果</strong></p>
-<p>get(long timeout,TimeUnit unit)，超时则返回</p>
-<p>轮询，先通过 isDone()判断是否结束，然后调用 get()</p>
-<p><strong>11. blockingqueue 如果存放了比较关键的数据，系统宕机该如何处理</strong></p>
-<p>将队列持久化，比较麻烦，需要将生产数据持久化到磁盘，持久化成功才返回，消费者线程从磁盘加载数据到内存阻塞队列中，维护消费offset，启动时，根据消费 offset 从磁盘加载数据</p>
-<p>加入消息队列，保证消息不丢失，生成序列号，消费幂等，根据消费进程决定系统重启后的生产状态</p>
-<p><strong>13. list 中存放可重复字符串，如何删除某个字符串</strong></p>
-<p>调用 iterator 相关方法删除</p>
-<p>倒删，防止正序删除导致的数组重排，index 跳过数组元素问题</p>
-<p><strong>14. 有哪些 GC ROOTS（跟日常开发比较相关的是和此相关的内存泄露）</strong></p>
-<p>所有 Java 线程当前活跃的栈帧里指向 GC 堆里的对象的引用，因此用不到的对象及时置 null，提升内存回收效率</p>
-<p>静态变量引用的对象，因此减少静态变量特别是静态集合变量的大小，集合存放的对象覆写 euqls()和 hashcode()，防止持续增长</p>
-<p>本地方法 JNI 引用的对象</p>
-<p>方法区中的常量引用的对象，因此减少在长字符串上调用 String.intern()</p>
-<p>classloader 加载的 class 对象，因此自定义 classloader 无效时及时置 null并且注意类加载器加载对象之间的隔离</p>
-<p>jvm 里的一些静态数据结构里指向 GC 堆里的对象的引用 </p>
-<p>14、叙述Session的缓存的作用？</p>
-<ul>
-<li>减少访问数据库的频率。应用程序从内存中读取持久化对象的速度显然比到数据库中查询数据的速度快多了，因此Session的缓存可以提高数据访问的性能。</li>
-<li>保证缓存中的对象与数据库中的相关记录保持同步。当缓存中持久化对象的状态发生了变换，Session并不会立即执行相关的SQL语句，这使得Session能够把几条相关的SQL语句合并为一条SQL语句，以便减少访问数据库的次数，从而提高应用程序的性能。</li>
-</ul>
-<p>15、Session的清理和清空有什么区别？</p>
-<p>Session清理缓存是指按照缓存中对象的状态的变化来同步更新数据库；清空是Session的关闭；</p>
-<p>16、请简述Session的特点有哪些？</p>
-<ul>
-<li>不是线程安全的，因此在设计软件架构时，应该避免多个线程共享同一个Session实例。</li>
-<li>Session实例是轻量级的，所谓轻量级是指它的创建和销毁不需要消耗太多的资源。这意味着在程序中可以经常创建或销毁Session对象，例如为每个客户请求分配单独的Session实例，或者为每个工作单元分配单独的Session实例。</li>
-<li>在Session中，每个数据库操作都是在一个事务(transaction)中进行的，这样就可以隔离开不同的操作（甚至包括只读操作）。</li>
-</ul>
-<p>17、比较Hibernate三种检索策略的优缺点？</p>
-<ul>
-<li><p>立即检索</p>
-</li>
-<li><p>优点：对应用程序完全透明，不管对象处于持久化状态，还是游离状态，应用程序都可以方便的从一个对象导航到与它关联的对象；</p>
-</li>
-<li><p>缺点：1.select语句太多；2.可能会加载应用程序不需要访问的对象白白浪费许多内存空间；</p>
-</li>
-<li><p>延迟检索</p>
-</li>
-<li><p>优点：由应用程序决定需要加载哪些对象，可以避免可执行多余的select语句，以及避免加载应用程序不需要访问的对象。因此能提高检索性能，并且能节省内存空间；</p>
-</li>
-<li><p>缺点：应用程序如果希望访问游离状态代理类实例，必须保证他在持久化状态时已经被初始化；</p>
-</li>
-<li><p>迫切左外连接检索</p>
-</li>
-<li><p>优点：1、对应用程序完全透明，不管对象处于持久化状态，还是游离状态，应用程序都可以方便地冲一个对象导航到与它关联的对象。2、使用了外连接，select语句数目少；</p>
-</li>
-<li><p>缺点：1、可能会加载应用程序不需要访问的对象，白白浪费许多内存空间；2、复杂的数据库表连接也会影响检索性能；</p>
-</li>
 </ul>
 
       
@@ -3081,7 +2504,7 @@ sleep()方法被调用以后，持有的锁是不释放的
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 14px; color: #999">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.22px; color: #8a8a8a">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 21.78px; color: #646464">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 20.67px; color: #6c6c6c">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.44px; color: #7b7b7b">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.11px; color: #919191">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
     </div>
   </section>
 

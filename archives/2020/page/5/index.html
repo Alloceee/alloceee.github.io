@@ -469,6 +469,1294 @@
         
           
   <h2 class="title">
+    <a href="/2020/07/15/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">
+      JVM-垃圾回收机制
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" class="leancloud_visitors" data-flag-title="JVM-垃圾回收机制">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM垃圾回收机制和常见算法"><a href="#JVM垃圾回收机制和常见算法" class="headerlink" title="JVM垃圾回收机制和常见算法"></a>JVM垃圾回收机制和常见算法</h1><ul>
+<li><h3 id="对象被判定为垃圾的标准"><a href="#对象被判定为垃圾的标准" class="headerlink" title="对象被判定为垃圾的标准"></a>对象被判定为垃圾的标准</h3><ul>
+<li><h4 id="没有被其他对象所引用"><a href="#没有被其他对象所引用" class="headerlink" title="没有被其他对象所引用"></a>没有被其他对象所引用</h4><ul>
+<li><h5 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h5><ul>
+<li>通过判断对象的引用数量来决定对象是否可以被回收</li>
+<li>每个对象实例都有一个引用计数器，被引用则+1，完成引用则-1</li>
+<li>任何引用计数为0的对象实例可以被当做垃圾收集</li>
+<li>优点：执行效率高，程序执行受影响较小</li>
+<li>缺点：无法检测出循环引用的情况，导致内存泄露（如父对象引用子对象，子对象也引用父对象）</li>
+<li>不采用此方法</li>
+</ul>
+</li>
+<li><h5 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h5><ul>
+<li>通过判断对象的引用链是否可达来决定对象是否可以被回收</li>
+<li>从GC Root Set开始遍历，判断对象是否可达</li>
+<li>可以作为GC Root的对象<ul>
+<li>虚拟机栈中引用的对象（栈帧中的本地变量表）</li>
+<li>方法区中的常量引用的对象</li>
+<li>方法区中的类静态属性引用的对象</li>
+<li>本地方法栈中JNI（Native方法）的引用对象</li>
+<li>活跃线程的引用对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="标记-清除算法（Mark-and-Sweep）"><a href="#标记-清除算法（Mark-and-Sweep）" class="headerlink" title="标记-清除算法（Mark and Sweep）"></a>标记-清除算法（Mark and Sweep）</h5><ul>
+<li>标记：从根集合进行扫描，对存活的对象进行标记</li>
+<li>清除：对堆内存从头到尾进行线性遍历，回收不可达对象内存</li>
+<li>缺点：碎片化</li>
+</ul>
+</li>
+<li><h5 id="复制算法（Copying）"><a href="#复制算法（Copying）" class="headerlink" title="复制算法（Copying）"></a>复制算法（Copying）</h5><ul>
+<li><h6 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h6><ul>
+<li>分为对象面和空闲面</li>
+<li>对象在对象面上创建</li>
+<li>存活的对象从被对象面复制到空闲面</li>
+<li>将对象面所有对象内存清除</li>
+</ul>
+</li>
+<li><h6 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h6><ul>
+<li>解决碎片化问题</li>
+<li>顺序分配内存，简单高效</li>
+<li>适用于对象存活率低的场景，比如年轻代，复制的对象少因此效率高</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="标记-整理算法（Compacting）"><a href="#标记-整理算法（Compacting）" class="headerlink" title="标记-整理算法（Compacting）"></a>标记-整理算法（Compacting）</h5><ul>
+<li><p>标记：从根集合进行扫描，对存活对象进行标记</p>
+</li>
+<li><p>清除：移动所有存活对象的对象，且按照内存地址次序依次排序，然后将末端内存地址以后的内存全部回收</p>
+</li>
+<li><h6 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h6><ul>
+<li>避免内存的不连续行</li>
+<li>不用设置两块内存互换</li>
+<li>使用于存活率高的场景，更适合老年代的回收</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="分代收集算法（Generational-Conllector）"><a href="#分代收集算法（Generational-Conllector）" class="headerlink" title="分代收集算法（Generational Conllector）"></a>分代收集算法（Generational Conllector）</h5><ul>
+<li>垃圾回收算法的组合拳</li>
+<li>按照对象生命周期的不同划分区域以采用不同的垃圾回收算法</li>
+<li>目的：提高JVM的回收率</li>
+</ul>
+</li>
+<li><p>jdk8及其以后的版本，移除永久代，年轻代复制算法，老年代标记-清理算法</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><ul>
+<li><h4 id="GC分类"><a href="#GC分类" class="headerlink" title="GC分类"></a>GC分类</h4><ul>
+<li>Minor GC ：发生在年轻代中的垃圾收集工作，采用复制算法，年轻代是几乎所有Java对象出生的地方，及Java对象申请内存以及存放都是在其中进行</li>
+<li>Full GC : 老年代</li>
+</ul>
+</li>
+<li><h4 id="年轻代"><a href="#年轻代" class="headerlink" title="年轻代"></a>年轻代</h4><ul>
+<li>尽可能快速地收集掉那些生命周期短的对象</li>
+<li>Eden区：对象创建的起源，对象一创建，首先分配在此区域</li>
+<li>两个Survivor区： from区和to区</li>
+<li>8:1:1默认比例Eden:from:to</li>
+</ul>
+</li>
+<li><h4 id="Stop-the-world"><a href="#Stop-the-world" class="headerlink" title="Stop-the-world"></a>Stop-the-world</h4><ul>
+<li>JVM由于要执行GC而停止了应用程序的执行</li>
+<li>任何一种GC算法中都会发生</li>
+<li>多数GC优化通过减少Stop-the-world发生的时间来提高程序的性能</li>
+</ul>
+</li>
+<li><h4 id="SafePoint"><a href="#SafePoint" class="headerlink" title="SafePoint"></a>SafePoint</h4><ul>
+<li>必须要等到Java线程都进入SafePoint的时候JVM Thread才能开始执行GC</li>
+<li>分析过程中对象引用关系不会发生变化的点</li>
+<li>产生Safepoint的地方：方法调用；循环跳转（循环的末尾）；异常跳转（抛出异常的位置）等</li>
+<li>安全点得适中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="常见的垃圾回收器"><a href="#常见的垃圾回收器" class="headerlink" title="常见的垃圾回收器"></a>常见的垃圾回收器</h3><ul>
+<li><h4 id="JVM运行模式"><a href="#JVM运行模式" class="headerlink" title="JVM运行模式"></a>JVM运行模式</h4><ul>
+<li>Server：启动较慢，启动完成后比client快，因为启动的是重量级JVM，有更多的优化</li>
+<li>Client：启动较快，启动的是轻量级的JVM</li>
+</ul>
+</li>
+<li><h4 id="垃圾收集器之间的联系"><a href="#垃圾收集器之间的联系" class="headerlink" title="垃圾收集器之间的联系"></a>垃圾收集器之间的联系</h4><ul>
+<li><h5 id="Serial收集器（-XX：-UseSerialGC，复制算法）"><a href="#Serial收集器（-XX：-UseSerialGC，复制算法）" class="headerlink" title="Serial收集器（-XX：+UseSerialGC，复制算法）"></a>Serial收集器（-XX：+UseSerialGC，复制算法）</h5><ul>
+<li>单线程收集，进行垃圾收集时，必须暂停所有工作线程</li>
+<li>简单高效，Client模式下默认的年轻代收集器</li>
+</ul>
+</li>
+<li><h5 id="ParNew收集器（-XX-UseParNewGC，复制算法）"><a href="#ParNew收集器（-XX-UseParNewGC，复制算法）" class="headerlink" title="ParNew收集器（-XX:+UseParNewGC，复制算法）"></a>ParNew收集器（-XX:+UseParNewGC，复制算法）</h5><ul>
+<li>多线程收集，其余行为、特点和Serial收集器一样</li>
+<li>单核执行效率不如Serial，在多核下执行才有优势</li>
+</ul>
+</li>
+<li><h5 id="Parallel-Scavenge收集器（-XX：-UseParallelGC，复制算法）"><a href="#Parallel-Scavenge收集器（-XX：-UseParallelGC，复制算法）" class="headerlink" title="Parallel Scavenge收集器（-XX：+UseParallelGC，复制算法）"></a>Parallel Scavenge收集器（-XX：+UseParallelGC，复制算法）</h5><ul>
+<li>吞吐量=运行用户代码时间/（运行用户代码时间+垃圾收集时间）</li>
+<li>比起关注用户线程停顿时间，更关注系统的吞吐量</li>
+<li>在多核下执行才有优势，Server模式下默认的年轻代收集器</li>
+</ul>
+</li>
+<li><h5 id="CMS收集器-XX-UseConcMarkSweepGC，标记-清除算法"><a href="#CMS收集器-XX-UseConcMarkSweepGC，标记-清除算法" class="headerlink" title="CMS收集器(-XX:+UseConcMarkSweepGC，标记-清除算法)"></a>CMS收集器(-XX:+UseConcMarkSweepGC，标记-清除算法)</h5><ul>
+<li>初始标记：stop-the-world</li>
+<li>并发标记：并发追溯标记，程序不会停顿</li>
+<li>并发预清理：查找执行并发标记阶段从年轻代晋升到老年代的对象</li>
+<li>重新标记：暂停虚拟机，扫描CMS堆中的剩余对象</li>
+<li>并发清理：清理垃圾对象，程序不会停顿</li>
+<li>并发重置：重置CMS收集器的数据结构</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="Java中为什么会有GC机制"><a href="#Java中为什么会有GC机制" class="headerlink" title="Java中为什么会有GC机制"></a>Java中为什么会有GC机制</h3><ul>
+<li>安全性考虑</li>
+<li>减少内存泄露</li>
+<li>减少程序员工作量</li>
+</ul>
+</li>
+<li><h3 id="GC主要回收区域"><a href="#GC主要回收区域" class="headerlink" title="GC主要回收区域"></a>GC主要回收区域</h3><ul>
+<li>方法区和堆</li>
+</ul>
+</li>
+<li><h3 id="GC什么时候回收垃圾"><a href="#GC什么时候回收垃圾" class="headerlink" title="GC什么时候回收垃圾"></a>GC什么时候回收垃圾</h3><ul>
+<li>对于堆中的对象，主要用可达性分析判断一个对象是否还存在引用，如果该对象没有任何引用就应该被回收，而根据我们实际对引用的不同需求，又分成了4种引用（强引用、软引用、弱引用、虚引用），每种引用的回收机制也是不同的</li>
+<li>对于方法区中的常量和类，当一个常量没有任何对象引用它，它就被回收了，而对于类，如果可以判定它为无用类，就可以被回收了<ul>
+<li>废弃常量的回收，看引用计数，没有对象引用该常量就可以回收</li>
+<li>无用类的回收：<ul>
+<li>该类所有的实例都已经被回收，也就是Java堆中不存在该类的任何实例</li>
+<li>加载该类的ClassLoader已经被回收</li>
+<li>该类对应的java.lang.Class对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>47.Java内存管理及回收算法</strong></p>
+<p>阅读这篇文章：<a href="https://link.zhihu.com/?target=http%3A//www.cnblogs.com/hnrainll/archive/2013/11/06/3410042.html">Java 内存区域和GC机制 - Leo Chin - 博客园</a></p>
+<ul>
+<li>如何判断对象是否死亡（两种方法）</li>
+<li>简单介绍一下强引用、弱引用、虚引用（虚引用与软引用和弱引用的区别、使用软引用能带来的好处）</li>
+<li>如何判断一个常量是废弃常量</li>
+<li>如何判断一个类是无用的类</li>
+<li>垃圾收集有哪些算法，各自的特点</li>
+<li>HotSpot为什么要分为新生代和老年代</li>
+<li>常见的垃圾回收机制有哪些</li>
+<li>介绍一下CMS,G1收集器</li>
+<li>Minor Gc和Full Gc有什么不同</li>
+</ul>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/JUnit/">
+      JUnit
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/JUnit/" class="leancloud_visitors" data-flag-title="JUnit">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/JUnit/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/JUnit/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: @我没有三颗心脏</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span>: 2018-05-29-上午 8:39</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootTest</span>(<span class="title">classes</span> </span>= MockServletContext<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">WebAppConfiguration</span></span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">ApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockMvc mvc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        mvc = MockMvcBuilders.standaloneSetup(<span class="keyword">new</span> UserController()).build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUserController</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 测试UserController</span></span><br><span class="line">        RequestBuilder request = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、get查一下user列表，应该为空</span></span><br><span class="line">        request = get(<span class="string">"/users/"</span>);</span><br><span class="line">        mvc.perform(request)</span><br><span class="line">                .andExpect(status().isOk())</span><br><span class="line">                .andExpect(content().string(equalTo(<span class="string">"[]"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、post提交一个user</span></span><br><span class="line">        request = post(<span class="string">"/users/"</span>)</span><br><span class="line">                .param(<span class="string">"id"</span>, <span class="string">"1"</span>)</span><br><span class="line">                .param(<span class="string">"name"</span>, <span class="string">"测试大师"</span>)</span><br><span class="line">                .param(<span class="string">"age"</span>, <span class="string">"20"</span>);</span><br><span class="line">        mvc.perform(request)</span><br><span class="line">                .andExpect(content().string(equalTo(<span class="string">"success"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、get获取user列表，应该有刚才插入的数据</span></span><br><span class="line">        request = get(<span class="string">"/users/"</span>);</span><br><span class="line">        mvc.perform(request)</span><br><span class="line">                .andExpect(status().isOk())</span><br><span class="line">                .andExpect(content().string(equalTo(<span class="string">"[&#123;\"id\":1,\"name\":\"测试大师\",\"age\":20&#125;]"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4、put修改id为1的user</span></span><br><span class="line">        request = put(<span class="string">"/users/1"</span>)</span><br><span class="line">                .param(<span class="string">"name"</span>, <span class="string">"测试终极大师"</span>)</span><br><span class="line">                .param(<span class="string">"age"</span>, <span class="string">"30"</span>);</span><br><span class="line">        mvc.perform(request)</span><br><span class="line">                .andExpect(content().string(equalTo(<span class="string">"success"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5、get一个id为1的user</span></span><br><span class="line">        request = get(<span class="string">"/users/1"</span>);</span><br><span class="line">        mvc.perform(request)</span><br><span class="line">                .andExpect(content().string(equalTo(<span class="string">"&#123;\"id\":1,\"name\":\"测试终极大师\",\"age\":30&#125;"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6、del删除id为1的user</span></span><br><span class="line">        request = delete(<span class="string">"/users/1"</span>);</span><br><span class="line">        mvc.perform(request)</span><br><span class="line">                .andExpect(content().string(equalTo(<span class="string">"success"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7、get查一下user列表，应该为空</span></span><br><span class="line">        request = get(<span class="string">"/users/"</span>);</span><br><span class="line">        mvc.perform(request)</span><br><span class="line">                .andExpect(status().isOk())</span><br><span class="line">                .andExpect(content().string(equalTo(<span class="string">"[]"</span>)));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Hibernate/">
+      Hibernate
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Hibernate/" class="leancloud_visitors" data-flag-title="Hibernate">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Hibernate/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Hibernate/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>java常见笔试题之Hibernate部分**</strong>java常见笔试题之Hibernate部分**</p>
+<p>1、简述一下hibernate的开发流程？</p>
+<p>第一步：加载hibernate的配置文件，读取配置文件的参数(jdbc连接参数，数据库方言，hbm表与对象关系映射文件)第二步：创建SessionFactory会话工厂(内部有连接池)第三步：打开session获取连接，构造session对象(一次会话维持一个数据连接，也是一级缓存)第四步：开启事务第五步：进行操作第六步：提交事务第七步：关闭session(会话)将连接释放第八步：关闭连接池</p>
+<p>2、hibernate 中对象的三种状态？</p>
+<p>瞬时态(临时态、自由态)：不存在持久化标识OID，尚未与Hibernate Session关联对象，被认为处于瞬时态，失去引用将被JVM回收。持久态：存在持久化标识OID，与当前session有关联，并且相关联的session没有关闭，并且事务未提交。脱管态(离线态、游离态)：存在持久化标识OID，但没有与当前session关联，脱管状态改变hibernate不能检测到。</p>
+<p>3、hibernate的一级缓存机制？</p>
+<p>Hibernate一级缓存（Session的缓存）：Session实现了第一级Cache，属于事务级数据缓冲。一旦事务结束，缓存随之失效。一个Session的生命周期对应一个数据库事务或一个程序事务。Session-Cache总是被打开并且不能被关闭的。Session-Cache保证一个Session中两次请求同一个对象时，取得的对象是同一个Java实例，有时它可以避免不必要的数据冲突。在对于同一个对象进行循环引用时，不至于产生堆栈溢出。当数据库事务结束时，对于同一数据表行，不会产生数据冲突。因为对于数据库中的一行，最多有一个对象来表示它。一个事务中可能会有很多个处理单元，在每一个处理单元中做的操作都会立即被其他的数据单元得知。</p>
+<p>4、Hibernate二级缓存（SessionFactory的缓存）？</p>
+<p>二级缓存是SessionFactory范围内的缓存，所有的Session共享同一个二级缓存。在二级缓存中保存持久化实例的散装形式的数据。持久化不同的数据需要不同的Cache策略，比如一些因素将影响Cache策略的选择：数据的读/写比例、数据表是否能被其他的应用程序所访问等。设置Hibernate二级缓存需要分两步：首先，确认使用什么数据并发策略。然后，配置缓存过期时间并设置Cache提供器。</p>
+<p>5、Hibernate的查询方式有哪些？</p>
+<p>Hibernate的查询方式常见的主要分为三种：HQL，QBC（命名查询），以及使用原生SQL查询（SqlQuery）6、Hibernate和Mybatis的区别？</p>
+<p>两者相同点：Hibernate与MyBatis都可以是通过SessionFactoryBuider由XML配置文件生成SessionFactory，然后由SessionFactory生成Session，最后由Session来开启执行事务和SQL语句。其中SessionFactoryBuider，SessionFactory，Session的生命周期都是差不多的。Hibernate和MyBatis都支持JDBC和JTA事务处理。Mybatis优势：MyBatis可以进行更为细致的SQL优化，可以减少查询字段。MyBatis容易掌握，而Hibernate门槛较高。Hibernate优势：Hibernate的DAO层开发比MyBatis简单，Mybatis需要维护SQL和结果映射。Hibernate对对象的维护和缓存要比MyBatis好，对增删改查的对象维护要方便。Hibernate数据库移植性很好，MyBatis的数据库移植性不好，不同的数据库需要写不同SQL。Hibernate有更好的二级缓存机制，可以使用第三方缓存。MyBatis本身提供的缓存机制不佳。</p>
+<p>7、Hibernate和JDBC优缺点对比？相同点：两者都是java数据库操作的中间件。两者对数据库进行直接操作的对象都是线程不安全的，都需要及时关闭。两者都可对数据库的更新操作进行显式的事务处理。不同点：JDBC是SUN公司提供一套操作数据库的规范，使用java代码操作数据库。Hibernate是一个基于jdbc的主流持久化框架，对JDBC访问数据库的代码做了封装。使用的SQL语言不同：JDBC使用的是基于关系型数据库的标准SQL语言，Hibernate使用的是HQL(Hibernate query language)语言。操作的对象不同：JDBC操作的是数据，将数据通过SQL语句直接传送到数据库中执行，Hibernate操作的是持久化对象，由底层持久化对象的数据更新到数据库中。数据状态不同：JDBC操作的数据是“瞬时”的，变量的值无法与数据库中的值保持一致，而Hibernate操作的数据是可持久的，即持久化对象的数据属性的值是可以跟数据库中的值保持一致的。</p>
+<p>8、关于Hibernate的orm思想你了解多少？ORM指的是对象关系型映射(Object RelationShip Mapping)，指的就是我们通过创建实体类对象和数据库中的表关系进行一一对应，来实现通过操作实体类对象来更改数据库里边的数据信息。这里边起到关键作用的是通过Hibernate的映射文件+Hibernate的核心配置文件。</p>
+<p>9、get和load的区别？get是立即加载，load是延时加载。get会先查一级缓存，再查二级缓存，然后查数据库；load会先查一级缓存，如果没有找到就创建代理对象，等需要的时候去查询二级缓存和数据库。(这里就体现load的延迟加载的特性。)get如果没有找到会返回null，load如果没有找到会抛出异常。当我们使用session.load()方法来加载一个对象时，此时并不会发出sql语句，当前得到的这个对象其实是一个代理对象，这个代理对象只保存了实体对象的id值，只有当我们要使用这个对象，得到其它属性时，这个时候才会发出sql语句，从数据库中去查询我们的对象；相对于load的延迟加载方式，get就直接的多，当我们使用session.get()方法来得到一个对象时，不管我们使不使用这个对象，此时都会发出sql语句去从数据库中查询出来。</p>
+<p>10、如何进行Hibernate的优化？数据库设计调整。HQL优化。API的正确使用(如根据不同的业务类型选用不同的集合及查询API)。主配置参数(日志，查询缓存，fetch_size，batch_size等)。映射文件优化(ID生成策略，二级缓存，延迟加载，关联优化)。一级缓存的管理。针对二级缓存，还有许多特有的策略。事务控制策略。11、什么是Hibernate延迟加载？延迟加载机制是为了避免一些无谓的性能开销而提出来的，所谓延迟加载就是当在真正需要数据的时候，才真正执行数据加载操作。在Hibernate中提供了对实体对象的延迟加载以及对集合的延迟加载，另外在Hibernate3中还提供了对属性的延迟加载。延迟加载的过程：通过代理（Proxy）机制来实现延迟加载。Hibernate从数据库获取某一个对象数据时、获取某一个对象的集合属性值时，或获取某一个对象所关联的另一个对象时，由于没有使用该对象的数据（除标识符外），Hibernate并不从数据库加载真正的数据，而只是为该对象创建一个代理对象来代表这个对象，这个对象上的所有属性都为默认值；只有在真正需要使用该对象的数据时才创建这个真正的对象，真正从数据库中加载它的数据。</p>
+<p>12、No Session问题原理及解决方法？No session问题报错如下：<img src="http://www.wityx.com/image/201908/88CADC8A48B33A62D94F3D2CFEE211E8.png" alt="java常见笔试题之Hibernate部分_www.wityx.com">根据字面上的意思，是指代理不能被初始化，session已经关闭。No session问题产生的原因：当执行Session的load()方法时，Hibernate不会立即执行查询所查询对象关联的对象（在此我们统称被关联的对象类为A类），仅仅返回A类的代理类的实例，这个代理类具由以下特征：由Hibernate在运行时动态生成，它扩展了A类，因此它继承了A类的所有属性和方法，但它的实现对于应用程序是透明的。当Hibernate创建A类代理类实例时，仅仅初始化了它的OID属性，其他属性都为null，因此这个代理类实例占用的内存很少。当应用程序第一次访问A代理类实例时（例如调用a..getXXX()或a.setXXX()方法），Hibernate会初始化代理类实例，在初始化过程中执行select语句，真正从数据库中加载A对象的所有数据。但有个例外，那就是当应用程序访问A代理类实例的getId()方法时，Hibernate不会初始化代理类实例，因为在创建代理类实例时OID就存在了，不必到数据库中去查询。Hibernate采用CGLIB工具来生成持久化类的代理类。CGLIB是一个功能强大的Java字节码生成工具，它能够在程序运行时动态生成扩展Java类或者实现Java接口的代理类。Hibernate中如果采用load加载的话(默认的是延迟加载)，也就是lazy=true操作，因此，当调用完load后，session即可关闭。又因为我们的session只是放置到了Dao层，表现层根本获取不到，所以在表现层调用的时候，session已经关闭，报错。</p>
+<p>13、Spring的两种代理JDK和CGLIB的区别浅谈？Java动态代理是利用反射机制生成一个实现代理接口的匿名类，在调用具体方法前调用InvokeHandler来处理。而cglib动态代理是利用asm开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。如果目标对象实现了接口，默认情况下会采用JDK的动态代理实现AOP，或者强制使用CGLIB实现AOP。如果目标对象没有实现了接口，必须采用CGLIB库，Spring会自动在JDK动态代理和CGLIB之间转换。</p>
+<p>14、叙述Session的缓存的作用？减少访问数据库的频率。应用程序从内存中读取持久化对象的速度显然比到数据库中查询数据的速度快多了，因此Session的缓存可以提高数据访问的性能。保证缓存中的对象与数据库中的相关记录保持同步。当缓存中持久化对象的状态发生了变换，Session并不会立即执行相关的SQL语句，这使得Session能够把几条相关的SQL语句合并为一条SQL语句，以便减少访问数据库的次数，从而提高应用程序的性能。</p>
+<p>15、Session的清理和清空有什么区别？Session清理缓存是指按照缓存中对象的状态的变化来同步更新数据库；清空是Session的关闭；</p>
+<p>16、请简述Session的特点有哪些？不是线程安全的，因此在设计软件架构时，应该避免多个线程共享同一个Session实例。Session实例是轻量级的，所谓轻量级是指它的创建和销毁不需要消耗太多的资源。这意味着在程序中可以经常创建或销毁Session对象，例如为每个客户请求分配单独的Session实例，或者为每个工作单元分配单独的Session实例。在Session中，每个数据库操作都是在一个事务(transaction)中进行的，这样就可以隔离开不同的操作（甚至包括只读操作）。</p>
+<p>17、比较Hibernate三种检索策略的优缺点？立即检索优点：对应用程序完全透明，不管对象处于持久化状态，还是游离状态，应用程序都可以方便的从一个对象导航到与它关联的对象；缺点：1.select语句太多；2.可能会加载应用程序不需要访问的对象白白浪费许多内存空间；延迟检索优点：由应用程序决定需要加载哪些对象，可以避免可执行多余的select语句，以及避免加载应用程序不需要访问的对象。因此能提高检索性能，并且能节省内存空间；缺点：应用程序如果希望访问游离状态代理类实例，必须保证他在持久化状态时已经被初始化；迫切左外连接检索优点：1、对应用程序完全透明，不管对象处于持久化状态，还是游离状态，应用程序都可以方便地冲一个对象导航到与它关联的对象。2、使用了外连接，select语句数目少；缺点：1、可能会加载应用程序不需要访问的对象，白白浪费许多内存空间；2、复杂的数据库表连接也会影响检索性能；</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/HashMap%E3%80%81HashTable%E3%80%81ConcurrentHashMap/">
+      HashMap、HashTable、ConcurrentHashMap
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/HashMap%E3%80%81HashTable%E3%80%81ConcurrentHashMap/" class="leancloud_visitors" data-flag-title="HashMap、HashTable、ConcurrentHashMap">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/HashMap%E3%80%81HashTable%E3%80%81ConcurrentHashMap/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/HashMap%E3%80%81HashTable%E3%80%81ConcurrentHashMap/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HashMap的底层实现原理"><a href="#HashMap的底层实现原理" class="headerlink" title="HashMap的底层实现原理"></a>HashMap的底层实现原理</h2><h4 id="数据结构："><a href="#数据结构：" class="headerlink" title="数据结构："></a>数据结构：</h4><p>数组、链表、红黑树（JDK1.8之后）</p>
+<h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><ol>
+<li><p>快速存储</p>
+</li>
+<li><p>快速查询（时间复杂度O(1)）</p>
+</li>
+<li><p>可伸缩（数组可动态扩容，链表长度超过8时会转化为红黑树）</p>
+</li>
+</ol>
+<h4 id="hash算法"><a href="#hash算法" class="headerlink" title="hash算法"></a>hash算法</h4><p>每个对象都有hashCode，hash算法是对象自身的hashCode右移16位再进行异或运算</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(hashCode)^(hashCode)&gt;&gt;&gt;<span class="number">16</span></span><br></pre></td></tr></table></figure>
+
+<p>数组的默认大小为16</p>
+<p>下标的计算：（hashCode）&amp;（16-1）= hashCode%16</p>
+<p>常用方法hashCode对16取余</p>
+<p>数据的扩容：当数据大于容量的<strong>75%</strong>是扩大到原来的<strong>两倍</strong></p>
+<h4 id="hash冲突"><a href="#hash冲突" class="headerlink" title="hash冲突"></a>hash冲突</h4><p>hash冲突就是两个不同的对象计算出相同的下标</p>
+<p>解决方法，变成单向链表，加入next记录下一个节点</p>
+<h3 id="HashMap的长度为什么是2的幂次方"><a href="#HashMap的长度为什么是2的幂次方" class="headerlink" title="HashMap的长度为什么是2的幂次方"></a>HashMap的长度为什么是2的幂次方</h3><p>为了能让HashMap存储高效，尽量较少碰撞，也就是尽量把数据分配均匀，</p>
+<h3 id="HashMap多线程操作导致死循环问题"><a href="#HashMap多线程操作导致死循环问题" class="headerlink" title="HashMap多线程操作导致死循环问题"></a>HashMap多线程操作导致死循环问题</h3><p>在多线程下，进行Put操作会导致HashMap死循环，原因在于HashMap扩容resize()方法，由于扩容是新建一个数组，复制原数据到数据。由于数组下标挂有链表，所以需要复制链表，但是多线程操作可能会导致循环链表。</p>
+<blockquote>
+<p>JDK1.8已经解决了死循环问题</p>
+</blockquote>
+<h2 id="HashTable和ConcurrentHashMap"><a href="#HashTable和ConcurrentHashMap" class="headerlink" title="HashTable和ConcurrentHashMap"></a>HashTable和ConcurrentHashMap</h2><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><p>HashMap是线程不安全的，在并发环境下，可能会形成环状链表（扩容时可能造成），导致get操作时，cpu空转，所以，并发环境下使用HashMap是非常危险的。</p>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h4><p>HashTable和HashMap的原理几乎一样，差别是HashTable不允许key和Value为Null；HashTable是线程安全的，但是HashTable线程安全的将所有get/put操作进行syschronized，相当于对整个哈希表加了一把大锁，多线程访问时，只要有一个线程访问或操作该对象，那其他线程只能阻塞，相当于所有操作串行化，在竞争激烈的并发场景中性能就会非常差。</p>
+<p>HashTable性能差主要是由于所有操作需要竞争同一把锁，而如果容器中有多把锁，每一把锁锁一段数据，这样在多线程访问时不同段的数据时，就不会存在竞争了，这样便可以有效的提高并发效率，这就是concurrentHashMap所采用的“分段锁”思想。</p>
+<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>ConcurrentHashMap主干是个Segment数据，Segment继承了ReentrantLock，所以他是一种可重入锁。</p>
+<p>区别：</p>
+<p>底层数据结构：</p>
+<p>JDK1.7的ConcurrentHashMap底层采用<strong>分段数组+链表</strong>实现，JDK1.8采用的数据结构更HashMap1.8的结构一样，<strong>数组+链表/红黑树</strong>。HashTable和JDK1.8之前的HashMap的底层数据结构类似都是采用<strong>数组+链表</strong>的形式，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的。</p>
+<p>实现线程安全的方式：</p>
+<p>在JDK1.7的时候，ConcurrentHashMap（分段锁）对整个桶数组进行了分割分段（Segment），每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。<strong>到了JDK1.8的时候已经摒弃了Segment的概念，而是直接用Node数组+链表+红黑树的数据结构来实现，并发控制使用synchronized和CAS来操作。(JDK1.6以后对synchronized锁做了很多优化)</strong>整个看起来就像是优化过且线程安全的HashMap,虽然在JDK1.8中还能看到Segment的数据结构，但是已经简化了属性，只是为了兼容旧版本。</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/Dubbo/">
+      Dubbo
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/Dubbo/" class="leancloud_visitors" data-flag-title="Dubbo">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/Dubbo/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/Dubbo/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="java分布式面试题之Dubbo部分"><a href="#java分布式面试题之Dubbo部分" class="headerlink" title="java分布式面试题之Dubbo部分"></a><strong>java分布式面试题之Dubbo部分</strong></h2><p><strong>java分布式面试题之Dubbo部分</strong></p>
+<p>Dubbo官网提出总共有六种容错策略</p>
+<ul>
+<li>Failover Cluster模式</li>
+</ul>
+<p>失败自动切换，当出现失败，重试其它服务器。(默认)</p>
+<ul>
+<li>Failfast Cluster</li>
+</ul>
+<p>快速失败，只发起一次调用，失败立即报错。通常用于非幂等性的写操作，比如新增记录。</p>
+<ul>
+<li>Failsafe Cluster</li>
+</ul>
+<p>失败安全，出现异常时，直接忽略。通常用于写入审计日志等操作。</p>
+<ul>
+<li>Failback Cluster</li>
+</ul>
+<p>失败自动恢复，后台记录失败请求，定时重发。通常用于消息通知操作。</p>
+<ul>
+<li>Forking Cluster</li>
+</ul>
+<p>并行调用多个服务器，只要一个成功即返回。通常用于实时性要求较高的读操作，但需要浪费更多服务资源。可通过forks=”2”来设置最大并行数。</p>
+<ul>
+<li>Broadcast Cluster</li>
+</ul>
+<p>广播调用所有提供者，逐个调用，任意一台报错则报错。(2.1.0开始支持)通常用于通知所有提供者更新缓存或日志等本地资源信息。</p>
+<p>总结：在实际应用中查询语句容错策略建议使用默认Failover Cluster，而增删改建议使用Failfast Cluster或者使用Failover Cluster（retries=”0”）策略防止出现数据重复添加等等其它问题。建议在设计接口时候把查询接口方法单独做一个接口提供查询。</p>
+<p>2、使用dubbo遇到过哪些问题？</p>
+<p>增加提供服务版本号和消费服务版本号</p>
+<p>这个具体来说不算是一个问题，而是一种问题的解决方案，在我们的实际工作中会面临各种环境资源短缺的问题，也是很实际的问题，刚开始我们还可以提供一个服务进行相关的开发和测试，但是当有多个环境多个版本，多个任务的时候就不满足我们的需求，这时候我们可以通过给提供方增加版本的方式来区分.这样能够剩下很多的物理资源，同时为今后更换接口定义发布在线时，可不停机发布，使用版本号.引用只会找相应版本的服务，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:serviceinterface&#x3D;&quot;com.xxx.XxxService&quot; ref&#x3D;&quot;xxxService&quot; version&#x3D;&quot;1.0&quot;&#x2F;&gt;</span><br><span class="line">&lt;dubbo:referenceid&#x3D;&quot;xxxService&quot; interface&#x3D;&quot;com.xxx.XxxService&quot; version&#x3D;&quot;1.0&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3、dubbo reference注解问题？</p>
+<p>@Reference只能在SpringBean实例对应的当前类中使用，暂时无法在父类使用；如果确实要在父类声明一个引用，可通过配置文件配置dubbo：reference，然后在需要引用的地方跟引用SpringBean一样就可以了.</p>
+<p>4、出现RpcException：No provider available for remote service异常怎么办？</p>
+<ul>
+<li>检查连接的注册中心是否正确</li>
+<li>到注册中心查看相应的服务提供者是否存在</li>
+<li>检查服务提供者是否正常运行</li>
+</ul>
+<p>5、服务提供者没挂，但在注册中心里看不到？</p>
+<p>首先，确认服务提供者是否连接了正确的注册中心，不只是检查配置中的注册中心地址，而且要检查实际的网络连接。</p>
+<p>其次，看服务提供者是否非常繁忙，比如压力测试，以至于没有CPU片段向注册中心发送心跳，这种情况减小压力将自动恢复。</p>
+<p>6、Dubbo的连接方式有哪些？</p>
+<p>Dubbo的客户端和服务端有三种连接方式，分别是：广播，直连和使用zookeeper注册中心。</p>
+<p>7、Dubbo广播</p>
+<p>这种方式是dubbo官方入门程序所使用的连接方式，但是这种方式有很多问题。在企业开发中，不使用广播的方式。taotao-manager服务端配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!-- applicationContext-service.xml 文件中 --&gt;</span><br><span class="line">&lt;!-- 提供方应用信息，用于计算机依赖关系 --&gt;</span><br><span class="line">&lt;dubbo:application name&#x3D;&quot;taotao-manager-service” &#x2F;&gt;</span><br><span class="line">&lt;!-- 使用 multicast 广播暴露服务地址 --&gt;</span><br><span class="line">&lt;dubbo:registry address&#x3D;&quot;multicast：&#x2F;&#x2F;224.5.6.7：1234&quot; &#x2F;&gt;</span><br><span class="line">&lt;!-- 使用 dubbo 协议在 20880 协议暴露服务 --&gt;</span><br><span class="line">&lt;dubboprotocol name&#x3D;&quot;dubbo&quot; port&#x3D;&quot;20880&quot; &#x2F;&gt;</span><br><span class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</span><br><span class="line">&lt;dubbo:service interface&#x3D;&quot;com.taotao.manager.service.TestService&quot; ref&#x3D;&quot;testServiceImpl&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/15/10%E4%B8%AA%E6%A3%98%E6%89%8B%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">
+      10个棘手面试问题
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 15, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/2020/07/15/10%E4%B8%AA%E6%A3%98%E6%89%8B%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="10个棘手面试问题">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+<div class="new-meta-item comments-count">
+  
+  <a href="/2020/07/15/10%E4%B8%AA%E6%A3%98%E6%89%8B%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/#comments">
+    <i class="fas fa-comment-dots fa-fw"></i>
+    <span class="valine-comment-count" data-xid="/2020/07/15/10%E4%B8%AA%E6%A3%98%E6%89%8B%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">0</span>
+    <span class="leancloud-comments-count">&nbsp;</span>
+  </a>
+</div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、为什么等待和通知是在 Object 类而不是 Thread 中声明的？</p>
+<p>一个棘手的 Java 问题，如果 Java编程语言不是你设计的，你怎么能回答这个问题呢。Java编程的常识和深入了解有助于回答这种棘手的 Java 核心方面的面试问题。</p>
+<p><strong>为什么 wait，notify 和 notifyAll 是在 Object 类中定义的而不是在 Thread 类中定义</strong></p>
+<p>这是有名的 Java 面试问题，招2~4年经验的到高级 Java 开发人员面试都可能碰到。</p>
+<p>这个问题的好在它能反映了面试者对等待通知机制的了解, 以及他对此主题的理解是否明确。就像为什么 Java 中不支持多继承或者为什么 String 在 Java 中是 final 的问题一样，这个问题也可能有多个答案。</p>
+<p>为什么在 Object 类中定义 wait 和 notify 方法，每个人都能说出一些理由。从我的面试经验来看, wait 和 nofity 仍然是大多数Java 程序员最困惑的，特别是2到3年的开发人员，如果他们要求使用 wait 和 notify, 他们会很困惑。因此，如果你去参加 Java 面试，请确保对 wait 和 notify 机制有充分的了解，并且可以轻松地使用 wait 来编写代码，并通过生产者-消费者问题或实现阻塞队列等了解通知的机制。</p>
+<p>为什么等待和通知需要从同步块或方法中调用, 以及 Java 中的 wait，sleep 和 yield 方法之间的差异，如果你还没有读过，你会觉得有趣。为何 wait，notify 和 notifyAll 属于 Object 类? 为什么它们不应该在 Thread 类中? 以下是我认为有意义的一些想法：</p>
+<ul>
+<li>1) wait 和 notify 不仅仅是普通方法或同步工具，更重要的是它们是 Java 中两个线程之间的通信机制。对语言设计者而言, 如果不能通过 Java 关键字(例如 synchronized)实现通信此机制，同时又要确保这个机制对每个对象可用, 那么 Object 类则是的正确声明位置。记住同步和等待通知是两个不同的领域，不要把它们看成是相同的或相关的。同步是提供互斥并确保 Java 类的线程安全，而 wait 和 notify 是两个线程之间的通信机制。</li>
+<li>2) 每个对象都可上锁，这是在 Object 类而不是 Thread 类中声明 wait 和 notify 的另一个原因。</li>
+<li>3) 在 Java 中为了进入代码的临界区，线程需要锁定并等待锁定，他们不知道哪些线程持有锁，而只是知道锁被某个线程持有， 并且他们应该等待取得锁, 而不是去了解哪个线程在同步块内，并请求它们释放锁定。</li>
+<li>4) Java 是基于 Hoare 的监视器的思想(<a href="http://en.wikipedia.org/wiki/…。在Java中，所有对象都有一个监视器。" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/…。在Java中，所有对象都有一个监视器。</a></li>
+</ul>
+<p>线程在监视器上等待，为执行等待，我们需要2个参数：</p>
+<ul>
+<li>一个线程</li>
+<li>一个监视器(任何对象)</li>
+</ul>
+<p>在 Java 设计中，线程不能被指定，它总是运行当前代码的线程。但是，我们可以指定监视器(这是我们称之为等待的对象)。这是一个很好的设计，因为如果我们可以让任何其他线程在所需的监视器上等待，这将导致“入侵”，导致在设计并发程序时会遇到困难。请记住，在 Java 中，所有在另一个线程的执行中侵入的操作都被弃用了(例如 stop 方法)。</p>
+<p>2、为什么Java中不支持多重继承？</p>
+<p>我发现这个 Java 核心问题很难回答，因为你的答案可能不会让面试官满意，在大多数情况下，面试官正在寻找答案中的关键点，如果你提到这些关键点，面试官会很高兴。在 Java 中回答这种棘手问题的关键是准备好相关主题, 以应对后续的各种可能的问题。</p>
+<p>这是非常经典的问题，与为什么 String 在 Java 中是不可变的很类似; 这两个问题之间的相似之处在于它们主要是由 Java 创作者的设计决策使然。</p>
+<p>为什么Java不支持多重继承, 可以考虑以下两点:</p>
+<ul>
+<li>1)第一个原因是围绕钻石💎形继承问题产生的歧义，考虑一个类 A 有 foo 方法, 然后 B 和 C 派生自 A, 并且有自己的 foo 实现，现在 D 类使用多个继承派生自 B 和C，如果我们只引用 foo, 编译器将无法决定它应该调用哪个 foo。这也称为 Diamond 问题，因为这个继承方案的结构类似于菱形，见下图:</li>
+</ul>
+<p>Afoo</p>
+<p>/</p>
+<p>foo B C foo</p>
+<p>/</p>
+<p>/</p>
+<p>D foo</p>
+<ul>
+<li>即使我们删除钻石的顶部 A 类并允许多重继承，我们也将看到这个问题含糊性的一面。如果你把这个理由告诉面试官，他会问为什么 C++ 可以支持多重继承而 Java不行。嗯，在这种情况下，我会试着向他解释我下面给出的第二个原因，它不是因为技术难度, 而是更多的可维护和更清晰的设计是驱动因素, 虽然这只能由 Java 言语设计师确认，我们只是推测。维基百科链接有一些很好的解释，说明在使用多重继承时，由于钻石问题，不同的语言地址问题是如何产生的。</li>
+<li>2)对我来说第二个也是更有说服力的理由是，多重继承确实使设计复杂化并在转换、构造函数链接等过程中产生问题。假设你需要多重继承的情况并不多，简单起见，明智的决定是省略它。此外，Java 可以通过使用接口支持单继承来避免这种歧义。由于接口只有方法声明而且没有提供任何实现，因此只有一个特定方法的实现，因此不会有任何歧义。</li>
+</ul>
+<p>3、为什么Java不支持运算符重载？</p>
+<p>另一个类似棘手的Java问题。为什么 C++ 支持运算符重载而 Java 不支持? 有人可能会说+运算符在 Java 中已被重载用于字符串连接，不要被这些论据所欺骗。</p>
+<p>与 C++ 不同，Java 不支持运算符重载。Java 不能为程序员提供自由的标准算术运算符重载，例如+， - ，*和/等。如果你以前用过 C++，那么 Java 与 C++ 相比少了很多功能，例如 Java 不支持多重继承，Java中没有指针，Java中没有引用传递。另一个类似的问题是关于 Java 通过引用传递，这主要表现为 Java 是通过值还是引用传参。虽然我不知道背后的真正原因，但我认为以下说法有些道理，为什么 Java 不支持运算符重载。</p>
+<ul>
+<li>1)简单性和清晰性。清晰性是Java设计者的目标之一。设计者不是只想复制语言，而是希望拥有一种清晰，真正面向对象的语言。添加运算符重载比没有它肯定会使设计更复杂，并且它可能导致更复杂的编译器, 或减慢 JVM，因为它需要做额外的工作来识别运算符的实际含义，并减少优化的机会, 以保证 Java 中运算符的行为。</li>
+<li>2)避免编程错误。Java 不允许用户定义的运算符重载，因为如果允许程序员进行运算符重载，将为同一运算符赋予多种含义，这将使任何开发人员的学习曲线变得陡峭，事情变得更加混乱。据观察，当语言支持运算符重载时，编程错误会增加，从而增加了开发和交付时间。由于 Java 和 JVM 已经承担了大多数开发人员的责任，如在通过提供垃圾收集器进行内存管理时，因为这个功能增加污染代码的机会, 成为编程错误之源, 因此没有多大意义。</li>
+<li>3)JVM复杂性。从JVM的角度来看，支持运算符重载使问题变得更加困难。通过更直观，更干净的方式使用方法重载也能实现同样的事情，因此不支持 Java 中的运算符重载是有意义的。与相对简单的 JVM 相比，复杂的 JVM 可能导致 JVM 更慢，并为保证在 Java 中运算符行为的确定性从而减少了优化代码的机会。</li>
+<li>4)让开发工具处理更容易。这是在 Java 中不支持运算符重载的另一个好处。省略运算符重载使语言更容易处理，这反过来又更容易开发处理语言的工具，例如 IDE 或重构工具。Java 中的重构工具远胜于 C++。</li>
+</ul>
+<p>4、为什么 String 在 Java中是final不可变的</p>
+<p>字符串在 Java 中是不可变的，因为 String 对象缓存在 String 池中。由于缓存的字符串在多个客户之间共享，因此始终存在风险，其中一个客户的操作会影响所有其他客户。例如，如果一段代码将 String “Test” 的值更改为 “TEST”，则所有其他客户也将看到该值。由于 String 对象的缓存性能是很重要的一方面，因此通过使 String 类不可变来避免这种风险。</p>
+<p>同时，String 是 final 的，因此没有人可以通过扩展和覆盖行为来破坏 String 类的不变性、缓存、散列值的计算等。String 类不可变的另一个原因可能是由于 HashMap。</p>
+<p>由于把字符串作为 HashMap 键很受欢迎。对于键值来说，重要的是它们是不可变的，以便用它们检索存储在 HashMap 中的值对象。由于 HashMap 的工作原理是散列，因此需要具有相同的值才能正常运行。如果在插入后修改了 String 的内容，可变的 String将在插入和检索时生成两个不同的哈希码，可能会丢失 Map 中的值对象。</p>
+<p>如果你是印度板球迷，你可能能够与我的下一句话联系起来。字符串是Java的 VVS Laxman，即非常特殊的类。我还没有看到一个没有使用 String 编写的 Java 程序。这就是为什么对 String 的充分理解对于 Java 开发人员来说非常重要。</p>
+<p>String 作为数据类型，传输对象和中间人角色的重要性和流行性也使这个问题在 Java 面试中很常见。</p>
+<p>为什么 String 在 Java 中是不可变的是 Java 中最常被问到的字符串访问问题之一，它首先讨论了什么是 String，Java 中的 String 如何与 C 和 C++ 中的 String 不同，然后转向在Java中什么是不可变对象，不可变对象有什么好处，为什么要使用它们以及应该使用哪些场景。这个问题有时也会问：“为什么 String 在 Java 中是 final 的”。在类似的说明中，如果你正在准备Java 面试，我建议你看看Java编程面试公开书，这是高级和中级Java程序员的优秀资源。它包含来自所有重要 Java 主题的问题，包括多线程，集合，GC，JVM内部以及 Spring和 Hibernate 框架等。</p>
+<p>正如我所说，这个问题可能有很多可能的答案，而 String 类的唯一设计者可以放心地回答它。我在 Joshua Bloch 的 Effective Java 书中期待一些线索，但他也没有提到它。我认为以下几点解释了为什么 String 类在 Java 中是不可变的或 final 的：</p>
+<ul>
+<li>1)想象字符串池没有使字符串不可变，它根本不可能，因为在字符串池的情况下，一个字符串对象/文字，例如 “Test” 已被许多参考变量引用，因此如果其中任何一个更改了值，其他参数将自动受到影响，即假设</li>
+</ul>
+<p>StringA= “Test”;</p>
+<p>StringB= “Test”;</p>
+<p>现在字符串 B 调用 “Test”.toUpperCase, 将同一个对象改为“TEST”，所以 A 也是 “TEST”，这不是期望的结果。</p>
+<p>下图显示了如何在堆内存和字符串池中创建字符串。</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5C%E8%B5%84%E6%96%99%5Cb0d721db78a545078a6f268b614d9d0c.jpeg" alt="img"></p>
+<ul>
+<li>2)字符串已被广泛用作许多 Java 类的参数，例如，为了打开网络连接，你可以将主机名和端口号作为字符串传递，你可以将数据库 URL 作为字符串传递, 以打开数据库连接，你可以通过将文件名作为参数传递给 File I/O 类来打开 Java 中的任何文件。如果 String 不是不可变的，这将导致严重的安全威胁，我的意思是有人可以访问他有权授权的任何文件，然后可以故意或意外地更改文件名并获得对该文件的访问权限。由于不变性，你无需担心这种威胁。这个原因也说明了，为什么 String 在 Java 中是最终的，通过使java.lang.String final，Java设计者确保没有人覆盖 String 类的任何行为。</li>
+<li>3)由于 String 是不可变的，它可以安全地共享许多线程，这对于多线程编程非常重要. 并且避免了 Java 中的同步问题，不变性也使得String 实例在 Java 中是线程安全的，这意味着你不需要从外部同步 String 操作。关于 String 的另一个要点是由截取字符串 SubString 引起的内存泄漏，这不是与线程相关的问题，但也是需要注意的。</li>
+<li>4)为什么 String 在 Java 中是不可变的另一个原因是允许 String 缓存其哈希码，Java 中的不可变 String 缓存其哈希码，并且不会在每次调用 String 的 hashcode 方法时重新计算，这使得它在 Java 中的 HashMap 中使用的 HashMap 键非常快。简而言之，因为 String 是不可变的，所以没有人可以在创建后更改其内容，这保证了 String 的 hashCode 在多次调用时是相同的。</li>
+<li>5)String 不可变的绝对最重要的原因是它被类加载机制使用，因此具有深刻和基本的安全考虑。如果 String 是可变的，加载“java.io.Writer” 的请求可能已被更改为加载 “mil.vogoon.DiskErasingWriter”. 安全性和字符串池是使字符串不可变的主要原因。顺便说一句，上面的理由很好回答另一个Java面试问题: “为什么String在Java中是最终的”。要想是不可变的，你必须是最终的，这样你的子类不会破坏不变性。你怎么看？</li>
+</ul>
+<p>5、为什么 char 数组比 Java 中的 String 更适合存储密码？</p>
+<p>这是最近在 Java 面试中向我的一位朋友询问的问题。他正在接受技术主管职位的面试，并且有超过6年的经验。如果你还没有遇到过这种情况，那么字符数组和字符串可以用来存储文本数据，但是选择一个而不是另一个很难。但正如我的朋友所说，任何与 String相关的问题都必须对字符串的特殊属性有一些线索，比如不变性，他用它来说服访提问的人。在这里，我们将探讨为什么你应该使用char[]存储密码而不是String的一些原因。</p>
+<p>字符串：</p>
+<ul>
+<li>1)由于字符串在 Java 中是不可变的，如果你将密码存储为纯文本，它将在内存中可用，直到垃圾收集器清除它. 并且为了可重用性，会存在 String在字符串池中, 它很可能会保留在内存中持续很长时间，从而构成安全威胁。</li>
+<li>由于任何有权访问内存转储的人都可以以明文形式找到密码，这是另一个原因，你应该始终使用加密密码而不是纯文本。由于字符串是不可变的，所以不能更改字符串的内容，因为任何更改都会产生新的字符串，而如果你使用char[]，你就可以将所有元素设置为空白或零。因此，在字符数组中存储密码可以明显降低窃取密码的安全风险。</li>
+<li>2)Java 本身建议使用 JPasswordField 的 getPassword方法，该方法返回一个 char[] 和不推荐使用的getTex方法，该方法以明文形式返回密码，由于安全原因。应遵循 Java 团队的建议, 坚持标准而不是反对它。</li>
+<li>3)使用 String 时，总是存在在日志文件或控制台中打印纯文本的风险，但如果使用 Array，则不会打印数组的内容而是打印其内存位置。虽然不是一个真正的原因，但仍然有道理。</li>
+</ul>
+<p>String strPassword =“Unknown”;</p>
+<p>char[] charPassword = newchar[] { ‘U’， ‘n’， ‘k’， ‘w’， ‘o’， ‘n’};</p>
+<p>System.out.println(“字符密码：”+ strPassword);</p>
+<p>System.out.println(“字符密码：”+ charPassword);</p>
+<p>输出</p>
+<blockquote>
+<p>字符串密码：Unknown</p>
+<p>字符密码：[C @110b053</p>
+</blockquote>
+<p>我还建议使用散列或加密的密码而不是纯文本，并在验证完成后立即从内存中清除它。因此,在Java中,用字符数组用存储密码比字符串是更好的选择。虽然仅使用char[]还不够，还你需要擦除内容才能更安全。</p>
+<p>6、如何使用双重检查锁定在 Java 中创建线程安全的单例？</p>
+<p>艰难的核心 Java 面试问题.这个 Java 问题也常被问: 什么是线程安全的单例，你怎么创建它。好吧，在Java 5之前的版本, 使用双重检查锁定创建单例 Singleton 时，如果多个线程试图同时创建 Singleton 实例，则可能有多个 Singleton 实例被创建。从 Java 5 开始，使用 Enum 创建线程安全的Singleton很容易。但如果面试官坚持双重检查锁定，那么你必须为他们编写代码。记得使用volatile变量。</p>
+<p>1、为什么枚举单例在 Java 中更好</p>
+<p>枚举单例是使用一个实例在 Java 中实现单例模式的新方法。虽然Java中的单例模式存在很长时间,但枚举单例是相对较新的概念,在引入Enum作为关键字和功能之后,从Java5开始在实践中。本文与之前关于 Singleton 的内容有些相关, 其中讨论了有关 Singleton 模式的面试中的常见问题, 以及 10 个 Java 枚举示例, 其中我们看到了如何通用枚举可以。这篇文章是关于为什么我们应该使用Eeame作为Java中的单例,它比传统的单例方法相比有什么好处等等。</p>
+<p>2、Java 枚举和单例模式</p>
+<p>Java 中的枚举单例模式是使用枚举在 Java 中实现单例模式。单例模式在 Java 中早有应用, 但使用枚举类型创建单例模式时间却不长. 如果感兴趣, 你可以了解下构建者设计模式和装饰器设计模式。</p>
+<p>3、枚举单例易于书写</p>
+<p>这是迄今为止最大的优势,如果你在Java 5之前一直在编写单例, 你知道, 即使双检查锁定, 你仍可以有多个实例。虽然这个问题通过 Java 内存模型的改进已经解决了, 从 Java 5 开始的 volatile 类型变量提供了保证, 但是对于许多初学者来说, 编写起来仍然很棘手。与同步双检查锁定相比,枚举单例实在是太简单了。如果你不相信, 那就比较一下下面的传统双检查锁定单例和枚举单例的代码:</p>
+<p>4、在 Java 中使用枚举的单例</p>
+<p>这是我们通常声明枚举的单例的方式,它可能包含实例变量和实例方法,但为了简单起见,我没有使用任何实例方法,只是要注意,如果你使用的实例方法且该方法能改变对象的状态的话, 则需要确保该方法的线程安全。默认情况下,创建枚举实例是线程安全的,但 Enum 上的任何其他方法是否线程安全都是程序员的责任。</p>
+<p>/**</p>
+<p>* 使用 Java 枚举的单例模式示例</p>
+<p>*/</p>
+<p>publicenumEasySingleton{</p>
+<p>INSTANCE;</p>
+<p>}</p>
+<p>你可以通过EasySingleton.INSTANCE来处理它,这比在单例上调用getInstance方法容易得多。</p>
+<p>5、具有双检查锁定的单例示例</p>
+<p>下面的代码是单例模式中双重检查锁定的示例,此处的 getInstance 方法检查两次,以查看 INSTANCE 是否为空,这就是为什么它被称为双检查锁定模式,请记住,双检查锁定是代理之前Java 5,但Java5内存模型中易失变量的干扰,它应该工作完美。</p>
+<p>/**</p>
+<p>* 单例模式示例,双重锁定检查</p>
+<p>*/</p>
+<p>publicclassDoubleCheckedLockingSingleton{</p>
+<p>privatevolatileDoubleCheckedLockingSingleton INSTANCE;</p>
+<p>privateDoubleCheckedLockingSingleton{}</p>
+<p>publicDoubleCheckedLockingSingleton getInstance{</p>
+<p>if(INSTANCE == null){</p>
+<p>synchronized(DoubleCheckedLockingSingleton.class){</p>
+<p>//double checking Singleton instance</p>
+<p>if(INSTANCE == null){</p>
+<p>INSTANCE = newDoubleCheckedLockingSingleton;</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>returnINSTANCE;</p>
+<p>}</p>
+<p>}</p>
+<p>你可以调用DoubleCheckedLockingSingleton.getInstance 来获取此单例类的访问权限。</p>
+<p>现在,只需查看创建延迟加载的线程安全的 Singleton 所需的代码量。使用枚举单例模式, 你可以在一行中具有该模式, 因为创建枚举实例是线程安全的, 并且由 JVM 进行。</p>
+<p>人们可能会争辩说,有更好的方法来编写 Singleton 而不是双检查锁定方法, 但每种方法都有自己的优点和缺点, 就像我最喜欢在类加载时创建的静态字段 Singleton, 如下面所示, 但请记住, 这不是一个延迟加载单例:</p>
+<p>6、单例模式用静态工厂方法</p>
+<p>这是我最喜欢的在 Java 中影响 Singleton 模式的方法之一,因为 Singleton 实例是静态的,并且最后一个变量在类首次加载到内存时初始化,因此实例的创建本质上是线程安全的。</p>
+<p>/**</p>
+<p>* 单例模式示例与静态工厂方法</p>
+<p>*/</p>
+<p>publicclassSingleton{</p>
+<p>//initailzed during class loading</p>
+<p>privatestaticfinalSingleton INSTANCE = newSingleton;</p>
+<p>//to prevent creating another instance of Singleton</p>
+<p>privateSingleton{}</p>
+<p>publicstaticSingleton getSingleton{</p>
+<p>returnINSTANCE;</p>
+<p>}</p>
+<p>}</p>
+<p>你可以调用 Singleton.getSingleton 来获取此类的访问权限。</p>
+<p>1) 枚举单例自行处理序列化</p>
+<p>传统单例的另一个问题是,一旦实现可序列化接口,它们就不再是 Singleton, 因为 readObject 方法总是返回一个新实例, 就像 Java 中的构造函数一样。通过使用 readResolve 方法, 通过在以下示例中替换 Singeton 来避免这种情况:</p>
+<p>//readResolve to prevent another instance of Singleton</p>
+<p>privateObject readResolve{</p>
+<p>returnINSTANCE;</p>
+<p>}</p>
+<p>如果 Singleton 类保持内部状态, 这将变得更加复杂, 因为你需要标记为 transient(不被序列化),但使用枚举单例, 序列化由 JVM 进行。</p>
+<p>2) 创建枚举实例是线程安全的</p>
+<p>如第 1 点所述,因为 Enum 实例的创建在默认情况下是线程安全的, 你无需担心是否要做双重检查锁定。</p>
+<p>总之, 在保证序列化和线程安全的情况下,使用两行代码枚举单例模式是在 Java 5 以后的世界中创建 Singleton 的最佳方式。你仍然可以使用其他流行的方法, 如你觉得更好, 欢迎讨论。</p>
+<p>7、编写 Java 程序时, 如何在 Java 中创建死锁并修复它？</p>
+<p>经典但核心Java面试问题之一。</p>
+<p>如果你没有参与过多线程并发 Java 应用程序的编码，你可能会失败。</p>
+<p>1、如何避免 Java 线程死锁？</p>
+<p>如何避免 Java 中的死锁？是 Java 面试的热门问题之一, 也是多线程的编程中的重口味之一, 主要在招高级程序员时容易被问到, 且有很多后续问题。尽管问题看起来非常基本, 但大多数 Java 开发人员一旦你开始深入, 就会陷入困境。</p>
+<p>2、面试问题总是以“什么是死锁🔒？”开始</p>
+<p>当两个或多个线程在等待彼此释放所需的资源(锁定)并陷入无限等待即是死锁。它仅在多任务或多线程的情况下发生。</p>
+<p>3、如何检测 Java 中的死锁？</p>
+<p>虽然这可以有很多答案, 但我的版本是首先我会看看代码, 如果我看到一个嵌套的同步块，或从一个同步的方法调用其他同步方法, 或试图在不同的对象上获取锁, 如果开发人员不是非常小心，就很容易造成死锁。</p>
+<p>另一种方法是在运行应用程序时实际锁定时找到它, 尝试采取线程转储,在 Linux 中,你可以通过kill -3命令执行此操作, 这将打印应用程序日志文件中所有线程的状态, 并且你可以看到哪个线程被锁定在哪个线程对象上。</p>
+<p>你可以使用 fastthread.io 网站等工具分析该线程转储, 这些工具允许你上载线程转储并对其进行分析。</p>
+<p>另一种方法是使用 jConsole 或 VisualVM, 它将显示哪些线程被锁定以及哪些对象被锁定。</p>
+<p>如果你有兴趣了解故障排除工具和分析线程转储的过程, 我建议你看看 Uriah Levy 在多元视觉(PluraIsight)上《分析 Java 线程转储》课程。旨在详细了解 Java 线程转储, 并熟悉其他流行的高级故障排除工具。</p>
+<p>4、编写一个将导致死锁的Java程序？</p>
+<p>一旦你回答了前面的问题,他们可能会要求你编写代码,这将导致Java死锁。</p>
+<p>这是我的版本之一</p>
+<p>/**</p>
+<p>* Java 程序通过强制循环等待来创建死锁。</p>
+<p>*</p>
+<p>*</p>
+<p>*/</p>
+<p>publicclassDeadLockDemo{</p>
+<p>/*</p>
+<p>* 此方法请求两个锁,第一个字符串,然后整数</p>
+<p>*/</p>
+<p>publicvoidmethod1{</p>
+<p>synchronized(String.class) {</p>
+<p>System.out.println( “Aquired lock on String.class object”);</p>
+<p>synchronized(Integer.class) {</p>
+<p>System.out.println( “Aquired lock on Integer.class object”);</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>/*</p>
+<p>* 此方法也请求相同的两个锁,但完全</p>
+<p>* 相反的顺序,即首先整数,然后字符串。</p>
+<p>* 如果一个线程持有字符串锁,则这会产生潜在的死锁</p>
+<p>* 和其他持有整数锁,他们等待对方,永远。</p>
+<p>*/</p>
+<p>publicvoidmethod2{</p>
+<p>synchronized(Integer.class) {</p>
+<p>System.out.println( “Aquired lock on Integer.class object”);</p>
+<p>synchronized(String.class) {</p>
+<p>System.out.println( “Aquired lock on String.class object”);</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>如果 method1 和 method2 都由两个或多个线程调用,则存在死锁的可能性, 因为如果线程 1 在执行 method1 时在 Sting 对象上获取锁, 线程 2 在执行 method2 时在 Integer 对象上获取锁, 等待彼此释放 Integer 和 String 上的锁以继续进行一步, 但这永远不会发生。</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5C%E8%B5%84%E6%96%99%5C4230bb13cbbc42028e4a4f8facba8b39.jpeg" alt="img"></p>
+<p>此图精确演示了我们的程序, 其中一个线程在一个对象上持有锁, 并等待其他线程持有的其他对象锁。</p>
+<p>你可以看到, Thread1 需要 Thread2 持有的 Object2 上的锁,而 Thread2 希望获得 Thread1 持有的 Object1 上的锁。由于没有线程愿意放弃, 因此存在死锁, Java 程序被卡住。</p>
+<p>其理念是, 你应该知道使用常见并发模式的正确方法, 如果你不熟悉这些模式,那么 Jose Paumard 《应用于并发和多线程的常见 Java 模式》是学习的好起点。</p>
+<p>5、如何避免Java中的死锁？</p>
+<p>现在面试官来到最后一部分, 在我看来, 最重要的部分之一; 如何修复代码中的死锁？或如何避免Java中的死锁？</p>
+<p>如果你仔细查看了上面的代码,那么你可能已经发现死锁的真正原因不是多个线程, 而是它们请求锁的方式, 如果你提供有序访问, 则问题将得到解决。</p>
+<p>下面是我的修复版本,它通过避免循环等待，而避免死锁, 而不需要抢占, 这是需要死锁的四个条件之一。</p>
+<p>publicclassDeadLockFixed{</p>
+<p>/**</p>
+<p>* 两种方法现在都以相同的顺序请求锁,首先采用整数,然后是 String。</p>
+<p>* 你也可以做反向,例如,第一个字符串,然后整数,</p>
+<p>* 只要两种方法都请求锁定,两者都能解决问题</p>
+<p>* 顺序一致。</p>
+<p>*/</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> method1&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">synchronized</span>(Integer<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">   		System.out.println( <span class="string">"Aquired lock on Integer.class object"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">synchronized</span>(String<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">                System.out.println( <span class="string">"Aquired lock on String.class object"</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">publicvoidmethod2&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">synchronized</span>(Integer<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println( <span class="string">"Aquired lock on Integer.class object"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">synchronized</span>(String<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">                System.out.println( <span class="string">"Aquired lock on String.class object"</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>现在没有任何死锁,因为两种方法都按相同的顺序访问 Integer 和 String 类文本上的锁。因此,如果线程 A 在 Integer 对象上获取锁, 则线程 B 不会继续, 直到线程 A 释放 Integer 锁, 即使线程 B 持有 String 锁, 线程 A 也不会被阻止, 因为现在线程 B 不会期望线程 A 释放 Integer 锁以继续。</p>
+<p>8、如果你的Serializable类包含一个不可序列化的成员，会发生什么？你是如何解决的？</p>
+<p>任何序列化该类的尝试都会因NotSerializableException而失败，但这可以通过在 Java中 为 static 设置瞬态(trancient)变量来轻松解决。</p>
+<p>1、Java 序列化相关的常见问题</p>
+<p>Java 序列化是一个重要概念, 但它很少用作持久性解决方案, 开发人员大多忽略了 Java 序列化 API。根据我的经验, Java 序列化在任何 Java核心内容面试中都是一个相当重要的话题, 在几乎所有的网面试中, 我都遇到过一两个 Java 序列化问题, 我看过一次面试, 在问几个关于序列化的问题之后候选人开始感到不自在, 因为缺乏这方面的经验。他们不知道如何在 Java 中序列化对象, 或者他们不熟悉任何 Java 示例来解释序列化, 忘记了诸如序列化在 Java 中如何工作, 什么是标记接口, 标记接口的目的是什么, 瞬态变量和可变变量之间的差异, 可序列化接口具有多少种方法, 在 Java 中,Serializable 和 Externalizable 有什么区别, 或者在引入注解之后, 为什么不用 @Serializable 注解或替换 Serializalbe 接口。</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5C%E8%B5%84%E6%96%99%5Ca8b443a472234ece9a4750ad7d929a89.jpeg" alt="img"></p>
+<p>在本文中,我们将从初学者和高级别进行提问, 这对新手和具有多年 Java 开发经验的高级开发人员同样有益。</p>
+<p>2、关于Java序列化的10个面试问题</p>
+<p>大多数商业项目使用数据库或内存映射文件或只是普通文件, 来满足持久性要求, 只有很少的项目依赖于 Java 中的序列化过程。无论如何,这篇文章不是 Java 序列化教程或如何序列化在 Java 的对象, 但有关序列化机制和序列化 API 的面试问题, 这是值得去任何 Java 面试前先看看以免让一些未知的内容惊到自己。</p>
+<p>对于那些不熟悉 Java 序列化的人, Java 序列化是用来通过将对象的状态存储到带有.ser扩展名的文件来序列化 Java 中的对象的过程, 并且可以通过这个文件恢复重建 Java对象状态, 这个逆过程称为 deserialization。</p>
+<p>3、什么是 Java 序列化</p>
+<p>序列化是把对象改成可以存到磁盘或通过网络发送到其他运行中的 Java 虚拟机的二进制格式的过程, 并可以通过反序列化恢复对象状态. Java 序列化API给开发人员提供了一个标准机制, 通过 java.io.Serializable 和 java.io.Externalizable 接口,ObjectInputStream 及ObjectOutputStream处理对象序列化. Java 程序员可自由选择基于类结构的标准序列化或是他们自定义的二进制格式, 通常认为后者才是最佳实践, 因为序列化的二进制文件格式成为类输出 API的一部分, 可能破坏 Java 中私有和包可见的属性的封装.</p>
+<p>4、如何序列化</p>
+<p>让 Java 中的类可以序列化很简单. 你的 Java 类只需要实现 java.io.Serializable接口, JVM 就会把 Object 对象按默认格式序列化. 让一个类是可序列化的需要有意为之. 类可序列会可能为是一个长期代价, 可能会因此而限制你修改或改变其实现. 当你通过实现添加接口来更改类的结构时, 添加或删除任何字段可能会破坏默认序列化, 这可以通过自定义二进制格式使不兼容的可能性最小化, 但仍需要大量的努力来确保向后兼容性。序列化如何限制你更改类的能力的一个示例是SerialVersionUID。如果不显式声明 SerialVersionUID, 则 JVM 会根据类结构生成其结构, 该结构依赖于类实现接口和可能更改的其他几个因素。假设你新版本的类文件实现的另一个接口, JVM将生成一个不同的 SerialVersionUID 的, 当你尝试加载旧版本的程序序列化的旧对象时, 你将获得无效类异常 InvalidClassException。</p>
+<blockquote>
+<p>问题 1) Java 中的可序列化接口和可外部接口之间的区别是什么？</p>
+</blockquote>
+<p>这是 Java 序列化访谈中最常问的问题。下面是我的版本 Externalizable 给我们提供 writeExternal 和 readExternal 方法, 这让我们灵活地控制 Java 序列化机制, 而不是依赖于 Java 的默认序列化。正确实现 Externalizable 接口可以显著提高应用程序的性能。</p>
+<blockquote>
+<p>问题 2) 可序列化的方法有多少？如果没有方法,那么可序列化接口的用途是什么？</p>
+</blockquote>
+<p>可序列化 Serializalbe 接口存在于java.io包中,构成了 Java 序列化机制的核心。它没有任何方法, 在 Java 中也称为标记接口。当类实现 java.io.Serializable 接口时, 它将在 Java 中变得可序列化, 并指示编译器使用 Java 序列化机制序列化此对象。</p>
+<blockquote>
+<p>问题 3) 什么是 serialVersionUID ？如果你不定义这个, 会发生什么？</p>
+</blockquote>
+<p>我最喜欢的关于Java序列化的问题面试问题之一。serialVersionUID 是一个 private static final long 型 ID, 当它被印在对象上时, 它通常是对象的哈希码,你可以使用 serialver 这个 JDK 工具来查看序列化对象的 serialVersionUID。SerialVerionUID 用于对象的版本控制。也可以在类文件中指定 serialVersionUID。不指定 serialVersionUID的后果是,当你添加或修改类中的任何字段时, 则已序列化类将无法恢复, 因为为新类和旧序列化对象生成的 serialVersionUID 将有所不同。Java 序列化过程依赖于正确的序列化对象恢复状态的, ,并在序列化对象序列版本不匹配的情况下引发 java.io.InvalidClassException无效类异常,了解有关 serialVersionUID 详细信息,请参阅这篇文章, 需要 FQ。</p>
+<blockquote>
+<p>问题 4) 序列化时,你希望某些成员不要序列化？你如何实现它？</p>
+</blockquote>
+<p>另一个经常被问到的序列化面试问题。这也是一些时候也问, 如什么是瞬态 trasient变量, 瞬态和静态变量会不会得到序列化等,所以,如果你不希望任何字段是对象的状态的一部分, 然后声明它静态或瞬态根据你的需要, 这样就不会是在 Java 序列化过程中被包含在内。</p>
+<blockquote>
+<p>问题 5) 如果类中的一个成员未实现可序列化接口, 会发生什么情况？</p>
+</blockquote>
+<p>关于Java序列化过程的一个简单问题。如果尝试序列化实现可序列化的类的对象,但该对象包含对不可序列化类的引用,则在运行时将引发不可序列化异常 NotSerializableException, 这就是为什么我始终将一个可序列化警报(在我的代码注释部分中), 代码注释最佳实践之一, 指示开发人员记住这一事实, 在可序列化类中添加新字段时要注意。</p>
+<blockquote>
+<p>问题 6) 如果类是可序列化的, 但其超类不是, 则反序列化后从超级类继承的实例变量的状态如何？</p>
+</blockquote>
+<p>Java 序列化过程仅在对象层次都是可序列化结构中继续, 即实现 Java 中的可序列化接口, 并且从超级类继承的实例变量的值将通过调用构造函数初始化, 在反序列化过程中不可序列化的超级类。一旦构造函数链接将启动, 就不可能停止, 因此, 即使层次结构中较高的类实现可序列化接口, 也将执行构造函数。正如你从陈述中看到的, 这个序列化面试问题看起来非常棘手和有难度, 但如果你熟悉关键概念, 则并不难。</p>
+<blockquote>
+<p>问题 7) 是否可以自定义序列化过程, 或者是否可以覆盖 Java 中的默认序列化过程？</p>
+</blockquote>
+<p>答案是肯定的, 你可以。我们都知道,对于序列化一个对象需调用 ObjectOutputStream.writeObject(saveThisObject), 并用 ObjectInputStream.readObject 读取对象, 但 Java 虚拟机为你提供的还有一件事, 是定义这两个方法。如果在类中定义这两种方法, 则 JVM 将调用这两种方法, 而不是应用默认序列化机制。你可以在此处通过执行任何类型的预处理或后处理任务来自定义对象序列化和反序列化的行为。需要注意的重要一点是要声明这些方法为私有方法, 以避免被继承、重写或重载。由于只有 Java 虚拟机可以调用类的私有方法, 你的类的完整性会得到保留, 并且 Java 序列化将正常工作。在我看来, 这是在任何 Java 序列化面试中可以问的最好问题之一, 一个很好的后续问题是, 为什么要为你的对象提供自定义序列化表单？</p>
+<blockquote>
+<p>问题 8) 假设新类的超级类实现可序列化接口, 如何避免新类被序列化？</p>
+</blockquote>
+<p>在 Java 序列化中一个棘手的面试问题。如果类的 Super 类已经在 Java 中实现了可序列化接口, 那么它在 Java 中已经可以序列化, 因为你不能取消接口, 它不可能真正使它无法序列化类, 但是有一种方法可以避免新类序列化。为了避免 Java 序列化,你需要在类中实现 writeObject 和 readObject 方法, 并且需要从该方法引发不序列化异常NotSerializableException。这是自定义 Java 序列化过程的另一个好处, 如上述序列化面试问题中所述, 并且通常随着面试进度, 它作为后续问题提出。</p>
+<blockquote>
+<p>问题 9) 在 Java 中的序列化和反序列化过程中使用哪些方法？</p>
+</blockquote>
+<p>这是很常见的面试问题, 在序列化基本上面试官试图知道: 你是否熟悉 readObject的用法、writeObject、readExternal 和 writeExternal。Java 序列化由java.io.ObjectOutputStream类完成。该类是一个筛选器流, 它封装在较低级别的字节流中, 以处理序列化机制。要通过序列化机制存储任何对象, 我们调用 ObjectOutputStream.writeObject(savethisobject), 并反序列化该对象, 我们称之为 ObjectInputStream.readObject方法。调用以 writeObject 方法在 java 中触发序列化过程。关于 readObject 方法, 需要注意的一点很重要一点是, 它用于从持久性读取字节, 并从这些字节创建对象, 并返回一个对象, 该对象需要类型强制转换为正确的类型。</p>
+<blockquote>
+<p>问题 10) 假设你有一个类,它序列化并存储在持久性中, 然后修改了该类以添加新字段。如果对已序列化的对象进行反序列化, 会发生什么情况？</p>
+</blockquote>
+<p>这取决于类是否具有其自己的 serialVersionUID。正如我们从上面的问题知道, 如果我们不提供 serialVersionUID, 则 Java 编译器将生成它, 通常它等于对象的哈希代码。通过添加任何新字段, 有可能为该类新版本生成的新 serialVersionUID与已序列化的对象不同, 在这种情况下, Java 序列化 API 将引发 java.io.InvalidClassException, 因此建议在代码中拥有自己的 serialVersionUID, 并确保在单个类中始终保持不变。</p>
+<blockquote>
+<p>11) Java序列化机制中的兼容更改和不兼容更改是什么？</p>
+</blockquote>
+<p>真正的挑战在于通过添加任何字段、方法或删除任何字段或方法来更改类结构, 方法是使用已序列化的对象。根据 Java 序列化规范, 添加任何字段或方法都面临兼容的更改和更改类层次结构或取消实现的可序列化接口, 有些接口在非兼容更改下。对于兼容和非兼容更改的完整列表, 我建议阅读 Java 序列化规范。</p>
+<blockquote>
+<p>12) 我们可以通过网络传输一个序列化的对象吗？</p>
+</blockquote>
+<p>是的 ,你可以通过网络传输序列化对象, 因为 Java 序列化对象仍以字节的形式保留, 字节可以通过网络发送。你还可以将序列化对象存储在磁盘或数据库中作为 Blob。</p>
+<blockquote>
+<p>13) 在 Java 序列化期间,哪些变量未序列化？</p>
+</blockquote>
+<p>这个问题问得不同, 但目的还是一样的, Java开发人员是否知道静态和瞬态变量的细节。由于静态变量属于类, 而不是对象, 因此它们不是对象状态的一部分, 因此在 Java 序列化过程中不会保存它们。由于 Java 序列化仅保留对象的状态,而不是对象本身。瞬态变量也不包含在 Java 序列化过程中, 并且不是对象的序列化状态的一部分。在提出这个问题之后,面试官会询问后续内容, 如果你不存储这些变量的值, 那么一旦对这些对象进行反序列化并重新创建这些变量, 这些变量的价值是多少？这是你们要考虑的。</p>
+<p>9、为什么Java中 wait 方法需要在 synchronized 的方法中调用？</p>
+<p>另一个棘手的核心 Java 问题，wait 和 notify。它们是在有 synchronized 标记的方法或 synchronized 块中调用的，因为 wait 和 modify 需要监视对其上调用 wait 或 notify-get 的 Object。</p>
+<p>为什么在 Java 中等待来自 synchronized 块或方法的 notify 和 notifyAll大多数Java开发人员都知道对象类的 wait，notify 和 notifyAll方法必须在Java中的 synchronized 方法或 synchronized 块中调用但是我们想过多少次？最近这个问题在Java面试中被问到我的一位朋友，他思索了一下，并回答说如果我们不从同步上下文中调用 wait 或 notify 方法，我们将在 Java 中收到 IllegalMonitorStateException。他在语言行为方面是正确的，但就他而言，面试官对答案并不完全满意，并希望向他解释这个问题。面试结束后 他和我讨论了同样的问题，我认为他应该告诉采访者关于 Java 中 wait和 notify之间的竞争条件，如果我们不在同步方法或块中调用它们就可能存在。让我们看看它如何在Java程序中发生。它也是流行的线程interivew问题之一，并经常在电话和面对面的Java开发人员访谈中询问。因此，如果你正在准备Java面试，那么你应该准备这样的问题，并且可以真正帮助你的一本书是Java Programming Interivew公开的。这是一本罕见的书，涵盖了Java访谈的几乎所有重要主题，例如核心Java，多线程，IO和NIO以及Spring和Hibernate等框架。你可以在这里查看。</p>
+<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5C%E8%B5%84%E6%96%99%5C24a4d722d55245da9d15a82aca857ebc.jpeg" alt="img"></p>
+<p>为什么要等待来自 Java中的 synchronized 方法的 wait方法为什么必须从 Java 中的 synchronized 块或方法调用 wait，notify 和 notifyAll 我们主要使用 wait，notify或notifyAll方法用于 Java 中的线程间通信。一个线程在检查条件后正在等待，例如，在经典的生产者 - 消费者问题中，如果缓冲区已满，则生产者线程等待，并且消费者线程通过使用元素在缓冲区中创建空间后通知生产者线程。调用notify或notifyAll方法向单个或多个线程发出一个条件已更改的通知，并且一旦通知线程离开synchronized块，正在等待的所有线程正在等待它们正在等待的对象锁定，幸运的线程在重新获取锁之后从wait方法返回并继续进行。</p>
+<p>让我们将整个操作分成几步，以查看Java中wait和notify方法之间的竞争条件的可能性，我们将使用Produce Consumer线程示例更好地理解方案：</p>
+<ol>
+<li>Producer线程测试条件(缓冲区是是否完整)并确认必须等待(找到缓冲区已满)。</li>
+<li>Consumer线程在使用缓冲区中的元素后设置条件。</li>
+<li>Consumer线程调用notify方法; 这是闻所未闻的，因为Producer线程还没有等待。</li>
+<li>Producer线程调用wait方法并进入等待状态。</li>
+</ol>
+<p>因此，由于竞争条件，我们可能会丢失通知，如果我们使用缓冲区或只使用一个元素，生产线程将永远等待，你的程序将挂起。“在java同步中等待notify和notifyall现在让我们考虑如何解决这个潜在的竞争条件？这个竞争条件通过使用Java提供的synchronized关键字和锁定来解决。为了调用wait，notify或notifyAll(在Java中，我们必须获得对我们调用方法的对象的锁定。由于Java中的wait方法在等待之前释放锁定并在从wait返回之前重新获取锁定方法，我们必须使用这个锁来确保检查条件(缓冲区是否已满)和设置条件(从缓冲区获取元素)是原子的，这可以通过在Java中使用synchronized方法或块来实现。</p>
+<p>我不确定这是否是面试官实际期待的，但这个我认为至少有意义，请纠正我如果我错了，请告诉我们是否还有其他令人信服的理由调用wait，notify或Java中的notifyAll方法。总结一下，我们用Java中的synchronized方法或synchronized块调用Java中的wait，notify或notifyAll方法来避免：</p>
+<ul>
+<li>1)Java中的IllegalMonitorStateException，如果我们不调用wait，notify或者来自同步上下文的notifyAll方法。</li>
+<li>2)Java中wait和notify方法之间的任何潜在竞争条件。</li>
+</ul>
+<p>10、你能用Java覆盖静态方法吗？如果我在子类中创建相同的方法是编译时错误？</p>
+<p>不，你不能在Java中覆盖静态方法，但在子类中声明一个完全相同的方法不是编译时错误，这称为隐藏在Java中的方法。</p>
+<p>你不能覆盖Java中的静态方法，因为方法覆盖基于运行时的动态绑定，静态方法在编译时使用静态绑定进行绑定。虽然可以在子类中声明一个具有相同名称和方法签名的方法，看起来可以在Java中覆盖静态方法，但实际上这是方法隐藏。Java不会在运行时解析方法调用，并且根据用于调用静态方法的 Object 类型，将调用相应的方法。这意味着如果你使用父类的类型来调用静态方法，那么原始静态将从父类中调用，另一方面如果你使用子类的类型来调用静态方法，则会调用来自子类的方法。简而言之，你无法在Java中覆盖静态方法。如果你使用像Eclipse或Netbeans这样的Java IDE，它们将显示警告静态方法应该使用类名而不是使用对象来调用，因为静态方法不能在Java中重写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">\* Java program which demonstrate that we can not override static method in Java.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">\* Had Static method can be overridden, with Super class type and sub class object</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">\* static method from sub class would be called in our example, which is not the case.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">publicclassCanWeOverrideStaticMethod&#123;</span><br><span class="line"></span><br><span class="line">publicstaticvoidmain(String args[])&#123;</span><br><span class="line"></span><br><span class="line">Screen scrn = newColorScreen;</span><br><span class="line"></span><br><span class="line"><span class="comment">//if we can override static , this should call method from Child class</span></span><br><span class="line"></span><br><span class="line">scrn.show; <span class="comment">//IDE will show warning, static method should be called from classname</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">classScreen&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">\* public static method which can not be overridden in Java</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">publicstaticvoidshow&#123;</span><br><span class="line"></span><br><span class="line">System.out.printf( <span class="string">"Static method from parent class"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">classColorScreenextendsScreen&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">\* static method of same name and method signature as existed in super</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">\* class, this is not method overriding instead this is called</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">\* method hiding in Java</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">publicstaticvoidshow&#123;</span><br><span class="line"></span><br><span class="line">System.err.println( <span class="string">"Overridden static method in Child Class in Java"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>输出:</p>
+<p>Static method from parent class</p>
+</blockquote>
+<p>此输出确认你无法覆盖Java中的静态方法，并且静态方法基于类型信息而不是基于Object进行绑定。如果要覆盖静态mehtod，则会调用子类或 ColorScreen 中的方法。这一切都在讨论中我们可以覆盖Java中的静态方法。我们已经确认没有，我们不能覆盖静态方法，我们只能在Java中隐藏静态方法。创建具有相同名称和mehtod签名的静态方法称为Java隐藏方法。IDE将显示警告：”静态方法应该使用类名而不是使用对象来调用”, 因为静态方法不能在Java中重写。</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2020/07/15/%E6%8C%87%E9%92%88%E5%92%8C%E5%BC%95%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB/">
       指针和引用的区别
     </a>
@@ -935,776 +2223,6 @@
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/">
-      消息中间件-RocketMQ
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/" class="leancloud_visitors" data-flag-title="消息中间件-RocketMQ">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1>
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/">
-      消息中间件-RabbitMQ
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/" class="leancloud_visitors" data-flag-title="消息中间件-RabbitMQ">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><p>RabbitMq<br>    AMQP规范和<br>RabbitMQ基本概念<br>        要素<br>            生产者、消费者、消息<br>            信道<br>            交换器、队列、绑定、路由键<br>        消息的确认<br>        交换器类型<br>            Direct<br>            Fanout<br>            Topic<br>        虚拟主机<br>    RabbitMQ在Windows下安装和运行<br>    原生Java客户端使用<br>    消息发布时的权衡<br>        失败通知<br>        发布者确认<br>        事务<br>        备用交换器<br>    消息消费时的权衡<br>        消息的获得方式<br>        QoS预取模式<br>        可靠性和性能的权衡<br>    消息的拒绝<br>        消息的拒绝方式<br>        死信交换器<br>    控制队列<br>        临时队列<br>        永久队列<br>        队列级别消息过期<br>    消息的属性<br>        属性列表<br>        消息的持久化<br>    与Spring集成<br>        Xml配置方式<br>        SpringBoot<br>        实战：应用解耦<br>    安装配置<br>        下载安装和日常管理<br>        web监控平台<br>    集群化与镜像队列</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>MQ全称为Message Queue，消息队列（MQ）是一种应用程序对应用程序的通信方法。应用程序通过读写入队列的消息（针对应用程序的数据）来通信，而无需专用连接来链接它们。消息传递指的是程序之间通过在消息中发送数据进行通信，而不是通过直接调用彼此来通信。队列的使用除去了接收和发送应用程序同时执行的请求。其中较为成熟的MQ产品有IBM WEBSPHERE MQ等等。</p>
-<p>RabbitMQ是一个在AMQP基础上完成的，可复用的企业消息系统。他遵循Mozilla Public License开源协议。</p>
-<p>AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端和消息中间件可传递消息，并不受客户端/中间件不同产品，不同开发语言等条件的限制。Erlang中的实现由RabbitMQ等。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>先下载erlang，再安装rabbitmq</p>
-<p><a href="https://www.erlang.org/downloads" target="_blank" rel="noopener">erlang下载地址</a></p>
-<p><a href="https://www.rabbitmq.com/download.html" target="_blank" rel="noopener">rabbitmq下载地址</a></p>
-<p>本机查看管理页面</p>
-<p><a href="http://127.0.0.1:15672/" target="_blank" rel="noopener">http://127.0.0.1:15672/</a></p>
-<p>端口号：5672</p>
-<h4 id="用户角色"><a href="#用户角色" class="headerlink" title="用户角色"></a>用户角色</h4><p>1、超级管理员(administrator)<br>可登陆管理控制台，可查看所有的信息，并且可以对用户，策略(policy)进行操作。<br>2、监控者(monitoring)<br>可登陆管理控制台，同时可以查看rabbitmq节点的相关信息(进程数，内存使用情况，磁盘使用情况等)<br>3、策略制定者(policymaker)<br>可登陆管理控制台, 同时可以对policy进行管理。但无法查看节点的相关信息(上图红框标识的部分)。<br>4、普通管理者(management)<br>仅可登陆管理控制台，无法看到节点信息，也无法对策略进行管理。<br>5、其他<br>无法登陆管理控制台，通常就是普通的生产者和消费者。</p>
-<p><img src="C:%5CUsers%5CAlmostLover%5CDesktop%5CMarkDown%E7%AC%94%E8%AE%B0%5C%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%5C1567341536943.png" alt="1567341536943"></p>
-<p>1.背景<br>RabbitMQ是一个由erlang开发的AMQP(Advanved Message Queue)的开源实现。</p>
-<p>2.应用场景<br>2.1异步处理<br>场景说明：用户注册后，需要发注册邮件和注册短信,传统的做法有两种1.串行的方式;2.并行的方式<br>(1)串行方式:将注册信息写入数据库后,发送注册邮件,再发送注册短信,以上三个任务全部完成后才返回给客户端。 这有一个问题是,邮件,短信并不是必须的,它只是一个通知,而这种做法让客户端等待没有必要等待的东西. </p>
-<p><img src="../%E8%B5%84%E6%96%99/20170209145852454.png" alt="这里写图片描述"> </p>
-<p>(2)并行方式:将注册信息写入数据库后,发送邮件的同时,发送短信,以上三个任务完成后,返回给客户端,并行的方式能提高处理的时间。 </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209150218755.png" alt="这里写图片描述"> </p>
-<p>假设三个业务节点分别使用50ms,串行方式使用时间150ms,并行使用时间100ms。虽然并性已经提高的处理时间,但是,前面说过,邮件和短信对我正常的使用网站没有任何影响，客户端没有必要等着其发送完成才显示注册成功,英爱是写入数据库后就返回.<br>(3)消息队列<br>引入消息队列后，把发送邮件,短信不是必须的业务逻辑异步处理 </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209150824008.png" alt="这里写图片描述"> </p>
-<p>由此可以看出,引入消息队列后，用户的响应时间就等于写入数据库的时间+写入消息队列的时间(可以忽略不计),引入消息队列后处理后,响应时间是串行的3倍,是并行的2倍。</p>
-<p>2.2 应用解耦<br>场景：双11是购物狂节,用户下单后,订单系统需要通知库存系统,传统的做法就是订单系统调用库存系统的接口. </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209151602258.png" alt="这里写图片描述">  </p>
-<p>这种做法有一个缺点:</p>
-<p>当库存系统出现故障时,订单就会失败。(这样马云将少赚好多好多钱^ ^)<br>订单系统和库存系统高耦合.<br>引入消息队列 </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209152116530.png" alt="这里写图片描述"> </p>
-<p>订单系统:用户下单后,订单系统完成持久化处理,将消息写入消息队列,返回用户订单下单成功。</p>
-<p>库存系统:订阅下单的消息,获取下单消息,进行库操作。<br>就算库存系统出现故障,消息队列也能保证消息的可靠投递,不会导致消息丢失(马云这下高兴了).<br>流量削峰<br>流量削峰一般在秒杀活动中应用广泛<br>场景:秒杀活动，一般会因为流量过大，导致应用挂掉,为了解决这个问题，一般在应用前端加入消息队列。<br>作用:<br>1.可以控制活动人数，超过此一定阀值的订单直接丢弃(我为什么秒杀一次都没有成功过呢^^)<br>2.可以缓解短时间的高流量压垮应用(应用程序按自己的最大处理能力获取订单) </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209161124911.png" alt="这里写图片描述">  </p>
-<p>1.用户的请求,服务器收到之后,首先写入消息队列,加入消息队列长度超过最大值,则直接抛弃用户请求或跳转到错误页面.<br>2.秒杀业务根据消息队列中的请求信息，再做后续处理.</p>
-<p>3.系统架构</p>
-<p> <img src="https://img-blog.csdn.net/20170209162609150?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2hvYW1peWFuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述">  </p>
-<p>几个概念说明:<br>Broker:它提供一种传输服务,它的角色就是维护一条从生产者到消费者的路线，保证数据能按照指定的方式进行传输,<br>Exchange：消息交换机,它指定消息按什么规则,路由到哪个队列。<br>Queue:消息的载体,每个消息都会被投到一个或多个队列。<br>Binding:绑定，它的作用就是把exchange和queue按照路由规则绑定起来.<br>Routing Key:路由关键字,exchange根据这个关键字进行消息投递。<br>vhost:虚拟主机,一个broker里可以有多个vhost，用作不同用户的权限分离。<br>Producer:消息生产者,就是投递消息的程序.<br>Consumer:消息消费者,就是接受消息的程序.<br>Channel:消息通道,在客户端的每个连接里,可建立多个channel.</p>
-<p>4.任务分发机制<br>4.1Round-robin dispathching循环分发<br>RabbbitMQ的分发机制非常适合扩展,而且它是专门为并发程序设计的,如果现在load加重,那么只需要创建更多的Consumer来进行任务处理。</p>
-<p>4.2Message acknowledgment消息确认<br>为了保证数据不被丢失,RabbitMQ支持消息确认机制,为了保证数据能被正确处理而不仅仅是被Consumer收到,那么我们不能采用no-ack，而应该是在处理完数据之后发送ack.<br>在处理完数据之后发送ack,就是告诉RabbitMQ数据已经被接收,处理完成,RabbitMQ可以安全的删除它了.<br>如果Consumer退出了但是没有发送ack,那么RabbitMQ就会把这个Message发送到下一个Consumer，这样就保证在Consumer异常退出情况下数据也不会丢失.<br>RabbitMQ它没有用到超时机制.RabbitMQ仅仅通过Consumer的连接中断来确认该Message并没有正确处理，也就是说RabbitMQ给了Consumer足够长的时间做数据处理。<br>如果忘记ack,那么当Consumer退出时,Mesage会重新分发,然后RabbitMQ会占用越来越多的内存.</p>
-<p>5.Message durability消息持久化<br>要持久化队列queue的持久化需要在声明时指定durable=True;<br>这里要注意,队列的名字一定要是Broker中不存在的,不然不能改变此队列的任何属性.<br>队列和交换机有一个创建时候指定的标志durable,durable的唯一含义就是具有这个标志的队列和交换机会在重启之后重新建立,它不表示说在队列中的消息会在重启后恢复<br>消息持久化包括3部分 </p>
-<ol>
-<li>exchange持久化,在声明时指定durable =&gt; true</li>
-</ol>
-<p>hannel.ExchangeDeclare(ExchangeName, “direct”, durable: true, autoDelete: false, arguments: null);//声明消息队列，且为可持久化的<br>1<br>2.queue持久化,在声明时指定durable =&gt; true</p>
-<p>channel.QueueDeclare(QueueName, durable: true, exclusive: false, autoDelete: false, arguments: null);//声明消息队列，且为可持久化的<br>1<br>3.消息持久化,在投递时指定delivery_mode =&gt; 2(1是非持久化).</p>
-<p>channel.basicPublish(“”, queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, msg.getBytes());<br>1<br>如果exchange和queue都是持久化的,那么它们之间的binding也是持久化的,如果exchange和queue两者之间有一个持久化，一个非持久化,则不允许建立绑定.<br>注意：一旦创建了队列和交换机,就不能修改其标志了,例如,创建了一个non-durable的队列,然后想把它改变成durable的,唯一的办法就是删除这个队列然后重现创建。</p>
-<p>6.Fair dispath 公平分发<br>你可能也注意到了,分发机制不是那么优雅,默认状态下,RabbitMQ将第n个Message分发给第n个Consumer。n是取余后的,它不管Consumer是否还有unacked Message，只是按照这个默认的机制进行分发.<br>那么如果有个Consumer工作比较重,那么就会导致有的Consumer基本没事可做,有的Consumer却毫无休息的机会,那么,Rabbit是如何处理这种问题呢? </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209202605166.png" alt="这里写图片描述">  </p>
-<p>通过basic.qos方法设置prefetch_count=1，这样RabbitMQ就会使得每个Consumer在同一个时间点最多处理一个Message，换句话说,在接收到该Consumer的ack前,它不会将新的Message分发给它</p>
-<p>channel.basic_qos(prefetch_count=1)<br>1<br>注意，这种方法可能会导致queue满。当然，这种情况下你可能需要添加更多的Consumer，或者创建更多的virtualHost来细化你的设计。</p>
-<p>7.分发到多个Consumer<br>7.1Exchange<br>先来温习以下交换机路由的几种类型:<br>Direct Exchange:直接匹配,通过Exchange名称+RountingKey来发送与接收消息.<br>Fanout Exchange:广播订阅,向所有的消费者发布消息,但是只有消费者将队列绑定到该路由器才能收到消息,忽略Routing Key.<br>Topic Exchange：主题匹配订阅,这里的主题指的是RoutingKey,RoutingKey可以采用通配符,如:*或#，RoutingKey命名采用.来分隔多个词,只有消息这将队列绑定到该路由器且指定RoutingKey符合匹配规则时才能收到消息;<br>Headers Exchange:消息头订阅,消息发布前,为消息定义一个或多个键值对的消息头,然后消费者接收消息同时需要定义类似的键值对请求头:(如:x-mactch=all或者x_match=any)，只有请求头与消息头匹配,才能接收消息,忽略RoutingKey.<br>默认的exchange:如果用空字符串去声明一个exchange，那么系统就会使用”amq.direct”这个exchange，我们创建一个queue时,默认的都会有一个和新建queue同名的routingKey绑定到这个默认的exchange上去</p>
-<p>channel.BasicPublish(“”, “TaskQueue”, properties, bytes);<br>1<br>因为在第一个参数选择了默认的exchange，而我们申明的队列叫TaskQueue，所以默认的，它在新建一个也叫TaskQueue的routingKey，并绑定在默认的exchange上，导致了我们可以在第二个参数routingKey中写TaskQueue，这样它就会找到定义的同名的queue，并把消息放进去。<br>如果有两个接收程序都是用了同一个的queue和相同的routingKey去绑定direct exchange的话，分发的行为是负载均衡的，也就是说第一个是程序1收到，第二个是程序2收到，以此类推。<br>如果有两个接收程序用了各自的queue，但使用相同的routingKey去绑定direct exchange的话，分发的行为是复制的，也就是说每个程序都会收到这个消息的副本。行为相当于fanout类型的exchange。<br>下面详细来说:</p>
-<p>7.2 Bindings 绑定<br>绑定其实就是关联了exchange和queue，或者这么说:queue对exchange的内容感兴趣,exchange要把它的Message deliver到queue。</p>
-<p>7.3Direct exchange<br>Driect exchange的路由算法非常简单:通过bindingkey的完全匹配，可以用下图来说明. </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209212616872.png" alt="这里写图片描述">  </p>
-<p>Exchange和两个队列绑定在一起,Q1的bindingkey是orange，Q2的binding key是black和green.<br>当Producer publish key是orange时,exchange会把它放到Q1上,如果是black或green就会到Q2上,其余的Message被丢弃.</p>
-<p>7.4 Multiple bindings<br>多个queue绑定同一个key也是可以的,对于下图的例子,Q1和Q2都绑定了black,对于routing key是black的Message，会被deliver到Q1和Q2，其余的Message都会被丢弃. </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209213124880.png" alt="这里写图片描述"> </p>
-<p>7.5 Topic exchange<br>对于Message的routing_key是有限制的，不能使任意的。格式是以点号“.”分割的字符表。比如：”stock.usd.nyse”, “nyse.vmw”, “quick.orange.rabbit”。你可以放任意的key在routing_key中，当然最长不能超过255 bytes。<br>对于routing_key，有两个特殊字符</p>
-<p>*(星号)代表任意一个单词<br>#(hash)0个或多个单词 </p>
-<p> <img src="../%E8%B5%84%E6%96%99/20170209213714342.png" alt="这里写图片描述">  </p>
-<p>Producer发送消息时需要设置routing_key，routing_key包含三个单词和连个点号o,第一个key描述了celerity(灵巧),第二个是color(色彩),第三个是物种:<br>在这里我们创建了两个绑定： Q1 的binding key 是”.orange.“； Q2 是 “..rabbit” 和 “lazy.#”：</p>
-<p>Q1感兴趣所有orange颜色的动物<br>Q2感兴趣所有rabbits和所有的lazy的.<br>例子:rounting_key 为 “quick.orange.rabbit”将会发送到Q1和Q2中<br>rounting_key 为”lazy.orange.rabbit.hujj.ddd”会被投递到Q2中,#匹配0个或多个单词。<br>8.消息序列化<br>RabbitMQ使用ProtoBuf序列化消息,它可作为RabbitMQ的Message的数据格式进行传输,由于是结构化的数据,这样就极大的方便了Consumer的数据高效处理,当然也可以使用XML，与XML相比,ProtoBuf有以下优势:<br>1.简单<br>2.size小了3-10倍<br>3.速度快了20-100倍<br>4.易于编程<br>6.减少了语义的歧义.<br>，ProtoBuf具有速度和空间的优势，使得它现在应用非常广泛</p>
-<h2 id="SpringBoot整合"><a href="#SpringBoot整合" class="headerlink" title="SpringBoot整合"></a>SpringBoot整合</h2><p><a href="https://blog.csdn.net/qq_38455201/article/details/80308771" target="_blank" rel="noopener">https://blog.csdn.net/qq_38455201/article/details/80308771</a></p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/">
-      消息中间件-MetaQ
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/" class="leancloud_visitors" data-flag-title="消息中间件-MetaQ">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/">
-      消息中间件-Kafka
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/" class="leancloud_visitors" data-flag-title="消息中间件-Kafka">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><p>Kafka<br>    Kafka入门<br>        Kafka中的基本概念<br>        为什么选择Kafka<br>    Kafka的安装和配置参数<br>    Kafka的生产者和消费者<br>        消息的发送和接收<br>        生产者和消费者的配置<br>        消费者群组和再均衡<br>        消费者中的提交和偏移量<br>        序列化和反序列化<br>    深入理解Kafka<br>        控制器和复制<br>        请求处理流程<br>        物理存储原理<br>    保证Kafka的可靠数据传递<br>    数据管道和流式处理入门<br>        数据管道基本概念<br>        流式处理基本概念和设计模式</p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/">
-      消息中间件-ActiveMQ
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/" class="leancloud_visitors" data-flag-title="消息中间件-ActiveMQ">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-ActiveMQ/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ActiveMq<br>    JMS规范<br>        什么是JMS（Java Messaging Service）规范？<br>        包含要素<br>        消息类型<br>        P2P模型<br>        Topic(PUB\SUB)模型<br>    ActiveMQ使用<br>        安装和部署<br>        原生ActiveMQ的API编程<br>        与Spring集成<br>            Xml配置方式<br>            SpringBoot<br>        Request-Response模式<br>        实战：用户注册的异步处理<br>    ActiveMQ高级特性和用法<br>        嵌入式MQ<br>        消息存储的持久化机制<br>        消息持久订阅<br>        消息的可靠性<br>        通配符式分层订阅<br>        死信队列DLQ(Dead Letter Queue)<br>        镜像队列<br>        虚拟主题<br>        组合Destinations<br>    实战：限时订单<br>    企业级高可用集群部署方案<br>        Shared<br>            File System<br>            DB<br>        Replicated LevelDB Store<br>        Broker-Cluster</p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/">
-      消息中间件-基础
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 15, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      
-      <span id="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="消息中间件-基础">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-<div class="new-meta-item comments-count">
-  
-  <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/#comments">
-    <i class="fas fa-comment-dots fa-fw"></i>
-    <span class="valine-comment-count" data-xid="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/">0</span>
-    <span class="leancloud-comments-count">&nbsp;</span>
-  </a>
-</div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="介绍一下消息队列MQ的使用场景"><a href="#介绍一下消息队列MQ的使用场景" class="headerlink" title="介绍一下消息队列MQ的使用场景"></a>介绍一下消息队列MQ的使用场景</h2><h3 id="1-通过异步处理提高系统性能"><a href="#1-通过异步处理提高系统性能" class="headerlink" title="1.通过异步处理提高系统性能"></a>1.通过异步处理提高系统性能</h3><p>在不适用消息队列 服务器的时候，用户的请求数据直接写入数据库，在高并发的情况下数据库压力剧增，使得响应速度变慢。但是在使用消息队列之后，用户的请求数据发送到消息队列之后立即返回，再由消息队列的消费者进程从消息队列中获得数据，异步写入数据库，由于消息队列服务器处理速度快于数据库（消息队列也比数据库有更好的伸缩性），因此响应速度得到大幅改善。</p>
-<p><strong>消息队列具有很好的削峰功能</strong>–即通过异步处理，将短时间高并发产生的事务消息存储在消息队列中，从而削平高峰期的并发事务。</p>
-<p>举例：在电子商务一些秒杀，促销活动中，合理使用消息队列可以有效抵御促销活动刚开始大量订单涌入对系统的冲击。</p>
-<h3 id="2-降低系统耦合性"><a href="#2-降低系统耦合性" class="headerlink" title="2.降低系统耦合性"></a>2.降低系统耦合性</h3><p>使用消息队列的好处</p>
-<p>消息中间件使用场景介绍<br>消息中间件(ActiveMQ、RabbitMQ、RocketMQ、Kafka)简介及对比<br>消息中间件的编年史</p>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ol>
-<li>引入消息队列之后如何确保高可用性</li>
-<li>如何保证消息不被重复消费呢</li>
-<li>如何保证消息的高可靠性传输</li>
-<li>我该怎么保证从消息队列里拿到的数据按顺序执行</li>
-<li>如何解决消息队列的延时以及过期失效问题？消息队列满了以后该如何处理？有几百万消息持续积压几小时，说说该如何解决？</li>
-<li>如果让你来开发一个消息队列中间件，你会怎么设计架构</li>
-</ol>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1827,7 +2345,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 20.67px; color: #6c6c6c">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 19.56px; color: #737373">Nginx</a> <a href="/tags/Nova/" style="font-size: 22.89px; color: #5d5d5d">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 21.78px; color: #646464">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 14px; color: #999">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.22px; color: #8a8a8a">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.11px; color: #919191">面试</a>
+      <a href="/tags/C-C/" style="font-size: 16.22px; color: #8a8a8a">C/C++</a> <a href="/tags/Cinder/" style="font-size: 19.56px; color: #737373">Cinder</a> <a href="/tags/Git/" style="font-size: 15.11px; color: #919191">Git</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.11px; color: #919191">HTTP和HTTPS</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.11px; color: #919191">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/Linux/" style="font-size: 16.22px; color: #8a8a8a">Linux</a> <a href="/tags/Nginx/" style="font-size: 18.44px; color: #7b7b7b">Nginx</a> <a href="/tags/Nova/" style="font-size: 21.78px; color: #646464">Nova</a> <a href="/tags/OpenStack/" style="font-size: 24px; color: #555">OpenStack</a> <a href="/tags/Python/" style="font-size: 19.56px; color: #737373">Python</a> <a href="/tags/nodejs/" style="font-size: 14px; color: #999">nodejs</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">vim</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">web安全</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 20.67px; color: #6c6c6c">前端</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16.22px; color: #8a8a8a">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.11px; color: #919191">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.11px; color: #919191">消息中间件</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.44px; color: #7b7b7b">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 17.33px; color: #828282">系统</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.11px; color: #919191">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.44px; color: #7b7b7b">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">设计模式</a> <a href="/tags/%E9%80%9A%E8%AF%86/" style="font-size: 14px; color: #999">通识</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.11px; color: #919191">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
     </div>
   </section>
 
