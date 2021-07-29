@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,zh-HK,zh-TW,default">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>Redis的skiplist - Hexo</title>
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Alloceee
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Alloceee's Blog</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>首页</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Redis的skiplist
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>请设置文章作者</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年7月20日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Redis的skiplist" data-path="/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-skiplist/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="跳表的实现"><a href="#跳表的实现" class="headerlink" title="跳表的实现"></a>跳表的实现</h2><h2 id="从排行榜切入"><a href="#从排行榜切入" class="headerlink" title="从排行榜切入"></a>从排行榜切入</h2><p>懂行的老哥一看这个小标题，就知道我要以排行榜作为切入点，去讲 Redis 的 zset 了。</p>
+<p>是的，经典面试题，请实现一个排行榜，大部分情况下就是在考验你知不知道 Redis 的 zset 结构，和其对应的操作。</p>
+<p>当然了，排行榜我们也可以基于其他的解决方案。比如 mysql。</p>
+<p>我曾经就基于 mysql 做过排行榜，一条 sql 就能搞定。但是仅限于数据量比较少，性能要求不高的场景（我当时只有 11 支队伍做排行榜，一分钟刷新一次排行榜）。</p>
+<p>对于这种经典的面试八股文，网上一找一大把，所以本文就不去做相关解析了。</p>
+<p>说好的只是一个切入点。</p>
+<p>如果你不知道具体怎么实现，或者根本就不知道这题在问啥，那一定记得看完本文后要去看看相关的文章。最好自己实操一下。</p>
+<p>相信我，八股文，得背，这题会考。</p>
+<h2 id="zset的内部编码"><a href="#zset的内部编码" class="headerlink" title="zset的内部编码"></a>zset的内部编码</h2><p>众所周知，Redis 对外提供了五种基本数据类型。但是每一种基本类型的内部编码却是另外一番风景：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYboEKOkL1Zg0N9r5y8N6OkpicFXn33CRDQ3ziczW44BvAjr2m7Fl4t9Lw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYboEKOkL1Zg0N9r5y8N6OkpicFXn33CRDQ3ziczW44BvAjr2m7Fl4t9Lw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>其中 list 数据结构，在 Redis 3.2 版本中还提供了 quicklist 的内部编码。不是本文重点，我提一嘴就行，有兴趣的朋友自己去了解一下。</p>
+<p>本文主要探讨的是上图中的 zset 数据结构。</p>
+<p>zset 的内部编码有两种：ziplist 和 skiplist。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYmkuxp4btXyGicNm3MzUKftgJsk98iasvGxZMIRXTIfVcdRkFKRBBbGrg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYmkuxp4btXyGicNm3MzUKftgJsk98iasvGxZMIRXTIfVcdRkFKRBBbGrg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>其实你也别觉得这个东西有多神奇。因为对于这种对外一套，对内又是一套的“双标党”其实你已经很熟悉了。</p>
+<p>它就是 JDK 的一个集合类，来朋友们，大胆的喊出它的名字：HashMap。</p>
+<p>HashMap 除了基础的数组结构之外，还有另外两个数据结构：一个链表，一个红黑树。</p>
+<p>这样一联想是不是就觉得也不过如此，心里至少有个底了。</p>
+<p>当链表长度大于 8 且数组长度大于 64 的时候， HashMap 中的链表会转红黑数。</p>
+<p>对于 zset 也是一样的，一定会有条件触发其内部编码 ziplist 和 skiplist 之间的变化？</p>
+<p>这个问题的答案就藏在 redis.conf 文件中，其中有两个配置：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYSKxeMx9viclmXXInpcILfd0UjDLvCd4BiahoBLBmpHnYjwRWJ1Sgwh4w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYSKxeMx9viclmXXInpcILfd0UjDLvCd4BiahoBLBmpHnYjwRWJ1Sgwh4w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>上图中配置的含义是，当有序集合的元素个数小于 zset-max-ziplist-entries 配置的值，且每个元素的值的长度都小于 zset-max-ziplist-value 配置的值时，zset 的内部编码是 ziplist。</p>
+<p>反之则用 skiplist。</p>
+<p>理论铺垫上了，接下我给大家演示一波。</p>
+<p>首先，我们给 memberscore 这个有序集合的 key 设置两个值，然后看看其内部编码：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYBubHhgphXIRItXPZRvXo7eULPrzKOANOQlf13YbbOKXYzsDsebCwfg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYBubHhgphXIRItXPZRvXo7eULPrzKOANOQlf13YbbOKXYzsDsebCwfg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>此时有序集合的元素个数是 2，可以看到，内部编码采用的是 ziplist 的结构。</p>
+<p>为了大家方便理解这个储存，我给大家画个图：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYGiakfoo96w4EpxYP80ibia5wzCxrXkU0JibMwVNia0JTCaDjqIVXMI9yRvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYGiakfoo96w4EpxYP80ibia5wzCxrXkU0JibMwVNia0JTCaDjqIVXMI9yRvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>然后我们需要触发内部编码从 ziplist 到 skiplist 的变化。</p>
+<p>先验证 zset-max-ziplist-value 配置，往 memberscore 元素中塞入一个长度大于 64字节（zset-max-ziplist-value默认配置）的值：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY4ibibJIA3G5TkhtY6aNfvjWjIxg2yvVPG56B0En0o72mkCouYrDwFjcg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY4ibibJIA3G5TkhtY6aNfvjWjIxg2yvVPG56B0En0o72mkCouYrDwFjcg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>这个时候 key 为 memberscore 的有序集合中有 3 个元素了，其中有一个元素的值特别长，超过了 64 字节。</p>
+<p>此时的内部编码采用的是 skiplist。</p>
+<p>接下来，我们往 zset 中多塞点值，验证一下元素个数大于 zset-max-ziplist-entries 的情况。</p>
+<p>我们搞个新的 key，取值为 whytestkey。</p>
+<p>首先，往 whytestkey 中塞两个元素，这是其内部编码还是 ziplist：</p>
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="img"></p>
+<p>那么问题来了，从配置来看 <code>zset-max-ziplist-entries 128</code>。</p>
+<p>这个 128 是等于呢还是大于呢？</p>
+<p>没关系，我也不知道，试一下就行了。</p>
+<p>现在已经有两个元素了，再追加 126 个元素，看看：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYODSW4tgZ1SLcZedK5Kbj1g7gP6YdwLgiarLwzZmiaXJUfyo7myVDqsvg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYODSW4tgZ1SLcZedK5Kbj1g7gP6YdwLgiarLwzZmiaXJUfyo7myVDqsvg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>通过实验我们发现，当 whytestkey 中的元素个数是 128 的时候，其内部编码还是 ziplist。</p>
+<p>那么触发其从 ziplist 转变为 skiplist 的条件是 元素个数大于 128，我们再加入一个试一试：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYCuhtkIJ9sric4IrfEtJ2nRRUcibO9iacz8oRMp1BaRqUyicXvE0AFGUnBA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYCuhtkIJ9sric4IrfEtJ2nRRUcibO9iacz8oRMp1BaRqUyicXvE0AFGUnBA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>果然，内部编码从 ziplist 转变为了 skiplist。</p>
+<p>理论验证完毕，zset 确实是有两幅面孔。</p>
+<p>本文主要探讨 skiplist 这个内部编码。</p>
+<p><strong>它就是标题说的：基于运气的数据结构。</strong></p>
+<h2 id="什么是-skiplist？"><a href="#什么是-skiplist？" class="headerlink" title="什么是 skiplist？"></a>什么是 skiplist？</h2><p>这个结构是一个叫做 William Pugh 的哥们在 1990 年发布的一篇叫做《Skip Lists: A Probabilistic Alternative to Balanced Trees》的论文中提出的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">论文地址：ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf</span><br></pre></td></tr></table></figure>
+
+<p>摘要里面说：<strong>跳表是一种可以用来代替平衡树的数据结构，跳表使用概率平衡而不是严格的平衡，因此，与平衡树相比，跳表中插入和删除的算法要简单得多，并且速度要快得多。</strong></p>
+<p>论文里面，在对跳表算法进行详细描述的地方他是这样说的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYSicUMOWRhTqj4ydKzAc2iaicosibwgWzbiaXq6ic0ruM1ge7wAibgic96eO6Lg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYSicUMOWRhTqj4ydKzAc2iaicosibwgWzbiaXq6ic0ruM1ge7wAibgic96eO6Lg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>首先火男大佬说，对于一个有序的链表来说，如果我们需要查找某个元素，必须对链表进行遍历。比如他给的示意图的 a 部分。</p>
+<p>我单独截取一下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYbmljWXI3TGosN55nqlqTwebNhAj7m1m1WCicYlGePznBO18lzJ3xJBQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYbmljWXI3TGosN55nqlqTwebNhAj7m1m1WCicYlGePznBO18lzJ3xJBQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>这个时候，大家还能跟上，对吧。链表查找，逐个遍历是基本操作。</p>
+<p>那么，如果这个链表是有序的，我们可以搞一个指针，这个指针指向的是该节点的下下个节点。</p>
+<p>意思就是往上抽离一部分节点。</p>
+<p>怎么抽离呢，每隔一个节点，就抽一个出来，和上面的 a 示意图比起来，变化就是这样的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY5CYTFhkU3nPHctOlQGNP2libzhesOlg9kjC8CpuM6QYMFGwHA0ZxtAw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY5CYTFhkU3nPHctOlQGNP2libzhesOlg9kjC8CpuM6QYMFGwHA0ZxtAw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>抽离出来有什么好处呢？</p>
+<p>假设我们要查询的节点是 25 。</p>
+<p>当就是普通有序链表的时候，我们从头节点开始遍历，需要遍历的路径是：</p>
+<p>head -&gt; 3 -&gt; 6 -&gt; 7 -&gt; 9 -&gt; 12 -&gt; 17 -&gt; 19 -&gt; 21 -&gt; 25</p>
+<p>需要 9 次查询才能找到 25 。</p>
+<p>但是当结构稍微一变，变成了 b 示意图的样子之后，查询路径就是：</p>
+<p>第二层的 head -&gt; 6 -&gt; 9 -&gt; 17 -&gt; 21 -&gt; 25。</p>
+<p>5 次查询就找到了 25 。</p>
+<p>这个情况下我们找到指定的元素，不会超过 (n/2)+1 个节点：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYA0WWThZZRrnYpmAEfBxnlNkibNbENGicLajUag8AEibPSoCBEnNrYTpkQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYA0WWThZZRrnYpmAEfBxnlNkibNbENGicLajUag8AEibPSoCBEnNrYTpkQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>那么这个时候有个小问题就来了：怎么从 21 直接到 25 的呢？</p>
+<p>看论文中的图片，稍微有一点不容易明白。</p>
+<p>所以，我给大家重新画个示意图：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYpdAT6CYksEql5Nyicld6EtjTbwMHY0FbtUsblVwjLQ7FKfaDaP4eVsg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYpdAT6CYksEql5Nyicld6EtjTbwMHY0FbtUsblVwjLQ7FKfaDaP4eVsg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>看到了吗？“多了”一个向下的指针。其实也不是多了，只是论文里面没有明示而已。</p>
+<p>所以，查询 25 的路径是这样的，空心箭头指示的方向：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYeaWKF95FDUVeQgtm6E3qHBSLXmav6wZlchTGzTGLbk9TyvwicDHBtJw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYeaWKF95FDUVeQgtm6E3qHBSLXmav6wZlchTGzTGLbk9TyvwicDHBtJw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>在 21 到 26 节点之间，往下了一层，逻辑也很简单。</p>
+<p>21 节点有一个右指针指向 26，先判断右指针的值大于查询的值了。</p>
+<p>于是下指针就起到作用了，往下一层，再继续进行右指针的判断。</p>
+<p>其实每个节点的判断逻辑都是这样，只是前面的判断结果是进行走右指针。</p>
+<p>按照这个往上抽节点的思想，假设我们抽到第四层，也就是论文中的这个示意图：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYUicTC4kHOLTq5sE5FSuGYG3fjzS6pUuMfvzRLgdmUW5b3hLJnjTcicog/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYUicTC4kHOLTq5sE5FSuGYG3fjzS6pUuMfvzRLgdmUW5b3hLJnjTcicog/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>我们查询 25 的时候，只需要经过 2 次。</p>
+<p>第一步就直接跳过了 21 之前的所有元素。</p>
+<p>怎么样，爽不爽？</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYOyGaAhC7hkWxtibibARqs543wBl9MlyKl3vMibffug5oaUia8934jEjWCA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYOyGaAhC7hkWxtibibARqs543wBl9MlyKl3vMibffug5oaUia8934jEjWCA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>但是，它是有缺陷的。</p>
+<p>火男的论文里面是这样说的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY9awmWQTpic6f8n0ib4KfQUjOplM5PYtNwRjpvKiaOcwC9JmqVtosOrFOA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY9awmWQTpic6f8n0ib4KfQUjOplM5PYtNwRjpvKiaOcwC9JmqVtosOrFOA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>This data structure could be used for fast searching, but insertion and deletion would be impractical.</p>
+<p>查询确实飞快。但是对于插入和删除  would be impractical。</p>
+<p>impractical 是什么意思？</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYH4fpODXHY3ukOpVDc3zVepCtUMVU6URtVGSlCblpxq8LZR6xscJjDA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYH4fpODXHY3ukOpVDc3zVepCtUMVU6URtVGSlCblpxq8LZR6xscJjDA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>你看，又学一个四级单词。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY3UibWicbCbViaudEY5jBv470VQh5QEltBj9e8P5m590ZGM4W1kZZTbmWw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY3UibWicbCbViaudEY5jBv470VQh5QEltBj9e8P5m590ZGM4W1kZZTbmWw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>对于插入和删除几乎是难以实现的。</p>
+<p>你想啊，上面那个最底层的有序链表，我一开始就拿出来给你了。</p>
+<p>然后我就说基于这个有序链表每隔一个节点抽离到上一层去，再构建一个链表。那么这样上下层节点比例应该是 2:1。巴拉巴拉的…..</p>
+<p>但是实际情况应该是我们最开始的时候连这个有序链表都没有，需要自己去创建的。</p>
+<p>就假设要在现有的这个跳表结构中插入一个节点，毋庸置疑，肯定是要插入到最底层的有序链表中的。</p>
+<p>但是你破坏了上下层 2:1 的比例了呀？</p>
+<p>怎么办，一层层的调整呗。</p>
+<p>可以，但是请你考虑一下编码实现起来的难度和对应的时间复杂度？</p>
+<p>要这样搞，直接就是一波劝退。</p>
+<p>这就受不了了？</p>
+<p>我还没说删除的事呢。</p>
+<p>那怎么办？</p>
+<p>看看论文里面怎么说到：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYL4NFA3AfHoykHGwIYUXg88MsrH6tuRKTd3qyMV1h47nnMpKJ2IU8WQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYL4NFA3AfHoykHGwIYUXg88MsrH6tuRKTd3qyMV1h47nnMpKJ2IU8WQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>首先我们关注一下第一段划红线的地方。</p>
+<p>火男写到：50% 的节点在第一层，25% 的节点在第二层， 12.5% 的节点在第三层。</p>
+<p>你以为他在给你说什么？</p>
+<p>他要表达的意思除了每一层节点的个数之外，还说明了层级：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYE1EaPo5Hd1a6PKVPASmibDibcGNF4c4LDvwMLkDicbNkTJUpiaY130Uziag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYE1EaPo5Hd1a6PKVPASmibDibcGNF4c4LDvwMLkDicbNkTJUpiaY130Uziag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>没有第 0 层，至少论文里面没有说有第 0 层。</p>
+<p>如果你非要说最下面那个有全部节点的有序链表叫做第 0 层，我觉得也可以。但是，我觉得叫它基础链表更加合适一点。</p>
+<p>然后我再看第二段划线的地方。</p>
+<p>火男提到了一个关键词：randomly，意思是随机。</p>
+<p>说出来你可能不信，但是跳表是用随机的方式解决上面提出的插入（删除）之后调整结构的问题。</p>
+<p>怎么随机呢？抛硬币。</p>
+<p>是的，没有骗你，真的是“抛硬币”。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYVVCaA7eaFf74GcRRHbLmTnAgCyPicWefYwY81zMeTFteCTAW4a4U0Ew/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYVVCaA7eaFf74GcRRHbLmTnAgCyPicWefYwY81zMeTFteCTAW4a4U0Ew/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<h2 id="跳表中的“硬币”"><a href="#跳表中的“硬币”" class="headerlink" title="跳表中的“硬币”"></a>跳表中的“硬币”</h2><p>当跳表中插入一个元素的时候，火男表示我们上下层之间可以不严格遵循 1:2 的节点关系。</p>
+<p>如果插入的这个元素需要建立索引，那么把索引建立在第几层，都是由抛硬币决定的。</p>
+<p>或者说：由抛硬币的概率决定的。</p>
+<p>我问你，一个硬币抛出去之后，是正面的概率有多大？</p>
+<p>是不是 50%？</p>
+<p>如果我们把这个概率记为 p，那么 50%，即 p=1/2。</p>
+<p>上面我们提到的概率，到底是怎么用的呢？</p>
+<p>火男的论文中有一小节是这样的写的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY4IzBuF3t5kz9Xay9bx924ZXdN3ChDTEictfvJ9HOYIia1hVECsoic7pgw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagY4IzBuF3t5kz9Xay9bx924ZXdN3ChDTEictfvJ9HOYIia1hVECsoic7pgw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>随机选择一个层级。他说我们假设概率 p=1/2，然后叫我们看图 5。</p>
+<p>图 5 是这样的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYgTgIuQwFv5sG1iaoc7VkCJWUfgxe01sNOkyadJkiaZcQ1xpy7s6OjPtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYgTgIuQwFv5sG1iaoc7VkCJWUfgxe01sNOkyadJkiaZcQ1xpy7s6OjPtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>非常关键的一张图啊。</p>
+<p>短短几行代码，描述的是如何选择层级的随机算法。</p>
+<p>首先定义初始层级为 1（lvl := 1）。</p>
+<p>然后有一行注释：random() that returns a random value in [0…1)</p>
+<p>random() 返回一个 [0…1) 之间的随机值。</p>
+<p>接下来一个 while…do 循环。</p>
+<p>循环条件两个。</p>
+<p>第一个：random() &lt; p。由于 p = 1/2，那么该条件成立的概率也是 1/2。</p>
+<p>如果每随机一次，满足 random() &lt; p，那么层级加一。</p>
+<p>那假设你运气爆棚，接连一百次随机出来的数都是小于 p 的怎么办？岂不是层级也到 100 层了？</p>
+<p>第二个条件 lvl &lt; MaxLevel，就是防止这种情况的。可以保证算出来的层级不会超过指定的 MaxLevel。</p>
+<p>这样看来，虽然每次都是基于概率决定在那个层级，但是总体趋势是趋近于 1/2 的。</p>
+<p>带来的好处是，每次插入都是独立的，只需要调整插入前后节点的指针即可。</p>
+<p>一次插入就是一次查询加更新的操作，比如下面的这个示意图：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYtkyn4sLLQINCXmm28oTDhHB5Ka6WfnsYDxB54CvDuHiaqz20iag9dqPA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYtkyn4sLLQINCXmm28oTDhHB5Ka6WfnsYDxB54CvDuHiaqz20iag9dqPA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>对于这个概率，其实火男在论文专门写了一个小标题，还给出了一个图表：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYLDx8Bc6McY6bOzFavMGuus9bz0viaKUwgUwiaQs2YuBV1Wudh0jPFeZg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYLDx8Bc6McY6bOzFavMGuus9bz0viaKUwgUwiaQs2YuBV1Wudh0jPFeZg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>最终得出的结论是，火男建议 p 值取 1/4。如果你主要关心的是执行时间的变化，那么 p 就取值 1/2。</p>
+<p>说一下我的理解。首先跳表这个是一个典型的空间换时间的例子。</p>
+<p>一个有序的二维数组，查找指定元素，理论上是二分查找最快。而跳表就是在基础的链表上不断的抽节点（或者叫索引），形成新的链表。</p>
+<p>所以，当 p=1/2 的时候，就近似于二分查找，查询速度快，但是层数比较高，占的空间就大。</p>
+<p>当 p=1/4 的时候，元素升级层数的概率就低，总体层高就低，虽然查询速度慢一点，但是占的空间就小一点。</p>
+<p>根据《Redis深度历险》一书里面的描述，在 Redis 中 p 的取值就是 1/4，MaxLevel 的取值是 64（视版本而定，有的Redis版本是32）。</p>
+<p>论文里面还花了大量的篇幅去推理时间复杂度，有兴趣的可以去看着论文一起推理一下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYEoC5DIrWSNZvFARtL37QuSruy66abwiaib8x0DzYl1uZWzuJbLvFuM8w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYEoC5DIrWSNZvFARtL37QuSruy66abwiaib8x0DzYl1uZWzuJbLvFuM8w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<h2 id="跳表在Java中的应用"><a href="#跳表在Java中的应用" class="headerlink" title="跳表在Java中的应用"></a>跳表在Java中的应用</h2><p>跳表，虽然是一个接触比较少的数据结构。</p>
+<p>其实在 java 中也有对应的实现。</p>
+<p>先问个问题：Map 家族中大多都是无序的，那么请问你知道有什么 Map 是有序的呢？</p>
+<p>TreeMap，LinkedHashMap 是有序的，对吧。</p>
+<p>但是他们不是线程安全的。</p>
+<p>那么既是线程安全的，又是有序的 Map 是什么？</p>
+<p>那就是它，一个存在感也是低的不行的 ConcurrentSkipListMap。</p>
+<p>你看它这个名字多吊，又有 list 又有 Map。</p>
+<p>看一个测试用例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class MainTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ConcurrentSkipListMap&lt;Integer, String&gt; skipListMap = new ConcurrentSkipListMap&lt;&gt;();</span><br><span class="line">        skipListMap.put(3,&quot;3&quot;);</span><br><span class="line">        skipListMap.put(6,&quot;6&quot;);</span><br><span class="line">        skipListMap.put(7,&quot;7&quot;);</span><br><span class="line">        skipListMap.put(9,&quot;9&quot;);</span><br><span class="line">        skipListMap.put(12,&quot;12&quot;);</span><br><span class="line">        skipListMap.put(17,&quot;17&quot;);</span><br><span class="line">        skipListMap.put(19,&quot;19&quot;);</span><br><span class="line">        skipListMap.put(21,&quot;21&quot;);</span><br><span class="line">        skipListMap.put(25,&quot;25&quot;);</span><br><span class="line">        skipListMap.put(26,&quot;26&quot;);</span><br><span class="line">        System.out.println(&quot;skipListMap = &quot; + skipListMap);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果是这样的，确实是有序的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYMiaCibxs8ZjeVfAnFGD91tMT3X8gSZKt53YNJT4Vicy72bYb5H8UOburQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYMiaCibxs8ZjeVfAnFGD91tMT3X8gSZKt53YNJT4Vicy72bYb5H8UOburQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>稍微的剖析一下。首先看看它的三个关键结构。</p>
+<p>第一个是 index：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYUdYUTrmaG0EbCUux2VzuNE0x919E8cyqiagltyeialdxR8GiajHuB3Imw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYUdYUTrmaG0EbCUux2VzuNE0x919E8cyqiagltyeialdxR8GiajHuB3Imw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>index 里面包含了一个节点 node、一个右指针（right）、一个下指针（down）。</p>
+<p>第二个是 HeadIndex:</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYYbqjhtYdrJqjYiclEHTBSibRKjPEB5b9SUCmEZ5rwficialZnSshkE902A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYYbqjhtYdrJqjYiclEHTBSibRKjPEB5b9SUCmEZ5rwficialZnSshkE902A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>它是继承自 index 的，只是多了一个 level 属性，记录是位于第几层的索引。</p>
+<p>第三个是 node：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYb40sYVj8dWwo6CmibTvQ4XelP6wtacn8DWsMelqZahB5auRwLQcUhZQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYb40sYVj8dWwo6CmibTvQ4XelP6wtacn8DWsMelqZahB5auRwLQcUhZQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>这个 node 没啥说的，一看就是个链表。</p>
+<p>这三者之间的关系就是示意图这样的：</p>
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="img"></p>
+<p>我们就用前面的示例代码，先 debug 一下，把上面的示意图，用真实的值填充上。</p>
+<p>debug 跑起来之后，可以看到当前是有两层索引的，需要注意的是这里的两层是不包含最底层的基础的有序链表的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYibibRmztLSpVMRhhEQnkxzDOWPEpled6nXCicQibPhPITxHWpo0UIueNdg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYibibRmztLSpVMRhhEQnkxzDOWPEpled6nXCicQibPhPITxHWpo0UIueNdg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>我们先看看第二层的链表是怎样的，也就是看第二层头节点的 right 属性：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYEeVnglicZwft6XDsiaqWy7TL8nuq4aezmic46NSsNd6plCgHibhR2Zl1Zg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYEeVnglicZwft6XDsiaqWy7TL8nuq4aezmic46NSsNd6plCgHibhR2Zl1Zg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>所以第二层的链表是这样的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYO7gxvrUqV5hNUJKhcBsGW7Ot63ICskbe0xmYJMQUvYDcFgIXkqiboyA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYO7gxvrUqV5hNUJKhcBsGW7Ot63ICskbe0xmYJMQUvYDcFgIXkqiboyA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>第二层的 HeadIndex 节点除了我们刚刚分析的 right 属性外，还有一个 down，指向的是下一层，也就是第一层的 HeadIndex：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYrdLcOqjmhaFq8DfRH2BIAjHLxab3JPWWlice8kW3esav6P01JCn2ibEQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYrdLcOqjmhaFq8DfRH2BIAjHLxab3JPWWlice8kW3esav6P01JCn2ibEQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>可以看到第一层的 HeadIndex 的 down 属性是 null。但是它的 right 属性是有值的，但 right 属性里面的 down 属性也是 null：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYORwyEeJHTqTPwKtRWlQXpxUSGeQt1KDCJoBO7sKHiaRKMOgPDEyCQSA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYORwyEeJHTqTPwKtRWlQXpxUSGeQt1KDCJoBO7sKHiaRKMOgPDEyCQSA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>可以画出第一层的链表结构是这样的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYibfXTOVMfa1iayasUhnQNX17xxKJwlSaa43MytibV3I0e7iaMovHtQRDhQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYibfXTOVMfa1iayasUhnQNX17xxKJwlSaa43MytibV3I0e7iaMovHtQRDhQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>同时我们可以看到其 node 属性里面其实是整个有序链表（其实每一层的 HeadIndex 里面都有，right 节点里面也有）：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYLQxgQsdrAkQu5Qnq7fPdlsv7YKAQykT1QAdWq2sGlhscMEwf3Az0IQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYLQxgQsdrAkQu5Qnq7fPdlsv7YKAQykT1QAdWq2sGlhscMEwf3Az0IQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>所以，整个跳表结构是这样的，需要注意的是最底层的有序链表和第一层之间是虚线连接的，它们之间是不存在 down 属性的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHdVtLJDJlcpphCKqfpx3icfrtbmNhISxwIUO5SvZm1UscKbV0A1vt2hbwZZkaFzkES74nyzpWEfLdQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHdVtLJDJlcpphCKqfpx3icfrtbmNhISxwIUO5SvZm1UscKbV0A1vt2hbwZZkaFzkES74nyzpWEfLdQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>但是当你拿着同样的程序，自己去调试的时候，你会发现，你的跳表不长这样啊？</p>
+<p>当然不一样了，一样了才是撞了鬼了。</p>
+<p>别忘了，索引的层级是随机产生的。</p>
+<p>ConcurrentSkipListMap 是怎样随机的呢？</p>
+<p>带大家看看 put 部分的源码。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYVuhMNAeDf8ic4F4oxmca1UrXtOiaoicoicQhBKYzm86N2nFVcUqrIx2rgg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYVuhMNAeDf8ic4F4oxmca1UrXtOiaoicoicQhBKYzm86N2nFVcUqrIx2rgg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>标号为 ① 的地方代码很多，但是核心思想是把指定元素维护进最底层的有序链表中。就不进行解读了，所以我把这块代码折叠起来了。</p>
+<p>标号为 ② 的地方是 <code>(rnd &amp; 0x80000001) == 0</code>。</p>
+<p>这个 rnd 是上一行代码随机出来的值。</p>
+<p>而 0x80000001 对应的二进制是这样的：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYVn3ehv3RlynCt1Zy6CXQXYR1las33hgaY2icR5vIzZf4dZbibE0y1ImA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYVn3ehv3RlynCt1Zy6CXQXYR1las33hgaY2icR5vIzZf4dZbibE0y1ImA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>一头一尾都是1，其他位都是 0。</p>
+<p>那么只有 rnd 的一头一尾都是 0 的时候，才会满足 if 条件，<code>(rnd &amp; 0x80000001) == 0</code>。</p>
+<p>二进制的一头一尾都是 0，说明是一个正偶数。</p>
+<p>随机出来一个正偶数的时候，表明需要对其进行索引的维护。</p>
+<p>负偶数，负奇数，正偶数，正奇数。而这里只要正偶数，说明这里的概率其实是 1/4。</p>
+<p>标号为 ③ 的地方是判断当前元素要维护到第几层索引中。默认是第 1 层。</p>
+<p><code>((rnd &gt;&gt;&gt;= 1) &amp; 1) != 0</code> ，已知 rnd 是一个正偶数，那么从其二进制的低位的第二位（第一位肯定是0嘛）开始，有几个连续的 1，就维护到第几层。</p>
+<p>不明白？没关系，我举个例子。</p>
+<p>假设随机出来的正偶数是 110，其二进制是 01101110。因为有 3 个连续的 1，那么 level 就是从 1 连续自增 3 次，最终的 level 就是 4。</p>
+<p>那么问题就来了，如果我们当前最多只有 2 层索引呢？直接就把索引干到第 4 层吗？</p>
+<p>这个时候标号为 ④ 的代码的作用就出来了。</p>
+<p>如果新增的层数大于现有的层数，那么只是在现有的层数上进行加一。</p>
+<p>这个时候我们再回过头去看看火男论文里面的随机算法：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYgTgIuQwFv5sG1iaoc7VkCJWUfgxe01sNOkyadJkiaZcQ1xpy7s6OjPtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYgTgIuQwFv5sG1iaoc7VkCJWUfgxe01sNOkyadJkiaZcQ1xpy7s6OjPtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>意思是一个意思，但是实现起来其实是两个不同的方案。但是核心实现都是随机。</p>
+<p>所以，你现在知道了，由于有随机数的出现，所以即使是相同的参数，每次都可以构建出不一样的跳表结构。</p>
+<p>比如还是前面演示的代码，我 debug 截图的时候有两层索引。</p>
+<p>但是，其实有的时候我也会碰到 3 层索引的情况。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYwf0HQXgPRn5usM487UJtqAgInSl59FvibWhs58ibyiatbzrrnTmrOYIpw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYwf0HQXgPRn5usM487UJtqAgInSl59FvibWhs58ibyiatbzrrnTmrOYIpw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>别问为什么，用心去感受，你心里应该有数。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYvNRuOp3icVsMUGialIfnrQiboBWNJjLwDrGKUY2JeWOKxba0wY1grKBVQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYvNRuOp3icVsMUGialIfnrQiboBWNJjLwDrGKUY2JeWOKxba0wY1grKBVQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>另外，开篇用 redis 作为了切入点，其实 redis 的跳表整体思想是大同的，但是也是有小异的。</p>
+<p>比如 Redis 在 skiplist 的 forward 指针（相当于 index）上，每个 forward 指针都增加了 span 属性。</p>
+<p>在《Redis深度历险》一书里面对该属性进行了描述：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYe7GQbT167TysDH43JCwHRk0QBKNfLWZjPMzibEXMlbJTOkAaMCklmUQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_png/lnCqjsQ6QHesdTvK7xXGN5cLaYWzibiagYe7GQbT167TysDH43JCwHRk0QBKNfLWZjPMzibEXMlbJTOkAaMCklmUQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>好了，那么这次的文章就到这里啦。</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="\2021\07\21\SystemArchitect\第10章：设计模式\" title="第10章：设计模式" rel="bookmark "><img src="../../img/683744-20160930102718453-1750189602.png" class="lazyload" data-srcset="../../img/683744-20160930102718453-1750189602.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">第10章：设计模式</span></a></div></section></div>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-skiplist/>http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-skiplist/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-27T09:42:38+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年7月27日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-skiplist/&title=Redis的skiplist - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-skiplist/&title=Redis的skiplist - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-skiplist/&title=Redis的skiplist - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
+          <p class='content'>Redis解决并发问题用setnx替代set命令初始化计数器，这确保了一旦A初始化计数器成功，B就不会再去初始化计数器。
+12345678910111213141516171819202122/...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/'>
+          <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Redis应用-位图我们都知道8bit = 1b = 2^-10kb， bitmap就是通过最小的单位 bit来进行0或者1的设置，表示某个元素对应的值或者状态。
+一个bit的值，或者是0，或者...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">跳表的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%8E%92%E8%A1%8C%E6%A6%9C%E5%88%87%E5%85%A5"><span class="toc-text">从排行榜切入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zset%E7%9A%84%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81"><span class="toc-text">zset的内部编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-skiplist%EF%BC%9F"><span class="toc-text">什么是 skiplist？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%A1%A8%E4%B8%AD%E7%9A%84%E2%80%9C%E7%A1%AC%E5%B8%81%E2%80%9D"><span class="toc-text">跳表中的“硬币”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%A1%A8%E5%9C%A8Java%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">跳表在Java中的应用</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Redis的skiplist";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='5363470125'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css", window.volantis.loadcss);
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $.backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+  
+  
+
+  <div id="rightmenu-wrapper">
+    <ul class="list-v rightmenu" id="rightmenu-content">
+      <li class='option'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <hr id='hr-text'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <hr id='hr-href'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <hr id='hr-src'>
+      </li>
+      
+        <li class='navigation'>
+          <a class='nav icon-only fix-cursor-default' onclick='history.back()'><i class='fa fa-arrow-left fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='history.forward()'><i class='fa fa-arrow-right fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='window.location.reload()'><i class='fa fa-redo fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' href='/'><i class='fa fa-home fa-fw'></i></a>
+        </li>
+      
+      <hr>
+      
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/faqs/
+        
+        
+        
+        
+          id="https:volantisjsorgfaqs"
+        >
+        <i class='fa fa-question fa-fw'></i> 常见问题
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/examples/
+        
+        
+        
+        
+          id="https:volantisjsorgexamples"
+        >
+        <i class='fa fa-rss fa-fw'></i> 示例博客
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/contributors/
+        
+        
+        
+        
+          id="https:volantisjsorgcontributors"
+        >
+        <i class='fa fa-fan fa-spin fa-fw'></i> 加入社区
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://github.com/volantis-x/volantis-docs/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xvolantis-docs"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 本站源码
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://github.com/volantis-x/hexo-theme-volantis/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xhexo-theme-volantis"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 主题源码
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' 
+        
+        
+        
+          onclick="document.execCommand('print')"
+        
+        >
+        <i class='fa fa-print fa-fw'></i> 打印页面
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default toggle-mode-btn' 
+        
+        
+        
+        >
+        <i class='fas fa-moon fa-fw'></i> Dark mode
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          <li class='music name'>
+            <p class='nav music-title fix-cursor-default'></p>
+          </li>
+          <li class='music ctrl'>
+            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
+            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
+            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
+          </li>
+          <li class='music volume'>
+            <a class='nav volume'>
+              <div class="aplayer-volume-bar-wrap">
+                <div class="aplayer-volume-bar fix-cursor-pointer">
+                  <div class="aplayer-volume"></div>
+                  <i class='left fa fa-volume-off fa-fw'></i>
+                  <i class='right fa fa-volume-up fa-fw'></i>
+                </div>
+              </div>
+            </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+  <script>
+    window.document.oncontextmenu = function (event) {
+      if (event.ctrlKey) return true;
+      if (/Android|webOS|BlackBerry/i.test(navigator.userAgent)) return true;
+      return popMenu(event);
+    };
+    document.addEventListener("click", function (event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      mymenu.style.display = "none";
+    });
+    function popMenu(event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      var menuContent = document.getElementById('rightmenu-content');
+      var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      var screenHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      mymenu.style.left = event.clientX + "px"; // 获取鼠标位置
+      mymenu.style.top = event.clientY + "px";
+      mymenu.style.display = 'block';
+      if (event.clientX * 2 > screenWidth) {
+        menuContent.classList.add('left');
+      } else {
+        menuContent.classList.remove('left');
+      }
+      if (event.clientY * 2 > screenHeight) {
+        menuContent.classList.add('top');
+      } else {
+        menuContent.classList.remove('top');
+      }
+
+      let hrText = document.getElementById('hr-text');
+      let hrSrc = document.getElementById('hr-src');
+      let hrHref = document.getElementById('hr-href');
+
+      // 选中图片
+      let copySrc = document.getElementById('menu-copy-src');
+      if (copySrc != undefined) {
+        if (event.target.currentSrc) {
+          copySrc.style.display = 'block';
+          copySrc.addEventListener("click", function (e) {
+            copyString(event.target.currentSrc);
+          },{once: true});
+          hrSrc.style.display = 'block';
+        } else {
+          copySrc.style.display = 'none';
+          hrSrc.style.display = 'none';
+        }
+      }
+
+      // 选中按钮
+      // 判断是不是按钮
+      let href = '';
+      if (event.path) {
+        for (i = 0; i < event.path.length; i++) {
+          if (event.path[i].href != undefined && event.path[i].href.length > 0) {
+            href = event.path[i].href;
+          }
+        }
+      }
+
+      let copyText = document.getElementById('menu-copy-text');
+      copyText.style.display = 'none';
+      hrText.style.display = 'none';
+      if (href.length == 0) {
+        // 选中文本
+        if (window.getSelection().toString()) {
+          if ('true' == 'true') {
+            copyText.style.display = 'block';
+            hrText.style.display = 'block';
+          }
+        }
+      }
+
+      // 在新标签页打开
+      let openHref = document.getElementById('menu-open-href');
+      if (openHref != undefined) {
+        if (href.length > 0) {
+          openHref.style.display = 'block';
+          openHref.addEventListener("click", function (e) {
+            window.open(href);
+          },{once: true});
+          hrHref.style.display = 'block';
+        } else {
+          openHref.style.display = 'none';
+          hrHref.style.display = 'none';
+        }
+      }
+      // 复制链接
+      let copyHref = document.getElementById('menu-copy-href');
+      if (copyHref != undefined) {
+        if (href.length > 0) {
+          copyHref.style.display = 'block';
+          copyHref.addEventListener("click", function (e) {
+            copyString(href);
+          },{once: true});
+        } else {
+          copyHref.style.display = 'none';
+        }
+      }
+      // 有音乐播放器 see: layout/_third-party/aplayer/script.ejs
+      
+      if(volantis.APlayerLoaded){ // APlayer加载完成？
+        // 如果有aplayer，初始化一下
+        checkAPlayer();
+      }
+      
+      return false; // 该行代码确保系统自带的右键菜单不会被调出
+    }
+    function hideMenu() {
+      document.getElementById('rightmenu-wrapper').style.display = 'none';
+    }
+    function copyString(str) {
+      const input = document.createElement('input');
+      input.setAttribute('readonly', 'readonly');
+      document.body.appendChild(input);
+      input.setAttribute('value', str);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+    document.execCommand('click');
+  </script>
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+	volantis.pjax.push(pjax_initCopyCode)
+</script>
+
+
+
+
+   <script type="text/javascript">
+  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
+  function pjax_scrollrebeal() {
+    ScrollReveal().reveal('.l_main .reveal', {
+      distance: '32px',
+      duration: '800',
+      interval: '20',
+      scale: '1',
+      easing: 'ease-out'
+    });
+  }
+  $(function () {
+  var checkScrollReveal = setInterval(function () {
+    if ($("#safearea").css("display")!="block") return
+    if (typeof ScrollReveal=="undefined") return
+    clearInterval(checkScrollReveal)
+	pjax_scrollrebeal();
+  }, 100)
+  });
+  volantis.pjax.push(pjax_scrollrebeal)
+</script>
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '5363470125';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.APlayerLoaded=0 // APlayer加载完成状态
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return // APlayer加载完成？
+	  if ($("#safearea").css("display")!="block") return // 文章内容加载完成？ see: source/css/first.styl
+    clearInterval(checkAPlayer)
+	  if (!window.volantis.APlayerLoaded&&!window.MetingJSElement){ // APlayer只能加载一次
+      window.volantis.APlayerLoaded=1 // APlayer加载完成
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js") // 加载 MetingJS
+	  }
+  }, 2500) // 按照网速调节差分2.5s
+  // rightmenu see: layout/_partial/rightmenu.ejs
+
+  
+    loadScript("/js/aplayer.js")
+  
+
+</script>
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script>
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://example.com' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>
