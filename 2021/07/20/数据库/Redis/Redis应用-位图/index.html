@@ -22,9 +22,15 @@
 
   <!-- 页面元数据 -->
   
-  <title>Hexo</title>
+  <title>Redis应用-位图 - Hexo</title>
+  
+    <meta name="keywords" content="数据库,MySQL">
   
 
+  
+    <meta name="description" content="我们都知道8bit = 1b = 2^-10kb， bitmap就是通过最小的单位 bit来进行0或者1的设置，表示某个元素对应的值或者状态。
+一个bit的值，或者是0，或者是1；也就是说一个bit能存储的最多信息是2。
+位图并不是一种特殊的数据结构，其实本质上是二进制字符串，也可以看做是 byte 数组。可以使...">
   
 
   <!-- feed -->
@@ -400,14 +406,74 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
     
+      <h1 class="title">
+        Redis应用-位图
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' target="_blank" href="https://gameofthrones.fandom.com/wiki/Jon_Snow" rel="nofollow noopener">
+    <img no-lazy src="https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg">
+    <p>Alloceee</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="sep"></span><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">Redis</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年7月20日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Redis应用-位图" data-path="/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
   </div>
 
 
   
   
-  <h2 id="Redis应用-位图"><a href="#Redis应用-位图" class="headerlink" title="Redis应用-位图"></a>Redis应用-位图</h2><p>我们都知道8bit = 1b = 2^-10kb， <code>bitmap</code>就是通过最小的单位 <code>bit</code>来进行0或者1的设置，表示某个元素对应的值或者状态。</p>
+  <p>我们都知道8bit = 1b = 2^-10kb， <code>bitmap</code>就是通过最小的单位 <code>bit</code>来进行0或者1的设置，表示某个元素对应的值或者状态。</p>
 <p>一个bit的值，或者是0，或者是1；也就是说一个bit能存储的最多信息是2。</p>
 <p>位图并不是一种特殊的数据结构，其实本质上是二进制字符串，也可以看做是 byte 数组。可以使用普通的 get/set 直接获取和设置整个位图的内容，也可以使用位图操作 getbit/setbit 等将 byte 数组看成「位数组」来处理。</p>
+<span id="more"></span>
+
+
+
 <h3 id="位图的优势"><a href="#位图的优势" class="headerlink" title="位图的优势:"></a>位图的优势:</h3><ol>
 <li>基于最小的单位bit进行存储，所以非常省空间。</li>
 <li>设置时候时间复杂度O(1)、读取时候时间复杂度O(n)，操作是非常快的</li>
@@ -448,14 +514,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='footer'>
       
       
-        
-  <div class="related_posts">
-    <section class='header'>
-      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
-    </section>
-    <section class='body'>
-      <div class="vlts-rps"><a class="item" href="\2021\07\21\SystemArchitect\第10章：设计模式\" title="第10章：设计模式" rel="bookmark "><img src="../../img/683744-20160930102718453-1750189602.png" class="lazyload" data-srcset="../../img/683744-20160930102718453-1750189602.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">第10章：设计模式</span></a></div></section></div>
-      
       
         <div class='copyright'>
           <blockquote>
@@ -466,7 +524,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/>http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/</a></p>
+                <p>本文永久链接是：<a href=https://alloceee.github.io/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/>https://alloceee.github.io/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/</a></p>
               
             
           </blockquote>
@@ -483,10 +541,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-09T17:41:08+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-01T11:38:47+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年7月9日</p>
+    <p>更新于：2021年8月1日</p>
   </a>
 </div>
 
@@ -494,6 +552,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySQL/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>MySQL</p></a></div>
+
 
         
       
@@ -505,7 +566,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/&title= - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://alloceee.github.io/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/&title=Redis应用-位图 - Hexo&summary=我们都知道8bit = 1b = 2^-10kb， bitmap就是通过最小的单位 bit来进行0或者1的设置，表示某个元素对应的值或者状态。
+一个bit的值，或者是0，或者是1；也就是说一个bit能存储的最多信息是2。
+位图并不是一种特殊的数据结构，其实本质上是二进制字符串，也可以看做是 byte 数组。可以使用普通的 get/set 直接获取和设置整个位图的内容，也可以使用位图操作 getbit/setbit 等将 byte 数组看成「位数组」来处理。"
           
           >
           
@@ -517,7 +580,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/&title= - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alloceee.github.io/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/&title=Redis应用-位图 - Hexo&summary=我们都知道8bit = 1b = 2^-10kb， bitmap就是通过最小的单位 bit来进行0或者1的设置，表示某个元素对应的值或者状态。
+一个bit的值，或者是0，或者是1；也就是说一个bit能存储的最多信息是2。
+位图并不是一种特殊的数据结构，其实本质上是二进制字符串，也可以看做是 byte 数组。可以使用普通的 get/set 直接获取和设置整个位图的内容，也可以使用位图操作 getbit/setbit 等将 byte 数组看成「位数组」来处理。"
           
           >
           
@@ -529,7 +594,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/&title= - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://alloceee.github.io/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE/&title=Redis应用-位图 - Hexo&summary=我们都知道8bit = 1b = 2^-10kb， bitmap就是通过最小的单位 bit来进行0或者1的设置，表示某个元素对应的值或者状态。
+一个bit的值，或者是0，或者是1；也就是说一个bit能存储的最多信息是2。
+位图并不是一种特殊的数据结构，其实本质上是二进制字符串，也可以看做是 byte 数组。可以使用普通的 get/set 直接获取和设置整个位图的内容，也可以使用位图操作 getbit/setbit 等将 byte 数组看成「位数组」来处理。"
           
           >
           
@@ -612,7 +679,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E5%BA%94%E7%94%A8-%E4%BD%8D%E5%9B%BE"><span class="toc-text">Redis应用-位图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E5%9B%BE%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-text">位图的优势:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%A6%82%E4%B8%8B%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-text">一般可以在如下场景使用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SETBIT"><span class="toc-text">SETBIT</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GETBIT"><span class="toc-text">GETBIT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITCOUNT"><span class="toc-text">BITCOUNT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITPOS"><span class="toc-text">BITPOS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITOP"><span class="toc-text">BITOP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITFIELD"><span class="toc-text">BITFIELD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E4%BA%8E%E5%90%84%E7%B1%BB%E7%BB%9F%E8%AE%A1%E5%BA%94%E7%94%A8"><span class="toc-text">适用于各类统计应用</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E5%9B%BE%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">1.</span> <span class="toc-text">位图的优势:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%A6%82%E4%B8%8B%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">一般可以在如下场景使用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SETBIT"><span class="toc-number">3.0.1.</span> <span class="toc-text">SETBIT</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GETBIT"><span class="toc-number">3.1.</span> <span class="toc-text">GETBIT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITCOUNT"><span class="toc-number">3.2.</span> <span class="toc-text">BITCOUNT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITPOS"><span class="toc-number">3.3.</span> <span class="toc-text">BITPOS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITOP"><span class="toc-number">3.4.</span> <span class="toc-text">BITOP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BITFIELD"><span class="toc-number">3.5.</span> <span class="toc-text">BITFIELD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E4%BA%8E%E5%90%84%E7%B1%BB%E7%BB%9F%E8%AE%A1%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">适用于各类统计应用</span></a></li></ol>
     </div>
   </section>
 
@@ -630,8 +697,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Redis应用-位图";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
@@ -1631,7 +1698,7 @@ volantis.pjax.push(()=>{
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1649,7 +1716,7 @@ volantis.pjax.push(()=>{
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1671,7 +1738,7 @@ volantis.pjax.push(()=>{
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'https://alloceee.github.io' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增

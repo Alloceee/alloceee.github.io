@@ -400,15 +400,29 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <div class="all-cats">
             
               
+                <a class="" href="/categories/ElasticSearch/">
+                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;ElasticSearch</span>
+                  <span class="title">
+                    (1)
+                  </span>
+                </a>
+              
                 <a class="" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
                   <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;数据库</span>
                   <span class="title">
-                    (2)
+                    (4)
                   </span>
                 </a>
               
                 <a class=" child" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
                   <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;MySQL</span>
+                  <span class="title">
+                    (2)
+                  </span>
+                </a>
+              
+                <a class=" child" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;Redis</span>
                   <span class="title">
                     (1)
                   </span>
@@ -417,7 +431,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                 <a class="" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">
                   <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;系统架构师</span>
                   <span class="title">
-                    (4)
+                    (6)
+                  </span>
+                </a>
+              
+                <a class=" child" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;操作系统</span>
+                  <span class="title">
+                    (1)
+                  </span>
+                </a>
+              
+                <a class=" child" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">
+                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;数据库系统</span>
+                  <span class="title">
+                    (1)
+                  </span>
+                </a>
+              
+                <a class=" child" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;计算机网络</span>
+                  <span class="title">
+                    (1)
                   </span>
                 </a>
               
@@ -1452,7 +1487,7 @@ volantis.pjax.push(()=>{
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1470,7 +1505,7 @@ volantis.pjax.push(()=>{
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1492,7 +1527,7 @@ volantis.pjax.push(()=>{
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'https://alloceee.github.io' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增

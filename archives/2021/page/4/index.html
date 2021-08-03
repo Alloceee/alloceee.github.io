@@ -408,7 +408,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-%E9%9B%86%E7%BE%A4%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%90%AD%E5%BB%BA/">
+      <a href="/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/">
         2021年7月20日
       </a>
     </h2>
@@ -416,9 +416,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        前言
-Redis 是我们目前大规模使用的缓存中间件，由于它强大高效而又便捷的功能，得到了广泛的使用。单节点的Redis已经就达到了很高的性能，为了提高可用性我们可以使用Redis集群。本文参考了Rdis的官方文档和使用Redis官方提供的Redis Cluster工具搭建Rdis集群。
-注意 ：Redis的版本要在3.0以上,截止今天，Redis的版本是3.2.9，本教程也使用3.2.9作为...
+        介绍一下消息队列MQ的使用场景1.通过异步处理提高系统性能在不适用消息队列 服务器的时候，用户的请求数据直接写入数据库，在高并发的情况下数据库压力剧增，使得响应速度变慢。但是在使用消息队列之后，用户的请求数据发送到消息队列之后立即返回，再由消息队列的消费者进程从消息队列中获得数据，异步写入数据库，由于消息队列服务器处理速度快于数据库（消息队列也比数据库有更好的伸缩性），因此响应速度得到大幅改...
       
     
   </div>
@@ -434,7 +432,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-%E9%9B%86%E7%BE%A4%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%90%AD%E5%BB%BA/'>
+          <a class='readmore' href='/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9F%BA%E7%A1%80/'>
             阅读全文
           </a>
         </div>
@@ -456,17 +454,15 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A6%81%E6%AD%A2%E4%BD%BF%E7%94%A8%E5%A4%96%E9%94%AE/">
-        为什么禁止使用外键
+      <a href="/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/">
+        2021年7月20日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        外键的优点一、数据一致性由数据库自身保证数据一致性、完整性会更可靠，程序很难100％保证数据的一致性、完整性
-二、ER图可靠性有主外键的数据库设计可以增加ER图的可读性
-外键的缺点一、级联问题阿里巴巴的开发手册中，就曾指出强制要求不允许使用外键，一切外键概念必须在应用层解决。 因为每次级联delete或update的时候，都要级联操作相关的外键表，不论有没有这个必要，由其在高并发的场景下，这...
+        RocketMQ
       
     
   </div>
@@ -479,13 +475,10 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
         
         <time>2021-07-20</time>
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A6%81%E6%AD%A2%E4%BD%BF%E7%94%A8%E5%A4%96%E9%94%AE/'>
+          <a class='readmore' href='/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RocketMQ/'>
             阅读全文
           </a>
         </div>
@@ -507,7 +500,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/mysql%20count()%20%E5%87%BD%E6%95%B0%20%E5%AD%97%E6%AE%B5%E6%8C%89%E6%9D%A1%E4%BB%B6%E7%BB%9F%E8%AE%A1%E6%95%B0%E9%87%8F%E5%B9%B6%E6%8E%92%E9%99%A4%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5%E9%87%8D%E5%A4%8D%E5%80%BC/">
+      <a href="/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/">
         2021年7月20日
       </a>
     </h2>
@@ -515,10 +508,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
   <div class='md'>
     
       
-        mysql count() 函数 字段按条件统计数量并排除某个字段重复值
-
-
-12345678910111213141516SELECT	*, count(c.recruit_info_id) AS apply_number,	count(		IF (c.approval_status= 5, 1, NULL)	) AS s_numberFROM	`sh_further_position_p...
+        RabbitMQRabbitMq    AMQP规范和RabbitMQ基本概念        要素            生产者、消费者、消息            信道            交换器、队列、绑定、路由键        消息的确认        交换器类型            Direct            Fanout            Topic        ...
       
     
   </div>
@@ -534,7 +524,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/mysql%20count()%20%E5%87%BD%E6%95%B0%20%E5%AD%97%E6%AE%B5%E6%8C%89%E6%9D%A1%E4%BB%B6%E7%BB%9F%E8%AE%A1%E6%95%B0%E9%87%8F%E5%B9%B6%E6%8E%92%E9%99%A4%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5%E9%87%8D%E5%A4%8D%E5%80%BC/'>
+          <a class='readmore' href='/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-RabbitMQ/'>
             阅读全文
           </a>
         </div>
@@ -556,20 +546,12 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/left%20join%E3%80%81right%20join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/">
+      <a href="/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/">
         2021年7月20日
       </a>
     </h2>
   
   <div class='md'>
-    
-      
-        
-真的是一张图道清所有join的区别啊，可惜我还是看不懂，可能人比较懒，然后基本一个left join给我就是够用的了，所以就没怎么去仔细研究了，但是现实还是逼我去搞清楚，索性自己动手，总算理解图中的含义了，下面就听我一一道来。
-首先，我们先来建两张表，第一张表命名为kemu，第二张表命名为score：
-
-一、left join顾名思义，就是“左连接”，表1左连接表2，以左为主，表示以表1为...
-      
     
   </div>
   
@@ -584,7 +566,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/left%20join%E3%80%81right%20join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MetaQ/'>
             阅读全文
           </a>
         </div>
@@ -606,7 +588,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/Find_in_set/">
+      <a href="/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/">
         2021年7月20日
       </a>
     </h2>
@@ -614,7 +596,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
   <div class='md'>
     
       
-        Returns a value in the range of 1 to N if the string str is in the string list strlist consisting of N substrings. A string list is a string composed of substrings separated by , characters. If the...
+        KafkaKafka    Kafka入门        Kafka中的基本概念        为什么选择Kafka    Kafka的安装和配置参数    Kafka的生产者和消费者        消息的发送和接收        生产者和消费者的配置        消费者群组和再均衡        消费者中的提交和偏移量        序列化和反序列化    深入理解Kafka      ...
       
     
   </div>
@@ -630,7 +612,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/Find_in_set/'>
+          <a class='readmore' href='/2021/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-Kafka/'>
             阅读全文
           </a>
         </div>
@@ -657,7 +639,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
           </a>
         
         <p class="current">
-          4 / 5
+          4 / 13
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/5/">
@@ -762,19 +744,44 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
       <ul class="entry navigation">
         
           <li><a class="flat-box"
+            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
+            id="categoriesElasticSearch"
+            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"
             id="categoriesE695B0E68DAEE5BA93MySQL"
-            ><div class='name'>MySQL</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>MySQL</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/"
+            id="categoriesE695B0E68DAEE5BA93Redis"
+            ><div class='name'>Redis</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/"
             id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888"
-            ><div class='name'>系统架构师</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>系统架构师</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E6938DE4BD9CE7B3BBE7BB9F"
+            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E695B0E68DAEE5BA93E7B3BBE7BB9F"
+            ><div class='name'>数据库系统</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
+            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E8AEA1E7AE97E69CBAE7BD91E7BB9C"
+            ><div class='name'>计算机网络</div><div class='badge'>(1)</div></a></li>
         
       </ul>
     </div>
@@ -798,7 +805,7 @@ Redis 是我们目前大规模使用的缓存中间件，由于它强大高效�
 
 
     <div class='content'>
-      <a href="/tags/MySQL/" style="font-size: 14px; color: #999">MySQL</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/SQL/" style="font-size: 14px; color: #999">SQL</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 19px; color: #777">数据库</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a>
+      <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 16px; color: #8b8b8b">HTTP和HTTPS</a> <a href="/tags/JavaScript/" style="font-size: 16px; color: #8b8b8b">JavaScript</a> <a href="/tags/MySQL/" style="font-size: 18px; color: #7e7e7e">MySQL</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 14px; color: #999">前端</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px; color: #707070">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" style="font-size: 14px; color: #999">数据挖掘</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 14px; color: #999">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 16px; color: #8b8b8b">消息中间件</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 22px; color: #636363">计算机网络</a>
     </div>
   </section>
 
@@ -1818,7 +1825,7 @@ volantis.pjax.push(()=>{
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1836,7 +1843,7 @@ volantis.pjax.push(()=>{
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1858,7 +1865,7 @@ volantis.pjax.push(()=>{
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'https://alloceee.github.io' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增

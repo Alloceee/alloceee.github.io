@@ -505,14 +505,56 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>通过 <code>SELECT</code> 语句查询表中数据的行数；</li>
 <li>通过唯一索引保证表中某个字段或者某几个字段的唯一性；</li>
 </ul>
+<p>如果我们使用B+树作为底层的数据结构，那么所有只会访问或者修改一条数据的SQL的时间复杂度都是O($log_n$)，也就是树的高度，但是使用哈希却有可能达到O(1)的时间复杂度，看起来是不是特别的美好，但是当我们使用如下所示的SQL时，哈希的表现就不会这么好了：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> posts <span class="keyword">WHERE</span> author <span class="operator">=</span> <span class="string">&#x27;draven&#x27;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> created_at <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> posts <span class="keyword">WHERE</span> comments_count <span class="operator">&gt;</span> <span class="number">10</span></span><br><span class="line">UPDATE posts <span class="keyword">SET</span> github <span class="operator">=</span> <span class="string">&#x27;github.com/draveness&#x27;</span> <span class="keyword">WHERE</span> author <span class="operator">=</span> <span class="string">&#x27;draven&#x27;</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> posts <span class="keyword">WHERE</span> author <span class="operator">=</span> <span class="string">&#x27;draven&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果我们使用哈希作为底层的数据结构，遇到上述的场景时，使用哈希构成的主键索引或者辅助索引可能就没有办法快速处理了，它对于处理范围查询或者排序性能会非常差，只能进行全表扫描并依次判断是否满足条件。全表扫描对于数据库来说是一个非常糟糕的结果，这其实也就意味着我们使用的数据结构对于这些查询没有其他任何效果，最终的性能可能都不如从日志中顺序进行匹配。</p>
+<p>使用B+树其实能够保证按照键的顺序进行存储，也就是相邻的所有数据其实都是按照自然顺序排列的，使用哈希却无法达到这样的效果，因为哈希函数的目的就是让数据尽可能被分散到不同的桶中进行存储，所以在遇到可能存在相同键author = ‘draven’ 或者排序以及范围查询comments_count &gt; 10时，由哈希作为底层数据结构的表可能就会面对数据库查询的噩梦 —— 全表扫描。</p>
+<p>B树和B+树在数据结构上其实有一些类似，它们都可以按照某些顺序对索引中的内容进行遍历，对于排序和范围查询等操作，B树和B+树相比于哈希会带来更好的性能，当然如果索引建立不够友好或者SQL查询非常复杂，依然会导致全表扫描。</p>
+<h2 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h2><p>既然使用哈希无法应对我们常见的SQL中排序和范围查询等操作，而B树和B+树都可以相对高效地执行这些查询，那么为什么我们不选择B树呢？这个原因其实非常简单——计算机在读写文件时会以页为单位将数据加载到内存中。页的大小可能会根据操作系统的不同而发生变化，不过在大多数的操作系统中，页的大小都是4KB，你可以通过如下的命令获取操作系统上的页大小：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ getconf PAGE_SIZE</span><br><span class="line">4096</span><br></pre></td></tr></table></figure>
+
+<p>当我们需要在数据库中查询数据时，CPU 会发现当前数据位于磁盘而不是内存中，这时就会触发 I/O 操作将数据加载到内存中进行访问，数据的加载都是以页的维度进行加载的，然而将数据从磁盘读取到内存中所需要的成本是非常大的，普通磁盘（非 SSD）加载数据需要经过队列、寻道、旋转以及传输的这些过程，大概要花费 <code>10ms</code> 左右的时间。</p>
+<p><img src="../../../../img/0003.png" class="lazyload" data-srcset="../../../../img/0003.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>我们在估算 MySQL 的查询时就可以使用 <code>10ms</code> 这个数量级对随机 I/O 占用的时间进行估算，这里想要说的是随机 I/O 对于 MySQL 的查询性能影响会非常大，而顺序读取磁盘中的数据时速度可以达到 40MB/s，这两者的性能差距有几个数量级，由此我们也应该尽量减少随机 I/O 的次数，这样才能提高性能。</p>
+<blockquote>
+<p>B树与B+树的最大区别就是，B树可以在非叶结点中存储数据，但是B+树的所有数据其实都存储在叶子结点中，当一个表底层的数据结构是B树时，假设我们需要访问所有『大于 4，并且小于 9 的数据』：</p>
+</blockquote>
+<p><img src="../../../../img/0004.png" class="lazyload" data-srcset="../../../../img/0004.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>如果不考虑任何优化，在上面的简单B树中我们需要进行4次磁盘的随机I/O才能找到所有满足条件的数据行：</p>
+<ol>
+<li>加载根节点所在的页，发现根节点的第一个元素是 6，大于 4；</li>
+<li>通过根节点的指针加载左子节点所在的页，遍历页面中的数据，找到 5；</li>
+<li>重新加载根节点所在的页，发现根节点不包含第二个元素；</li>
+<li>通过根节点的指针加载右子节点所在的页，遍历页面中的数据，找到 7 和 8；</li>
+</ol>
+<p>当然我们可以通过各种方式来对上述的过程进行优化，不过 B 树能做的优化 B+ 树基本都可以，所以我们不需要考虑优化 B 树而带来的收益，直接来看看什么样的优化 B+ 树可以做，而 B 树不行。</p>
+<p>由于所有的节点都可能包含目标数据，我们总是要从根节点向下遍历子树查找满足条件的数据行，这个特点带来了大量的随机 I/O，也是 B 树最大的性能问题。</p>
+<p>B+ 树中就不存在这个问题了，因为所有的数据行都存储在叶节点中，而这些叶节点可以<strong>通过『指针』依次按顺序连接</strong>，当我们在如下所示的 B+ 树遍历数据时可以直接在多个子节点之间进行跳转，这样能够节省大量的磁盘 I/O 时间，也不需要在不同层级的节点之间对数据进行拼接和排序；通过一个 B+ 树最左侧的叶子节点，我们可以像链表一样遍历整个树中的全部数据，我们也可以引入双向链表保证倒序遍历时的性能。</p>
+<p><img src="../../../../img/0005.png" class="lazyload" data-srcset="../../../../img/0005.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>有些读者可能会认为使用 B+ 树这种数据结构会增加树的高度从而增加整体的耗时，然而高度为 3 的 B+ 树就能够存储千万级别的数据，实践中 B+ 树的高度最多也就 4 或者 5，所以这并不是影响性能的根本问题。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>任何不考虑应用场景的设计都不是最好的设计，当我们明确的定义了使用 MySQL 时的常见查询需求并理解场景之后，再对不同的数据结构进行选择就成了理所当然的事情，当然 B+ 树可能无法对所有 OLTP 场景下的查询都有着较好的性能，但是它能够解决大多数的问题。</p>
+<p>我们在这里重新回顾一下 MySQL 默认的存储引擎选择 B+ 树而不是哈希或者 B 树的原因：</p>
+<ul>
+<li>哈希虽然能够提供 <code>O(1)</code> 的单数据行操作性能，但是对于范围查询和排序却无法很好地支持，最终导致全表扫描；</li>
+<li>B 树能够在非叶节点中存储数据，但是这也导致在查询连续数据时可能会带来更多的随机 I/O，而 B+ 树的所有叶节点可以通过指针相互连接，能够减少顺序遍历时产生的额外随机 I/O；</li>
+</ul>
+<p>如果想要追求各方面的极致性能也不是没有可能，只是会带来更高的复杂度，我们可以为一张表同时建 B+ 树和哈希构成的存储结构，这样不同类型的查询就可以选择相对更快的数据结构，但是会导致更新和删除时需要操作多份数据。</p>
+<p>从今天的角度来看，B+ 树可能不是 InnoDB 的最优选择，但是它一定是能够满足当时设计场景的需要，从 B+ 树作为数据库底层的存储结构到今天已经过了几十年的时间，我们不得不说优秀的工程设计确实有足够的生命力。而我们作为工程师，在选择数据库时也应该非常清楚地知道不同数据库适合的场景，因为软件工程中没有银弹。</p>
+<p>到最后，我们还是来看一些比较开放的相关问题，有兴趣的读者可以仔细思考一下下面的问题：</p>
+<ul>
+<li>常用于分析的 OLAP 数据库一般会使用什么样的数据结构存储数据？为什么？</li>
+<li>Redis 是如何对数据进行持久化存储的？常见的数据结构都有什么？</li>
+</ul>
+<blockquote>
+<p>如果对文章中的内容有疑问或者想要了解更多软件工程上一些设计决策背后的原因，可以在博客下面留言，作者会及时回复本文相关的疑问并选择其中合适的主题作为后续的内容。</p>
+</blockquote>
 
   
   
     
     <div class='footer'>
       
-      
-        
       
       
         <div class='copyright'>
@@ -524,7 +566,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/>http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/</a></p>
+                <p>本文永久链接是：<a href=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/>https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/</a></p>
               
             
           </blockquote>
@@ -541,10 +583,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-29T15:42:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-30T17:43:24+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年7月29日</p>
+    <p>更新于：2021年7月30日</p>
   </a>
 </div>
 
@@ -566,7 +608,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/&title=为什么MySQL使用B+树 - Hexo&summary=在具体分析 InnoDB 使用 B+ 树背后的原因之前，我们需要为 B+ 树找几个『假想敌』，因为如果我们只有一个选择，那么选择 B+ 树也并不值得讨论，找到的两个假想敌就是 B 树和哈希，我们就以这两种数据结构为例，分析比较 B+ 树的优点。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/&title=为什么MySQL使用B+树 - Hexo&summary=在具体分析 InnoDB 使用 B+ 树背后的原因之前，我们需要为 B+ 树找几个『假想敌』，因为如果我们只有一个选择，那么选择 B+ 树也并不值得讨论，找到的两个假想敌就是 B 树和哈希，我们就以这两种数据结构为例，分析比较 B+ 树的优点。"
           
           >
           
@@ -578,7 +620,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/&title=为什么MySQL使用B+树 - Hexo&summary=在具体分析 InnoDB 使用 B+ 树背后的原因之前，我们需要为 B+ 树找几个『假想敌』，因为如果我们只有一个选择，那么选择 B+ 树也并不值得讨论，找到的两个假想敌就是 B 树和哈希，我们就以这两种数据结构为例，分析比较 B+ 树的优点。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/&title=为什么MySQL使用B+树 - Hexo&summary=在具体分析 InnoDB 使用 B+ 树背后的原因之前，我们需要为 B+ 树找几个『假想敌』，因为如果我们只有一个选择，那么选择 B+ 树也并不值得讨论，找到的两个假想敌就是 B 树和哈希，我们就以这两种数据结构为例，分析比较 B+ 树的优点。"
           
           >
           
@@ -590,7 +632,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/&title=为什么MySQL使用B+树 - Hexo&summary=在具体分析 InnoDB 使用 B+ 树背后的原因之前，我们需要为 B+ 树找几个『假想敌』，因为如果我们只有一个选择，那么选择 B+ 树也并不值得讨论，找到的两个假想敌就是 B 树和哈希，我们就以这两种数据结构为例，分析比较 B+ 树的优点。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E4%BD%BF%E7%94%A8B+%E6%A0%91/&title=为什么MySQL使用B+树 - Hexo&summary=在具体分析 InnoDB 使用 B+ 树背后的原因之前，我们需要为 B+ 树找几个『假想敌』，因为如果我们只有一个选择，那么选择 B+ 树也并不值得讨论，找到的两个假想敌就是 B 树和哈希，我们就以这两种数据结构为例，分析比较 B+ 树的优点。"
           
           >
           
@@ -620,12 +662,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/08/01/SystemArchitect/%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>第4章 计算机网络</p>
+          <p class='content'>网络架构与协议网络工程网络规划网络设计网络逻辑结构设计网络逻辑结构设计是体现网络设计核心思想的关键阶段，在这一阶段根据需求规范和通信规范，选择一种比较适宜的网络逻辑结构，并基于该逻辑结构实施后续...</p>
+        </a>
+      
       
         <a class='next' href='/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/'>
           <p class='title'>SQL如何使用Concat连接两列数据<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>SQL如何使用Concat连接两列数据方法/步骤concat直接组合多个字段1select concat(name,uid) as name from user
+          <p class='content'>使用concat直接组合多个字段，连接字符串和嵌套使用
 
-concat不仅可以使用字段名...</p>
+
+
+
+方法/步骤concat直接组合多个字段1select concat(name,uid) as name from user
+
+co...</p>
         </a>
       
     </div>
@@ -648,6 +700,59 @@ concat不仅可以使用字段名...</p>
 
 
 
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
 
 </div>
 <aside class='l_side'>
@@ -668,7 +773,7 @@ concat不仅可以使用字段名...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1"><span class="toc-text">设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E6%80%A7%E8%83%BD"><span class="toc-text">读写性能</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E6%80%A7%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">读写性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD"><span class="toc-number">4.</span> <span class="toc-text">数据加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
@@ -1687,7 +1792,7 @@ volantis.pjax.push(()=>{
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1705,7 +1810,7 @@ volantis.pjax.push(()=>{
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1727,7 +1832,7 @@ volantis.pjax.push(()=>{
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'https://alloceee.github.io' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增

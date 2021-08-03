@@ -24,9 +24,11 @@
   
   <title>SQL如何使用Concat连接两列数据 - Hexo</title>
   
-    <meta name="keywords" content="数据库,SQL">
+    <meta name="keywords" content="数据库,MySQL">
   
 
+  
+    <meta name="description" content="使用concat直接组合多个字段，连接字符串和嵌套使用">
   
 
   <!-- feed -->
@@ -410,9 +412,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
             
 <div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
-    <p>请设置文章作者</p>
+  <a class='author' target="_blank" href="https://gameofthrones.fandom.com/wiki/Jon_Snow" rel="nofollow noopener">
+    <img no-lazy src="https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg">
+    <p>Alloceee</p>
   </a>
 </div>
 
@@ -420,6 +422,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="sep"></span><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a>
+    </a>
+  </div>
+
 
           
         
@@ -456,7 +465,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h1 id="SQL如何使用Concat连接两列数据"><a href="#SQL如何使用Concat连接两列数据" class="headerlink" title="SQL如何使用Concat连接两列数据"></a>SQL如何使用Concat连接两列数据</h1><h2 id="方法-步骤"><a href="#方法-步骤" class="headerlink" title="方法/步骤"></a>方法/步骤</h2><h3 id="concat直接组合多个字段"><a href="#concat直接组合多个字段" class="headerlink" title="concat直接组合多个字段"></a>concat直接组合多个字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat(name,uid) <span class="keyword">as</span> name <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+  <p>使用concat直接组合多个字段，连接字符串和嵌套使用</p>
+<span id="more"></span>
+
+
+
+<h2 id="方法-步骤"><a href="#方法-步骤" class="headerlink" title="方法/步骤"></a>方法/步骤</h2><h3 id="concat直接组合多个字段"><a href="#concat直接组合多个字段" class="headerlink" title="concat直接组合多个字段"></a>concat直接组合多个字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat(name,uid) <span class="keyword">as</span> name <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="concat不仅可以使用字段名，也可以使用字符串"><a href="#concat不仅可以使用字段名，也可以使用字符串" class="headerlink" title="concat不仅可以使用字段名，也可以使用字符串"></a>concat不仅可以使用字段名，也可以使用字符串</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat(name,<span class="string">&#x27;~&#x27;</span>,uid) <span class="keyword">as</span> name <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
 
@@ -469,14 +483,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='footer'>
       
       
-        
-  <div class="related_posts">
-    <section class='header'>
-      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
-    </section>
-    <section class='body'>
-      <div class="vlts-rps"><a class="item" href="\2020\07\15\数据库\MySQL\数据库索引模块\" title="数据库索引模块" rel="bookmark "><img src="../%E8%B5%84%E6%96%99/2019073008040666.png" class="lazyload" data-srcset="../%E8%B5%84%E6%96%99/2019073008040666.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">数据库索引模块</span></a><a class="item" href="\2020\07\15\数据库\MySQL\高级SQL\" title="索引的使用和含义" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">索引的使用和含义</span></a><a class="item" href="\2021\07\20\数据库\MySQL\other\为什么禁止使用外键\" title="为什么禁止使用外键" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">为什么禁止使用外键</span></a><a class="item" href="\2021\07\21\SystemArchitect\第10章：设计模式\" title="第10章：设计模式" rel="bookmark "><img src="../../img/683744-20160930102718453-1750189602.png" class="lazyload" data-srcset="../../img/683744-20160930102718453-1750189602.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">第10章：设计模式</span></a></div></section></div>
-      
       
         <div class='copyright'>
           <blockquote>
@@ -487,7 +493,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/>http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/</a></p>
+                <p>本文永久链接是：<a href=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/>https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/</a></p>
               
             
           </blockquote>
@@ -504,10 +510,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-27T09:37:30+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-01T11:35:29+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年7月27日</p>
+    <p>更新于：2021年8月1日</p>
   </a>
 </div>
 
@@ -516,7 +522,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/SQL/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>SQL</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySQL/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>MySQL</p></a></div>
 
 
         
@@ -529,7 +535,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/&title=SQL如何使用Concat连接两列数据 - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/&title=SQL如何使用Concat连接两列数据 - Hexo&summary=使用concat直接组合多个字段，连接字符串和嵌套使用"
           
           >
           
@@ -541,7 +547,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/&title=SQL如何使用Concat连接两列数据 - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/&title=SQL如何使用Concat连接两列数据 - Hexo&summary=使用concat直接组合多个字段，连接字符串和嵌套使用"
           
           >
           
@@ -553,7 +559,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/&title=SQL如何使用Concat连接两列数据 - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://alloceee.github.io/2021/07/27/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/other/concat%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5/&title=SQL如何使用Concat连接两列数据 - Hexo&summary=使用concat直接组合多个字段，连接字符串和嵌套使用"
           
           >
           
@@ -638,7 +644,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-%E6%AD%A5%E9%AA%A4"><span class="toc-text">方法&#x2F;步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#concat%E7%9B%B4%E6%8E%A5%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5"><span class="toc-text">concat直接组合多个字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat%E4%B8%8D%E4%BB%85%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%AD%97%E6%AE%B5%E5%90%8D%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">concat不仅可以使用字段名，也可以使用字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat%E5%B5%8C%E5%A5%97%E4%BD%BF%E7%94%A8"><span class="toc-text">concat嵌套使用</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.</span> <span class="toc-text">方法&#x2F;步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#concat%E7%9B%B4%E6%8E%A5%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5"><span class="toc-number">1.1.</span> <span class="toc-text">concat直接组合多个字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat%E4%B8%8D%E4%BB%85%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%AD%97%E6%AE%B5%E5%90%8D%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.2.</span> <span class="toc-text">concat不仅可以使用字段名，也可以使用字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat%E5%B5%8C%E5%A5%97%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">concat嵌套使用</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -1657,7 +1663,7 @@ volantis.pjax.push(()=>{
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1675,7 +1681,7 @@ volantis.pjax.push(()=>{
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1697,7 +1703,7 @@ volantis.pjax.push(()=>{
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'https://alloceee.github.io' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增
