@@ -333,7 +333,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -479,8 +479,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
-<h2 id="3-软件架构风格"><a href="#3-软件架构风格" class="headerlink" title="3.软件架构风格"></a>3.软件架构风格</h2><p>软件架构设计的一个核心问题是否使用重复的软件架构模式，即能否达到架构级别的软件重用。也就是说，能否在不同的软件系统中，使用同一架构。</p>
+<h2 id="软件架构风格"><a href="#软件架构风格" class="headerlink" title="软件架构风格"></a>软件架构风格</h2><p>软件架构设计的一个核心问题是否使用重复的软件架构模式，即能否达到架构级别的软件重用。也就是说，能否在不同的软件系统中，使用同一架构。</p>
 <p>软件架构风格是描述某一特定应用领域中系统组织方式的惯用模式（idiomatic paradigm），定义了用于描述系统的术语表和一组指导构建系统的规则。</p>
+<p>软件架构风格是指描述特定软件系统组织方式的惯用模式。组织方式描述了系统的组成构件和这些构件的组织方式，惯用模式则反映众多系统共有的结构和语义。<br>从集成开发环境与用户的交互方式看，用户通常采用交互式的方式对脚本语言进行编辑、解释执行与调试。在这种情况下，采用以数据存储为中心的架构风格能够很好地支持交互式数据处理，而管道-过滤器架构风格则对用户的交互式数据处理支持有限。<br>从集成开发环境的扩展性来看，系统核心需求要求实现各种编辑、语法检查、解释执行等多种功能的灵活组织、配置与替换。在这种情况下，采用以数据存储为中心的架构风格，以数据格式解耦各种功能之间的依赖关系，并可以灵活定义功能之间的逻辑顺序。管道-过滤器架构风格同样以数据格式解耦数据处理过程之间的依赖关系，但其在数据处理逻辑关系的灵活定义方面较差。<br>从集成开发环境的数据管理来看，集成开发环境需要支持脚本语言、语法树(用于检查语法错误)、可视化模型、调试信息等多种数据类型，并需要支持数据格式的转换。 以数据存储为中心的架构将数据存储在统一的中心存储器中，中心存储器能够表示多种数据格式，并能够为数据格式转换提供各种支持。管道-过滤器架构风格通常只能支持有限度的数据格式，并且在数据格式转换方面的灵活性较差。</p>
+<p>为了满足需求(2) ，应该采用解释器架构风格。具体来说，需要：①为可视化编程元素及其拖拽关系定义某种语言，并描述其语法与语义；②编写解释器对该语言进行 解释；③生成对应的脚本语言程序。<br>为了满足需求(3) ，应该采用隐式调用架构风格。具体来说，首先需要定义“断点在调试过程中命中”这一事件，并实现当断点命中后的屏幕定位函数。集成开发环境维 护一个事件注册表结构，将该事件与屏幕定位函数关联起来形成注册表中的一个记录项。 在调试过程中，集成开发环境负责监听各种事件，当“断点在调试过程中命中”这一事件发生时，集成开发环境查找事件注册表，找到并调用屏幕定位函数，从而实现脚本语言编辑界面与调试代码的自动定位。</p>
 <h3 id="3-1软件架构风格分类"><a href="#3-1软件架构风格分类" class="headerlink" title="3.1软件架构风格分类"></a>3.1软件架构风格分类</h3><p>（1）设计词汇表是什么？</p>
 <p>（2）构建和连接件的类型是什么？</p>
 <p>（3）可容许的结构模式是什么？</p>
@@ -506,7 +508,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h4 id="主程序-子程序"><a href="#主程序-子程序" class="headerlink" title="主程序/子程序"></a>主程序/子程序</h4><p>主程序/子程序风格是结构化开发时期的经典架构风格。这种风格一般采用单线程控制，把问题划分为若干处理步骤，构件即为主程序和子程序。子程序通常可合成为模块。过程调用作为交互机制，即充当连接件。调用关系具有层次性，其语义逻辑表现为子程序的正确性，取决于它调用的子程序的正确性。</p>
 <h4 id="面向对象风格"><a href="#面向对象风格" class="headerlink" title="面向对象风格"></a>面向对象风格</h4><p>抽象数据类型概念对软件系统有着重要作用，目前软件界已普遍使用面向对象系统。这种风格建立在数据抽象和面向对象的基础上，数据的表示方法和它们的相应操作封装在一个抽象数据类型或对象中。这种风格的构件是对象，或者说是抽象数据类型的实例。对象是一种被称作管理者的构件，因为它负责保持资源的完整性。对象是通过函数和过程的调用来交互的。</p>
 <h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>（1）对象负责维护其表示的完整性；</p>
-<h4 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h4><h2 id="5-面向服务的架构"><a href="#5-面向服务的架构" class="headerlink" title="5.面向服务的架构"></a>5.面向服务的架构</h2><p>SOA是一种在计算环境中设计、开发、部署和管理离散逻辑单元（服务）模型的方法。</p>
+<h4 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h4><h2 id="面向服务的架构"><a href="#面向服务的架构" class="headerlink" title="面向服务的架构"></a>面向服务的架构</h2><p>SOA是一种在计算环境中设计、开发、部署和管理离散逻辑单元（服务）模型的方法。</p>
+<p>本题主要考查考生对基于场景的架构分析方法(Scenarios-based Architecture AnalysisMethod, SAAM)的掌握和理解。SAAM是卡耐基梅隆大学软件工程研究所的Kazman等人于1983年提出的一种非功能质量属性的架构分析方法,是最早形成文档并得到广泛应用的软件架构分析方法。SAAM•的主要输入是问题描述、需求说明和架构描述，其分析过程主要包括场景开发、架构描述、单个场景评估、场景交互和总体评估。</p>
+<h2 id="架构需求与软件质量属性"><a href="#架构需求与软件质量属性" class="headerlink" title="架构需求与软件质量属性"></a>架构需求与软件质量属性</h2><p>对于题干描述：“在并发用户数量为1000人时，用户的交易请求需要在0.5秒内得到响应”，主要与性能这一质量属性相关，实现该属性的常见架构策略包括：增加计算资源、减少计算开销、 引入并发机制、采用资源调度等。“当系统由于软件故障意外崩溃后，需要在0.5小时内恢复正常运行”主要与可用性质量属性相关，通常可采用心跳、Ping/Echo、主动冗余、被动冗余、选举等架构策略实现该属性；“系统应该能够抵挡恶意用户的入侵行为，并进行报警和记录”主要与安全性质量属性相关，通常可采用入侵检测、用户认证、用户授权、追踪审计等架构策略实现该属性。</p>
+<h2 id="功耗控制"><a href="#功耗控制" class="headerlink" title="功耗控制"></a>功耗控制</h2><p>软件设计层面的功耗控制主要可以从一下方面展开：</p>
+<p>1.软硬件协同设计，即软件的设计要与硬件的匹配，考虑硬件因素；</p>
+<p>2.编译优化，采用低功耗优化的编译技术；</p>
+<p>3.减少系统的持续运行时间，可从算法角度进行优化；</p>
+<p>4.用“中断”代替“查询”；</p>
+<p>5.进行电源的有效管理。</p>
 
   
   
@@ -541,10 +551,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-28T17:26:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-12T08:52:09+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年7月28日</p>
+    <p>更新于：2021年8月12日</p>
   </a>
 </div>
 
@@ -687,7 +697,7 @@ CISC（复杂）
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.</span> <span class="toc-text">3.软件架构风格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">3.1软件架构风格分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E6%95%B0%E6%8D%AE%E6%B5%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.2.</span> <span class="toc-text">3.2数据流风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E5%BA%8F%E5%88%97"><span class="toc-number">1.2.1.</span> <span class="toc-text">批处理序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E9%81%93-%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">管道-过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E8%B0%83%E7%94%A8-%E8%BF%94%E5%9B%9E%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.3.</span> <span class="toc-text">3.3调用&#x2F;返回风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F-%E5%AD%90%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">主程序&#x2F;子程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.3.2.</span> <span class="toc-text">面向对象风格</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">特点：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.3.</span> <span class="toc-text">层次结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">5.面向服务的架构</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC"><span class="toc-text">软件架构风格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC%E5%88%86%E7%B1%BB"><span class="toc-text">3.1软件架构风格分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E6%95%B0%E6%8D%AE%E6%B5%81%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.2数据流风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E5%BA%8F%E5%88%97"><span class="toc-text">批处理序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E9%81%93-%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">管道-过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E8%B0%83%E7%94%A8-%E8%BF%94%E5%9B%9E%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.3调用&#x2F;返回风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F-%E5%AD%90%E7%A8%8B%E5%BA%8F"><span class="toc-text">主程序&#x2F;子程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%A3%8E%E6%A0%BC"><span class="toc-text">面向对象风格</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">特点：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-text">层次结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">面向服务的架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%9C%80%E6%B1%82%E4%B8%8E%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7"><span class="toc-text">架构需求与软件质量属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%80%97%E6%8E%A7%E5%88%B6"><span class="toc-text">功耗控制</span></a></li></ol>
     </div>
   </section>
 

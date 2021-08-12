@@ -329,7 +329,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -416,7 +416,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>yarn install //安装package.json里所有包，并将包及它的所有依赖项保存进yarn.lock<br>yarn install –flat //安装一个包的单一版本<br>yarn install –force //强制重新下载所有包<br>yarn install –production //只安装dependencies里的包<br>yarn install –no-lockfile //不读取或生成yarn.lock<br>yarn install –pure-lockfile //不生成yarn.lock<br>添加包（会更新package.json和yarn.lock）：</p>
 <p>yarn add [package] // 在当前的项目中添加一个依赖包，会自动更新到package.json和yarn.lock文件中<br>yarn add [package]@[version] // 安装指定版本，这里指的是主要版本，如果需要精确到小版本，使用-E参数<br>yarn add [package]@[tag] // 安装某个tag（比如beta,next或者latest）<br>//不指定依赖类型默认安装到dependencies里，你也可以指定依赖类型：</p>
 <p>yarn add –dev/-D // 加到 devDependencies<br>yarn add –peer/-P // 加到 peerDependencies<br>yarn add –optional/-O // 加到 optionalDependencies<br>//默认安装包的主要版本里的最新版本，下面两个命令可以指定版本：</p>
-<p>yarn add –exact/-E // 安装包的精确版本。例如yarn add <a href="mailto:&#x66;&#x6f;&#111;&#64;&#49;&#x2e;&#50;&#x2e;&#51;">&#x66;&#x6f;&#111;&#64;&#49;&#x2e;&#50;&#x2e;&#51;</a>会接受1.9.1版，但是yarn add <a href="mailto:&#x66;&#x6f;&#111;&#64;&#49;&#x2e;&#50;&#46;&#51;">&#x66;&#x6f;&#111;&#64;&#49;&#x2e;&#50;&#46;&#51;</a> –exact只会接受1.2.3版<br>yarn add –tilde/-T // 安装包的次要版本里的最新版。例如yarn add <a href="mailto:&#x66;&#x6f;&#x6f;&#64;&#49;&#x2e;&#50;&#46;&#x33;">&#x66;&#x6f;&#x6f;&#64;&#49;&#x2e;&#50;&#46;&#x33;</a> –tilde会接受1.2.9，但不接受1.3.0<br>发布包</p>
+<p>yarn add –exact/-E // 安装包的精确版本。例如yarn add <a href="mailto:&#102;&#111;&#x6f;&#64;&#x31;&#46;&#x32;&#x2e;&#51;">&#102;&#111;&#x6f;&#64;&#x31;&#46;&#x32;&#x2e;&#51;</a>会接受1.9.1版，但是yarn add <a href="mailto:&#x66;&#x6f;&#x6f;&#x40;&#49;&#x2e;&#50;&#x2e;&#51;">&#x66;&#x6f;&#x6f;&#x40;&#49;&#x2e;&#50;&#x2e;&#51;</a> –exact只会接受1.2.3版<br>yarn add –tilde/-T // 安装包的次要版本里的最新版。例如yarn add <a href="mailto:&#x66;&#111;&#111;&#x40;&#x31;&#46;&#50;&#46;&#x33;">&#x66;&#111;&#111;&#x40;&#x31;&#46;&#50;&#46;&#x33;</a> –tilde会接受1.2.9，但不接受1.3.0<br>发布包</p>
 <p>yarn publish<br>移除一个包</p>
 <p>yarn remove <packageName>：移除一个包，会自动更新package.json和yarn.lock<br>更新一个依赖</p>
 <p>yarn upgrade 用于更新包到基于规范范围的最新版本<br>运行脚本</p>
@@ -550,12 +550,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         </a>
       
       
-        <a class='next' href='/2021/07/20/%E5%A4%A7%E5%89%8D%E7%AB%AF/other/vue-%E5%8A%A8%E6%80%81%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8Dpx%E8%BD%AC%E5%8C%96%E4%B8%BArem/'>
+        <a class='next' href='/2021/07/20/%E5%A4%A7%E5%89%8D%E7%AB%AF/other/requestIdleCallback%E5%92%8CrequestAnimationFrame%E8%AF%A6%E8%A7%A3/'>
           <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>下载依赖1npm install postcss-pxtorem -D
-
-
-新建一个rem.js的文件，在main.js中引用。12345678910111213141516// 基准大小con...</p>
+          <p class='content'>页面流畅与 FPS页面是一帧一帧绘制出来的，当每秒绘制的帧数（FPS）达到 60时，页面是流畅的，小于这个值时，用户会感觉到卡顿。
+1s 60帧，所以每一帧分到的时间是 1000/60 ≈ 16...</p>
         </a>
       
     </div>
@@ -598,7 +596,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#npm-%E4%B8%8E-yarn%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E6%AF%94%E8%BE%83"><span class="toc-number">1.</span> <span class="toc-text">npm 与 yarn相关问题比较:</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#npm-%E4%B8%8E-yarn%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E6%AF%94%E8%BE%83"><span class="toc-text">npm 与 yarn相关问题比较:</span></a></li></ol>
     </div>
   </section>
 

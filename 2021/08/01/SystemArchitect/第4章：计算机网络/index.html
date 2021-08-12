@@ -331,7 +331,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -423,7 +423,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a><span class="sep"></span><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+      <a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a>
     </a>
   </div>
 
@@ -463,7 +463,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h2 id="网络架构与协议"><a href="#网络架构与协议" class="headerlink" title="网络架构与协议"></a>网络架构与协议</h2><h2 id="网络工程"><a href="#网络工程" class="headerlink" title="网络工程"></a>网络工程</h2><h3 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h3><h3 id="网络设计"><a href="#网络设计" class="headerlink" title="网络设计"></a>网络设计</h3><h4 id="网络逻辑结构设计"><a href="#网络逻辑结构设计" class="headerlink" title="网络逻辑结构设计"></a>网络逻辑结构设计</h4><p>网络逻辑结构设计是体现网络设计核心思想的关键阶段，在这一阶段根据需求规范和通信规范，选择一种比较适宜的网络逻辑结构，并基于该逻辑结构实施后续的资源分配规划、安全规划等内容。</p>
+  <h2 id="网络架构与协议"><a href="#网络架构与协议" class="headerlink" title="网络架构与协议"></a>网络架构与协议</h2><h3 id="三层模型"><a href="#三层模型" class="headerlink" title="三层模型"></a>三层模型</h3><p>三层模型主要将网路划分为<strong>核心层、汇聚层和接入层</strong>。每一层都有着特定的作用：</p>
+<h4 id="核心层"><a href="#核心层" class="headerlink" title="核心层"></a>核心层</h4><p>提供不同区域或者下层的告诉连接和最优传递路径；</p>
+<p>核心层是互联网络的高速骨干，由于其重要性，因此在设计中应该采用冗余组件设计，使其具备高可靠性，能快速适应变化。在设计核心层设备的功能时，应尽量避免使用数据包过滤、策略路由等降低数据包转发处理的特性，以优化核心层获得低延迟和良好的可管理性。</p>
+<p>核心层应具有有限的和一致的范围，如果核心层覆盖的范围过大，连接的设备过多，必然引起网络的复杂度加大，导致网络管理性降低；同时，如果核心层覆盖的范围不一致，必然导致大量处理不一致情况的功能都在核心层网络设备中实现，会降低核心网络设备的性能。</p>
+<p>对于那些需要连接因特网和外部网络的网络工程来说，核心层应包括一条或多条连接到外部网络的链接，这样可以实现外部连接的可管理性和高效性。</p>
+<h4 id="汇聚层"><a href="#汇聚层" class="headerlink" title="汇聚层"></a>汇聚层</h4><p>将网络业务连接到接入层，并且实施与安全、流量负载和路由相关的策略；</p>
+<h4 id="接入层"><a href="#接入层" class="headerlink" title="接入层"></a>接入层</h4><p>为局域网接入广域网或者终端用户访问网络提供接入；</p>
+<h2 id="网络生命周期"><a href="#网络生命周期" class="headerlink" title="网络生命周期"></a>网络生命周期</h2><p>网络的生命周期至少包括网络系统的构思计划、分析设计、实时运行和维护的过程。对于大多数网络系统来说，由于应用的不断发展，这些网络系统需要不断重复设计、实施、维护的过程。</p>
+<p><strong>网络逻辑结构设计</strong>是体现网络色剂核心思想的关键阶段，在这一阶段根据需求规范和通信规范，选择一种比较事宜的网络逻辑结构，并基于该逻辑结构实施后续的资源分配规划、安全规划等内容。</p>
+<h2 id="网络工程"><a href="#网络工程" class="headerlink" title="网络工程"></a>网络工程</h2><h3 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h3><h3 id="网络设计"><a href="#网络设计" class="headerlink" title="网络设计"></a>网络设计</h3><h4 id="网络逻辑结构设计"><a href="#网络逻辑结构设计" class="headerlink" title="网络逻辑结构设计"></a>网络逻辑结构设计</h4><p>网络逻辑结构设计是体现网络设计核心思想的关键阶段，在这一阶段根据需求规范和通信规范，选择一种比较适宜的网络逻辑结构，并基于该逻辑结构实施后续的资源分配规划、安全规划等内容。</p>
 <p>在逻辑网络设计阶段，需要描述满足用户需求的网络行为及性能，详细说明数据是如何在网络上传输的，此阶段不涉及网络元素的具体物理位置。网络设计者利用需求分析和现有网络体系分析的结果来设计逻辑网络结构。如果现有的软件、硬件不能满足新网络的需求，现有系统就必须升级。如果现有系统能继续运行使用，可以将它们集成到新设计中来。如果不集成旧系统，网络设计小组可以找一个新系统，对它进行测试，确定是否符合用户的需求。</p>
 <p>此阶段最后应该得到一份逻辑网络设计文档。</p>
 <h4 id="网络物理结构设计"><a href="#网络物理结构设计" class="headerlink" title="网络物理结构设计"></a>网络物理结构设计</h4><p>物理网络设计是对逻辑网络设计的物理实现，通过对设备的具体物理分布、运行环境等的确定，确保网络的物理连接符合逻辑连接的要求。在这一阶段，网络设计者需要确定具体的软硬件、连接设备、布线和服务。</p>
@@ -483,6 +492,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>递归查询的查询方式为：当用户发出查询请求时，本地服务器要进行递归查询。这种查询方式要求服务器彻底地进行名字，并返回最后的结果——IP地址或错误信息。如果查询请求在本地服务器中不能完成，那么服务器就根据它的配置向域名树中的上级服务器进行查询，在最坏的情况下可能要查询到根服务器。每次查询返回的结果如果是其他名字服务器的IP地址，则本地服务器要把查询请求发送给这些服务器，故进一步的查询。</p>
 <p>迭代查询的查询方式为：服务器与服务器之间的查询采用迭代的方式进行，发出查询请求的服务器得到的响应可能不是目标的IP地址，而是其他服务器的引用（名字和地址），那么本地服务器就要访问被引用的服务器，做进一步的查询。如此反复多次，每次都要接近目标的授权服务器，直至到最后的结果——目标的IP地址或错误信息。</p>
 <p>根域名服务器为众多请求提供域名，若采用递归方式会大大影响性能。</p>
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>如果发送给DHCP客户端的地址已经被其他DHCP客户端使用，客户端会向服务器发送<strong>DhcpDecline</strong>信息包拒绝接受已经分配的地址信息。</p>
+<p>DHCPDecline: DHCP客户端收到DHCP服务器回应的ACK报文后，通过地址冲突检测发现服务器分配的地址冲突或者由于其他原因导致不能使用，则发送Decline报文，通知服务器所分配的IP地址不可用。</p>
+<h2 id="开放式数据存储系统"><a href="#开放式数据存储系统" class="headerlink" title="开放式数据存储系统"></a>开放式数据存储系统</h2><p>开放式数据存储系统，要求采用专用网络连接并管理存储设备和存储管理子系统。针对这种应用，采用SAN存储方式最为合适。</p>
+<p><strong>直连式存储（Direct-Attached Storage，DAS）</strong>在服务器上外挂了一组大容量硬盘，存储设备与服务器上外挂了一组大容量硬盘，存储设备与服务器主机之间采用SCSI通道连接，带宽为IOMB/s，20MB/s，40MB/s和80MB/s等。直连式存储直接将存储设备连接到服务器上，这种方法难以扩展存储容量，并且不支持数据容错功能，当服务器出现异常时会造成数据丢失。</p>
+<p><strong>网络接入存储（Network Attached Storage，NAS）</strong>是将存储设备连接到现有的网络上，提供数据存储和文件访问服务的设备。NAS服务器是在专用主机上安装简化了的瘦操作系统（只具有访问权限控制、数据保护和恢复等功能）的文件服务器。NAS服务器内置了与网络连接所需要的协议，可以直接联网，具有权限的用户都可以通过网络访问NAS服务器中的文件。</p>
+<p><strong>存储区域网络（Storage Area Network，SAN）</strong>是一种连接存储设备和存储管理子系统的专用网络，专门提供数据存储和管理功能。SAN可以被看作是负责数据传输的后端网络，而前端网络（或称为数据网络）则负责正常的TCP/IP传输。也可以把SAN看作是通过特定的互连方式连接的若干台存储服务器组成的单独的数据网络，提供企业级的数据存储服务。</p>
 
   
   
@@ -517,10 +532,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-02T11:37:29+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-10T11:07:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年8月2日</p>
+    <p>更新于：2021年8月10日</p>
   </a>
 </div>
 
@@ -648,7 +663,7 @@ ES通常会和其他两个开源...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">网络架构与协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">网络工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92"><span class="toc-number">2.1.</span> <span class="toc-text">网络规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.</span> <span class="toc-text">网络设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.1.</span> <span class="toc-text">网络逻辑结构设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.2.</span> <span class="toc-text">网络物理结构设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.3.</span> <span class="toc-text">分层设计</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%8D%8F%E8%AE%AE"><span class="toc-text">网络架构与协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-text">三层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%B1%82"><span class="toc-text">核心层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E8%81%9A%E5%B1%82"><span class="toc-text">汇聚层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E5%B1%82"><span class="toc-text">接入层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">网络生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B"><span class="toc-text">网络工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92"><span class="toc-text">网络规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1"><span class="toc-text">网络设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">网络逻辑结构设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">网络物理结构设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1"><span class="toc-text">分层设计</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DHCP"><span class="toc-text">DHCP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F"><span class="toc-text">开放式数据存储系统</span></a></li></ol>
     </div>
   </section>
 

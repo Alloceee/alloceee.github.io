@@ -333,7 +333,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -409,15 +409,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-Ping/">
-        Ping命令的使用
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/10-React%20Navive%E5%88%9D%E8%AF%86/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        一、概览对于 ping 命令，想必只要是程序员都知道吧？当我们检查网络情况的时候，最先使用的命令肯定是 ping 命令吧？一般我们用 ping 查看网络情况，主要是检查两个指标，第一个是看看是不是超时，第二个看看是不是延迟太高。如果超时那么肯定是网络有问题啦（禁 ping 情况除外），如果延迟太高，网络情况肯定也是很糟糕的。那么对于 ping 命令的原理，ping 是如何检查网络的？大家之前...
+        搭建开发环境官方文档：https://reactnative.cn/docs/getting-started.html
+安装Node、homebrew、Watchman安装 homebrew：
+1
+
+安装 watchman：
+1brew install watchman
+
+
+Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装此工具可以提高开发时的性能（package...
       
     
   </div>
@@ -428,12 +436,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-Ping/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/10-React%20Navive%E5%88%9D%E8%AF%86/'>
             阅读全文
           </a>
         </div>
@@ -455,50 +463,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
-        TCP的三次握手和四次挥手
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/09-AntD%E6%A1%86%E6%9E%B6%E7%9A%84upload%E7%BB%84%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        TCP的三次握手和四次挥手两个序号和三个标志位
-
-
-
-
-
-
-
-
-
-seq
-表示所传数据的序号
-TCP传输时每一个字节都有一个序号，发送数据时会将数据的第一个序号发送给对方，接收方会按序号检查是否接受完整了，如果没有接受完整就需要重新传送，这样就可以保证数据的完整性。
-
-
-ack
-表示确认号
-
-
-
-ACK
-确认位
-
-
-
-SYN
-同步位
-
-
-
-FIN
-终止位
-用来在数据传输完毕后释放连接
-
-
-创...
+        前言本次做后台管理系统，采用的是 AntD 框架。涉及到图片的上传，用的是AntD的 upload 组件。
+前端做文件上传这个功能，是很有技术难度的。既然框架给我们提供好了，那就直接用呗。结果用的时候，发现 upload 组件的很多bug。下面来列举几个。
+备注：本文写于2019-03-02，使用的 antd 版本是 3.13.6。
+使用 AntD 的 upload 组件做图片的上传因为需要...
       
     
   </div>
@@ -509,12 +485,12 @@ FIN
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/09-AntD%E6%A1%86%E6%9E%B6%E7%9A%84upload%E7%BB%84%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/'>
             阅读全文
           </a>
         </div>
@@ -536,16 +512,25 @@ FIN
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-WebSocket/">
-        WebSocket的介绍和使用
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/08-Ant%20Design%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        WebSocket介绍WebSocket协议RFC 6455提供了一种标准化方法，可通过单个TCP连接在客户端和服务器之间建立全双工双向通信通道。它来自HTTP的不同TCP协议，但设计为使用端口80和443通过HTTP工作，并允许重用现有的防火墙规则。运行在TLS之上时，默认使用443端口。
-WebSocket使客户端和服务器之间的数据交换变得更加简单，允许服务器主动向客户端推送数据。在We...
+        andt 的介绍Ant Design 是基于 React 实现，开发和服务于企业级后台产品。
+支持环境
+现代浏览器和 IE9 及以上（需要 polyfills）。
+
+支持服务端渲染。
+
+Electron
+
+
+Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允许使用Node.js（作为后端）和Chromium（作为前端）完成桌面GUI应用程序的开发。
+很多客...
       
     
   </div>
@@ -556,12 +541,12 @@ WebSocket使客户端和服务器之间的数据交换变得更加简单，允�
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-WebSocket/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/08-Ant%20Design%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
             阅读全文
           </a>
         </div>
@@ -583,19 +568,20 @@ WebSocket使客户端和服务器之间的数据交换变得更加简单，允�
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/">
-        JS原型和原型链
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/07-React%E8%B7%AF%E7%94%B1%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        js的原型和原型链构造函数创建对象：
-123456function Person() &#123;&#125;var person = new Person();person.name = &#x27;Kevin&#x27;;console.log(person.name) // Kevin
+        React路由的使用使用React路由之前，我们需要先安装 react-router-dom这个包。比如：
+1yarn add react-router-dom
 
-Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person
-prototy...
+代码举例：
+（1）index.html
+1234567891011121314151617&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;  &lt...
       
     
   </div>
@@ -606,12 +592,12 @@ prototy...
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/07-React%E8%B7%AF%E7%94%B1%E7%9A%84%E4%BD%BF%E7%94%A8/'>
             阅读全文
           </a>
         </div>
@@ -633,15 +619,18 @@ prototy...
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/Javascript-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/">
-        JavaScript-常用功能
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/06-React%E7%9A%84%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        一键复制clipboard.min.js123456789101112131、引入clipboard.min.js2、&lt;button class=&quot;copyBtn&quot; data-clipboard-text=&quot;&quot; data-clipboard-action=&quot;copy&quot;&gt;点击复制&lt;/button&gt;3、$(&qu...
+        单项数据绑定在 Vue 中，可以通过 v-model 指令来实现双向数据绑定。但是，在 React 中并没有指令的概念，而且 React 默认不支持 双向数据绑定。
+React 只支持，把数据从 state 上传输到 页面，但是，无法自动实现数据从 页面 传输到 state 中 进行保存。
+React中，只支持单项数据绑定，不支持双向数据绑定。不信的话，我们来看下面这个例子：
+1234567...
       
     
   </div>
@@ -652,12 +641,12 @@ prototy...
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/Javascript-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/06-React%E7%9A%84%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/'>
             阅读全文
           </a>
         </div>
@@ -684,7 +673,7 @@ prototy...
           </a>
         
         <p class="current">
-          15 / 17
+          15 / 74
         </p>
         
           <a class="next" rel="next" href="/page/16/">
@@ -793,39 +782,69 @@ prototy...
             ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/HTTP/" href="/categories/HTTP/"
+            id="categoriesHTTP"
+            ><div class='name'>HTTP</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Vue/" href="/categories/Vue/"
+            id="categoriesVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/WebSocket/" href="/categories/WebSocket/"
+            id="categoriesWebSocket"
+            ><div class='name'>WebSocket</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/web/" href="/categories/web/"
+            id="categoriesweb"
+            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
+            id="categorieswebJavaScript"
+            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/css/" href="/categories/web/css/"
+            id="categorieswebcss"
+            ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(7)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"
             id="categoriesE695B0E68DAEE5BA93MySQL"
-            ><div class='name'>MySQL</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>MySQL</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/"
             id="categoriesE695B0E68DAEE5BA93Redis"
-            ><div class='name'>Redis</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/"
             id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888"
-            ><div class='name'>系统架构师</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>系统架构师</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88B"
+            ><div class='name'>网络编程</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/NIO/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/NIO/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88BNIO"
+            ><div class='name'>NIO</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E695B0E68DAEE5BA93E7B3BBE7BB9F"
-            ><div class='name'>数据库系统</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(1)</div></a></li>
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88BNetty"
+            ><div class='name'>Netty</div><div class='badge'>(2)</div></a></li>
         
       </ul>
     </div>
@@ -849,10 +868,138 @@ prototy...
 
 
     <div class='content'>
-      <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 16px; color: #8b8b8b">HTTP和HTTPS</a> <a href="/tags/JavaScript/" style="font-size: 16px; color: #8b8b8b">JavaScript</a> <a href="/tags/MySQL/" style="font-size: 18px; color: #7e7e7e">MySQL</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 14px; color: #999">前端</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px; color: #707070">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" style="font-size: 14px; color: #999">数据挖掘</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 14px; color: #999">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 16px; color: #8b8b8b">消息中间件</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 22px; color: #636363">计算机网络</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 22.57px; color: #5f5f5f">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
+
+  
+
+  
+    
+    
+
+<section class="widget shadow desktop">
+  
+  <header>
+    
+      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>369 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2020/01/01'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>778.7k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Thu Aug 12 2021 09:54:25 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-12 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
 
   
 

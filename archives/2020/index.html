@@ -331,7 +331,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -430,7 +430,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        一、Redis雪崩、穿透、并发等5大难题解决方案缓存雪崩数据未加载到缓存中，或者缓存同一时间大面积的失效，从而导致所有请求都去查数据库，导致数据库CPU和内存负载过高，甚至宕机。
+        Redis雪崩、穿透、并发等5大难题解决方案缓存雪崩数据未加载到缓存中，或者缓存同一时间大面积的失效，从而导致所有请求都去查数据库，导致数据库CPU和内存负载过高，甚至宕机。
 雪崩的简单过程：
 
 redis集群大面积故障
@@ -441,7 +441,7 @@ redis大量失效后，大量请求转向到mysql数据库
 
 mysql的调用量暴增，很快就扛不住了，甚至直接宕机
 
-由于...
+由于大量...
       
     
   </div>
@@ -450,9 +450,12 @@ mysql的调用量暴增，很快就扛不住了，甚至直接宕机
       <div>
         
           
-          <a class='avatar' href='/'><img src=''></a>
+          <a class='avatar' target="_blank" rel="noopener" href='https://gameofthrones.fandom.com/wiki/Jon_Snow'><img src='https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg'></a>
         
         <time>2020-12-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="sep"></span><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">Redis</a>
         
       </div>
       
@@ -479,41 +482,20 @@ mysql的调用量暴增，很快就扛不住了，甚至直接宕机
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/">
-        HTTP常用的14种状态码
+      <a href="/2020/10/21/%E5%88%86%E5%B8%83%E5%BC%8F/%E4%B8%89%E5%8D%83%E5%AD%97Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E6%80%BB%E7%BB%93/">
+        三千字Apollo配置中心总结
       </a>
     </h2>
   
   <div class='md'>
     
       
-          状态码的职责是当客户端向服务器发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求还是出现了错误。
-状态码的类别：
+        思维导图
 
+文章已收录Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
 
-
-
-类别
-原因
-
-
-
-1XX
-Informational（信息性状态码）
-接受的请求正在处理
-
-
-2XX
-Success（成功状态码）
-请求正常处理完毕
-
-
-3XX
-Redirection（重定向状态码）
-需要进行附加操作以完成请求
-
-
-4X...
+一、概述Apollo（阿波罗）是携程框架部门研发的开源配置管理中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性。
+目前Apollo在github有22.6k颗星，在官网登记的使用的...
       
     
   </div>
@@ -524,12 +506,12 @@ Redirection（重定向状态码）
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-30</time>
+        <time>2020-10-21</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/'>
+          <a class='readmore' href='/2020/10/21/%E5%88%86%E5%B8%83%E5%BC%8F/%E4%B8%89%E5%8D%83%E5%AD%97Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E6%80%BB%E7%BB%93/'>
             阅读全文
           </a>
         </div>
@@ -551,25 +533,21 @@ Redirection（重定向状态码）
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%92%8CHTTPS%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        HTTP和HTTPS的区别
+      <a href="/2020/08/11/Algorithm/%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E4%B8%8E%E5%AE%9A%E4%BD%8D/">
+        经典面试题：环形链表的判断与定位
       </a>
     </h2>
   
   <div class='md'>
     
       
-        HTTP和HTTPS的区别HTTP明文传输，不安全
-数据容易被拦截、篡改和攻击
-HTTPS数据加密
-身份验证
-数据完整性
-对称加密对称加密就是一个密钥，可以加密也可以解密
-非对称加密非对称加密就是公钥加密，必须用私钥才能解密，私钥加密的内容，必须用公钥才能解密
-HTTPS
-请求HTTPS连接获取证书（公钥）
-客户端给服务器发送（对称加密&lt;公钥&gt;）：随机数 的密文
-客户端同时给服务...
+        今天这篇文章要讲解的题目是「环形链表」的两道题目：
+
+LeetCode 141. Linked List Cycle（Easy）
+LeetCode 142. Linked List Cycle II（Medium）
+
+两道题目都分别有「哈希表」的朴素解法，以及「双指针」的巧妙解法。非常适合大家掌握面试中的答题思路。想顺利通过面试的同学，不要错过这篇文章哟。
+判断链表是否有环链表是线性结构，怎...
       
     
   </div>
@@ -580,12 +558,12 @@ HTTPS
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2020-08-11</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%92%8CHTTPS%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/08/11/Algorithm/%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E4%B8%8E%E5%AE%9A%E4%BD%8D/'>
             阅读全文
           </a>
         </div>
@@ -607,30 +585,17 @@ HTTPS
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-ElasticSearch/">
-        ElasticSearch的使用
+      <a href="/2020/08/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/">
+        RabbitMQ如何防止消息丢失
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        ElasticSearchWindows下安装elasticsearch在安装Elasticsearch引擎之前，必须安装ES需要的软件环境
-注意：安装elasticsearch7.4运行需要jdk11及以上
-elasticsearch与jdk有依赖关系
-
-下载地址
-
-配置环境变量
-
-
-
-
-测试运行
-
-点击/bin目录下的elasticsearch.bat开始安装
-安装elasticsear...
-      
+      <h1 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h1><p><img src="https://img-blog.csdnimg.cn/20200802232920896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3llaG9uZ3poaTE5OTQ=,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20200802232920896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3llaG9uZ3poaTE5OTQ=,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述"></p>
+<h1 id="一、分析数据丢失的原因"><a href="#一、分析数据丢失的原因" class="headerlink" title="一、分析数据丢失的原因"></a>一、分析数据丢失的原因</h1><p>分析RabbitMQ消息丢失的情况，不妨先看看一条消息从生产者发送到消费者消费的过程：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAyMC83LzI4LzE3Mzk1Yzc2OTVkMDE5MjE?x-oss-process=image/format,png" class="lazyload" data-srcset="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAyMC83LzI4LzE3Mzk1Yzc2OTVkMDE5MjE?x-oss-process=image/format,png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>可以看出，一条消息整个过程要经历两次的网络传输：<strong>从生产者发送到RabbitMQ服务器，从RabbitMQ服务器发送到消费者</strong>。</p>
     
   </div>
   
@@ -640,12 +605,12 @@ elasticsearch与jdk有依赖关系
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2020-08-08</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-ElasticSearch/'>
+          <a class='readmore' href='/2020/08/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/'>
             阅读全文
           </a>
         </div>
@@ -667,18 +632,16 @@ elasticsearch与jdk有依赖关系
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTPS/">
-        HTTPS
+      <a href="/2020/08/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ%E5%85%A5%E9%97%A8/">
+        RabbitMQ入门
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        下面我们来一起学习一下 HTTPS ，首先问你一个问题，为什么有了 HTTP 之后，还需要有 HTTPS ？我突然有个想法，为什么我们面试的时候需要回答标准答案呢？为什么我们不说出我们自己的想法和见解，却要记住一些所谓的标准回答呢？技术还有正确与否吗？
-HTTPS 为什么会出现一个新技术的出现必定是为了解决某种问题的，那么 HTTPS 解决了 HTTP 的什么问题呢？
-HTTPS 解决了什么...
-      
+      <h1 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h1><p><img src="https://user-gold-cdn.xitu.io/2020/7/26/17389a94030dbf28?w=729&h=515&f=png&s=44034" class="lazyload" data-srcset="https://user-gold-cdn.xitu.io/2020/7/26/17389a94030dbf28?w=729&h=515&f=png&s=44034" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<h1 id="一、什么是消息队列"><a href="#一、什么是消息队列" class="headerlink" title="一、什么是消息队列"></a>一、什么是消息队列</h1><p><strong>消息</strong>指的是两个应用间传递的数据。数据的类型有很多种形式，可能只包含文本字符串，也可能包含嵌入对象。</p>
+<p><strong>“消息队列(Message Queue)”是在消息的传输过程中保存消息的容器</strong>。在消息队列中，通常有生产者和消费者两个角色。生产者只负责发送数据到消息队列，谁从消息队列中取出数据处理，他不管。消费者只负责从消息队列中取出数据处理，他不管这是谁发送的数据。</p>
     
   </div>
   
@@ -688,12 +651,12 @@ HTTPS 解决了什么...
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2020-08-08</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTPS/'>
+          <a class='readmore' href='/2020/08/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ%E5%85%A5%E9%97%A8/'>
             阅读全文
           </a>
         </div>
@@ -714,7 +677,7 @@ HTTPS 解决了什么...
       <div class="prev-next">
         
         <p class="current">
-          1 / 4
+          1 / 11
         </p>
         
           <a class="next" rel="next" href="/archives/2020/page/2/">
@@ -824,39 +787,69 @@ HTTPS 解决了什么...
             ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/HTTP/" href="/categories/HTTP/"
+            id="categoriesHTTP"
+            ><div class='name'>HTTP</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Vue/" href="/categories/Vue/"
+            id="categoriesVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/WebSocket/" href="/categories/WebSocket/"
+            id="categoriesWebSocket"
+            ><div class='name'>WebSocket</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/web/" href="/categories/web/"
+            id="categoriesweb"
+            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
+            id="categorieswebJavaScript"
+            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/css/" href="/categories/web/css/"
+            id="categorieswebcss"
+            ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(7)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"
             id="categoriesE695B0E68DAEE5BA93MySQL"
-            ><div class='name'>MySQL</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>MySQL</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/"
             id="categoriesE695B0E68DAEE5BA93Redis"
-            ><div class='name'>Redis</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/"
             id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888"
-            ><div class='name'>系统架构师</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>系统架构师</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88B"
+            ><div class='name'>网络编程</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/NIO/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/NIO/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88BNIO"
+            ><div class='name'>NIO</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E695B0E68DAEE5BA93E7B3BBE7BB9F"
-            ><div class='name'>数据库系统</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(1)</div></a></li>
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88BNetty"
+            ><div class='name'>Netty</div><div class='badge'>(2)</div></a></li>
         
       </ul>
     </div>
@@ -880,10 +873,138 @@ HTTPS 解决了什么...
 
 
     <div class='content'>
-      <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 16px; color: #8b8b8b">HTTP和HTTPS</a> <a href="/tags/JavaScript/" style="font-size: 16px; color: #8b8b8b">JavaScript</a> <a href="/tags/MySQL/" style="font-size: 18px; color: #7e7e7e">MySQL</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 14px; color: #999">前端</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px; color: #707070">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" style="font-size: 14px; color: #999">数据挖掘</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 14px; color: #999">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 16px; color: #8b8b8b">消息中间件</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 22px; color: #636363">计算机网络</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 22.57px; color: #5f5f5f">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
+
+  
+
+  
+    
+    
+
+<section class="widget shadow desktop">
+  
+  <header>
+    
+      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>369 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2020/01/01'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>778.7k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Thu Aug 12 2021 09:53:35 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-12 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
 
   
 

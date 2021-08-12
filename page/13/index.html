@@ -333,7 +333,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -409,15 +409,34 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/20/%E5%A4%A7%E5%89%8D%E7%AB%AF/css3/@media%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">
-        2021年7月20日
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/08-%E7%AE%97%E6%B3%95%E9%97%AE%E9%A2%98/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        12345678910111213141516/* 小屏适配 */@media screen and (max-width: 995px) &#123;    .layui-layout-admin .layui-body&#123;        left: 0;        padding-left: 0;    &#125;    .layui-layout-admin .layui...
+        前言算法主要包括：
+
+1、排序
+
+排序一定要准备。
+
+2、堆栈、队列、链表
+
+队列和链表可以不准备，但是堆栈一定要准备。
+一个小技巧：JS的数组本身就具备堆栈和队列的特性。比如：top、push、shift、unshift这四个api，本身就帮我们实现了堆栈和队列。
+堆栈：先进后出。
+
+3、递归
+
+递归是一定不能偷懒的。算法比较难的时候，一般要用到递归。
+
+4、波兰式和逆波兰式
+
+总结：
+比...
       
     
   </div>
@@ -428,12 +447,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2021-07-20</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/20/%E5%A4%A7%E5%89%8D%E7%AB%AF/css3/@media%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/08-%E7%AE%97%E6%B3%95%E9%97%AE%E9%A2%98/'>
             阅读全文
           </a>
         </div>
@@ -455,26 +474,34 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/19/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-        Redis常见问题
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/07-%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        一、Redis雪崩、穿透、并发等5大难题解决方案缓存雪崩数据未加载到缓存中，或者缓存同一时间大面积的失效，从而导致所有请求都去查数据库，导致数据库CPU和内存负载过高，甚至宕机。
-雪崩的简单过程：
+        前言面试中的安全问题，明确来说，就两个方面：
 
-redis集群大面积故障
+CSRF：基本概念、攻击方式、防御措施
 
-缓存失效，但依然大量请求访问缓存服务redis
+XSS：基本概念、攻击方式、防御措施
 
-redis大量失效后，大量请求转向到mysql数据库
 
-mysql的调用量暴增，很快就扛不住了，甚至直接宕机
+这两个问题，一般不会问太难。
+有人问：SQL注入算吗？答案：这个其实跟前端的关系不是很大。
+CSRF问的不难，一般问：
 
-由于...
+CSRF的基本概念、缩写、全称
+
+攻击原理
+
+防御措施
+
+
+如果把攻击原理和防御措施掌握好，基本没什么问题。
+1、CSRF的基本概念、缩写、...
       
     
   </div>
@@ -485,12 +512,12 @@ mysql的调用量暴增，很快就扛不住了，甚至直接宕机
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-12-19</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/19/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%B9%B6%E5%8F%91%E7%AD%895%E5%A4%A7%E9%9A%BE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/07-%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS/'>
             阅读全文
           </a>
         </div>
@@ -512,41 +539,30 @@ mysql的调用量暴增，很快就扛不住了，甚至直接宕机
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/">
-        HTTP常用的14种状态码
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/06-%E8%B7%A8%E5%9F%9F%E9%80%9A%E4%BF%A1%E7%B1%BB/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-          状态码的职责是当客户端向服务器发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求还是出现了错误。
-状态码的类别：
+        
+本文最初发表于博客园，并在GitHub上持续更新前端的系列文章。欢迎在GitHub上关注我，一起入门和进阶前端。
 
 
+以下是正文。
 
+前言从本章起，对代码的要求没之前那么高了，但是，要求你对知识面的掌握要足够宽。
+前端通信类的问题，主要包括以下内容：
 
-类别
-原因
+1、什么是同源策略及限制
 
+同源策略是一个概念，就一句话。有什么限制，就三句话。能说出来即可。
 
+2、前后端如何通信
 
-1XX
-Informational（信息性状态码）
-接受的请求正在处理
-
-
-2XX
-Success（成功状态码）
-请求正常处理完毕
-
-
-3XX
-Redirection（重定向状态码）
-需要进行附加操作以完成请求
-
-
-4X...
+如果你不准备，估计...
       
     
   </div>
@@ -557,12 +573,12 @@ Redirection（重定向状态码）
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-30</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/06-%E8%B7%A8%E5%9F%9F%E9%80%9A%E4%BF%A1%E7%B1%BB/'>
             阅读全文
           </a>
         </div>
@@ -584,25 +600,32 @@ Redirection（重定向状态码）
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%92%8CHTTPS%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        HTTP和HTTPS的区别
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        HTTP和HTTPS的区别HTTP明文传输，不安全
-数据容易被拦截、篡改和攻击
-HTTPS数据加密
-身份验证
-数据完整性
-对称加密对称加密就是一个密钥，可以加密也可以解密
-非对称加密非对称加密就是公钥加密，必须用私钥才能解密，私钥加密的内容，必须用公钥才能解密
-HTTPS
-请求HTTPS连接获取证书（公钥）
-客户端给服务器发送（对称加密&lt;公钥&gt;）：随机数 的密文
-客户端同时给服务...
+        前言类与实例：
+
+类的声明
+
+生成实例
+
+
+类与继承：
+
+如何实现继承：继承的本质就是原型链
+
+继承的几种方式
+
+
+类的定义、实例化类的定义/类的声明方式一：用构造函数模拟类（传统写法）
+123function Animal1() &#123;    this.name = &#x27;smyhvae&#x27;; //通过this，表明这是一个构造函数&#125;
+
+方式二：用 class...
       
     
   </div>
@@ -613,12 +636,12 @@ HTTPS
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%92%8CHTTPS%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/'>
             阅读全文
           </a>
         </div>
@@ -640,29 +663,34 @@ HTTPS
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-ElasticSearch/">
-        ElasticSearch的使用
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+        2021年8月6日
       </a>
     </h2>
   
   <div class='md'>
     
       
-        ElasticSearchWindows下安装elasticsearch在安装Elasticsearch引擎之前，必须安装ES需要的软件环境
-注意：安装elasticsearch7.4运行需要jdk11及以上
-elasticsearch与jdk有依赖关系
+        前言面向对象的三大特性
+封装
 
-下载地址
+继承
 
-配置环境变量
-
+多态
 
 
+原型链的知识原型链是面向对象的基础，是非常重要的部分。有以下几种知识：
 
-测试运行
+创建对象有几种方法
 
-点击/bin目录下的elasticsearch.bat开始安装
-安装elasticsear...
+原型、构造函数、实例、原型链
+
+instanceof的原理
+
+new 运算符
+
+
+创建对象有几种方法方式一：字面量12var obj11 = &#123;name: &#x27;qianguyihao&#x27;&#125;;var obj12 =...
       
     
   </div>
@@ -673,12 +701,12 @@ elasticsearch与jdk有依赖关系
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-15</time>
+        <time>2021-08-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-ElasticSearch/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/'>
             阅读全文
           </a>
         </div>
@@ -705,7 +733,7 @@ elasticsearch与jdk有依赖关系
           </a>
         
         <p class="current">
-          13 / 17
+          13 / 74
         </p>
         
           <a class="next" rel="next" href="/page/14/">
@@ -814,39 +842,69 @@ elasticsearch与jdk有依赖关系
             ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/HTTP/" href="/categories/HTTP/"
+            id="categoriesHTTP"
+            ><div class='name'>HTTP</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Vue/" href="/categories/Vue/"
+            id="categoriesVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/WebSocket/" href="/categories/WebSocket/"
+            id="categoriesWebSocket"
+            ><div class='name'>WebSocket</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/web/" href="/categories/web/"
+            id="categoriesweb"
+            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
+            id="categorieswebJavaScript"
+            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/css/" href="/categories/web/css/"
+            id="categorieswebcss"
+            ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(7)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"
             id="categoriesE695B0E68DAEE5BA93MySQL"
-            ><div class='name'>MySQL</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>MySQL</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/"
             id="categoriesE695B0E68DAEE5BA93Redis"
-            ><div class='name'>Redis</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/"
             id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888"
-            ><div class='name'>系统架构师</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>系统架构师</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88B"
+            ><div class='name'>网络编程</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/NIO/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/NIO/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88BNIO"
+            ><div class='name'>NIO</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E695B0E68DAEE5BA93E7B3BBE7BB9F"
-            ><div class='name'>数据库系统</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
-            id="categoriesE7B3BBE7BB9FE69EB6E69E84E5B888E8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(1)</div></a></li>
+            title="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/"
+            id="categoriesE7BD91E7BB9CE7BC96E7A88BNetty"
+            ><div class='name'>Netty</div><div class='badge'>(2)</div></a></li>
         
       </ul>
     </div>
@@ -870,10 +928,138 @@ elasticsearch与jdk有依赖关系
 
 
     <div class='content'>
-      <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 16px; color: #8b8b8b">HTTP和HTTPS</a> <a href="/tags/JavaScript/" style="font-size: 16px; color: #8b8b8b">JavaScript</a> <a href="/tags/MySQL/" style="font-size: 18px; color: #7e7e7e">MySQL</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 14px; color: #999">前端</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px; color: #707070">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" style="font-size: 14px; color: #999">数据挖掘</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 14px; color: #999">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 16px; color: #8b8b8b">消息中间件</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 22px; color: #636363">计算机网络</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 22.57px; color: #5f5f5f">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
+
+  
+
+  
+    
+    
+
+<section class="widget shadow desktop">
+  
+  <header>
+    
+      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>369 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2020/01/01'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>778.7k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Thu Aug 12 2021 09:54:25 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-12 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
 
   
 

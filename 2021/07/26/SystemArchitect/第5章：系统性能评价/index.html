@@ -333,7 +333,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -468,9 +468,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <p>性能设计主要包含两方面的内容：一是作为未来计算机发展的参考和规划；另一个则是对现有系统进行性能上的调整已达到最优化。</p>
 <span id="more"></span>
 
-<h2 id="5-1-性能指标"><a href="#5-1-性能指标" class="headerlink" title="5.1 性能指标"></a>5.1 性能指标</h2><p>描述当前流行系统主要涉及的性能指标</p>
-<h3 id="5-1-1-对计算机评价的主要性能指标"><a href="#5-1-1-对计算机评价的主要性能指标" class="headerlink" title="5.1.1 对计算机评价的主要性能指标"></a>5.1.1 对计算机评价的主要性能指标</h3><h4 id="1-时钟频率（主频）"><a href="#1-时钟频率（主频）" class="headerlink" title="1.时钟频率（主频）"></a>1.时钟频率（主频）</h4><p>主频是计算机的主要性能指标之一，在很大程度上决定了计算机的运算速度。CPU的工作节拍是由主时钟来控制的，主时钟不断产生固定频率的时钟脉冲，这个主时钟的评率即是CPU的主频。主频越高，意味着CPU的工作节拍就越快，运算速度也就越快。现在已经发展为多核心CPU，除了看时钟频率还得看单个CPU中的内核数。</p>
+<h2 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h2><p>描述当前流行系统主要涉及的性能指标</p>
+<h3 id="对计算机评价的主要性能指标"><a href="#对计算机评价的主要性能指标" class="headerlink" title="对计算机评价的主要性能指标"></a>对计算机评价的主要性能指标</h3><h4 id="1-时钟频率（主频）"><a href="#1-时钟频率（主频）" class="headerlink" title="1.时钟频率（主频）"></a>1.时钟频率（主频）</h4><p>主频是计算机的主要性能指标之一，在很大程度上决定了计算机的运算速度。CPU的工作节拍是由主时钟来控制的，主时钟不断产生固定频率的时钟脉冲，这个主时钟的评率即是CPU的主频。主频越高，意味着CPU的工作节拍就越快，运算速度也就越快。现在已经发展为多核心CPU，除了看时钟频率还得看单个CPU中的内核数。</p>
 <h4 id="2-高速缓存"><a href="#2-高速缓存" class="headerlink" title="2.高速缓存"></a>2.高速缓存</h4><p>高速缓存可以提高CPU的运行效率。目前一般采用两级高速缓存技术，有些使用三层。高速缓冲存储器均由静态RAM（Random Access Memory，随机存取存储器）组成，结构较复杂，在 CPU 管芯面积不能太大的情况下，L1 级高速缓存的容量不可能做得太大。采用回写（WriteBack）结构的高速缓存。它对读和写操作均有可提供缓存。而采用写通（Write-through）结构的高速缓存，仅对读操作有效。L2 及 L3 高速缓存容量也会影响 CPU的性能，原则是越大越好。</p>
+<h4 id="3-运算速度"><a href="#3-运算速度" class="headerlink" title="3.运算速度"></a>3.运算速度</h4><p><strong>运算速度是计算机工作能力和生产效率的主要表征，它取决于给定时间内 CPU 所能处理的数据量和 CPU 的主频。</strong>其单位一般用 MIPS（百万条指令/秒）和 MFLOPS（百万次浮点运算/秒）。MIPS 用于描述计算机的定点运算能力；MFLOPS 则用来表示计算机的浮点运算能力。</p>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h3 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h3><p>衡量数据库管理系统的主要性能指标包括数据库本身和管理系统两部分。</p>
+<p>数据库和数据库管理系统的性能指标包括数据库的大小、单个数据库文件的大小、数据库中表的数量、单个表的大小、表中允许的记录（行）数量、单个记录（行）的大小、表上所允许的所有数量、数据库所允许的索引数量、最大并发事务处理能力、负载均衡能力、最大连接数。</p>
+<p>CPU/内存使用状况、查询语句性能、进程/线程使用状态、日志文件大小等。</p>
+<h3 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h3><p>Web 服务器也称为 WWW 服务器，主要功能是提供网上信息浏览服务。</p>
+<p> 在 UNIX 和 Linux 平台下使用最广泛的 HTTP 服务器是 W3C、NCSA 和 Apache 服务器，而 Windows 平台使用 IIS 的 Web 服务器。跨平台的 Web 服务器有 IBM WebSphere、BEA WebLogic、Tomcat 等。在选择使用 Web 服务器时，应考虑的本身特性因素有性能、安全性、日志和统计、虚拟主机、代理服务器、缓冲服务和集成应用程序等。</p>
+<p> Web 服务器的主要性能指标包括<strong>最大并发连接数</strong>、响应延迟、吞吐量（每秒处理的请求数）、成功请求数、失败请求数、每秒点击次数、每秒成功点击次数、每秒失败点击次数、尝试连接数、用户连接数等。</p>
+<p>应用系统：应用系统的可用性、响应时间、并发用户数、特定应用资源占用等。</p>
 <h2 id="性能计算"><a href="#性能计算" class="headerlink" title="性能计算"></a>性能计算</h2><p>描述当前使用到的主要性能指标的计算方法</p>
 <h2 id="性能设计"><a href="#性能设计" class="headerlink" title="性能设计"></a>性能设计</h2><p>描述如何对现有系统进行性能上的调整优化，并介绍几个已经成熟的设计规则和解决方案</p>
 <h2 id="性能评估"><a href="#性能评估" class="headerlink" title="性能评估"></a>性能评估</h2><p>描述如何对当前取得的性能指标进行评价和改进</p>
@@ -508,10 +516,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-28T16:26:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-09T10:46:27+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年7月28日</p>
+    <p>更新于：2021年8月9日</p>
   </a>
 </div>
 
@@ -646,7 +654,7 @@ co...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">1.</span> <span class="toc-text">5.1 性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E5%AF%B9%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%84%E4%BB%B7%E7%9A%84%E4%B8%BB%E8%A6%81%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">1.1.</span> <span class="toc-text">5.1.1 对计算机评价的主要性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%B6%E9%92%9F%E9%A2%91%E7%8E%87%EF%BC%88%E4%B8%BB%E9%A2%91%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.时钟频率（主频）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.高速缓存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="toc-number">2.</span> <span class="toc-text">性能计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">性能设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0"><span class="toc-number">4.</span> <span class="toc-text">性能评估</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%84%E4%BB%B7%E7%9A%84%E4%B8%BB%E8%A6%81%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">对计算机评价的主要性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%B6%E9%92%9F%E9%A2%91%E7%8E%87%EF%BC%88%E4%B8%BB%E9%A2%91%EF%BC%89"><span class="toc-text">1.时钟频率（主频）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="toc-text">2.高速缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%BF%90%E7%AE%97%E9%80%9F%E5%BA%A6"><span class="toc-text">3.运算速度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-text">网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-text">数据库管理系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Web服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="toc-text">性能计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AE%BE%E8%AE%A1"><span class="toc-text">性能设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0"><span class="toc-text">性能评估</span></a></li></ol>
     </div>
   </section>
 

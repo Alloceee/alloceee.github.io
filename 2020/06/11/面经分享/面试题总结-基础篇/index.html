@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,zh-HK,zh-TW,default">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>面试题总结-基础篇 - Hexo</title>
+  
+    <meta name="keywords" content="java,面试,总结">
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Alloceee
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Twilight Rush</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="Search" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>首页</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-history fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/about"
+              
+              
+              id="about">
+              <i class='fas fa-heart fa-spin fa-fw'></i><p>关于</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/alloceee"
+              
+              
+              id="https:githubcomalloceee">
+              <i class='fas fa-paper-plane fa-fw'></i><p>github</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        面试题总结-基础篇
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>请设置文章作者</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年6月11日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="面试题总结-基础篇" data-path="/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h3 id="JVM、JRE、JDK有什么联系与区别？"><a href="#JVM、JRE、JDK有什么联系与区别？" class="headerlink" title="JVM、JRE、JDK有什么联系与区别？"></a>JVM、JRE、JDK有什么联系与区别？</h3><p><strong>JVM是java虚拟机</strong>，能够将 class 文件中的字节码指令进行识别并调用操作系统向上的 API 完成动作。<br><strong>JRE是java运行时环境</strong>，它主要包含两个部分，jvm 的标准实现和 Java 的一些基本类库。它相对于 jvm 来说，多出来的是一部分的 Java 类库。换句话说，JRE包含JVM。<br><strong>JDK是java开发工具包</strong>，它集成了 jre 和一些好用的小工具。例如：javac.exe，java.exe，jar.exe 等。JDK包含JRE。<br>所以总得来说，<strong>JDK&gt;JRE&gt;JVM</strong>。</p>
+<h3 id="面向对象的特征有哪些？"><a href="#面向对象的特征有哪些？" class="headerlink" title="面向对象的特征有哪些？"></a>面向对象的特征有哪些？</h3><p>有三大特征，继承，封装，多态。</p>
+<h3 id="为什么java可以实现跨平台？"><a href="#为什么java可以实现跨平台？" class="headerlink" title="为什么java可以实现跨平台？"></a>为什么java可以实现跨平台？</h3><p>因为java是编译成.class文件运行在JVM上的。<strong>针对不同的系统有不同的JVM实现，在不同的JVM实现上会映射到不同系统的 API 调用</strong>，从而实现代码的跨平台运行。</p>
+<h3 id="类的加载顺序？"><a href="#类的加载顺序？" class="headerlink" title="类的加载顺序？"></a>类的加载顺序？</h3><p>静态成员变量、静态代码块、实例成员变量，实例代码块，构造器，实例方法。</p>
+<h3 id="接口和抽象类有什么共同点和不同点？"><a href="#接口和抽象类有什么共同点和不同点？" class="headerlink" title="接口和抽象类有什么共同点和不同点？"></a>接口和抽象类有什么共同点和不同点？</h3><p>共同点：<br>1.都可以定义抽象方法，子类都要实现定义的抽象方法。<br>2.都不能被实例化，但是可以定义抽象类和接口类型的引用。<br>不同点：<br>1.接口没有构造器，抽象类可以定义构造器。<br>2.接口定义具体方法只能定义<strong>default</strong>修饰，抽象类可以直接定义具体方法。<br>3.接口的子类是实现接口，关键字是<strong>implements</strong>，抽象类的子类是继承，关键字是<strong>extends</strong>。<br>4.接口不能定义成员变量，只能定义常量。抽象类可以定义成员变量。</p>
+<h3 id="static关键字有哪些用法？"><a href="#static关键字有哪些用法？" class="headerlink" title="static关键字有哪些用法？"></a>static关键字有哪些用法？</h3><p>①<strong>修饰成员变量，用static修饰的成员变量就成为静态变量</strong>，静态变量只会存在一份，在类被加载时会初始化，且只会加载一次，通过类名访问。一般可以用static和final定义一些String类型，boolean类型，int类型的变量作为常量，可以减少资源的消耗。<br>②<strong>static修饰方法，该方法就被定义为静态方法</strong>，静态方法是不能被方法重写的，通过类名调用。一般用static定义一些工具类的方法。<br>③<strong>用static修饰代码块，该代码块就被定义为静态代码块</strong>，静态代码块在类初始化时被执行，且执行一次。一般用于初始化一些静态的成员变量的值。</p>
+<h3 id="Switch能用什么数据类型作为参数？"><a href="#Switch能用什么数据类型作为参数？" class="headerlink" title="Switch能用什么数据类型作为参数？"></a>Switch能用什么数据类型作为参数？</h3><p>JDK1.5前：<strong>byte、short、char、int</strong><br>JDK1.5：枚举<br>JDK1.7：String</p>
+<h3 id="枚举有哪些特点？在项目中如何使用？"><a href="#枚举有哪些特点？在项目中如何使用？" class="headerlink" title="枚举有哪些特点？在项目中如何使用？"></a>枚举有哪些特点？在项目中如何使用？</h3><p>特点：<br>1.枚举的构造器是私有的。<br>2.枚举不能被继承。<br>3.枚举是绝对的单例，即使是反序列化也无法创建多个实例。<br>使用场景：<br>当变量只能从一堆固定的值中取出一个时，那么就应该使用枚举。比如时间的单位，季度等等。</p>
+<h3 id="什么是方法重载？什么是方法重写？"><a href="#什么是方法重载？什么是方法重写？" class="headerlink" title="什么是方法重载？什么是方法重写？"></a>什么是方法重载？什么是方法重写？</h3><p><strong>方法重载</strong>，一个类中允许同时存在一个以上的同名方法，主要体现在方法参数的类型和数量不同，方法名相同，与访问修饰符和返回值类型都是无关的。口诀是”<strong>一同两不同</strong>“。<br><strong>方法重写</strong>一般在继承中，子类重写父类的方法，既然是重写一遍，那么方法名和参数部分一定是相同的。只是实现的功能不同。<strong>声明为 final 的方法不能被重写，声明为 static 的方法不能被重写，声明为 private 的方法不能被重写。</strong></p>
+<h3 id="静态变量和实例变量有什么不同？分别位于内存的什么区域？"><a href="#静态变量和实例变量有什么不同？分别位于内存的什么区域？" class="headerlink" title="静态变量和实例变量有什么不同？分别位于内存的什么区域？"></a>静态变量和实例变量有什么不同？分别位于内存的什么区域？</h3><p>1.静态变量使用static修饰，实例变量不需要。<br>2.静态变量在类被加载时就会分配内存空间，就可以使用。实例变量需要实例对象才会分配内存空间，才可以被引用，是属于实例的。<br>3.静态变量是存在于<strong>静态区(全局区)<strong>的，实例变量位于</strong>堆内存</strong>中。</p>
+<h3 id="java的内部类的分类有哪些？"><a href="#java的内部类的分类有哪些？" class="headerlink" title="java的内部类的分类有哪些？"></a>java的内部类的分类有哪些？</h3><p>实例内部类、静态内部类、局部内部类、匿名内部类。</p>
+<h3 id="break、continue、return-的作用是什么？"><a href="#break、continue、return-的作用是什么？" class="headerlink" title="break、continue、return 的作用是什么？"></a>break、continue、return 的作用是什么？</h3><ul>
+<li>break：结束循环。不仅可以结束其所在的循环，还可结束其外层循环。</li>
+<li>continue：跳过本次循环，开始下一次循环。</li>
+<li>return：不是专用于结束循环，而是用于结束方法。如果在循环中使用return，就会结束整个方法，循环当然也会结束。<h3 id="Object类有哪些常用的方法？"><a href="#Object类有哪些常用的方法？" class="headerlink" title="Object类有哪些常用的方法？"></a>Object类有哪些常用的方法？</h3></li>
+</ul>
+<p><strong>toString()、equals()、hashCode()。</strong></p>
+<ul>
+<li><code>toString()</code>默认输出对象的内存地址，一般不希望输出内存地址可以重写toString()方法。</li>
+<li><code>equals()</code>方法用于比较对象是否相等，默认比较是内存地址，所以要正确比较两个对象是否值相等，此方法必须被重写。</li>
+<li><code>hashCode()</code>方法用来返回其所在对象的物理地址（哈希码值），常会和<code>equals()</code>方法同时重写，确保相等的两个对象拥有相等的<strong>hashCode</strong>。<h3 id="与equals-的区别？"><a href="#与equals-的区别？" class="headerlink" title="==与equals()的区别？"></a>==与equals()的区别？</h3><code>equals()</code>方法属于<code>Object</code>对象的，所以比较基础数据类型是不能使用<code>equals()</code>。必须使用<code>==</code>。</li>
+</ul>
+<p><strong>在默认情况下</strong>，<code>equals()</code>与<code>==</code>是一样的，都是比较内存地址。所以在业务逻辑中，我们一般会重写<code>equals()</code>方法。</p>
+<h3 id="equals-与hashCode-有什么联系？"><a href="#equals-与hashCode-有什么联系？" class="headerlink" title="equals()与hashCode()有什么联系？"></a>equals()与hashCode()有什么联系？</h3><p>1.<code>equals()</code>相等的两个对象他们的<code>hashCode()</code>肯定相等，也就是用<code>equals()</code>对比是绝对可靠的。<br>2.<code>hashCode()</code>相等的两个对象他们的<code>equals()</code>不一定相等，也就是<code>hashCode()</code>不是绝对可靠的。<br>在使用<code>HashSet</code>或者<code>HashMap</code>集合中，比较两个对象是否相等时，会先调用<code>hashCode()</code>比较，如果<code>hashCode()</code>相等，则会继续调用<code>equals()</code>比较，<code>equals()</code>也相等才会认为是同一个对象。如果<code>hashCode()</code>返回不相等，则认为是不相等的对象。<br>所以一般我们会同时重写<code>hashCode()</code>和<code>equals()</code>方法。</p>
+<h3 id="amp-和-amp-amp-有什么区别？"><a href="#amp-和-amp-amp-有什么区别？" class="headerlink" title="&amp; 和 &amp;&amp;有什么区别？"></a>&amp; 和 &amp;&amp;有什么区别？</h3><p><code>&amp;&amp;</code>具有短路的功能，也就是如果<code>&amp;&amp;</code>左边的条件为<code>fasle</code>就不再执行后面的条件判断。<br><code>&amp;</code>则会执行完左右两边的条件判断。</p>
+<h3 id="final、finalize-、finally-分别有什么作用？"><a href="#final、finalize-、finally-分别有什么作用？" class="headerlink" title="final、finalize()、finally{}分别有什么作用？"></a>final、finalize()、finally{}分别有什么作用？</h3><p><code>final</code>修饰类，表明这个类不可被其他类继承。<br><code>final</code>修饰成员变量，表示此变量为常量，只能在初始化时被赋值一次，赋值后不能修改。<br><code>final</code>修饰方法。把方法锁定，不能被子类重写，以防止子类对其进行更改。<br><code>finalize()</code>是<code>Object</code>里定义的，也就是说每一个对象都有这么个方法。这个方法在gc启动，该对象被回收的时候被调用。一个对象的<code>finalize()</code>方法只会被调用一次。<br><code>finally</code>作为异常处理的一部分，它只能用在<code>try/catch</code>语句中，并且附带一个语句块。</p>
+<h3 id="Cloneable接口有什么作用？"><a href="#Cloneable接口有什么作用？" class="headerlink" title="Cloneable接口有什么作用？"></a>Cloneable接口有什么作用？</h3><p><code>Cloneable</code>接口是一个标记接口，实现了此接口，表示可以使用<code>clone()</code>方法，没有实现此接口使用<code>clone()</code>会抛出<code>CloneNotSupportedException</code>异常。</p>
+<h3 id="什么是浅克隆，什么是深克隆？"><a href="#什么是浅克隆，什么是深克隆？" class="headerlink" title="什么是浅克隆，什么是深克隆？"></a>什么是浅克隆，什么是深克隆？</h3><p><strong>浅克隆是指拷贝对象时仅仅拷贝对象本身（包括对象中的基本变量）</strong>，而不拷贝对象包含的引用指向的对象。</p>
+<p><strong>深克隆不仅拷贝对象本身，而且拷贝对象包含的引用指向的所有对象。</strong></p>
+<h3 id="什么是序列化？什么是反序列化？"><a href="#什么是序列化？什么是反序列化？" class="headerlink" title="什么是序列化？什么是反序列化？"></a>什么是序列化？什么是反序列化？</h3><p>序列化：把<strong>对象</strong>转换为<strong>字节序列</strong>的过程称为对象的序列化。<br>反序列化：把<strong>字节序列</strong>恢复为<strong>对象</strong>的过程称为对象的反序列化。</p>
+<h3 id="Serializable接口有什么作用？"><a href="#Serializable接口有什么作用？" class="headerlink" title="Serializable接口有什么作用？"></a>Serializable接口有什么作用？</h3><p><code>Serializable</code>接口是一个标记接口，一个类只有实现了<code>Serializable</code>接口，它的对象才是可序列化的。否则序列化时会报<code>NotSerializableException</code>异常。如果不显性声明<code>serialVersionUID</code>，则会默认生成一个。为了<code>serialVersionUID</code>的确定性，最好是显性声明。</p>
+<h3 id="String、StringBuffer、StringBuilder有什么区别"><a href="#String、StringBuffer、StringBuilder有什么区别" class="headerlink" title="String、StringBuffer、StringBuilder有什么区别?"></a>String、StringBuffer、StringBuilder有什么区别?</h3><ul>
+<li><code>String</code>被声明为<code>final class</code>，是由定义<code>final</code>的字符数组实现的，因为它的不可变性，所以拼接字符串时候会产生很多无用的中间对象，如果频繁的进行这样的操作对性能有所影响。</li>
+<li><code>StringBuffer</code>是由定义了临时数据<code>transient</code>的字符数组实现的，提供<code>append()</code>和<code>add()</code>方法，可以将字符串添加到已有序列的末尾或指定位置，它的本质是一个线程安全的可修改的字符序列，所有修改数据的方法都加上<code>synchronized</code>。性能相对<code>StringBuilder</code>会差一点。</li>
+<li> <code>StringBuilder</code>和<code>StringBuffer</code>本质上没什么区别，区别是去掉了保证线程安全的<code>synchronized</code>，减少了开销，性能有所提高。<h3 id="什么是泛型-什么是泛型的上界和下界"><a href="#什么是泛型-什么是泛型的上界和下界" class="headerlink" title="什么是泛型?什么是泛型的上界和下界?"></a>什么是泛型?什么是泛型的上界和下界?</h3>Java 泛型是 JDK1.5中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。<br>上界用<code>extends</code>关键字声明，表示参数化的类型可能是所指定的类型，或者是此类型的子类。<br>下界用<code>super</code>进行声明，表示参数化的类型可能是所指定的类型，或者是此类型的父类型，直至Object。<h3 id="什么是反射机制？"><a href="#什么是反射机制？" class="headerlink" title="什么是反射机制？"></a>什么是反射机制？</h3></li>
+</ul>
+<p><strong>Java反射机制</strong>是在运行状态中，对于任意一个类，都能够获得这个类的所有属性和方法，对于任意一个对象都能够调用它的任意一个属性和方法。这种在<strong>运行时动态的获取信息以及动态调用对象的方法的功能</strong>称为Java的反射机制。</p>
+<h3 id="获取Class对象的方式有哪些？"><a href="#获取Class对象的方式有哪些？" class="headerlink" title="获取Class对象的方式有哪些？"></a>获取Class对象的方式有哪些？</h3><ul>
+<li>通过<code>Object</code>类中的<code>getClass()</code>方法，想要用这种方法必须要明确具体的类并且创建该类的对象。</li>
+<li>所有数据类型都具备一个静态的属性<code>.class</code>来获取对应的<code>Class</code>对象。但是还是要明确到类，然后才能调用类中的静态成员。</li>
+<li>通过<code>Class.forName()</code>方法完成，必须要指定类的全限定名，由于前两种方法都是在知道该类的情况下获取该类的字节码对象，因此不会有异常，但是<code>Class.forName()</code>方法如果写错类的路径会报<code>ClassNotFoundException</code>的异常。<h3 id="java中的异常有哪几种异常？"><a href="#java中的异常有哪几种异常？" class="headerlink" title="java中的异常有哪几种异常？"></a>java中的异常有哪几种异常？</h3><code>Throwable</code>类是<code>Java</code>异常类型的顶层父类，<code>Throwable</code>包含了<code>Error</code>和<code>Excetion</code>。<code>Excetion</code>分为两种，一种是**非运行时异常(又称为检查异常)<strong>，另一种是</strong>运行时异常(RuntimeException)**。<h3 id="java是如何处理异常的？"><a href="#java是如何处理异常的？" class="headerlink" title="java是如何处理异常的？"></a>java是如何处理异常的？</h3></li>
+<li><code>Error</code>是程序无法处理的, 比如<code>OutOfMemoryError</code>、<code>OutOfMemoryError</code>等等, 这些异常发生时, <code>JVM</code>一般会终止线程。</li>
+<li>运行时异常(<code>RuntimeException</code>)，如 <code>NullPointerException</code>、<code>IndexOutOfBoundsException</code>等，是在程序运行的时候可能会发生的，所以程序可以捕捉，也可以不捕捉。这些错误一般是由程序的逻辑错误引起的，<strong>程序应该从逻辑角度去尽量避免</strong>。</li>
+<li>非运行时异常是<code>RuntimeException</code>以外的异常，是<code>Exception</code>及其子类，这些异常从程序的角度来说是必须经过捕捉检查处理的，否则不能通过编译。如<code>IOException</code>、<code>SQLException</code>等。<h1 id="java集合、IO流、日期处理等"><a href="#java集合、IO流、日期处理等" class="headerlink" title="java集合、IO流、日期处理等"></a>java集合、IO流、日期处理等</h1><h3 id="常用的集合有哪些？"><a href="#常用的集合有哪些？" class="headerlink" title="常用的集合有哪些？"></a>常用的集合有哪些？</h3>常用集合有<strong>Map、List、Set</strong>。<h3 id="HashMap是线程安全的吗？"><a href="#HashMap是线程安全的吗？" class="headerlink" title="HashMap是线程安全的吗？"></a>HashMap是线程安全的吗？</h3>不是线程安全的。<h3 id="如何使HashMap线程安全？"><a href="#如何使HashMap线程安全？" class="headerlink" title="如何使HashMap线程安全？"></a>如何使HashMap线程安全？</h3>使用<code>Collections</code>类的<code>synchronizedMap()</code>方法包装。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;&gt;());</span><br></pre></td></tr></table></figure>
+使用<code>java.util.concurrent</code>包下的<code>ConcurrentHashMap</code>类也可以获得线程安全的Map。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConcurrentHashMap concurrentHashMap = <span class="keyword">new</span> ConcurrentHashMap();</span><br></pre></td></tr></table></figure>
+使用<code>Hashtable</code>类，也可以获得线程安全的Map<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,Object&gt; hashtable = <span class="keyword">new</span> Hashtable&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<h3 id="HashMap和Hashtable的区别是什么？"><a href="#HashMap和Hashtable的区别是什么？" class="headerlink" title="HashMap和Hashtable的区别是什么？"></a>HashMap和Hashtable的区别是什么？</h3></li>
+<li><code>Hashtable</code>继承自<code>Dictionary</code>类，而<code>HashMap</code>继承自<code>AbstractMap</code>类。但二者都实现了Map接口。</li>
+<li><code>Hashtable</code>是线程安全的，<code>HashMap</code>是线程不安全的。</li>
+<li> <code>Hashtable</code>中，key和value都不允许出现null值。</li>
+<li> <code>HashTable</code>在不指定容量的情况下的<strong>默认容量为11，而HashMap为16</strong>，<code>Hashtable</code>不要求底层数组的容量一定要为2的整数次幂，而<code>HashMap</code>则要求一定为2的整数次幂。<code>Hashtable</code>扩容时，将容量变为原来的2倍加1，而<code>HashMap</code>扩容时，将容量变为原来的2倍。<h3 id="HashMap是如何解决哈希冲突的？"><a href="#HashMap是如何解决哈希冲突的？" class="headerlink" title="HashMap是如何解决哈希冲突的？"></a>HashMap是如何解决哈希冲突的？</h3></li>
+<li>在JDK1.8前，<code>HashMap</code>是采用<strong>链表法</strong>解决哈希冲突的。当<code>put()</code>一个值到<code>Map</code>时，会通过<code>Key</code>拿到一个哈希值，通过哈希值获取数组下标，先查询是否存在该<code>hash</code>值。若不存在，则直接以<code>Entry&lt;V,V&gt;</code>的方式存放在数组中。若存在，则再调用<code>equals()</code>方法对比<code>key</code>是否相同，若<code>hashcode()</code>值和<code>key</code>都相同，则替换<code>value</code>，若<code>hashcode()</code>值相同，<code>key</code>不相同，则形成一个单链表，将<code>hashcode()</code>值相同，<code>key</code>不同的元素以<code>Entry&lt;V,V&gt;</code>的方式存放在链表中，这样就解决了哈希冲突。</li>
+<li>JDK1.8以后，当链表的长度达到某个限制值(默认是8)，就会转换成<strong>红黑树</strong>，提高性能。<h3 id="HashMap初始大小是多少？负载因子是多少？"><a href="#HashMap初始大小是多少？负载因子是多少？" class="headerlink" title="HashMap初始大小是多少？负载因子是多少？"></a>HashMap初始大小是多少？负载因子是多少？</h3>默认的数组初始大小是16。负载因子是0.75。</li>
+</ul>
+<p><strong>（为什么初始值是2的n次方，为什么负载因子取0.75，这两个问题可以网上找资料看看，这里就不详述了）</strong></p>
+<h3 id="简述一下HashMap的扩容机制？"><a href="#简述一下HashMap的扩容机制？" class="headerlink" title="简述一下HashMap的扩容机制？"></a>简述一下HashMap的扩容机制？</h3><p><code>HashMap</code>是懒加载的，当调用<code>put()</code>方法时，会先初始化<code>Map</code>的大小，默认数组长度是16，负载因子是0.75，所以阈值是12。当<code>HashMap</code>元素的个数超过阈值时，就会把数组的大小扩展到原来的2倍，然后重新计算每个元素在数组中的位置。</p>
+<h3 id="List有哪些常用的子类？"><a href="#List有哪些常用的子类？" class="headerlink" title="List有哪些常用的子类？"></a>List有哪些常用的子类？</h3><p><code>ArrayList</code>和<code>LinkedList</code>。</p>
+<h3 id="ArrayList和LinkedList有什么区别？"><a href="#ArrayList和LinkedList有什么区别？" class="headerlink" title="ArrayList和LinkedList有什么区别？"></a>ArrayList和LinkedList有什么区别？</h3><ul>
+<li>底层<strong>数据结构不同</strong>。<code>ArrayList</code>基于数组+动态扩容实现的，<code>LinkedList</code>基于双向链表实现。从储存结构上分析，<code>LinkedList</code>更加占内存，因为每个节点除了存储数据外还要<strong>存储指向前节点的引用和指向后节点的引用。</strong></li>
+<li><strong>效率不同</strong>。当随机访问时，<code>ArrayList</code>是基于数组下标访问，<strong>查询效率较高</strong>，但是由于数组的长度是固定的，所以当添加的元素到一定的阈值时会扩容数组，消耗性能，<strong>增删效率偏低</strong>。<code>LinkedList</code>在查询时，需要从前到后依次遍历，所以<strong>查询效率不高</strong>，但是在增删时只需要更改节点的引用，开销较少，所以<strong>增删效率较高</strong>。<h3 id="List集合排序的方式有哪些？"><a href="#List集合排序的方式有哪些？" class="headerlink" title="List集合排序的方式有哪些？"></a>List集合排序的方式有哪些？</h3>使用List接口定义的sort()方法。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.sort(Comparator.comparingInt(User::getAge));</span><br></pre></td></tr></table></figure>
+使用<code>Collections</code>的<code>sort()</code>方法，排序的对象需要实现<code>Comparable</code>接口，重写<code>compareTo()</code>方法。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现Comparable接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">//重写compareTo方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    		<span class="keyword">return</span> Integer.compare(<span class="keyword">this</span>.getAge(), user.getAge());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+使用<code>Collections</code>的<code>sort()</code>方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(list);</span><br><span class="line"><span class="comment">//如果不想实现Comparable接口，也可以使用这个方法</span></span><br><span class="line">Collections.sort(list,Comparator.comparingInt(User::getAge));</span><br></pre></td></tr></table></figure>
+使用Stream流操作的<code>sort()</code>方法，传入一个<code>Comparator</code>接口。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().sorted(Comparator.comparingInt(User::getAge)).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h3 id="栈和队列的特点分别是什么？在java中有哪些实现的类？"><a href="#栈和队列的特点分别是什么？在java中有哪些实现的类？" class="headerlink" title="栈和队列的特点分别是什么？在java中有哪些实现的类？"></a>栈和队列的特点分别是什么？在java中有哪些实现的类？</h3>栈是<strong>先进后出</strong>，队列是<strong>先进先出</strong>。<br><code>Stack</code>类是栈在java中的实现，继承<code>Vector</code>类，底层是基于数组存储数据。<br><code>Queue</code>接口是队列在java中的代表，<code>Queue</code>接口有几个常用的子类<code>ArrayDeque</code>、<code>LinkedList</code>。<h3 id="IO、NIO有什么区别？"><a href="#IO、NIO有什么区别？" class="headerlink" title="IO、NIO有什么区别？"></a>IO、NIO有什么区别？</h3>IO包括：<code>File</code>、<code>OutputStream</code>、<code>InputStream</code>、<code>Writer</code>，<code>Reader</code>。<br>NIO三大核心：<code>selector</code>（选择器），<code>channel</code>（通道），<code>buffer</code>（缓冲区）<br>NIO与IO区别在于，IO面向流，NIO面向缓冲区。IO是阻塞，NIO是非阻塞。<h3 id="如何进行日期的转换？"><a href="#如何进行日期的转换？" class="headerlink" title="如何进行日期的转换？"></a>如何进行日期的转换？</h3>使用<code>SimpleDateFormat</code>类进行<code>String</code>和<code>Date</code>之间的转换。<h3 id="如何获取上一年的今天的日期？"><a href="#如何获取上一年的今天的日期？" class="headerlink" title="如何获取上一年的今天的日期？"></a>如何获取上一年的今天的日期？</h3>使用<code>Calendar</code>对象。如下所示：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建Calendar对象</span></span><br><span class="line">Calendar calendar = Calendar.getInstance();</span><br><span class="line"><span class="comment">//设置年份，当前年份减去一年</span></span><br><span class="line">calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - <span class="number">1</span>);</span><br><span class="line"><span class="comment">//以下是打印结果</span></span><br><span class="line">Date time = calendar.getTime();</span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">System.out.println(sdf.format(time));<span class="comment">//2019-06-08 23:43:14 正确</span></span><br></pre></td></tr></table></figure>
+<h3 id="BigDecimal类型一定不会失真吗？"><a href="#BigDecimal类型一定不会失真吗？" class="headerlink" title="BigDecimal类型一定不会失真吗？"></a>BigDecimal类型一定不会失真吗？</h3>不一定。<br>参数类型为<code>double</code>的构造方法的结果有一定的不可预知性，是有可能产生失真的。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal bigDecimal = <span class="keyword">new</span> BigDecimal(<span class="number">0.99</span>);</span><br><span class="line">System.out.println(bigDecimal);<span class="comment">//结果如下</span></span><br><span class="line"><span class="comment">//0.9899999999999999911182158029987476766109466552734375</span></span><br></pre></td></tr></table></figure>
+使用参数类型<code>String</code>构造方法是完全可预知的，不会产生失真。所以在开发中推荐使用参数类型<code>String</code>构造方法。<h1 id="java并发编程"><a href="#java并发编程" class="headerlink" title="java并发编程"></a>java并发编程</h1><h3 id="为什么要使用多线程？"><a href="#为什么要使用多线程？" class="headerlink" title="为什么要使用多线程？"></a>为什么要使用多线程？</h3></li>
+<li>避免主线程阻塞，可以使用多线程做成异步调用。</li>
+<li>提升性能，充分利用CPU资源。<h3 id="创建线程有哪几种方法？"><a href="#创建线程有哪几种方法？" class="headerlink" title="创建线程有哪几种方法？"></a>创建线程有哪几种方法？</h3></li>
+<li>通过继承<code>Thread</code>类创建线程类。</li>
+<li>通过实现<code>Runnable</code>接口创建线程类。</li>
+<li>通过实现<code>Callable</code>接口创建线程类。<h3 id="如何获取多线程的返回值？"><a href="#如何获取多线程的返回值？" class="headerlink" title="如何获取多线程的返回值？"></a>如何获取多线程的返回值？</h3>使用<code>Callable</code>和<code>FutureTask </code>接口，获取返回值。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">       	<span class="comment">//使用匿名内部类创建Callable</span></span><br><span class="line">           Callable callable = () -&gt; <span class="string">&quot;hello call&quot;</span>;</span><br><span class="line">           FutureTask futureTask = <span class="keyword">new</span> FutureTask(callable);</span><br><span class="line">           <span class="comment">//执行线程</span></span><br><span class="line">           <span class="keyword">new</span> Thread(futureTask).start();</span><br><span class="line">           <span class="keyword">if</span> (!futureTask.isDone()) &#123;</span><br><span class="line">           	<span class="comment">//获取返回值</span></span><br><span class="line">               System.out.println(futureTask.get());</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多线程的生命周期？"><a href="#多线程的生命周期？" class="headerlink" title="多线程的生命周期？"></a>多线程的生命周期？</h3>新建状态、就绪状态、运行状态、阻塞状态、死亡状态<h3 id="如何进行线程之间的通信？"><a href="#如何进行线程之间的通信？" class="headerlink" title="如何进行线程之间的通信？"></a>如何进行线程之间的通信？</h3></li>
+<li>使用<code>synchronized、wait()、notify()</code></li>
+<li>使用JUC工具类<code>CountDownLatch</code></li>
+<li>使用<code>ReentrantLock </code>结合<code>Condition</code></li>
+<li>基本<code>LockSupport</code>实现线程间的阻塞和唤醒</li>
+</ul>
+<p>以上几种方式的具体实现代码，可以网上找一下资料，这里不演示了。</p>
+<h3 id="说说-sleep-方法和-wait-方法区别和共同点"><a href="#说说-sleep-方法和-wait-方法区别和共同点" class="headerlink" title="说说 sleep() 方法和 wait() 方法区别和共同点?"></a>说说 sleep() 方法和 wait() 方法区别和共同点?</h3><p>相同点：</p>
+<ul>
+<li><code>sleep()</code>方法和<code>wait()</code>方法都用来改变线程的状态，能够让线程从<strong>运行状态</strong>，转变为<strong>休眠状态</strong>。</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li><code>sleep()</code>方法是<code>Thread</code>类中的静态方法，而<code>wait()</code>方法是<code>Object</code>类中的方法。</li>
+<li><code>sleep()</code>方法可以在任何地方调用，而wait()方法只能在同步代码块或同步方法中使用(即使用<code>synchronized</code>关键字修饰的)。</li>
+<li>这两个方法都在同步代码块或同步方法中使用时，<code>sleep()</code>方法不会释放对象锁。而<code>wait()</code>方法则会释放对象锁。<h3 id="如何停止线程？"><a href="#如何停止线程？" class="headerlink" title="如何停止线程？"></a>如何停止线程？</h3></li>
+<li>使用退出标志，使线程正常退出，也就是当<code>run()</code>方法完成后线程终止。</li>
+<li>使用<code>stop()</code>方法强行终止(不推荐)，可能会出现数据不同步，或者资源未释放等问题。</li>
+<li>使用<code>interrupt()</code>方法中断线程。<h3 id="什么是线程的死锁？如何避免线程死锁？"><a href="#什么是线程的死锁？如何避免线程死锁？" class="headerlink" title="什么是线程的死锁？如何避免线程死锁？"></a>什么是线程的死锁？如何避免线程死锁？</h3>多个线程因竞争资源而造成的一种僵局(互相等待)，若无外力作用，这些进程都将无法向前推进，这种现象称为死锁。</li>
+</ul>
+<p>避免死锁的三种方式：</p>
+<ul>
+<li>加锁顺序（线程按照一定的顺序加锁）</li>
+<li>加锁时限（线程尝试获取锁的时候加上一定的时限，超过时限则放弃对该锁的请求，并释放自己占有的锁）<h3 id="线程池的作用？"><a href="#线程池的作用？" class="headerlink" title="线程池的作用？"></a>线程池的作用？</h3></li>
+<li>利用线程池管理并复用线程，减少创建线程和销毁线程的资源消耗。</li>
+<li>实现任务线程队列缓存策略和拒绝机制。</li>
+<li>可以对线程进行统一的分配，监控和调优。</li>
+<li>提供定时执行、最大线程数、并发数控制等功能。<h3 id="创建线程池的重要参数分别代表什么意思？"><a href="#创建线程池的重要参数分别代表什么意思？" class="headerlink" title="创建线程池的重要参数分别代表什么意思？"></a>创建线程池的重要参数分别代表什么意思？</h3></li>
+<li><code>corePoolSize</code>线程池核心线程大小。在没有设置 <code>allowCoreThreadTimeOut</code>为<code>true</code>的情况下，核心线程会在线程池中一直存活，即使处于闲置状态。当向线程池提交一个任务时，若线程池已创建的线程数小于<code>corePoolSize</code>，即便此时存在空闲线程，也会通过创建一个新线程来执行该任务，直到已创建的线程数大于或等于<code>corePoolSize</code>。</li>
+<li><code>maximumPoolSize</code>线程池最大线程数量。线程池所允许的最大线程个数。<strong>当队列满了</strong>，且已创建的线程数小于<code>maximumPoolSize</code>，则线程池会创建新的线程来执行任务。对于无界队列可以忽略此参数。</li>
+<li><code>keepAliveTime</code>线程存活保持时间。当线程池中线程数大于核心线程数时，线程的空闲时间如果超过线程存活时间，那么这个线程就会被销毁，直到线程池中的线程数小于等于核心线程数。</li>
+<li><code>unit </code>空间线程存活时间单位。</li>
+<li><code>workQueue</code>任务队列：用于传输和保存等待执行任务的阻塞队列。<br>①<code>ArrayBlockingQueue</code>，基于数组的有界阻塞队列，按FIFO排序。<br>②<code>LinkedBlockingQuene</code>，基于链表的无界阻塞队列（其实最大容量为<code>Interger.MAX</code>），按照FIFO排序。当使用该队列时，<code>maximumPoolSize</code>参数可以忽略。<br>③<code>SynchronousQuene</code>，一个不缓存任务的阻塞队列，生产者放入一个任务必须等到消费者取出这个任务。<br>④<code>PriorityBlockingQueue</code>，具有优先级的无界阻塞队列，优先级通过参数<code>Comparator</code>实现。</li>
+<li><code>threadFactory</code>线程工厂，用于创建新线程。</li>
+<li><code>handler</code>线程饱和策略，当线程池和队列都满了，再加入线程会执行此策略。<h3 id="线程池中submit-和-execute-方法有什么区别？"><a href="#线程池中submit-和-execute-方法有什么区别？" class="headerlink" title="线程池中submit() 和 execute()方法有什么区别？"></a>线程池中submit() 和 execute()方法有什么区别？</h3></li>
+<li>参数不同</li>
+</ul>
+<p><code>submit()</code>方法有三个重载方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span>;</span><br><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable task, T result)</span></span>;</span><br><span class="line">Future&lt;?&gt; submit(Runnable task);</span><br></pre></td></tr></table></figure>
+<p><code>execute()</code>方法只有一个</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>execute()</code>没有返回值；而<code>submit()</code>有返回值</li>
+<li><code>submit()</code>的返回值<code>Future</code>调用<code>get()</code>方法时，可以捕获处理异常。而<code>execute()</code>没有返回值不能捕获异常。<h3 id="有哪些常用的线程池？"><a href="#有哪些常用的线程池？" class="headerlink" title="有哪些常用的线程池？"></a>有哪些常用的线程池？</h3><code>Executors.newCacheThreadPool()</code>：<strong>可缓存线程池</strong>，先查看池中有没有已建立的线程，如果有，就直接使用。如果没有，就建一个新的线程加入池中，缓存型池子通常用于执行一些生存期很短的异步型任务。<br><code>Executors.newFixedThreadPool()</code>：<strong>可重用固定个数的线程池</strong>，以共享的无界队列方式来运行这些线程。<br><code>Executors.newScheduledThreadPool(int n)</code>：<strong>定长线程池</strong>，支持定时及周期性任务执行。<br><code>Executors.newSingleThreadExecutor()</code>：<strong>单线程化的线程池</strong>，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。<h3 id="什么是线程安全问题？如何保证线程安全？"><a href="#什么是线程安全问题？如何保证线程安全？" class="headerlink" title="什么是线程安全问题？如何保证线程安全？"></a>什么是线程安全问题？如何保证线程安全？</h3>当<strong>多个线程</strong>同时共享，同一个<strong>全局变量或者静态变量</strong>，做写的操作时，可能会发生数据冲突问题，也就是<strong>线程安全问题</strong>。<h3 id="java的内存模型？"><a href="#java的内存模型？" class="headerlink" title="java的内存模型？"></a>java的内存模型？</h3>java的内存模型规定了所有的变量都<strong>存储在主内存中，每个线程拥有自己的工作内存</strong>，工作内存保存了该线程使用到的变量的主内存拷贝，<strong>线程对变量所有操作，读取，赋值，都必须在工作内存中进行，不能直接写主内存变量</strong>，线程间变量值的传递均需要主内存来完成。<h3 id="volatile关键字有什么作用？volatile一定能保证原子性吗？"><a href="#volatile关键字有什么作用？volatile一定能保证原子性吗？" class="headerlink" title="volatile关键字有什么作用？volatile一定能保证原子性吗？"></a>volatile关键字有什么作用？volatile一定能保证原子性吗？</h3>volatile关键字有什么作用：</li>
+<li>内存<strong>可见性</strong>（Memory Visibility)：所有线程都能看到共享内存的最新状态。</li>
+<li>禁止指令重排。</li>
+</ul>
+<p><code>volatile</code>是Java提供的一种<strong>轻量级的同步机制</strong>，并不能保证原子性。</p>
+<h3 id="什么是指令重排？"><a href="#什么是指令重排？" class="headerlink" title="什么是指令重排？"></a>什么是指令重排？</h3><p>指令重排是指<code>JVM</code>在编译Java代码的时候，或者CPU在执行<code>JVM</code>字节码的时候，对现有的指令顺序进行重新排序。<br>指令重排的目的是为了在不改变程序执行结果的前提下，优化程序的运行效率。需要注意的是，这里所说的不改变执行结果，指的是不改变单线程下的程序执行结果。</p>
+<h3 id="synchronized的使用方式？"><a href="#synchronized的使用方式？" class="headerlink" title="synchronized的使用方式？"></a>synchronized的使用方式？</h3><ul>
+<li>修饰实例(非静态方法。被锁对象是类的实例(<code>this</code>)。</li>
+<li>修饰静态方法。被锁对象是类对象。</li>
+<li>同步代码块。有三种形式。<br>①<code>synchronized(this)&#123;&#125;</code>，被锁对象是类的实例。<br>②<code>synchronized(XXX.Class)</code>，被锁对象是类对象。<br>③<code>synchronized(new Object())</code>，被锁对象是实例对象<code>object</code>。<h3 id="Lock锁的使用方式？"><a href="#Lock锁的使用方式？" class="headerlink" title="Lock锁的使用方式？"></a>Lock锁的使用方式？</h3></li>
+</ul>
+<p>1.获取锁。2.上锁。3.释放锁。<br>注意点：释放锁最好放在<code>finally&#123;&#125;</code>代码块中，保证能执行释放锁。</p>
+<h3 id="什么是乐观锁、什么是悲观锁？"><a href="#什么是乐观锁、什么是悲观锁？" class="headerlink" title="什么是乐观锁、什么是悲观锁？"></a>什么是乐观锁、什么是悲观锁？</h3><ul>
+<li><strong>悲观锁</strong>：它指的是对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度，因此，在整个数据处理过程中，将数据处于锁定状态。具有强烈的独占和排他特性。</li>
+<li><strong>乐观锁</strong>：乐观锁认为数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的重提与否进行检测，如果发现冲突了，程序自动去重试。相对于悲观锁，在高并发的场景下有更好的性能表现，通常用”版本号”实现。<h3 id="synchronized与Lock锁的区别？"><a href="#synchronized与Lock锁的区别？" class="headerlink" title="synchronized与Lock锁的区别？"></a>synchronized与Lock锁的区别？</h3></li>
+<li><code>synchronized</code>是java内置关键字，在<code>jvm</code>层面。<code>Lock</code>是个java类。</li>
+<li><code>synchronized</code>无法判断是否获取锁的状态。<code>Lock</code>可以判断是否获取到锁。</li>
+<li><code>synchronized</code>会自动释放锁。<code>Lock</code>锁需要在<code>finally&#123;&#125;</code>代码块中手工释放锁。</li>
+<li><code>synchronized</code>的锁可重入、不可中断、非公平。而<code>Lock</code>锁可重入、可判断、可公平（两者皆可）。<h3 id="有哪些常用的线程安全的集合？"><a href="#有哪些常用的线程安全的集合？" class="headerlink" title="有哪些常用的线程安全的集合？"></a>有哪些常用的线程安全的集合？</h3><code>ConcurrentHashMap</code>、<code>Vector</code>、<code>Hashtable</code>、<code>Stack</code>。还可以使用<code>Collections包装方法</code>获得线程安全的集合。<h3 id="CAS是什么，有什么问题，如何解决？"><a href="#CAS是什么，有什么问题，如何解决？" class="headerlink" title="CAS是什么，有什么问题，如何解决？"></a>CAS是什么，有什么问题，如何解决？</h3><code>CAS</code>是<code>compare and swap</code>的缩写，意思是比较与交换。<code>CAS</code>是乐观锁的一种实现。CAS操作包含三个操作数—内存位置的值（V）、预期原值（A）和新值（B）。如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置更新为新值。否则，处理器不做任何操作。</li>
+</ul>
+<p><code>CAS</code>有以下缺点：</p>
+<ul>
+<li>ABA问题： 线程C、D。线程D将A修改为B后又修改为A，此时C线程以为A没有改变过。这个问题通常可以使用版本号来解决。</li>
+<li>CPU开销过大。在并发量比较高的情况下，如果许多线程反复尝试更新某一个变量，却又一直更新不成功，循环往复，会给CPU带来很到的压力。</li>
+<li><code>CAS</code>机制所保证的只是一个变量的原子性操作，而不能保证整个代码块的原子性。比如需要保证3个变量共同进行原子性的更新，就不得不使用<code>synchronized</code>了。<h3 id="什么是ThreadLocal？"><a href="#什么是ThreadLocal？" class="headerlink" title="什么是ThreadLocal？"></a>什么是ThreadLocal？</h3>这个类提供了线程局部变量也称为线程本地变量，它为变量在每个线程中创建了一个副本，通过这样的方式做到变量在线程间隔离且在方法间共享的场景。<h3 id="ThreadLocal是如何保证线程安全的？"><a href="#ThreadLocal是如何保证线程安全的？" class="headerlink" title="ThreadLocal是如何保证线程安全的？"></a>ThreadLocal是如何保证线程安全的？</h3><code>ThreadLocal</code>存储的值不是线程共享的，而是属于线程的。内部会维护一个<code>ThreadLocalMap</code>，key是当前线程的<code>ThreadLocal</code>，value是存储的值。换句话说，每个线程都有自己的值，当然不会出现线程安全问题了。</li>
+</ul>
+<p>源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//获取当前线程</span></span><br><span class="line">       Thread t = Thread.currentThread();</span><br><span class="line">       <span class="comment">//通过当前线程获取到ThreadLocalMap</span></span><br><span class="line">       ThreadLocalMap map = getMap(t);</span><br><span class="line">       <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">       	<span class="comment">//key是this，value是需要存储的值</span></span><br><span class="line">           map.set(<span class="keyword">this</span>, value);</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">		<span class="comment">//创建一个map</span></span><br><span class="line">           createMap(t, value);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="JVM相关"><a href="#JVM相关" class="headerlink" title="JVM相关"></a>JVM相关</h1><h3 id="什么是JVM内存模型？"><a href="#什么是JVM内存模型？" class="headerlink" title="什么是JVM内存模型？"></a>什么是JVM内存模型？</h3><p>Java内存模型（Java Memory Model，简称为<strong>JMM</strong>)，是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了Java程序在各种平台下对内存的访问都能保证效果一致的机制及规范。</p>
+<p>根据java虚拟机规范，JVM内存共分为<strong>虚拟机栈，堆，方法区，程序计数器，本地方法栈</strong>五个部分。</p>
+<h3 id="栈内存溢出-StackOverflowError-的常见原因有哪些？"><a href="#栈内存溢出-StackOverflowError-的常见原因有哪些？" class="headerlink" title="栈内存溢出(StackOverflowError)的常见原因有哪些？"></a>栈内存溢出(StackOverflowError)的常见原因有哪些？</h3><p>栈溢出原因就是方法执行时创建的栈帧超过了栈的深度。最有可能的就是<strong>方法递归调用</strong>产生这种结果。</p>
+<h3 id="堆内存溢出-OOM-的常见原因有哪些？"><a href="#堆内存溢出-OOM-的常见原因有哪些？" class="headerlink" title="堆内存溢出(OOM)的常见原因有哪些？"></a>堆内存溢出(OOM)的常见原因有哪些？</h3><ul>
+<li><code>OutOfMemoryError: Java heap space</code>。在创建新的对象时, 堆内存中的空间不足以存放新创建的对象时发生。产生原因：程序中出现了死循环，不断创建对象；程序占用内存太多，<strong>超过了JVM堆设置的最大值</strong>。</li>
+<li><code>OutOfMemoryError: unable to create new native thread</code>。产生原因：系统内存耗尽，无法为新线程分配内存；<strong>创建线程数超过了操作系统的限制</strong>。</li>
+<li><code>OutOfMemoryError: PermGen space</code>。永久代溢出，即方法区溢出了，一般<strong>出现于大量Class或者jsp页面，或者采用cglib等反射机制的情况</strong>，因为上述情况会产生大量的Class信息存储于方法区。</li>
+<li><code>OutOfMemoryError：GC overhead limit exceeded</code>。<strong>超过98%的时间都在用来做GC并且回收了不到2%的堆内存</strong>。连续多次的GC，都回收了不到2%的极端情况下才会抛出。</li>
+</ul>
+<h3 id="JVM参数调优有哪些重要的参数？分别有什么作用？"><a href="#JVM参数调优有哪些重要的参数？分别有什么作用？" class="headerlink" title="JVM参数调优有哪些重要的参数？分别有什么作用？"></a>JVM参数调优有哪些重要的参数？分别有什么作用？</h3><ul>
+<li>-Xms  初始堆内存大小。</li>
+<li>-Xmx  最大堆内存大小。</li>
+<li>-Xss  每个线程的栈大小。</li>
+<li>-XX:+PrintGC  每次GC时打印相关信息。</li>
+<li>-XX:Newratio  设置年轻代和老年代的比例，比如值为2，则老年代是年轻代的2倍。</li>
+<li>-XX:Newsize  设置年轻代的初始值大小。</li>
+<li>-XX:Maxnewsize  设置年轻代的最大值大小。</li>
+</ul>
+<h3 id="GC垃圾回收机制，有哪些垃圾回收算法？"><a href="#GC垃圾回收机制，有哪些垃圾回收算法？" class="headerlink" title="GC垃圾回收机制，有哪些垃圾回收算法？"></a>GC垃圾回收机制，有哪些垃圾回收算法？</h3><p>标记-清除算法、复制算法、标记整理算法、分代收集算法。</p>
+<h3 id="JVM如何判断对象是否可以回收？"><a href="#JVM如何判断对象是否可以回收？" class="headerlink" title="JVM如何判断对象是否可以回收？"></a>JVM如何判断对象是否可以回收？</h3><p>会使用可达性分析算法进行判断，原理是从一系列被称为<code>GC ROOT</code>的对象开始，向下搜索，搜索走过的路径称为引用链，当一个对象到<code>GC ROOT</code>之间没有引用链，说明这个对象不可用，那么就会被GC回收。</p>
+<h3 id="什么是强引用、软引用、弱引用、虚引用？"><a href="#什么是强引用、软引用、弱引用、虚引用？" class="headerlink" title="什么是强引用、软引用、弱引用、虚引用？"></a>什么是强引用、软引用、弱引用、虚引用？</h3><p>强引用。一般<code>new</code>出来的对象都是强引用。如果一个对象具有强引用，<code>GC</code>绝不会回收它；当内存空间不足，JVM宁愿抛出<code>OutOfMemoryError</code>错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//强引用</span></span><br><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
+<p>软引用。如果一个对象只具有软引用。如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//软引用</span></span><br><span class="line">SoftReference&lt;Object&gt; softReference = <span class="keyword">new</span> SoftReference&lt;&gt;(<span class="keyword">new</span> Object());</span><br></pre></td></tr></table></figure>
+<p>弱引用。如果一个对象具有弱引用，在GC线程扫描内存区域的过程中，不管当前内存空间足够与否，都会回收内存。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//弱引用</span></span><br><span class="line">WeakReference&lt;Object&gt; weakReference = <span class="keyword">new</span> WeakReference&lt;&gt;(<span class="keyword">new</span> Object());</span><br></pre></td></tr></table></figure>
+<p>虚引用。如果一个对象仅持有虚引用，在任何时候都可能被垃圾回收。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//虚引用</span></span><br><span class="line">PhantomReference&lt;Object&gt; phantomReference = <span class="keyword">new</span> PhantomReference&lt;&gt;(<span class="keyword">new</span> Object(), <span class="keyword">new</span> ReferenceQueue&lt;&gt;());</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="什么是类加载器？"><a href="#什么是类加载器？" class="headerlink" title="什么是类加载器？"></a>什么是类加载器？</h3><p>Java类加载器是Java运行时环境的一部分，负责动态加载Java类到JVM的内存空间中。</p>
+<h3 id="什么是双亲委派机制？"><a href="#什么是双亲委派机制？" class="headerlink" title="什么是双亲委派机制？"></a>什么是双亲委派机制？</h3><p>双亲委派机制是指当一个类加载器收到一个类加载请求时，该类加载器首先会把请求委派给父类加载器。每个类加载器都是如此，只有在父类加载器在自己的搜索范围内找不到指定类时，子类加载器才会尝试自己去加载。</p>
+<h3 id="类的生命周期？"><a href="#类的生命周期？" class="headerlink" title="类的生命周期？"></a>类的生命周期？</h3><p><strong>加载、验证、准备、解析、初始化、使用、卸载</strong>。</p>
+<p>有些资料会把(验证、准备、解析)归纳为连接，于是就变成：<strong>加载、连接、初始化、使用、卸载</strong>。</p>
+<h1 id="设计模式相关"><a href="#设计模式相关" class="headerlink" title="设计模式相关"></a>设计模式相关</h1><h3 id="如何实现单例模式？"><a href="#如何实现单例模式？" class="headerlink" title="如何实现单例模式？"></a>如何实现单例模式？</h3><ul>
+<li>饿汉式单例模式。定义一个静态成员变量，把构造器私有化，只对外暴露一个获取实例的方法。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingLeton</span> </span>&#123;</span><br><span class="line">    <span class="comment">//立即加载</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingLeton singLeton = <span class="keyword">new</span> SingLeton();</span><br><span class="line">    <span class="comment">//私有化构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingLeton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="comment">//对外暴露获取实例的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingLeton <span class="title">getSingLeton</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> singLeton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>懒汉式单例模式。非线程安全。基本和上面饿汉式实现方式类似，只是在获取时再判断是否创建实例，但是会有线程安全问题。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingLeton</span> </span>&#123;</span><br><span class="line">    <span class="comment">//立即加载</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingLeton singLeton;</span><br><span class="line">    <span class="comment">//私有化构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingLeton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//对外暴露获取实例的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingLeton <span class="title">getSingLeton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (singLeton == <span class="keyword">null</span>) &#123;</span><br><span class="line">            singLeton = <span class="keyword">new</span> SingLeton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singLeton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用静态内部类实现<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingLeton</span> </span>&#123;</span><br><span class="line">    <span class="comment">//私有化构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingLeton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="comment">//对外暴露获取实例的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingLeton <span class="title">getSingLeton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingLetonHolder.SINGLETON;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//私有静态内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingLetonHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingLeton SINGLETON = <span class="keyword">new</span> SingLeton();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用枚举实现<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">SingLeton</span> </span>&#123;</span><br><span class="line">    SINGLETON;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="如何实现线程安全的单例模式？"><a href="#如何实现线程安全的单例模式？" class="headerlink" title="如何实现线程安全的单例模式？"></a>如何实现线程安全的单例模式？</h3><p><strong>饿汉式实现、枚举、静态内部类</strong>都是<strong>线程安全</strong>的实现方式。<br>还可以使用<strong>双检锁</strong>的懒汉式方式实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingLeton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> SingLeton singLeton;</span><br><span class="line">    <span class="comment">//私有化构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingLeton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="comment">//对外暴露获取实例的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingLeton <span class="title">getSingLeton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (singLeton == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (SingLeton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (singLeton == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    singLeton = <span class="keyword">new</span> SingLeton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singLeton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="为什么要使用工厂模式创建对象？"><a href="#为什么要使用工厂模式创建对象？" class="headerlink" title="为什么要使用工厂模式创建对象？"></a>为什么要使用工厂模式创建对象？</h3><ul>
+<li><strong>解耦</strong>。把对象的创建和使用的过程分开。</li>
+<li><strong>可以降低代码重复</strong>。如果创建B过程都很复杂，需要一定的代码量，而且很多地方都要用到，那么就会有很多的重复代码。</li>
+<li><strong>减少了使用者因为创建逻辑导致的错误</strong>。因为工厂管理了对象的创建逻辑，使用者并不需要知道具体的创建过程，只管使用即可。</li>
+<li><strong>提高了代码的可维护性</strong>。如果发生业务逻辑变化，不需要找到所有需要创建对象的地方去逐个修正，只需要在工厂里修改即可。</li>
+</ul>
+<h3 id="在java中，实现代理模式有哪几种方式？"><a href="#在java中，实现代理模式有哪几种方式？" class="headerlink" title="在java中，实现代理模式有哪几种方式？"></a>在java中，实现代理模式有哪几种方式？</h3><ul>
+<li>静态代理。</li>
+<li>JDK动态代理。</li>
+<li>CGlib动态代理。</li>
+</ul>
+<h3 id="JDK动态代理和CGlib动态代理的区别？"><a href="#JDK动态代理和CGlib动态代理的区别？" class="headerlink" title="JDK动态代理和CGlib动态代理的区别？"></a>JDK动态代理和CGlib动态代理的区别？</h3><p> （1）<code>JDK动态代理</code>只能对实现了接口的类生成代理，而不能针对类。<br> （2）<code>CGLIB</code>是针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法。<br>   因为是继承，所以该类或方法不能声明成<code>final</code>。</p>
+<h3 id="策略模式的使用场景？"><a href="#策略模式的使用场景？" class="headerlink" title="策略模式的使用场景？"></a>策略模式的使用场景？</h3><ul>
+<li>多个类只区别在表现行为不同，可以使用策略模式，在运行时<strong>动态选择具体要执行的行为</strong>。</li>
+<li>需要在不同情况下使用不同的策略(算法)，或者策略还可能在未来用其它方式来实现。</li>
+<li>对客户隐藏具体策略(算法)的实现细节，彼此完全独立。</li>
+</ul>
+<h3 id="装饰器模式解决了什么问题？在java中有哪些应用了装饰器模式？"><a href="#装饰器模式解决了什么问题？在java中有哪些应用了装饰器模式？" class="headerlink" title="装饰器模式解决了什么问题？在java中有哪些应用了装饰器模式？"></a>装饰器模式解决了什么问题？在java中有哪些应用了装饰器模式？</h3><p>使用场景：</p>
+<ul>
+<li>扩展一个类的功能。</li>
+<li>动态增加功能，动态撤销。</li>
+</ul>
+<p>java中经典的例子就是I/O流。具体分析过程可以参考我写的这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yehongzhi1994/article/details/106065136">装饰者模式与IO流的应用</a>。</p>
+<h1 id="经典算法"><a href="#经典算法" class="headerlink" title="经典算法"></a>经典算法</h1><h3 id="有哪些经典的排序算法？"><a href="#有哪些经典的排序算法？" class="headerlink" title="有哪些经典的排序算法？"></a>有哪些经典的排序算法？</h3><p>插入排序、冒泡排序、归并排序、快速排序、堆排序、桶排序、基数排序等等。</p>
+<h3 id="冒泡排序的时间复杂度和空间复杂度？"><a href="#冒泡排序的时间复杂度和空间复杂度？" class="headerlink" title="冒泡排序的时间复杂度和空间复杂度？"></a>冒泡排序的时间复杂度和空间复杂度？</h3><p>平均的时间复杂度是<code>O(n^2)</code>，最好的情况是<code>O(n)</code>，最坏的情况是<code>O(n^2)</code>。空间复杂度是<code>O(1)</code>。</p>
+<h3 id="哪一种排序算法的时间复杂度比较稳定？"><a href="#哪一种排序算法的时间复杂度比较稳定？" class="headerlink" title="哪一种排序算法的时间复杂度比较稳定？"></a>哪一种排序算法的时间复杂度比较稳定？</h3><p>归并排序。最好和最坏的情况下，时间复杂度都是<code>O(n*log n)</code>。</p>
+<h3 id="如何实现二分查找？二分查找的时间复杂度？-笔试常见"><a href="#如何实现二分查找？二分查找的时间复杂度？-笔试常见" class="headerlink" title="如何实现二分查找？二分查找的时间复杂度？(笔试常见)"></a>如何实现二分查找？二分查找的时间复杂度？(笔试常见)</h3><p>有两种方式，迭代法和递归法。具体实现代码，可以参考我写的这篇《<a target="_blank" rel="noopener" href="https://blog.csdn.net/yehongzhi1994/article/details/105835380">手把手教你实现二分查找</a>》。时间复杂度是<code>O(log n)</code>。</p>
+<h3 id="跳楼梯的问题。-笔试常见"><a href="#跳楼梯的问题。-笔试常见" class="headerlink" title="跳楼梯的问题。(笔试常见)"></a>跳楼梯的问题。(笔试常见)</h3><p>这是一个经典的斐波那契数列问题。力扣题库第70题。可以看看大佬们的题解。这是我的题解，使用了<code>Map</code>作为缓存，减少一些不必要的递归，效率还不错。执行时间：1 ms。当然你去掉那个<code>Map</code>也是完全没错的，只是运行时间会久一些，可能会超出<code>leetcode</code>的时间限制，没法通过。<br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/solution/guan-fang-jie-fa-yi-chao-shi-cai-yong-maphuan-cun-/">我的题解链接</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 题目描述：</span></span><br><span class="line"><span class="comment"> * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</span></span><br><span class="line"><span class="comment"> * 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            map.put(n, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</span><br><span class="line">            map.put(n, <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (map.get(n) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> map.get(n);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> num = climbStairs(n - <span class="number">1</span>) + climbStairs(n - <span class="number">2</span>);</span><br><span class="line">            map.put(n, num);</span><br><span class="line">            <span class="keyword">return</span> num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>想第一时间看到我更新的文章，可以微信搜索公众号「<code>java技术爱好者</code>」，<strong>拒绝做一条咸鱼，我是一个在互联网荒野求生的程序员。我们下期再见！！！</strong></p>
+<p><img src="https://static.lovebilibili.com/erweimaguanzhu.png" class="lazyload" data-srcset="https://static.lovebilibili.com/erweimaguanzhu.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述"></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://alloceee.github.io/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/>https://alloceee.github.io/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-04T11:17:18+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年8月4日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>java</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%9D%A2%E8%AF%95/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>面试</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%80%BB%E7%BB%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>总结</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://alloceee.github.io/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/&title=面试题总结-基础篇 - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alloceee.github.io/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/&title=面试题总结-基础篇 - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://alloceee.github.io/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/&title=面试题总结-基础篇 - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/06/14/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>SpringMVC全局异常处理</p>
+          <p class='content'>SpringMVC全局异常处理SpringMVC除了可以做URL映射和请求拦截外，还可以做全局异常的处理。全局异常处理可能我们平时比较少机会接触，但是每个项目都肯定会做这个处理。比如在上一间公司...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/06/06/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/'>
+          <p class='title'>责任链模式<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>各位java技术爱好者，我们又见面了！之前我在面试的时候遇到这个问题，当时答不上来。这件事就一直在我心里耿耿于怀。相信很多人面试完都有这种体验，哈哈~不过今日不同往日了，现在我已经搞懂了，其实并...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E3%80%81JRE%E3%80%81JDK%E6%9C%89%E4%BB%80%E4%B9%88%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">JVM、JRE、JDK有什么联系与区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%89%B9%E5%BE%81%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">面向对象的特征有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88java%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%B9%B3%E5%8F%B0%EF%BC%9F"><span class="toc-text">为什么java可以实现跨平台？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%EF%BC%9F"><span class="toc-text">类的加载顺序？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B1%E5%90%8C%E7%82%B9%E5%92%8C%E4%B8%8D%E5%90%8C%E7%82%B9%EF%BC%9F"><span class="toc-text">接口和抽象类有什么共同点和不同点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static%E5%85%B3%E9%94%AE%E5%AD%97%E6%9C%89%E5%93%AA%E4%BA%9B%E7%94%A8%E6%B3%95%EF%BC%9F"><span class="toc-text">static关键字有哪些用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Switch%E8%83%BD%E7%94%A8%E4%BB%80%E4%B9%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%EF%BC%9F"><span class="toc-text">Switch能用什么数据类型作为参数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E7%82%B9%EF%BC%9F%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-text">枚举有哪些特点？在项目中如何使用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%B9%E6%B3%95%E9%87%8D%E5%86%99%EF%BC%9F"><span class="toc-text">什么是方法重载？什么是方法重写？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F%E5%88%86%E5%88%AB%E4%BD%8D%E4%BA%8E%E5%86%85%E5%AD%98%E7%9A%84%E4%BB%80%E4%B9%88%E5%8C%BA%E5%9F%9F%EF%BC%9F"><span class="toc-text">静态变量和实例变量有什么不同？分别位于内存的什么区域？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB%E7%9A%84%E5%88%86%E7%B1%BB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">java的内部类的分类有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break%E3%80%81continue%E3%80%81return-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">break、continue、return 的作用是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object%E7%B1%BB%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-text">Object类有哪些常用的方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Eequals-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">&#x3D;&#x3D;与equals()的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals-%E4%B8%8EhashCode-%E6%9C%89%E4%BB%80%E4%B9%88%E8%81%94%E7%B3%BB%EF%BC%9F"><span class="toc-text">equals()与hashCode()有什么联系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#amp-%E5%92%8C-amp-amp-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">&amp; 和 &amp;&amp;有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final%E3%80%81finalize-%E3%80%81finally-%E5%88%86%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">final、finalize()、finally{}分别有什么作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cloneable%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">Cloneable接口有什么作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%85%E5%85%8B%E9%9A%86%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B1%E5%85%8B%E9%9A%86%EF%BC%9F"><span class="toc-text">什么是浅克隆，什么是深克隆？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%9F"><span class="toc-text">什么是序列化？什么是反序列化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Serializable%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">Serializable接口有什么作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E3%80%81StringBuffer%E3%80%81StringBuilder%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">String、StringBuffer、StringBuilder有什么区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%9B%E5%9E%8B-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%B8%8A%E7%95%8C%E5%92%8C%E4%B8%8B%E7%95%8C"><span class="toc-text">什么是泛型?什么是泛型的上界和下界?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">什么是反射机制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Class%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">获取Class对象的方式有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E5%BC%82%E5%B8%B8%EF%BC%9F"><span class="toc-text">java中的异常有哪几种异常？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E7%9A%84%EF%BC%9F"><span class="toc-text">java是如何处理异常的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E9%9B%86%E5%90%88%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">常用的集合有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-text">HashMap是线程安全的吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BFHashMap%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-text">如何使HashMap线程安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap%E5%92%8CHashtable%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">HashMap和Hashtable的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap%E6%98%AF%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81%E7%9A%84%EF%BC%9F"><span class="toc-text">HashMap是如何解决哈希冲突的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap%E5%88%9D%E5%A7%8B%E5%A4%A7%E5%B0%8F%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-text">HashMap初始大小是多少？负载因子是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8BHashMap%E7%9A%84%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">简述一下HashMap的扩容机制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%90%E7%B1%BB%EF%BC%9F"><span class="toc-text">List有哪些常用的子类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayList%E5%92%8CLinkedList%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">ArrayList和LinkedList有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">List集合排序的方式有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E7%89%B9%E7%82%B9%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%9C%A8java%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%B1%BB%EF%BC%9F"><span class="toc-text">栈和队列的特点分别是什么？在java中有哪些实现的类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E3%80%81NIO%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">IO、NIO有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%97%A5%E6%9C%9F%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%9F"><span class="toc-text">如何进行日期的转换？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E4%B8%8A%E4%B8%80%E5%B9%B4%E7%9A%84%E4%BB%8A%E5%A4%A9%E7%9A%84%E6%97%A5%E6%9C%9F%EF%BC%9F"><span class="toc-text">如何获取上一年的今天的日期？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BigDecimal%E7%B1%BB%E5%9E%8B%E4%B8%80%E5%AE%9A%E4%B8%8D%E4%BC%9A%E5%A4%B1%E7%9C%9F%E5%90%97%EF%BC%9F"><span class="toc-text">BigDecimal类型一定不会失真吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">为什么要使用多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-text">创建线程有哪几种方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%9F"><span class="toc-text">如何获取多线程的返回值？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="toc-text">多线程的生命周期？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%EF%BC%9F"><span class="toc-text">如何进行线程之间的通信？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E8%AF%B4-sleep-%E6%96%B9%E6%B3%95%E5%92%8C-wait-%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB%E5%92%8C%E5%85%B1%E5%90%8C%E7%82%B9"><span class="toc-text">说说 sleep() 方法和 wait() 方法区别和共同点?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%81%9C%E6%AD%A2%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">如何停止线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AD%BB%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-text">什么是线程的死锁？如何避免线程死锁？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">线程池的作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E5%88%86%E5%88%AB%E4%BB%A3%E8%A1%A8%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F"><span class="toc-text">创建线程池的重要参数分别代表什么意思？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%ADsubmit-%E5%92%8C-execute-%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">线程池中submit() 和 execute()方法有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-text">有哪些常用的线程池？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-text">什么是线程安全问题？如何保证线程安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-text">java的内存模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile%E5%85%B3%E9%94%AE%E5%AD%97%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9Fvolatile%E4%B8%80%E5%AE%9A%E8%83%BD%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E5%90%97%EF%BC%9F"><span class="toc-text">volatile关键字有什么作用？volatile一定能保证原子性吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%EF%BC%9F"><span class="toc-text">什么是指令重排？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-text">synchronized的使用方式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock%E9%94%81%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-text">Lock锁的使用方式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B9%90%E8%A7%82%E9%94%81%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%82%B2%E8%A7%82%E9%94%81%EF%BC%9F"><span class="toc-text">什么是乐观锁、什么是悲观锁？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized%E4%B8%8ELock%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">synchronized与Lock锁的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%9B%86%E5%90%88%EF%BC%9F"><span class="toc-text">有哪些常用的线程安全的集合？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-text">CAS是什么，有什么问题，如何解决？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFThreadLocal%EF%BC%9F"><span class="toc-text">什么是ThreadLocal？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F"><span class="toc-text">ThreadLocal是如何保证线程安全的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-text">什么是JVM内存模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA-StackOverflowError-%E7%9A%84%E5%B8%B8%E8%A7%81%E5%8E%9F%E5%9B%A0%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">栈内存溢出(StackOverflowError)的常见原因有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA-OOM-%E7%9A%84%E5%B8%B8%E8%A7%81%E5%8E%9F%E5%9B%A0%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">堆内存溢出(OOM)的常见原因有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98%E6%9C%89%E5%93%AA%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%9F%E5%88%86%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">JVM参数调优有哪些重要的参数？分别有什么作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%8C%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="toc-text">GC垃圾回收机制，有哪些垃圾回收算法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%9B%9E%E6%94%B6%EF%BC%9F"><span class="toc-text">JVM如何判断对象是否可以回收？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E8%99%9A%E5%BC%95%E7%94%A8%EF%BC%9F"><span class="toc-text">什么是强引用、软引用、弱引用、虚引用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%9F"><span class="toc-text">什么是类加载器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">什么是双亲委派机制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="toc-text">类的生命周期？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-text">如何实现单例模式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-text">如何实现线程安全的单例模式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%EF%BC%9F"><span class="toc-text">为什么要使用工厂模式创建对象？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8java%E4%B8%AD%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-text">在java中，实现代理模式有哪几种方式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGlib%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">JDK动态代理和CGlib动态代理的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-text">策略模式的使用场景？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F%E5%9C%A8java%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E4%BA%86%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-text">装饰器模式解决了什么问题？在java中有哪些应用了装饰器模式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BB%8F%E5%85%B8%E7%9A%84%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="toc-text">有哪些经典的排序算法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%9F"><span class="toc-text">冒泡排序的时间复杂度和空间复杂度？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%AA%E4%B8%80%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%AF%94%E8%BE%83%E7%A8%B3%E5%AE%9A%EF%BC%9F"><span class="toc-text">哪一种排序算法的时间复杂度比较稳定？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%9F%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%9F-%E7%AC%94%E8%AF%95%E5%B8%B8%E8%A7%81"><span class="toc-text">如何实现二分查找？二分查找的时间复杂度？(笔试常见)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%B3%E6%A5%BC%E6%A2%AF%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82-%E7%AC%94%E8%AF%95%E5%B8%B8%E8%A7%81"><span class="toc-text">跳楼梯的问题。(笔试常见)</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="面试题总结-基础篇";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='5363470125'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css", window.volantis.loadcss);
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $.backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+  
+  
+
+  <div id="rightmenu-wrapper">
+    <ul class="list-v rightmenu" id="rightmenu-content">
+      <li class='option'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <hr id='hr-text'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <hr id='hr-href'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <hr id='hr-src'>
+      </li>
+      
+        <li class='navigation'>
+          <a class='nav icon-only fix-cursor-default' onclick='history.back()'><i class='fa fa-arrow-left fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='history.forward()'><i class='fa fa-arrow-right fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='window.location.reload()'><i class='fa fa-redo fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' href='/'><i class='fa fa-home fa-fw'></i></a>
+        </li>
+      
+      <hr>
+      
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/faqs/
+        
+        
+        
+        
+          id="https:volantisjsorgfaqs"
+        >
+        <i class='fa fa-question fa-fw'></i> 常见问题
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/examples/
+        
+        
+        
+        
+          id="https:volantisjsorgexamples"
+        >
+        <i class='fa fa-rss fa-fw'></i> 示例博客
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/contributors/
+        
+        
+        
+        
+          id="https:volantisjsorgcontributors"
+        >
+        <i class='fa fa-fan fa-spin fa-fw'></i> 加入社区
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://github.com/volantis-x/volantis-docs/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xvolantis-docs"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 本站源码
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://github.com/volantis-x/hexo-theme-volantis/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xhexo-theme-volantis"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 主题源码
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' 
+        
+        
+        
+          onclick="document.execCommand('print')"
+        
+        >
+        <i class='fa fa-print fa-fw'></i> 打印页面
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default toggle-mode-btn' 
+        
+        
+        
+        >
+        <i class='fas fa-moon fa-fw'></i> Dark mode
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          <li class='music name'>
+            <p class='nav music-title fix-cursor-default'></p>
+          </li>
+          <li class='music ctrl'>
+            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
+            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
+            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
+          </li>
+          <li class='music volume'>
+            <a class='nav volume'>
+              <div class="aplayer-volume-bar-wrap">
+                <div class="aplayer-volume-bar fix-cursor-pointer">
+                  <div class="aplayer-volume"></div>
+                  <i class='left fa fa-volume-off fa-fw'></i>
+                  <i class='right fa fa-volume-up fa-fw'></i>
+                </div>
+              </div>
+            </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+  <script>
+    window.document.oncontextmenu = function (event) {
+      if (event.ctrlKey) return true;
+      if (/Android|webOS|BlackBerry/i.test(navigator.userAgent)) return true;
+      return popMenu(event);
+    };
+    document.addEventListener("click", function (event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      mymenu.style.display = "none";
+    });
+    function popMenu(event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      var menuContent = document.getElementById('rightmenu-content');
+      var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      var screenHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      mymenu.style.left = event.clientX + "px"; // 获取鼠标位置
+      mymenu.style.top = event.clientY + "px";
+      mymenu.style.display = 'block';
+      if (event.clientX * 2 > screenWidth) {
+        menuContent.classList.add('left');
+      } else {
+        menuContent.classList.remove('left');
+      }
+      if (event.clientY * 2 > screenHeight) {
+        menuContent.classList.add('top');
+      } else {
+        menuContent.classList.remove('top');
+      }
+
+      let hrText = document.getElementById('hr-text');
+      let hrSrc = document.getElementById('hr-src');
+      let hrHref = document.getElementById('hr-href');
+
+      // 选中图片
+      let copySrc = document.getElementById('menu-copy-src');
+      if (copySrc != undefined) {
+        if (event.target.currentSrc) {
+          copySrc.style.display = 'block';
+          copySrc.addEventListener("click", function (e) {
+            copyString(event.target.currentSrc);
+          },{once: true});
+          hrSrc.style.display = 'block';
+        } else {
+          copySrc.style.display = 'none';
+          hrSrc.style.display = 'none';
+        }
+      }
+
+      // 选中按钮
+      // 判断是不是按钮
+      let href = '';
+      if (event.path) {
+        for (i = 0; i < event.path.length; i++) {
+          if (event.path[i].href != undefined && event.path[i].href.length > 0) {
+            href = event.path[i].href;
+          }
+        }
+      }
+
+      let copyText = document.getElementById('menu-copy-text');
+      copyText.style.display = 'none';
+      hrText.style.display = 'none';
+      if (href.length == 0) {
+        // 选中文本
+        if (window.getSelection().toString()) {
+          if ('true' == 'true') {
+            copyText.style.display = 'block';
+            hrText.style.display = 'block';
+          }
+        }
+      }
+
+      // 在新标签页打开
+      let openHref = document.getElementById('menu-open-href');
+      if (openHref != undefined) {
+        if (href.length > 0) {
+          openHref.style.display = 'block';
+          openHref.addEventListener("click", function (e) {
+            window.open(href);
+          },{once: true});
+          hrHref.style.display = 'block';
+        } else {
+          openHref.style.display = 'none';
+          hrHref.style.display = 'none';
+        }
+      }
+      // 复制链接
+      let copyHref = document.getElementById('menu-copy-href');
+      if (copyHref != undefined) {
+        if (href.length > 0) {
+          copyHref.style.display = 'block';
+          copyHref.addEventListener("click", function (e) {
+            copyString(href);
+          },{once: true});
+        } else {
+          copyHref.style.display = 'none';
+        }
+      }
+      // 有音乐播放器 see: layout/_third-party/aplayer/script.ejs
+      
+      if(volantis.APlayerLoaded){ // APlayer加载完成？
+        // 如果有aplayer，初始化一下
+        checkAPlayer();
+      }
+      
+      return false; // 该行代码确保系统自带的右键菜单不会被调出
+    }
+    function hideMenu() {
+      document.getElementById('rightmenu-wrapper').style.display = 'none';
+    }
+    function copyString(str) {
+      const input = document.createElement('input');
+      input.setAttribute('readonly', 'readonly');
+      document.body.appendChild(input);
+      input.setAttribute('value', str);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+    document.execCommand('click');
+  </script>
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+	volantis.pjax.push(pjax_initCopyCode)
+</script>
+
+
+
+
+   <script type="text/javascript">
+  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
+  function pjax_scrollrebeal() {
+    ScrollReveal().reveal('.l_main .reveal', {
+      distance: '32px',
+      duration: '800',
+      interval: '20',
+      scale: '1',
+      easing: 'ease-out'
+    });
+  }
+  $(function () {
+  var checkScrollReveal = setInterval(function () {
+    if ($("#safearea").css("display")!="block") return
+    if (typeof ScrollReveal=="undefined") return
+    clearInterval(checkScrollReveal)
+	pjax_scrollrebeal();
+  }, 100)
+  });
+  volantis.pjax.push(pjax_scrollrebeal)
+</script>
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '5363470125';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.APlayerLoaded=0 // APlayer加载完成状态
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return // APlayer加载完成？
+	  if ($("#safearea").css("display")!="block") return // 文章内容加载完成？ see: source/css/first.styl
+    clearInterval(checkAPlayer)
+	  if (!window.volantis.APlayerLoaded&&!window.MetingJSElement){ // APlayer只能加载一次
+      window.volantis.APlayerLoaded=1 // APlayer加载完成
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js") // 加载 MetingJS
+	  }
+  }, 2500) // 按照网速调节差分2.5s
+  // rightmenu see: layout/_partial/rightmenu.ejs
+
+  
+    loadScript("/js/aplayer.js")
+  
+
+</script>
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script>
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+		document.addEventListener("pjax:success", listenSearch);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://alloceee.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://alloceee.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>

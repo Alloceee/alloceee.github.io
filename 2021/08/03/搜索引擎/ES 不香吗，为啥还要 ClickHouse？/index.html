@@ -24,7 +24,7 @@
   
   <title>ES 不香吗，为啥还要 ClickHouse？ - Hexo</title>
   
-    <meta name="keywords" content="ElasticSearch">
+    <meta name="keywords" content="ElasticSearch,ClickHouse">
   
 
   
@@ -334,7 +334,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Alloceee's Blog</p>
+      <p class="title">Twilight Rush</p>
     
     
   </div>
@@ -474,9 +474,144 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>ES是最为流行的大数据日志和搜索解决方案，但是近几年来，它的江湖地位受到了一些挑战，许多公司已经开始把自己的日志解决方案从ES迁移到了Clickhouse，这里就包括：携程，快手等公司。</p>
 <h2 id="架构和设计的对比"><a href="#架构和设计的对比" class="headerlink" title="架构和设计的对比"></a>架构和设计的对比</h2><p>ES的底层是Lucene，主要是要解决搜索的问题。搜索是大数据领域要解决的一个常见的问题，就是在海量的数据量要如何按照条件找到需要的数据。搜索的核心技术是倒排索引和布隆过滤器。</p>
 <p>ES通过分布式技术，利用分片与副本机制，直接解决了集群下搜索性能与高可用的问题。</p>
-<p><img src="../../img/0006.png" class="lazyload" data-srcset="../../img/0006.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p><img src="img/0006.png" class="lazyload" data-srcset="img/0006.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
 <p>ElasticSearch 是为分布式设计的，有很好的扩展性，在一个典型的分布式配置中，每一个节点（node）可以配制成不同的角色。</p>
 <p><img src="../../img/0007.png" class="lazyload" data-srcset="../../img/0007.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>如上图所示：</p>
+<ul>
+<li>Client Node，负责API和数据的访问的节点，不存储/处理数据</li>
+<li>Data Node，负责数据的存储和索引</li>
+<li>Master Node，管理节点，负责Cluster中的节点的协调，不存储数据</li>
+</ul>
+<p>ClickHouse是基于MPP架构的分布式ROLAP（关系OLAP）分析引擎。每个节点都有相同的责任，并负责部分数据处理（不共享任何内容）。</p>
+<p>ClickHouse是一个真正的列式数据库管理系统（DBMS）。在ClickHouse中，数据始终是按列存储的，包括矢量（向量或列块）执行的过程。</p>
+<p>让查询变得更快，最简单且有效地方法是减少数据扫描范围和数据传输时的大小，而列式存储和数据压缩就可以帮助实现上述两点。</p>
+<p>ClickHouse同时使用了日志合并树，稀疏索引和CPU功能（如SIMD单指令多数据）充分发挥了硬件优势，可实现高效的计算。</p>
+<p>ClickHouse使用Zookeeper进行分布式节点之间的协调。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvlJOut9tprBzwdQWj2usslJRr5CEwy6aEAian1dGlzWU6ic37KibVhsiclw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvlJOut9tprBzwdQWj2usslJRr5CEwy6aEAian1dGlzWU6ic37KibVhsiclw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>为了支持搜索，Clickhouse 同样支持布隆过滤器。</p>
+<h2 id="查询对比实战"><a href="#查询对比实战" class="headerlink" title="查询对比实战"></a>查询对比实战</h2><p>为了对比 ES 和 Clickhouse 的基本查询能力的差异，我写了一些代码来验证：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/gangtao/esvsch</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个测试的架构如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvBSHAsxrZVFPbEQgMwRfkmAQ3FL8n9eJVavVvoAS9f5kvUic8qeLzNxA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvBSHAsxrZVFPbEQgMwRfkmAQ3FL8n9eJVavVvoAS9f5kvUic8qeLzNxA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>架构主要有四个部分组成：</p>
+<p><strong>①ES stack</strong></p>
+<p>ES stack 有一个单节点的 Elastic 的容器和一个 Kibana 容器组成，Elastic 是被测目标之一，Kibana 作为验证和辅助工具。</p>
+<p><strong>部署代码如下：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">version: &#x27;3.7&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  elasticsearch:</span><br><span class="line">    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0</span><br><span class="line">    container_name: elasticsearch</span><br><span class="line">    environment:</span><br><span class="line">      - xpack.security.enabled=false</span><br><span class="line">      - discovery.type=single-node</span><br><span class="line">    ulimits:</span><br><span class="line">      memlock:</span><br><span class="line">        soft: -1</span><br><span class="line">        hard: -1</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 65536</span><br><span class="line">        hard: 65536</span><br><span class="line">    cap_add:</span><br><span class="line">      - IPC_LOCK</span><br><span class="line">    volumes:</span><br><span class="line">      - elasticsearch-data:/usr/share/elasticsearch/data</span><br><span class="line">    ports:</span><br><span class="line">      - 9200:9200</span><br><span class="line">      - 9300:9300</span><br><span class="line">    deploy:</span><br><span class="line">      resources:</span><br><span class="line">        limits:</span><br><span class="line">          cpus: &#x27;4&#x27;</span><br><span class="line">          memory: 4096M</span><br><span class="line">        reservations:</span><br><span class="line">          memory: 4096M</span><br><span class="line"></span><br><span class="line">  kibana:</span><br><span class="line">    container_name: kibana</span><br><span class="line">    image: docker.elastic.co/kibana/kibana:7.4.0</span><br><span class="line">    environment:</span><br><span class="line">      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200</span><br><span class="line">    ports:</span><br><span class="line">      - 5601:5601</span><br><span class="line">    depends_on:</span><br><span class="line">      - elasticsearch</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line">  elasticsearch-data:</span><br><span class="line">    driver: local</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>②Clickhouse stack</strong></p>
+<p>Clickhouse stack 有一个单节点的 Clickhouse 服务容器和一个 TabixUI 作为 Clickhouse 的客户端。</p>
+<p> 部署代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.7&quot;</span><br><span class="line">services:</span><br><span class="line">  clickhouse:</span><br><span class="line">    container_name: clickhouse</span><br><span class="line">    image: yandex/clickhouse-server</span><br><span class="line">    volumes:</span><br><span class="line">      - ./data/config:/var/lib/clickhouse</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8123:8123&quot;</span><br><span class="line">      - &quot;9000:9000&quot;</span><br><span class="line">      - &quot;9009:9009&quot;</span><br><span class="line">      - &quot;9004:9004&quot;</span><br><span class="line">    ulimits:</span><br><span class="line">      nproc: 65535</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;wget&quot;, &quot;--spider&quot;, &quot;-q&quot;, &quot;localhost:8123/ping&quot;]</span><br><span class="line">      interval: 30s</span><br><span class="line">      timeout: 5s</span><br><span class="line">      retries: 3</span><br><span class="line">    deploy:</span><br><span class="line">      resources:</span><br><span class="line">        limits:</span><br><span class="line">          cpus: &#x27;4&#x27;</span><br><span class="line">          memory: 4096M</span><br><span class="line">        reservations:</span><br><span class="line">          memory: 4096M</span><br><span class="line"></span><br><span class="line">  tabixui:</span><br><span class="line">    container_name: tabixui</span><br><span class="line">    image: spoonest/clickhouse-tabix-web-client</span><br><span class="line">    environment:</span><br><span class="line">      - CH_NAME=dev</span><br><span class="line">      - CH_HOST=127.0.0.1:8123</span><br><span class="line">      - CH_LOGIN=default</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;18080:80&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - clickhouse</span><br><span class="line">    deploy:</span><br><span class="line">      resources:</span><br><span class="line">        limits:</span><br><span class="line">          cpus: &#x27;0.1&#x27;</span><br><span class="line">          memory: 128M</span><br><span class="line">        reservations:</span><br><span class="line">          memory: 128M</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>②Clickhouse stack</strong></p>
+<p>Clickhouse stack 有一个单节点的 Clickhouse 服务容器和一个 TabixUI 作为 Clickhouse 的客户端。</p>
+<p>部署代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.7&quot;</span><br><span class="line">services:</span><br><span class="line">  clickhouse:</span><br><span class="line">    container_name: clickhouse</span><br><span class="line">    image: yandex/clickhouse-server</span><br><span class="line">    volumes:</span><br><span class="line">      - ./data/config:/var/lib/clickhouse</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8123:8123&quot;</span><br><span class="line">      - &quot;9000:9000&quot;</span><br><span class="line">      - &quot;9009:9009&quot;</span><br><span class="line">      - &quot;9004:9004&quot;</span><br><span class="line">    ulimits:</span><br><span class="line">      nproc: 65535</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;wget&quot;, &quot;--spider&quot;, &quot;-q&quot;, &quot;localhost:8123/ping&quot;]</span><br><span class="line">      interval: 30s</span><br><span class="line">      timeout: 5s</span><br><span class="line">      retries: 3</span><br><span class="line">    deploy:</span><br><span class="line">      resources:</span><br><span class="line">        limits:</span><br><span class="line">          cpus: &#x27;4&#x27;</span><br><span class="line">          memory: 4096M</span><br><span class="line">        reservations:</span><br><span class="line">          memory: 4096M</span><br><span class="line"></span><br><span class="line">  tabixui:</span><br><span class="line">    container_name: tabixui</span><br><span class="line">    image: spoonest/clickhouse-tabix-web-client</span><br><span class="line">    environment:</span><br><span class="line">      - CH_NAME=dev</span><br><span class="line">      - CH_HOST=127.0.0.1:8123</span><br><span class="line">      - CH_LOGIN=default</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;18080:80&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - clickhouse</span><br><span class="line">    deploy:</span><br><span class="line">      resources:</span><br><span class="line">        limits:</span><br><span class="line">          cpus: &#x27;0.1&#x27;</span><br><span class="line">          memory: 128M</span><br><span class="line">        reservations:</span><br><span class="line">          memory: 128M</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>③数据导入 stack</strong></p>
+<p>数据导入部分使用了 Vector.dev 开发的 vector，该工具和 fluentd 类似，都可以实现数据管道式的灵活的数据导入。</p>
+<p><strong>④测试控制 stack</strong></p>
+<p>测试控制我使用了 Jupyter，使用了 ES 和 Clickhouse 的 Python SDK 来进行查询的测试。</p>
+<p>用 Docker compose 启动 ES 和 Clickhouse 的 stack 后，我们需要导入数据，我们利用 Vector 的 generator 功能，生成 syslog，并同时导入 ES 和 Clickhouse。</p>
+<p>在这之前，我们需要在 Clickhouse 上创建表。ES 的索引没有固定模式，所以不需要事先创建索引。</p>
+<p><strong>创建表的代码如下：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE default.syslog(</span><br><span class="line">    application String,</span><br><span class="line">    hostname String,</span><br><span class="line">    message String,</span><br><span class="line">    mid String,</span><br><span class="line">    pid String,</span><br><span class="line">    priority Int16,</span><br><span class="line">    raw String,</span><br><span class="line">    timestamp DateTime(&#x27;UTC&#x27;),</span><br><span class="line">    version Int16</span><br><span class="line">) ENGINE = MergeTree()</span><br><span class="line">    PARTITION BY toYYYYMMDD(timestamp)</span><br><span class="line">    ORDER BY timestamp</span><br><span class="line">    TTL timestamp + toIntervalMonth(1);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>创建好表之后，我们就可以启动 vector，向两个 stack 写入数据了。vector 的数据流水线的定义如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">[sources.in]</span><br><span class="line">  type = &quot;generator&quot;</span><br><span class="line">  format = &quot;syslog&quot;</span><br><span class="line">  interval = 0.01</span><br><span class="line">  count = 100000</span><br><span class="line"></span><br><span class="line">[transforms.clone_message]</span><br><span class="line">  type = &quot;add_fields&quot;</span><br><span class="line">  inputs = [&quot;in&quot;]</span><br><span class="line">  fields.raw = &quot;&#123;&#123; message &#125;&#125;&quot;</span><br><span class="line"></span><br><span class="line">[transforms.parser]</span><br><span class="line">  # General</span><br><span class="line">  type = &quot;regex_parser&quot;</span><br><span class="line">  inputs = [&quot;clone_message&quot;]</span><br><span class="line">  field = &quot;message&quot; # optional, default</span><br><span class="line">  patterns = [&#x27;^&lt;(?P&lt;priority&gt;\d*)&gt;(?P&lt;version&gt;\d) (?P&lt;timestamp&gt;\d&#123;4&#125;-\d&#123;2&#125;-\d&#123;2&#125;T\d&#123;2&#125;:\d&#123;2&#125;:\d&#123;2&#125;\.\d&#123;3&#125;Z) (?P&lt;hostname&gt;\w+\.\w+) (?P&lt;application&gt;\w+) (?P&lt;pid&gt;\d+) (?P&lt;mid&gt;ID\d+) - (?P&lt;message&gt;.*)$&#x27;]</span><br><span class="line"></span><br><span class="line">[transforms.coercer]</span><br><span class="line">  type = &quot;coercer&quot;</span><br><span class="line">  inputs = [&quot;parser&quot;]</span><br><span class="line">  types.timestamp = &quot;timestamp&quot;</span><br><span class="line">  types.version = &quot;int&quot;</span><br><span class="line">  types.priority = &quot;int&quot;</span><br><span class="line"></span><br><span class="line">[sinks.out_console]</span><br><span class="line">  # General</span><br><span class="line">  type = &quot;console&quot;</span><br><span class="line">  inputs = [&quot;coercer&quot;] </span><br><span class="line">  target = &quot;stdout&quot; </span><br><span class="line"></span><br><span class="line">  # Encoding</span><br><span class="line">  encoding.codec = &quot;json&quot; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[sinks.out_clickhouse]</span><br><span class="line">  host = &quot;http://host.docker.internal:8123&quot;</span><br><span class="line">  inputs = [&quot;coercer&quot;]</span><br><span class="line">  table = &quot;syslog&quot;</span><br><span class="line">  type = &quot;clickhouse&quot;</span><br><span class="line"></span><br><span class="line">  encoding.only_fields = [&quot;application&quot;, &quot;hostname&quot;, &quot;message&quot;, &quot;mid&quot;, &quot;pid&quot;, &quot;priority&quot;, &quot;raw&quot;, &quot;timestamp&quot;, &quot;version&quot;]</span><br><span class="line">  encoding.timestamp_format = &quot;unix&quot;</span><br><span class="line"></span><br><span class="line">[sinks.out_es]</span><br><span class="line">  # General</span><br><span class="line">  type = &quot;elasticsearch&quot;</span><br><span class="line">  inputs = [&quot;coercer&quot;]</span><br><span class="line">  compression = &quot;none&quot; </span><br><span class="line">  endpoint = &quot;http://host.docker.internal:9200&quot; </span><br><span class="line">  index = &quot;syslog-%F&quot;</span><br><span class="line"></span><br><span class="line">  # Encoding</span><br><span class="line"></span><br><span class="line">  # Healthcheck</span><br><span class="line">  healthcheck.enabled = true</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这里简单介绍一下这个流水线：</p>
+<ul>
+<li>source.in：生成 syslog 的模拟数据，生成 10w 条，生成间隔和 0.01 秒。</li>
+<li>transforms.clone_message：把原始消息复制一份，这样抽取的信息同时可以保留原始消息。</li>
+<li>transforms.parser：使用正则表达式，按照 syslog 的定义，抽取出 application，hostname，message，mid，pid，priority，timestamp，version 这几个字段。</li>
+<li>transforms.coercer：数据类型转化。</li>
+<li>sinks.out_console：把生成的数据打印到控制台，供开发调试。</li>
+<li>sinks.out_clickhouse：把生成的数据发送到Clickhouse。</li>
+<li>sinks.out_es：把生成的数据发送到 ES。</li>
+</ul>
+<p>运行 Docker 命令，执行该流水线：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">        -v $(mkfile_path)/vector.toml:/etc/vector/vector.toml:ro \</span><br><span class="line">        -p 18383:8383 \</span><br><span class="line">        timberio/vector:nightly-alpine</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>数据导入后，我们针对一下的查询来做一个对比。ES 使用自己的查询语言来进行查询，Clickhouse 支持 SQL，我简单测试了一些常见的查询，并对它们的功能和性能做一些比较。</p>
+<p>返回所有的记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;:&#123;</span><br><span class="line">    &quot;match_all&quot;:&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse </span><br><span class="line">&quot;SELECT * FROM syslog&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>匹配单个字段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;:&#123;</span><br><span class="line">    &quot;match&quot;:&#123;</span><br><span class="line">      &quot;hostname&quot;:&quot;for.org&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse </span><br><span class="line">&quot;SELECT * FROM syslog WHERE hostname=&#x27;for.org&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>匹配多个字段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;:&#123;</span><br><span class="line">    &quot;multi_match&quot;:&#123;</span><br><span class="line">      &quot;query&quot;:&quot;up.com ahmadajmi&quot;,</span><br><span class="line">        &quot;fields&quot;:[</span><br><span class="line">          &quot;hostname&quot;,</span><br><span class="line">          &quot;application&quot;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse、</span><br><span class="line">&quot;SELECT * FROM syslog WHERE hostname=&#x27;for.org&#x27; OR application=&#x27;ahmadajmi&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>范围查询，查找版本大于 2 的记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;:&#123;</span><br><span class="line">    &quot;range&quot;:&#123;</span><br><span class="line">      &quot;version&quot;:&#123;</span><br><span class="line">        &quot;gte&quot;:2</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse</span><br><span class="line">&quot;SELECT * FROM syslog WHERE version &gt;= 2&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>查找到存在某字段的记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;:&#123;</span><br><span class="line">    &quot;exists&quot;:&#123;</span><br><span class="line">      &quot;field&quot;:&quot;application&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse</span><br><span class="line">&quot;SELECT * FROM syslog WHERE application is not NULL&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>ES 是文档类型的数据库，每一个文档的模式不固定，所以会存在某字段不存在的情况；而 Clickhouse 对应为字段为空值。</p>
+<p>正则表达式查询，查询匹配某个正则表达式的数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;:&#123;</span><br><span class="line">    &quot;regexp&quot;:&#123;</span><br><span class="line">      &quot;hostname&quot;:&#123;</span><br><span class="line">        &quot;value&quot;:&quot;up.*&quot;,</span><br><span class="line">          &quot;flags&quot;:&quot;ALL&quot;,</span><br><span class="line">            &quot;max_determinized_states&quot;:10000,</span><br><span class="line">              &quot;rewrite&quot;:&quot;constant_score&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse</span><br><span class="line">&quot;SELECT * FROM syslog WHERE match(hostname, &#x27;up.*&#x27;)&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>聚合计数，统计某个字段出现的次数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;aggs&quot;:&#123;</span><br><span class="line">    &quot;version_count&quot;:&#123;</span><br><span class="line">      &quot;value_count&quot;:&#123;</span><br><span class="line">        &quot;field&quot;:&quot;version&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse</span><br><span class="line">&quot;SELECT count(version) FROM syslog&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>聚合不重复的值，查找所有不重复的字段的个数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># ES</span><br><span class="line">&#123;</span><br><span class="line">  &quot;aggs&quot;:&#123;</span><br><span class="line">    &quot;my-agg-name&quot;:&#123;</span><br><span class="line">      &quot;cardinality&quot;:&#123;</span><br><span class="line">        &quot;field&quot;:&quot;priority&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Clickhouse</span><br><span class="line">&quot;SELECT count(distinct(priority)) FROM syslog &quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我用 Python 的 SDK，对上述的查询在两个 Stack 上各跑 10 次，然后统计查询的性能结果。</p>
+<p>我们画出出所有的查询的响应时间的分布：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvtPzGcbcxlPia01ibiaYKgEgxK5S4icIPnLUBIibcMxo1XjicKNvSnvO5uDVA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvtPzGcbcxlPia01ibiaYKgEgxK5S4icIPnLUBIibcMxo1XjicKNvSnvO5uDVA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>总查询时间的对比如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvXITIO15oVGTsZANetbC7xTqR3PIXgMWrrAAqfBrRR59XIFzyofpdCw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_jpg/MOwlO0INfQrPpEClChtOGvIvSVyI1aVvXITIO15oVGTsZANetbC7xTqR3PIXgMWrrAAqfBrRR59XIFzyofpdCw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>通过测试数据我们可以看出 Clickhouse 在大部分的查询的性能上都明显要优于 Elastic。</p>
+<p>在正则查询（Regex query）和单词查询（Term query）等搜索常见的场景下，也并不逊色。</p>
+<p>在聚合场景下，Clickhouse 表现异常优秀，充分发挥了列村引擎的优势。</p>
+<p>注意，我的测试并没有任何优化，对于 Clickhouse 也没有打开布隆过滤器。可见 Clickhouse 确实是一款非常优秀的数据库，可以用于某些搜索的场景。</p>
+<p>当然 ES 还支持非常丰富的查询功能，这里只有一些非常基本的查询，有些查询可能存在无法用 SQL 表达的情况。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文通过对于一些基本查询的测试，对比了 Clickhouse 和 Elasticsearch 的功能和性能。</p>
+<p>测试结果表明，Clickhouse 在这些基本场景表现非常优秀，性能优于 ES，这也解释了为什么用很多的公司应从 ES 切换到 Clickhouse 之上。</p>
 
   
   
@@ -511,10 +646,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-03T20:21:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-04T11:10:55+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年8月3日</p>
+    <p>更新于：2021年8月4日</p>
   </a>
 </div>
 
@@ -523,7 +658,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ElasticSearch/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ElasticSearch</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ElasticSearch/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ElasticSearch</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ClickHouse/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ClickHouse</p></a></div>
 
 
         
@@ -593,16 +728,25 @@ ES通常会和其他两个开源组件Logstash（日志采集）和Kibana（仪�
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/08/03/SystemArchitect/%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>数据挖掘</p>
-          <p class='content'>数据挖掘是从数据库的大量数据中揭示出隐含的、先前未知的并有潜在价值的信息的非平凡过程，数据挖掘的任务有关联分析、聚类分析、分类分析、异常分析、特意群组分析和演变分析等等。
-并非所有的信息发现任务...</p>
+        <a class='prev' href='/2021/08/03/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/%E3%80%90300%E6%9C%9F%E3%80%91Elasticsearch%20%E6%98%AF%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E5%BF%AB%E9%80%9F%E6%A3%80%E7%B4%A2%E7%9A%84/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i></p>
+          <p class='content'>【300期】Elasticsearch 是如何做到快速检索的一、前言本文大致包括一下内容：
+
+关于搜索
+传统关系型数据库和ES的差别
+搜索引擎原理
+
+
+细究倒排索引
+倒排索引具体是个什么样子的（...</p>
         </a>
       
       
         <a class='next' href='/2021/08/01/SystemArchitect/%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/'>
           <p class='title'>第4章 计算机网络<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>网络架构与协议网络工程网络规划网络设计网络逻辑结构设计网络逻辑结构设计是体现网络设计核心思想的关键阶段，在这一阶段根据需求规范和通信规范，选择一种比较适宜的网络逻辑结构，并基于该逻辑结构实施后续...</p>
+          <p class='content'>网络架构与协议三层模型三层模型主要将网路划分为核心层、汇聚层和接入层。每一层都有着特定的作用：
+核心层提供不同区域或者下层的告诉连接和最优传递路径；
+核心层是互联网络的高速骨干，由于其重要性，因...</p>
         </a>
       
     </div>
@@ -645,7 +789,7 @@ ES通常会和其他两个开源组件Logstash（日志采集）和Kibana（仪�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EOLAP%E5%88%A9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">关于OLAP利器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">2.</span> <span class="toc-text">架构和设计的对比</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EOLAP%E5%88%A9%E5%99%A8"><span class="toc-text">关于OLAP利器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">架构和设计的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%AF%B9%E6%AF%94%E5%AE%9E%E6%88%98"><span class="toc-text">查询对比实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
