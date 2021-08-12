@@ -508,9 +508,107 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h4 id="主程序-子程序"><a href="#主程序-子程序" class="headerlink" title="主程序/子程序"></a>主程序/子程序</h4><p>主程序/子程序风格是结构化开发时期的经典架构风格。这种风格一般采用单线程控制，把问题划分为若干处理步骤，构件即为主程序和子程序。子程序通常可合成为模块。过程调用作为交互机制，即充当连接件。调用关系具有层次性，其语义逻辑表现为子程序的正确性，取决于它调用的子程序的正确性。</p>
 <h4 id="面向对象风格"><a href="#面向对象风格" class="headerlink" title="面向对象风格"></a>面向对象风格</h4><p>抽象数据类型概念对软件系统有着重要作用，目前软件界已普遍使用面向对象系统。这种风格建立在数据抽象和面向对象的基础上，数据的表示方法和它们的相应操作封装在一个抽象数据类型或对象中。这种风格的构件是对象，或者说是抽象数据类型的实例。对象是一种被称作管理者的构件，因为它负责保持资源的完整性。对象是通过函数和过程的调用来交互的。</p>
 <h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>（1）对象负责维护其表示的完整性；</p>
-<h4 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h4><h2 id="面向服务的架构"><a href="#面向服务的架构" class="headerlink" title="面向服务的架构"></a>面向服务的架构</h2><p>SOA是一种在计算环境中设计、开发、部署和管理离散逻辑单元（服务）模型的方法。</p>
+<h4 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h4><h5 id="MVC-B-S结构"><a href="#MVC-B-S结构" class="headerlink" title="MVC B/S结构"></a>MVC B/S结构</h5><p>三层 C/S 结构应运而生。三层 C/S 结构是将应用功能分成<strong>表示层、功能层和数据层</strong>三个部分</p>
+<h2 id="面向服务的架构"><a href="#面向服务的架构" class="headerlink" title="面向服务的架构"></a>面向服务的架构</h2><p>SOA是一种在计算环境中设计、开发、部署和管理离散逻辑单元（服务）模型的方法。</p>
 <p>本题主要考查考生对基于场景的架构分析方法(Scenarios-based Architecture AnalysisMethod, SAAM)的掌握和理解。SAAM是卡耐基梅隆大学软件工程研究所的Kazman等人于1983年提出的一种非功能质量属性的架构分析方法,是最早形成文档并得到广泛应用的软件架构分析方法。SAAM•的主要输入是问题描述、需求说明和架构描述，其分析过程主要包括场景开发、架构描述、单个场景评估、场景交互和总体评估。</p>
-<h2 id="架构需求与软件质量属性"><a href="#架构需求与软件质量属性" class="headerlink" title="架构需求与软件质量属性"></a>架构需求与软件质量属性</h2><p>对于题干描述：“在并发用户数量为1000人时，用户的交易请求需要在0.5秒内得到响应”，主要与性能这一质量属性相关，实现该属性的常见架构策略包括：增加计算资源、减少计算开销、 引入并发机制、采用资源调度等。“当系统由于软件故障意外崩溃后，需要在0.5小时内恢复正常运行”主要与可用性质量属性相关，通常可采用心跳、Ping/Echo、主动冗余、被动冗余、选举等架构策略实现该属性；“系统应该能够抵挡恶意用户的入侵行为，并进行报警和记录”主要与安全性质量属性相关，通常可采用入侵检测、用户认证、用户授权、追踪审计等架构策略实现该属性。</p>
+<h2 id="架构需求与软件质量属性"><a href="#架构需求与软件质量属性" class="headerlink" title="架构需求与软件质量属性"></a>架构需求与软件质量属性</h2><h3 id="6个质量属性及实现"><a href="#6个质量属性及实现" class="headerlink" title="6个质量属性及实现"></a>6个质量属性及实现</h3><p>从架构关注点来研究质量属性实现，将质量属性分为6种：<strong>可用性、可修改性、性能、安全性、可测试性、易用性。</strong></p>
+<h4 id="1-可用性"><a href="#1-可用性" class="headerlink" title="1.可用性"></a>1.可用性</h4><p>战术可以分为：错误检测、错误恢复、错误预防。</p>
+<p>① 错误检测</p>
+<p><strong>命令/响应：</strong>一个构件发出一个命令，并希望在预定义的时间内收到一个来自审查构件的响应，例如远程错误的检测。</p>
+<p><strong>心跳（计时器）：</strong>一个构件定期发出一个心跳消息，另一个构件收听到消息，如果未收到心跳消息，则假定构件失败，并通知错误纠正构件。</p>
+<p><strong>异常：</strong>当出现异常时，异常处理程序开发执行。</p>
+<p> ② 错误恢复</p>
+<p><strong>表决：</strong>通过冗余构件（或处理器）与表决器连接，构件按相同的输入及算法计算输出值交给表决器，由表决器按表决算法（如多数规则）确定是否有构件出错，表决通常用在控制系统中。</p>
+<p><strong>主动冗余（热重启、热备份）：</strong>所有的冗余构件都以并行的方式对事件做出响应。它们都处在相同的状态，但仅使用一个构件的响应，丢弃其余构件的响应。错误发生时通过切换的方式使用另一个构件的响应。</p>
+<p><strong>被动冗余（暧重启/双冗余/三冗余）：</strong>一个构件（主构件）对事件做出响应，并通知其他构件（备用的）必须进行的状态更新（同步）。当错误发生时，备用构件从最新同步点接替主构件的工作。</p>
+<p><strong>备件：</strong>备件是计算平台配置用于更换各种不同的故障构件。</p>
+<p><strong>状态再同步：</strong>主动和被动冗余战术要求所恢复的构件在重新提供服务前更新其状态。更新方法取决于可以承受的停机时间、更新的规模及更新的内容多少。</p>
+<p><strong>检查点/回滚：</strong>检查点就是使状态一致的同步点，它或者是定期进行，或者是对具体事件做出响应。当在两检查点之间发生故障时，则以这个一致状态的检查点（有快照）和之后发生的事务日志来恢复系统（数据库中常使用）。</p>
+<p> ③ 错误预防</p>
+<p><strong>从服务中删除：</strong>如删除进程再重新启动，以防止内存泄露导致故障的发生。</p>
+<p><strong>事务：</strong>使用事务来保证数据的一致性，即几个相关密切的步骤，要么全成功，要么都不成功。</p>
+<p>进程监视器：通过监视进程来处理进程的错误。</p>
+<blockquote>
+<p>可用性通常采用心跳、Ping/Echo、主动冗余、被动冗余、选举等架构策略实现该属性</p>
+</blockquote>
+<h4 id="2-可修改性"><a href="#2-可修改性" class="headerlink" title="2.可修改性"></a>2.可修改性</h4><p>战术包括局部化修改、防止连锁反应、推迟绑定时间。</p>
+<p>① 局部化修改。在设计期间为模块分配责任，以便把预期的变更限制在一定的范围内，从而降低修改的成本。</p>
+<p><strong>维持语义的一致性：</strong>语义的一致性指的是模块中责任之间的关系，使这些责任能够协同工作，不需要过多地依赖其他模块。耦合和内聚指标反映一致性，应该根据一组预期的变更来度量语义一致性。使用“抽象通用服务”（如应用框架的使用和其他中间软件的使用）来支持可修改性是其子战术。</p>
+<p><strong>预期期望的变更：</strong>通过对变更的预估，进行预设、准备，从而使变更的影响最小。</p>
+<p><strong>泛化该模块：</strong>使一个模块更通用、更广泛的功能。</p>
+<p><strong>限制可能的选择：</strong>如在更换某一模块（如处理器）时，限制为相同家族的成员。</p>
+<p> ② 防止连锁反应。由于模块之间有各种依赖性，因此，修改会产生连锁反应。防止连锁反应的战术如下。</p>
+<p><strong>信息隐藏：</strong>就是把某个实体的责任分解为更小的部分，并选择哪些信息成为公有的，哪些成为私有的，通过接口获得公有责任。</p>
+<p><strong>维持现有的接口：</strong>尽可能维持现有接口的稳定性。例如通过添加接口（通过新的接口提供新的服务）可以达到这一目的。</p>
+<p><strong>限制通信路径：</strong>限制与一个给定的模块共享数据的模块。这样可以减少由于数据产生/使用引入的连锁反应。</p>
+<p><strong>仲裁者的使用：</strong>在具有依赖关系的两个模块之间插入一个仲裁者，以管理与该依赖相关的活动。仲裁者有很多种类型，例如：桥、调停者、代理等就是可以提供把服务的语法从一种形式转换为另一种形式的仲裁者。</p>
+<p> ③ 推迟绑定时间。系统具备在运行时进行绑定并允许非开发人员进行修改（配置）。运行时注册：支持即插即用。</p>
+<p><strong>配置文件：</strong>在启动时设置参数。</p>
+<p><strong>多态：</strong>在方法调用的后期绑定。</p>
+<p><strong>构件更换：</strong>允许载入时绑定。</p>
+<blockquote>
+</blockquote>
+<h4 id="3-性能"><a href="#3-性能" class="headerlink" title="3.性能"></a>3.性能</h4><p>（2）性能战术。性能与时间相关，影响事件的响应时间有两个基本因素。</p>
+<p>资源消耗：事件到达后进入一系列的处理程序，每一步处理都要占用资源，而且在处理过程中消息在各构件之间转换，这些转换也需要占用资源。</p>
+<p>闭锁时间：指对事件处理时碰到了资源争用、资源不可用或对其他计算的依赖等情况，就产生了等待时间。</p>
+<p> 性能的战术有如下几种。</p>
+<p> ① 资源需求</p>
+<p>减少处理事件流所需的资源：提高计算效率（如改进算法）、减少计算开销（如在可修改性</p>
+<p>与性能之间权衡，减少不必要的代理构件）。</p>
+<p>减少所处理事件的数量：管理事件率、控制采样频率。</p>
+<p>控制资源的使用：限制执行时间（如减少迭代次数）、限制队列大小。</p>
+<p> ② 资源管理</p>
+<p><strong>引入并发：</strong>引入并发对负载平衡很重要。</p>
+<p><strong>维持数据或计算的多个副本：</strong>C/S 结构中客户机 C 就是计算的副本，它能减少服务器计算的压力；高速缓存可以存放数据副本（在不同速度的存储库之间的缓冲）。</p>
+<p><strong>增加可用资源：</strong>在成本允许时，尽量使用速度更快的处理器、内存和网络。 </p>
+<p>③ 资源仲裁</p>
+<p>资源仲裁战术是通过如下调度策略来实现的。</p>
+<p><strong>先进/先出（FIFO）</strong>；</p>
+<p><strong>固定优先级调度：</strong>先给事件分配特定的优先级，再按优先级高低顺序分配资源；</p>
+<p><strong>动态优先级调度：</strong>轮转调度、时限时间最早优先；</p>
+<p><strong>静态调度：</strong>可以离线确定调度。</p>
+<blockquote>
+<p>性能这一质量属性相关，实现该属性的常见架构策略包括：增加计算资源、减少计算开销、 引入并发机制、采用资源调度等。</p>
+</blockquote>
+<h4 id="4-安全性"><a href="#4-安全性" class="headerlink" title="4.安全性"></a>4.安全性</h4><p>安全性战术：包括抵抗攻击、检测攻击和从攻击中恢复。</p>
+<p> ① 抵抗攻击</p>
+<p><strong>对用户进行身份验证</strong>：包括动态密码、一次性密码、数字证书及生物识别等；</p>
+<p><strong>对用户进行授权</strong>：即对用户的访问进行控制管理；</p>
+<p><strong>维护数据的机密性：</strong>一般通过对数据和通信链路进行加密来实现；</p>
+<p><strong>维护完整性：</strong>对数据添加校验或哈希值；</p>
+<p><strong>限制暴露的信息；</strong></p>
+<p><strong>限制访问：</strong>如用防火墙、DMZ 策略。</p>
+<p> ② 检测攻击。一般通过“<strong>入侵检测</strong>”系统进行过滤、比较通信模式与历史基线等方法。</p>
+<p> ③ 从攻击中恢复。</p>
+<p>恢复：与可用性中的战术相同；</p>
+<p>识别攻击者：作为<strong>审计追踪</strong>，用于预防性或惩罚性目的。</p>
+<blockquote>
+<p>安全性质量属性相关，通常可采用入侵检测、用户认证、用户授权、追踪审计等架构策略实现该属性。</p>
+</blockquote>
+<h4 id="5-可测试性"><a href="#5-可测试性" class="headerlink" title="5.可测试性"></a>5.可测试性</h4><p>可测试性战术：包括输入/输出和内部监控</p>
+<p>① 输入/输出</p>
+<p><strong>记录/回放：</strong>指捕获跨接口的信息，并将其作为测试专用软件的输入；</p>
+<p><strong>将接口与实现分离：</strong>允许使用实现的替代（模拟器）来支持各种测试目的；</p>
+<p><strong>优化访问线路/接口：</strong>用测试工具来捕获或赋予构件的变量值。</p>
+<p> ② 内部监控。当监视器处于激活状态时，记录事件（如通过接口的信息）。</p>
+<blockquote>
+<p>记录/回放</p>
+</blockquote>
+<h4 id="6-易用性"><a href="#6-易用性" class="headerlink" title="6.易用性"></a>6.易用性</h4><p>易用性战术：包括运行时战术、设计时战术和支持用户主动操作。</p>
+<p> ① 运行时战术</p>
+<p>任务的模型：维护任务的信息，使系统了解用户试图做什么，并提供各种协助；</p>
+<p>用户的模型：维护用户的信息，例如使系统以用户可以阅读页面的速度滚动页面；</p>
+<p>系统的模型：维护系统的信息，它确定了期望的系统行为，并向用户提供反馈。</p>
+<p>② 设计时战术。将用户接口与应用的其余部分分离开来，预计用户接口会频繁发生变化，因此，单独维护用户接口代码将实现变更局部化。这与可修改性相关。</p>
+<p>③ 支持用户主动操作。支持用户的主动操作，如支持“取消”、“撤销”、“聚合”和 “显<br>示多个视图”。</p>
+<h2 id="软件架构文档化"><a href="#软件架构文档化" class="headerlink" title="软件架构文档化"></a>软件架构文档化</h2><p>任何软件编档（包括软件架构编档）的规则归纳为7条：</p>
+<p>（1）从读者的角度编写文档。</p>
+<p> （2）避免出现不必要的重复。</p>
+<p> （3）避免歧义。</p>
+<p> （4）使用标准结构。</p>
+<p> （5）记录基本原理。</p>
+<p> （6）使文档保持更新，但更新频率不要过高。</p>
+<p> （7）针对目标的适宜性对文档进行评审。</p>
 <h2 id="功耗控制"><a href="#功耗控制" class="headerlink" title="功耗控制"></a>功耗控制</h2><p>软件设计层面的功耗控制主要可以从一下方面展开：</p>
 <p>1.软硬件协同设计，即软件的设计要与硬件的匹配，考虑硬件因素；</p>
 <p>2.编译优化，采用低功耗优化的编译技术；</p>
@@ -551,7 +649,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-12T08:52:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-12T14:52:01+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2021年8月12日</p>
@@ -697,7 +795,7 @@ CISC（复杂）
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC"><span class="toc-text">软件架构风格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC%E5%88%86%E7%B1%BB"><span class="toc-text">3.1软件架构风格分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E6%95%B0%E6%8D%AE%E6%B5%81%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.2数据流风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E5%BA%8F%E5%88%97"><span class="toc-text">批处理序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E9%81%93-%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">管道-过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E8%B0%83%E7%94%A8-%E8%BF%94%E5%9B%9E%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.3调用&#x2F;返回风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F-%E5%AD%90%E7%A8%8B%E5%BA%8F"><span class="toc-text">主程序&#x2F;子程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%A3%8E%E6%A0%BC"><span class="toc-text">面向对象风格</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">特点：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-text">层次结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">面向服务的架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%9C%80%E6%B1%82%E4%B8%8E%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7"><span class="toc-text">架构需求与软件质量属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%80%97%E6%8E%A7%E5%88%B6"><span class="toc-text">功耗控制</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC"><span class="toc-text">软件架构风格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC%E5%88%86%E7%B1%BB"><span class="toc-text">3.1软件架构风格分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E6%95%B0%E6%8D%AE%E6%B5%81%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.2数据流风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E5%BA%8F%E5%88%97"><span class="toc-text">批处理序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E9%81%93-%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">管道-过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E8%B0%83%E7%94%A8-%E8%BF%94%E5%9B%9E%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.3调用&#x2F;返回风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F-%E5%AD%90%E7%A8%8B%E5%BA%8F"><span class="toc-text">主程序&#x2F;子程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%A3%8E%E6%A0%BC"><span class="toc-text">面向对象风格</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">特点：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-text">层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MVC-B-S%E7%BB%93%E6%9E%84"><span class="toc-text">MVC B&#x2F;S结构</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">面向服务的架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%9C%80%E6%B1%82%E4%B8%8E%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7"><span class="toc-text">架构需求与软件质量属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E4%B8%AA%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="toc-text">6个质量属性及实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8F%AF%E7%94%A8%E6%80%A7"><span class="toc-text">1.可用性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8F%AF%E4%BF%AE%E6%94%B9%E6%80%A7"><span class="toc-text">2.可修改性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%80%A7%E8%83%BD"><span class="toc-text">3.性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-text">4.安全性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%8F%AF%E6%B5%8B%E8%AF%95%E6%80%A7"><span class="toc-text">5.可测试性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%98%93%E7%94%A8%E6%80%A7"><span class="toc-text">6.易用性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%96%87%E6%A1%A3%E5%8C%96"><span class="toc-text">软件架构文档化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%80%97%E6%8E%A7%E5%88%B6"><span class="toc-text">功耗控制</span></a></li></ol>
     </div>
   </section>
 
