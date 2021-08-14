@@ -409,48 +409,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-TCP&UDP/">
-        TCP&UDP
+      <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%AF%B9%E6%AF%94/">
+        几种消息中间件的对比
       </a>
     </h2>
   
   <div class='md'>
     
       
-        OSI七层模型各层的作用
-
-
-层名
-作用
-
-
-
-应用层
-网络服务与最终用户的一个接口
-
-
-表示层
-把应用层提供的信息变换为能够共同理解的形式
-
-
-会话层
-建立、管理、终止会话。
-
-
-传输层
-定义传输数据的协议端口号，以及流控和差错校验。
-
-
-网络层
-路由选择和中继，在一条数据链路上复用多条网络连接
-
-
-数据链路层
-数据链路的建立，拆除，对数据的检错，纠错是数据链路层的基本任务。
-
-
-物理层
-...
+        本次主要对比：ActiveMQ、kafka、RocketMQ、RabbitMQ衡量消息中间件的指标：服务性能，数据存储，集群架构
+1.ActiveMQActiveMQ是Apache出品的，最流行的能力，强劲的开源消息总线，并且他完全支持Java的JMs规范。丰富的API，多种集群构建模式使得它成为业界老牌的消息中间件，在中小型企业应用广泛。但是相比于kafka，rabbitmq等MQ来说，性...
       
     
   </div>
@@ -466,7 +434,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-TCP&UDP/'>
+          <a class='readmore' href='/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%AF%B9%E6%AF%94/'>
             阅读全文
           </a>
         </div>
@@ -488,23 +456,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/15/Algorithm/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
-        初始排序算法
+      <a href="/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
+        消息中间件-常见面试题
       </a>
     </h2>
   
   <div class='md'>
     
       
-          
-排序算法可以分为两大类：
-1、非线性时间比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此称为非线性时间比较类排序。
-2、线性时间非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此称为线性时间非比较类排序。
-
-相关概念
-
-稳定：如果a原本在b前面，而a=b，排序之后a仍然在b的前面。
-不稳定：如...
+        概述    什么是消息中间件？和RPC有何区别？    消息中间件使用场景介绍    消息中间件(ActiveMQ、RabbitMQ、RocketMQ、Kafka)简介及对比    消息中间件的编年史ActiveMq    JMS规范        什么是JMS（Java Messaging Service）规范？        包含要素        消息类型        P2P模型  ...
       
     
   </div>
@@ -520,7 +480,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/15/Algorithm/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/'>
+          <a class='readmore' href='/2020/07/15/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/'>
             阅读全文
           </a>
         </div>
@@ -542,21 +502,30 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/14/Algorithm/hash%E4%B8%80%E8%87%B4%E6%80%A7/">
-        hash一致性
+      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E5%9F%BA%E7%A1%80/">
+        网络架构基础
       </a>
     </h2>
   
   <div class='md'>
     
       
-        普通的Hash平均分配算法的缺陷
-普通的hash均匀分配算法：hash(object) mod N // 其中 N 为节点数目
-无论是增加还是减少节点，都有可能会改变映射关系，造成大量请求的 miss。那是否能避免大量的 miss 呢？答案也是肯定的，一致性哈希解决了节点增减造成大量 hash 重定位的问题。
+        海量数据的解决方案
+缓存和页面静态化
 
-一致性Hash的原理一致性哈希的原理如下：
+数据库优化
 
-将每个节点(node)映射到数值空...
+表结构优化
+SQL语句优化
+分区
+分表：mycat 分库分表中间件
+索引优化
+使用存储过程代替直接操作
+
+
+分离活跃数据：可以根据最后一次查询时间，判断非活跃用户，将活跃数据单独分到一个表中作为默认表，不活跃数据分到另一个表中，先从默认表中查找数据，找不到再从不活跃表中查找数据，提高查询效率。
+
+批量读取和延迟修改：原理是通过减少操作的次...
       
     
   </div>
@@ -567,12 +536,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-14</time>
+        <time>2020-07-15</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/14/Algorithm/hash%E4%B8%80%E8%87%B4%E6%80%A7/'>
+          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E5%9F%BA%E7%A1%80/'>
             阅读全文
           </a>
         </div>
@@ -594,14 +563,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/08/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty%E8%BF%9B%E9%98%B6%E4%B9%8B%E7%B2%98%E5%8C%85%E5%92%8C%E6%8B%86%E5%8C%85/">
-        Netty进阶之粘包和拆包
+      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTP%E5%8D%8F%E8%AE%AE/">
+        HTTP协议
       </a>
     </h2>
   
   <div class='md'>
     
-      <p><img src="https://user-gold-cdn.xitu.io/2020/7/7/17329e0e4be94869?w=895&h=340&f=png&s=33550" class="lazyload" data-srcset="https://user-gold-cdn.xitu.io/2020/7/7/17329e0e4be94869?w=895&h=340&f=png&s=33550" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+      <p>HTTP协议是应用层协议，在TCP/IP协议接受到数据之后需要通过HTTP协议来解析才可以使用。</p>
     
   </div>
   
@@ -611,15 +580,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' target="_blank" rel="noopener" href='https://gameofthrones.fandom.com/wiki/Jon_Snow'><img src='https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg'></a>
         
-        <time>2020-07-08</time>
+        <time>2020-07-15</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/">Netty</a>
+          <a class="category-link" href="/categories/HTTP/">HTTP</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/08/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty%E8%BF%9B%E9%98%B6%E4%B9%8B%E7%B2%98%E5%8C%85%E5%92%8C%E6%8B%86%E5%8C%85/'>
+          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTP%E5%8D%8F%E8%AE%AE/'>
             阅读全文
           </a>
         </div>
@@ -641,14 +610,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/08/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/%E8%B6%85%E8%AF%A6%E7%BB%86Netty%E5%85%A5%E9%97%A8/">
-        超详细Netty入门
+      <a href="/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-Ping/">
+        Ping命令的使用
       </a>
     </h2>
   
   <div class='md'>
     
-      <p><img src="https://user-gold-cdn.xitu.io/2020/7/4/1731948029b90fc2?w=755&h=648&f=png&s=53135" class="lazyload" data-srcset="https://user-gold-cdn.xitu.io/2020/7/4/1731948029b90fc2?w=755&h=648&f=png&s=53135" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+      
+        一、概览对于 ping 命令，想必只要是程序员都知道吧？当我们检查网络情况的时候，最先使用的命令肯定是 ping 命令吧？一般我们用 ping 查看网络情况，主要是检查两个指标，第一个是看看是不是超时，第二个看看是不是延迟太高。如果超时那么肯定是网络有问题啦（禁 ping 情况除外），如果延迟太高，网络情况肯定也是很糟糕的。那么对于 ping 命令的原理，ping 是如何检查网络的？大家之前...
+      
     
   </div>
   
@@ -656,17 +627,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div>
         
           
-          <a class='avatar' target="_blank" rel="noopener" href='https://gameofthrones.fandom.com/wiki/Jon_Snow'><img src='https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg'></a>
+          <a class='avatar' href='/'><img src=''></a>
         
-        <time>2020-07-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Netty/">Netty</a>
+        <time>2020-07-15</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/08/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/%E8%B6%85%E8%AF%A6%E7%BB%86Netty%E5%85%A5%E9%97%A8/'>
+          <a class='readmore' href='/2020/07/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-Ping/'>
             阅读全文
           </a>
         </div>
@@ -693,7 +661,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           </a>
         
         <p class="current">
-          70 / 74
+          70 / 77
         </p>
         
           <a class="next" rel="next" href="/page/71/">
@@ -799,7 +767,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box"
             title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
             id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/HTTP/" href="/categories/HTTP/"
@@ -819,17 +787,27 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
             id="categorieswebJavaScript"
-            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>JavaScript</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/Vue/" href="/categories/web/Vue/"
+            id="categorieswebVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/css/" href="/categories/web/css/"
             id="categorieswebcss"
             ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/%E9%9D%A2%E8%AF%95/" href="/categories/web/%E9%9D%A2%E8%AF%95/"
+            id="categorieswebE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -888,7 +866,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 16.86px; color: #868686">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 18.29px; color: #7c7c7c">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 15.43px; color: #8f8f8f">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 15.43px; color: #8f8f8f">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
@@ -913,7 +891,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>370 篇</div>
+          <div>383 篇</div>
         </div>
       
 
@@ -935,7 +913,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>783.6k 字</div>
+          <div>946.3k 字</div>
         </div>
       
 
@@ -961,8 +939,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 12 2021 17:24:57 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-12 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 14 2021 14:21:04 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-14 日</div>
           
         </div>
         
@@ -1012,7 +990,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-14 日';
           }
         </script>
         

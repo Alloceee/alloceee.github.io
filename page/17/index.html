@@ -409,7 +409,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/01-React%E4%BB%8B%E7%BB%8D/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/06-%E8%B7%A8%E5%9F%9F%E9%80%9A%E4%BF%A1%E7%B1%BB/">
         2021年8月6日
       </a>
     </h2>
@@ -417,13 +417,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        虚拟DOM和diff算法
-在学习 React 之前，我们需要先了解两个概念：虚拟DOM、diff算法。
+        
+本文最初发表于博客园，并在GitHub上持续更新前端的系列文章。欢迎在GitHub上关注我，一起入门和进阶前端。
 
-虚拟DOM问题描述：
-假设我们的数据发生一点点的变化，也会被强制重建整颗DOM树，这么做，会涉及到很多元素的重绘和重排，导致性能浪费严重。
-解决上述问题的思路：
-实现按需更新页面上的元素即可。也就是说，把 需要修改的元素，所对应的 DOM 元素重新构建；其他没有变化的数据，所对应的 DO...
+
+以下是正文。
+
+前言从本章起，对代码的要求没之前那么高了，但是，要求你对知识面的掌握要足够宽。
+前端通信类的问题，主要包括以下内容：
+
+1、什么是同源策略及限制
+
+同源策略是一个概念，就一句话。有什么限制，就三句话。能说出来即可。
+
+2、前后端如何通信
+
+如果你不准备，估计...
       
     
   </div>
@@ -439,7 +448,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/01-React%E4%BB%8B%E7%BB%8D/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/06-%E8%B7%A8%E5%9F%9F%E9%80%9A%E4%BF%A1%E7%B1%BB/'>
             阅读全文
           </a>
         </div>
@@ -461,7 +470,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue%E7%BB%84%E4%BB%B6/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
         2021年8月6日
       </a>
     </h2>
@@ -469,10 +478,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        子组件的定义和注册我们在本文的第一段中，通过Vue.component形式定义的是全局组件。这一段中，我们来讲一下子组件。
-在父组件中定义子组件比如说，一个账号模块是父组件，里面分为登陆模块和注册模块，这两个晓得模块就可以定义为子组件。
-需要注意的是作用域的问题：我们在父组件中定义的子组件，只能在当前父组件的模板中使用；在其他的组件，甚至根组件中，都无法使用。
-123456789101112...
+        前言类与实例：
+
+类的声明
+
+生成实例
+
+
+类与继承：
+
+如何实现继承：继承的本质就是原型链
+
+继承的几种方式
+
+
+类的定义、实例化类的定义/类的声明方式一：用构造函数模拟类（传统写法）
+123function Animal1() &#123;    this.name = &#x27;smyhvae&#x27;; //通过this，表明这是一个构造函数&#125;
+
+方式二：用 class...
       
     
   </div>
@@ -488,7 +511,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue%E7%BB%84%E4%BB%B6/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/'>
             阅读全文
           </a>
         </div>
@@ -510,7 +533,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue%E5%BC%80%E5%8F%91%E7%A7%AF%E7%B4%AF/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
         2021年8月6日
       </a>
     </h2>
@@ -518,10 +541,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        动态添加对象的属性
-Vue中，动态新增对象的属性时，不能直接添加。正确的做法是：Vue.set(obj,key,value)。参考链接：#
+        前言面向对象的三大特性
+封装
 
-判断一个checkbox是否被选中12345678910&lt;!-- v-model里的内容是变量，变量里的值可能是 true 后者 false --&gt;&lt;input type=&quot;checkbox&quot; v-model=&q...
+继承
+
+多态
+
+
+原型链的知识原型链是面向对象的基础，是非常重要的部分。有以下几种知识：
+
+创建对象有几种方法
+
+原型、构造函数、实例、原型链
+
+instanceof的原理
+
+new 运算符
+
+
+创建对象有几种方法方式一：字面量12var obj11 = &#123;name: &#x27;qianguyihao&#x27;&#125;;var obj12 =...
       
     
   </div>
@@ -537,7 +576,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue%E5%BC%80%E5%8F%91%E7%A7%AF%E7%B4%AF/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/'>
             阅读全文
           </a>
         </div>
@@ -559,7 +598,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue.js%E5%9C%A8%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%86%99%E6%B3%95%E7%A7%AF%E7%B4%AF/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/04-HTTP%E5%8D%8F%E8%AE%AE/">
         2021年8月6日
       </a>
     </h2>
@@ -567,10 +606,42 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
   <div class='md'>
     
       
-        001、对象的赋值（1）在 store 中定义一个对象：
-1234567userInfo: &#123;    pin: &#x27;&#x27;,    nickName: &#x27;&#x27;,    avatarUrl: DEFAULT_AVATAR,    definePin: &#x27;&#x27;,    isbind: true&#125;,
+        一面中，如果有笔试，考HTTP协议的可能性较大。
+前言一面要讲的内容：
 
-（2）从接口拿到数据后，给...
+HTTP协议的主要特点
+
+HTTP报文的组成部分
+
+HTTP方法
+
+get 和 post的区别
+
+HTTP状态码
+
+什么是持久连接
+
+什么是管线化
+
+
+二面要讲的内容；
+
+缓存
+
+CSRF攻击
+
+
+HTTP协议的主要特点
+简单快速
+
+灵活
+
+无连接
+
+无状态
+
+
+通常我们要答出以上四个内容。如果实在记不住，一定要记得后...
       
     
   </div>
@@ -586,7 +657,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue.js%E5%9C%A8%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%86%99%E6%B3%95%E7%A7%AF%E7%B4%AF/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/04-HTTP%E5%8D%8F%E8%AE%AE/'>
             阅读全文
           </a>
         </div>
@@ -608,7 +679,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue-router%E8%B7%AF%E7%94%B1/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/">
         2021年8月6日
       </a>
     </h2>
@@ -616,8 +687,20 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
   <div class='md'>
     
       
-        前言路由：就是SPA（单页应用）的路径管理器。
+        前言要学习事件的基础内容，请看先本人的这篇基础文章：
 
+JavaScript基础：事件对象Event和冒泡
+
+知识难度不大，只是大家需要系统地学习。
+知识点主要包括以下几个方面：
+
+基本概念：DOM事件的级别
+
+面试不会直接问你，DOM有几个级别。但会在题目中体现：“请用DOM2 ….”。
+
+DOM事件模型、DOM事件流
+
+面试官如果问你“DOM事件模型”，你不一定知道怎么回事。其实说的就是...
       
     
   </div>
@@ -633,7 +716,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E5%9F%BA%E7%A1%80/Vue-router%E8%B7%AF%E7%94%B1/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/'>
             阅读全文
           </a>
         </div>
@@ -660,7 +743,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
           </a>
         
         <p class="current">
-          17 / 74
+          17 / 77
         </p>
         
           <a class="next" rel="next" href="/page/18/">
@@ -766,7 +849,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
           <li><a class="flat-box"
             title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
             id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/HTTP/" href="/categories/HTTP/"
@@ -786,17 +869,27 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
             id="categorieswebJavaScript"
-            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>JavaScript</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/Vue/" href="/categories/web/Vue/"
+            id="categorieswebVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/css/" href="/categories/web/css/"
             id="categorieswebcss"
             ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/%E9%9D%A2%E8%AF%95/" href="/categories/web/%E9%9D%A2%E8%AF%95/"
+            id="categorieswebE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -855,7 +948,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
 
 
     <div class='content'>
-      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 16.86px; color: #868686">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 18.29px; color: #7c7c7c">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 15.43px; color: #8f8f8f">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 15.43px; color: #8f8f8f">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
@@ -880,7 +973,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>370 篇</div>
+          <div>383 篇</div>
         </div>
       
 
@@ -902,7 +995,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>783.6k 字</div>
+          <div>946.3k 字</div>
         </div>
       
 
@@ -928,8 +1021,8 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 12 2021 17:24:41 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-12 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 14 2021 14:20:46 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-14 日</div>
           
         </div>
         
@@ -979,7 +1072,7 @@ Vue中，动态新增对象的属性时，不能直接添加。正确的做法�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-14 日';
           }
         </script>
         

@@ -536,10 +536,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         </a>
       
       
-        <a class='next' href='/2021/07/20/%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/JavaScript%E5%AF%B9%E8%B1%A1%E5%B0%81%E8%A3%85%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95(3%E7%A7%8D%E6%96%B9%E6%B3%95)/'>
+        <a class='next' href='/2021/07/20/%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/Javascript-%E8%8A%82%E6%B5%81%E4%B8%8E%E9%98%B2%E6%8A%96/'>
           <p class='title'><i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1. 使用关键字new创建对象
-12345function Person(name,age)&#123;    this.name = name;    this.age = age;&#125...</p>
+          <p class='content'>
+函数节流(throttle)是指阻止一个函数在很短时间间隔内连续调用. 只有当上一次函数执行后达到规定的时间间隔, 才能进行下一次调用. 但要保证一个累计最小调用时间间隔(例如拖拽类的节流需要...</p>
         </a>
       
     </div>
@@ -1914,53 +1914,4 @@ document.addEventListener("pjax:success", listennSidebarTOC);
         var banUrl = [""];
         if (banUrl[0] != "") {
           banUrl.forEach(item => {
-            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
-              window.location.href = targetUrl;
-            }
-          });
-        }
-      } catch (error) {}
-
-      window.subData = null; // 移除标题（用于一二级导航栏切换处）
-
-      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
-      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
-      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
-
-      // 解绑事件 避免重复监听
-      volantis.$topBtn.unbind('click');
-      $('.menu a').unbind('click');
-      $(window).unbind('resize');
-      $(window).unbind('scroll');
-      $(document).unbind('scroll');
-      $(document).unbind('click');
-      $('body').unbind('click');
-	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
-	  volantis.pjax.method.send.start();
-    });
-
-    document.addEventListener('pjax:complete', function () {
-      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
-      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
-      $('script[data-pjax], .pjax-reload script').each(function () {
-        $(this).parent().append($(this).remove());
-      });
-      try{
-		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
-		volantis.pjax.method.complete.start();
-      } catch (e) {
-        console.log(e);
-      }
-    });
-
-    document.addEventListener('pjax:error', function (e) {
-	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
-	  volantis.pjax.method.error.start();
-      window.location.href = e.triggerElement.href;
-    });
-</script>
- 
-	  
-    </div>
-  </body>
-</html>
+    

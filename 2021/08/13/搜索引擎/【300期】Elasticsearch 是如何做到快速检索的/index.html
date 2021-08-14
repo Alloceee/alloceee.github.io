@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,zh-HK,zh-TW,default">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>ElasticSearch 是如何做到快速检索的 - Hexo</title>
+  
+    <meta name="keywords" content="ElasticSearch">
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Alloceee
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Twilight Rush</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="Search" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>首页</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-history fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/about"
+              
+              
+              id="about">
+              <i class='fas fa-heart fa-spin fa-fw'></i><p>关于</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/alloceee"
+              
+              
+              id="https:githubcomalloceee">
+              <i class='fas fa-paper-plane fa-fw'></i><p>github</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        ElasticSearch 是如何做到快速检索的
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' target="_blank" href="https://gameofthrones.fandom.com/wiki/Jon_Snow" rel="nofollow noopener">
+    <img no-lazy src="https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg">
+    <p>Alloceee</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/ElasticSearch/">ElasticSearch</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年8月13日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="ElasticSearch 是如何做到快速检索的" data-path="/2021/08/13/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/%E3%80%90300%E6%9C%9F%E3%80%91Elasticsearch%20%E6%98%AF%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E5%BF%AB%E9%80%9F%E6%A3%80%E7%B4%A2%E7%9A%84/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文大致包括一下内容：</p>
+<ul>
+<li>关于搜索<ul>
+<li>传统关系型数据库和ES的差别</li>
+<li>搜索引擎原理</li>
+</ul>
+</li>
+<li>细究倒排索引<ul>
+<li>倒排索引具体是个什么样子的（posting list -&gt;term dic-&gt;term index）</li>
+<li>关于postings list的一些巧技（FOR、Roaring Bitmaps）</li>
+<li>如何快速做联合查询</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、关于搜索"><a href="#二、关于搜索" class="headerlink" title="二、关于搜索"></a>二、关于搜索</h2><p>先设想一个关于搜索的场景，假设我们要搜索一首诗句内容中带“前”字的古诗，</p>
+<p><img src="img/0001.png" class="lazyload" data-srcset="img/0001.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>用 传统关系型数据库和 ES 实现会有什么差别？</p>
+<p>如果用像 MySQL 这样的 RDBMS 来存储古诗的话，我们应该会去使用这样的 SQL 去查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name <span class="keyword">from</span> poems <span class="keyword">where</span> content <span class="keyword">like</span> &quot;%前%&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>这种我们称为顺序扫描法，需要遍历所有的记录进行匹配。</p>
+<p>不但效率低，而且不符合我们搜索时的期望，比如我们在搜索“ABCD”这样的关键词时，通常还希望看到”A”,”AB”,”CD”,“ABC”的搜索结果。</p>
+<p>于是乎就有了专业的搜索引擎，比如我们今天的主角 – ES。</p>
+<h3 id="搜索引擎原理"><a href="#搜索引擎原理" class="headerlink" title="搜索引擎原理"></a>搜索引擎原理</h3><p>搜索引擎的搜索原理简单概括的话可以分为这么几步，</p>
+<p><img src="img/0002.png" class="lazyload" data-srcset="img/0002.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<ul>
+<li>内容爬取，停顿词过滤，比如一些无用的像“的”，“了”之类的语气词/连接词</li>
+<li>内容分词，提取关键词</li>
+<li>根据关键词建立<strong>倒排索引</strong></li>
+<li>用户输入关键词进行搜索</li>
+</ul>
+<p>这里我们就引出了一个概念，也就是我们今天要剖析的重点 - <strong>倒排索引</strong>。也是ES的核心知识点。</p>
+<blockquote>
+<p>ES可以说是对Lucene的一个封装，里面关于倒排索引的时间就是通过lucene这个jar包提供的API实现的，所以下面讲的关于倒排索引的内容实际上都是lucene里面的内容。</p>
+</blockquote>
+<h2 id="三、倒排索引"><a href="#三、倒排索引" class="headerlink" title="三、倒排索引"></a>三、倒排索引</h2><p>先看下建立倒排索引之后，我们上述的查询需求会变成什么样子</p>
+<p><img src="img/0003.png" class="lazyload" data-srcset="img/0003.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>这样我们一输入“前”，借助倒排索引就可以直接定位到符合查询条件的古诗。</p>
+<p>当然这只是一个很大白话的形式来描述倒排索引的简要工作原理。在 ES  中，这个倒排索引是具体是个什么样的，怎么存储的等等，这些才是倒排索引的精华内容。推荐：<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzIyNDU2ODA4OQ==&mid=2247489003&idx=1&sn=69bf19d900079e204e36df58525654bf&chksm=e80da39ddf7a2a8bf0765f9b95f359a3944fc40c4a192bb3fe9adedfbcd0070cd27234bcf6b3&scene=21#wechat_redirect">250期面试题</a></p>
+<h3 id="1-几个概念"><a href="#1-几个概念" class="headerlink" title="1. 几个概念"></a>1. 几个概念</h3><p>在进入下文之前，先描述几个前置概念。</p>
+<h4 id="term"><a href="#term" class="headerlink" title="term"></a>term</h4><p>关键词这个东西是我自己的讲法，在 ES 中，关键词被称为 <strong>term</strong>。</p>
+<h4 id="postings-list"><a href="#postings-list" class="headerlink" title="postings list"></a>postings list</h4><p>还是用上面的例子，<code>&#123;静夜思, 望庐山瀑布&#125;</code>是 “前” 这个 term 所对应列表。在 ES 中，这些被描述为所有包含特定 term 文档的 id 的集合。由于整型数字 integer 可以被高效压缩的特质，integer 是最适合放在 postings list 作为文档的唯一标识的，ES 会对这些存入的文档进行处理，转化成一个唯一的整型 id。</p>
+<p>再说下这个 id 的范围，在存储数据的时候，在每一个 shard 里444444面，ES 会将数据存入不同的 segment，这是一个比 shard 更小的分片单位，这些 segment 会定期合并。在每一个 segment 里面都会保存最多 2^31 个文档，每个文档被分配一个唯一的 id，从<code>0</code>到<code>(2^31)-1</code>。</p>
+<p><img src="img/0004.png" class="lazyload" data-srcset="img/0004.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<blockquote>
+<p>相关的名词都是 ES 官方文档给的描述，后面参考材料中都可以找到出处。</p>
+</blockquote>
+<h3 id="2-索引内部结构"><a href="#2-索引内部结构" class="headerlink" title="2. 索引内部结构"></a>2. 索引内部结构</h3><p>上面所描述的倒排索引，仅仅是一个很粗糙的模型。真的要在实际生产中使用，当然还差的很远。</p>
+<p>在实际生产场景中，比如 ES 最常用的日志分析，日志内容进行分词之后，可以得到多少的 term？</p>
+<p>那么如何快速的在海量 term 中查询到对应的 term 呢？遍历一遍显然是不现实的。</p>
+<h4 id="term-dictionary"><a href="#term-dictionary" class="headerlink" title="term dictionary"></a>term dictionary</h4><p>于是乎就有了 <strong>term dictionary</strong>，ES 为了能快速查找到 term，将所有的 term 排了一个序，二分法查找。是不是感觉有点眼熟，这不就是 MySQL 的索引方式的，直接用 B+树建立索引词典指向被索引的数据。</p>
+<h4 id="term-index"><a href="#term-index" class="headerlink" title="term index"></a>term index</h4><p>但是问题又来了，你觉得 Term Dictionary 应该放在哪里？肯定是放在内存里面吧？磁盘 io 那么慢。就像 MySQL 索引就是存在内存里面了。</p>
+<p>但是如果把整个 term dictionary 放在内存里面会有什么后果呢？</p>
+<p>内存爆了…</p>
+<p>别忘了，ES 默认可是会对全部 text 字段进行索引，必然会消耗巨大的内存，为此 ES 针对索引进行了深度的优化。在保证执行效率的同时，尽量缩减内存空间的占用。</p>
+<p>于是乎就有了 <strong>term index</strong>。</p>
+<p>Term index从数据结构上分类算是一个“Trie树”，也就是我们常说的字典树。这是一种专门处理字符串匹配的数据结构，用来解决在一组字符串集合中快速查找某个字符串的问题。</p>
+<p>这棵树不会包含所有的term，它包含的是term的一些前缀（这也是字典树的使用场景，公共前缀）。通过term index可以快速地定位到term dictionary的某个offset，然后从这个位置再往后顺序查找。就像右边这个图所表示的。（类似英文字典，首先定位S开头的一个单词，或者定位到Sh开头的一个单词，然后再往后顺序查询）。</p>
+<p>lucene在这里还做了两点优化，一是term dictionary在磁盘上面是分block保存的，一个block内部利用<code>公共前缀压缩</code>，比如都是Ab开头的单词就可以把Ab省去。二是term index在内存中是以FST（finite state transducers）的数据结构保存的。</p>
+<p>FST有两个优点：</p>
+<ul>
+<li>空间占用小。通过对词典中单词前缀和后缀的重复利用，压缩了存储空间</li>
+<li>查询速度快。O(len(str))的查询时间复杂度</li>
+</ul>
+<blockquote>
+<p>FST 的理论比较复杂，本文不细讲</p>
+<p>延伸阅读：<a target="_blank" rel="noopener" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/">https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/</a></p>
+</blockquote>
+<p>OK，现在我们能得到 lucene 倒排索引大致是个什么样子的了。</p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzIyNDU2ODA4OQ==&mid=2247489003&idx=1&sn=69bf19d900079e204e36df58525654bf&chksm=e80da39ddf7a2a8bf0765f9b95f359a3944fc40c4a192bb3fe9adedfbcd0070cd27234bcf6b3&scene=21#wechat_redirect"><img src="img/0005.png" class="lazyload" data-srcset="img/0005.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></a></p>
+<h2 id="四、关于postings-list的一些技巧"><a href="#四、关于postings-list的一些技巧" class="headerlink" title="四、关于postings list的一些技巧"></a>四、关于postings list的一些技巧</h2><p>在实际使用中，postings list还需要解决几个痛点，</p>
+<ul>
+<li>postings list如果不进行压缩，会非常占用磁盘空间</li>
+<li>联合查询下，如何快速求交并集（intersections and unions）</li>
+</ul>
+<p>对于如何压缩，可能会有人觉得没有必要，”posting list 不是已经只存储文档 id 了吗？还需要压缩？”，但是如果在 posting list 有百万个 doc id 的情况，压缩就显得很有必要了。（比如按照朝代查询古诗？），至于为啥需要求交并集，ES 是专门用来搜索的，肯定会有很多联合查询的需求吧 （AND、OR）。</p>
+<p>按照上面的思路，我们先将如何压缩。</p>
+<h3 id="1-压缩"><a href="#1-压缩" class="headerlink" title="1. 压缩"></a>1. 压缩</h3><h4 id="Frame-of-Reference"><a href="#Frame-of-Reference" class="headerlink" title="Frame of Reference"></a>Frame of Reference</h4><p>在 lucene 中，要求 postings lists 都要是有序的整形数组。这样就带来了一个很好的好处，可以通过 <code>增量编码（delta-encode）</code>这种方式进行压缩。</p>
+<p>比如现在有 id 列表 <code>[73, 300, 302, 332, 343, 372]</code>，转化成每一个 id 相对于前一个 id 的增量值（第一个 id 的前一个 id 默认是 0，增量就是它自己）列表是<code>[73, 227, 2, 30, 11, 29]</code>。<strong>在这个新的列表里面，所有的 id 都是小于 255 的，所以每个 id 只需要一个字节存储</strong>。</p>
+<p>实际上 ES 会做的更加精细，</p>
+<p><img src="img/0006.png" class="lazyload" data-srcset="img/0006.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>它会把所有的文档分成很多个 block，每个 block 正好包含 256 个文档，然后单独对每个文档进行增量编码，计算出存储这个 block 里面所有文档最多需要多少位来保存每个 id，并且把这个位数作为头信息（header）放在每个 block 的前面。这个技术叫 <strong>Frame of Reference</strong>。</p>
+<p>上图也是来自于 ES 官方博客中的一个示例（假设每个 block 只有 3 个文件而不是 256）。</p>
+<p>FOR 的步骤可以总结为：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/8KKrHK5ic6XD7Z9nFJiccafDoefSRPlQjcbmuHMjVrGqY3emnkUWdJmNUxeArvhFaia3wzxQVL5YxXTUTcsn5dWXg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_jpg/8KKrHK5ic6XD7Z9nFJiccafDoefSRPlQjcbmuHMjVrGqY3emnkUWdJmNUxeArvhFaia3wzxQVL5YxXTUTcsn5dWXg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>进过最后的位压缩之后，整型数组的类型从固定大小 (8,16,32,64 位)4 种类型,扩展到了[1-64] 位共 64 种类型。</p>
+<p>通过以上的方式可以极大的节省 posting list 的空间消耗，提高查询性能。不过 ES 为了提高 filter 过滤器查询的性能，还做了更多的工作，那就是<strong>缓存</strong>。</p>
+<h4 id="Roaring-Bitmaps（for-filter-cache）"><a href="#Roaring-Bitmaps（for-filter-cache）" class="headerlink" title="Roaring Bitmaps（for filter cache）"></a>Roaring Bitmaps（for filter cache）</h4><p>在ES中，可以用filters来优化查询，filter查询只处理文档是否匹配与否，不涉及文档评分操作，查询的结果可以被缓存。</p>
+<p>对于filter查询，es提供了filter cache这种特殊的缓存，filter cache用来存储filters得到的结果集。缓存filters不需要太多的内存，它只保留一种信息，即哪些文档与filter相匹配。同时它可以由其他的查询服用，极大地提升了查询的性能。</p>
+<p>我们上面提到的 Frame Of Reference 压缩算法对于 postings list 来说效果很好，但对于需要存储在内存中的 filter cache 等不太合适。</p>
+<p>filter cache 会存储那些经常使用的数据，针对 filter 的缓存就是为了加速处理效率，对压缩算法要求更高。</p>
+<p>对于这类postings list，ES采用不一样的压缩方式。</p>
+<p>首先我们知道 postings list 是 Integer 数组，具有压缩空间。</p>
+<p>假设有这么一个数组，我们第一个压缩的思路是什么？用位的方式来表示，每个文档对应其中的一位，也就是我们常说的位图，<code>bitmap</code>。</p>
+<p>它经常被作为索引用在数据库、查询索引和搜索引擎中，并且位操作（如and求交集、or求并集）之间可以并行，效率更好。</p>
+<p><img src="img/0007.png" class="lazyload" data-srcset="img/0007.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>但是，位图有个很明显的缺点，不管业务中实际的元素基数有多少，它占用的内存空间都恒定不变。也就是说不适用于稀疏存储。业内对于稀疏位图也有很多成熟的压缩方案，lucene 采用的就是<strong>roaring bitmaps</strong>。推荐：<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzIyNDU2ODA4OQ==&mid=2247489003&idx=1&sn=69bf19d900079e204e36df58525654bf&chksm=e80da39ddf7a2a8bf0765f9b95f359a3944fc40c4a192bb3fe9adedfbcd0070cd27234bcf6b3&scene=21#wechat_redirect">250期面试题</a></p>
+<p>我这里用简单的方式描述一下这个压缩过程是怎么样，</p>
+<p><img src="img/0008.png" class="lazyload" data-srcset="img/0008.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>将 doc id 拆成高 16 位，低 16 位。对高位进行聚合 (以高位做 key，value 为有相同高位的所有低位数组)，根据低位的数据量 (不同高位聚合出的低位数组长度不相同)，使用不同的 container(数据结构) 存储。</p>
+<ul>
+<li>len&lt;4096 ArrayContainer 直接存值</li>
+<li>len&gt;=4096 BitmapContainer 使用 bitmap 存储</li>
+</ul>
+<p>分界线的来源：value 的最大总数是为<code>2^16=65536</code>. 假设以 bitmap 方式存储需要 <code>65536bit=8kb</code>,而直接存值的方式，一个值 2 byte，4K 个总共需要<code>2byte*4K=8kb</code>。所以当 value 总量 &lt;4k 时,使用直接存值的方式更节省空间。</p>
+<p><img src="img/0009.png" class="lazyload" data-srcset="img/0009.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>空间压缩主要体现在:</p>
+<ul>
+<li>高位聚合（假设数据中有100w个高位相同的值，原先需要100w_2byte，现在只要1_2byte）</li>
+<li>低位压缩</li>
+</ul>
+<p>缺点就是于位操作的速度相对于原生的bitmap会有影响。</p>
+<blockquote>
+<p>这就是trade-off呀，平衡的艺术。</p>
+</blockquote>
+<h3 id="2-联合查询"><a href="#2-联合查询" class="headerlink" title="2.联合查询"></a>2.联合查询</h3><p>讲完了压缩，我们再来讲讲联合查询。</p>
+<p>先讲简单的，如果查询有 filter cache，那就是直接拿 filter cache 来做计算，也就是说位图来做 AND 或者 OR 的计算。</p>
+<p>如果查询的 filter 没有缓存，那么就用 skip list 的方式去遍历磁盘上的 postings list。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/8KKrHK5ic6XD7Z9nFJiccafDoefSRPlQjc3PVgOno9kvr8ib1OH1zuGPnfuHsIqEYA9CctiaobToMzUw3ibtS4A74wg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload" data-srcset="https://mmbiz.qpic.cn/mmbiz_jpg/8KKrHK5ic6XD7Z9nFJiccafDoefSRPlQjc3PVgOno9kvr8ib1OH1zuGPnfuHsIqEYA9CctiaobToMzUw3ibtS4A74wg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图片"></p>
+<p>以上是三个 posting list。我们现在需要把它们用 AND 的关系合并，得出 posting list 的交集。首先选择最短的 posting list，逐个在另外两个 posting list 中查找看是否存在，最后得到交集的结果。遍历的过程可以跳过一些元素，比如我们遍历到绿色的 13 的时候，就可以跳过蓝色的 3 了，因为 3 比 13 要小。</p>
+<p>用<code>skip list</code>还会带来一个好处，还记得前面说的吗，postings list 在磁盘里面是采用 FOR 的编码方式存储的</p>
+<blockquote>
+<p>会把所有的文档分成很多个 block，每个 block 正好包含 256 个文档，然后单独对每个文档进行增量编码，计算出存储这个 block 里面所有文档最多需要多少位来保存每个 id，并且把这个位数作为头信息（header）放在每个 block 的前面。</p>
+</blockquote>
+<p>因为这个 FOR 的编码是有解压缩成本的。利用 skip list，<strong>除了跳过了遍历的成本，也跳过了解压缩这些压缩过的 block 的过程，从而节省了 cpu</strong>。推荐：<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzIyNDU2ODA4OQ==&mid=2247489003&idx=1&sn=69bf19d900079e204e36df58525654bf&chksm=e80da39ddf7a2a8bf0765f9b95f359a3944fc40c4a192bb3fe9adedfbcd0070cd27234bcf6b3&scene=21#wechat_redirect">250期面试题</a></p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><ul>
+<li>为了能够快速定位到目标文档，ES使用倒排索引技术来优化搜索速度，虽然空间消耗比较大，但是搜索性能提高十分显著。</li>
+<li>为了能够在数量巨大的terms中快速定位到某一个term，同时节约对内存的使用和减少磁盘io的读取，lucene使用”term index -&gt; term dictionary -&gt; posting list”的倒排索引结构，通过<code>FST</code>压缩放入内存，进一步提高搜索效率。</li>
+<li>为了减少posting list的磁盘消耗，lucene使用了<code>FOR(Frame of Reference)</code>技术压缩，带来的压缩效果十分明显。</li>
+<li>ES的filter语句采用了<code>Roaring Bitmap</code>技术来缓存搜索结�

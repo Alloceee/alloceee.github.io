@@ -409,69 +409,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-%E9%9D%A2%E8%AF%95%E9%A2%98/">
-        Redis常见面试题
+      <a href="/2020/06/21/%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/List%E9%9B%86%E5%90%88%E7%9A%84%E5%9D%91/">
+        List集合的坑
       </a>
     </h2>
   
   <div class='md'>
     
-      <div class="note quote"><p>Redis是C语言开发的一个开源的（遵从BSD协议）高性能键值对（key-value）的内存数据库，可以用做数据库、缓存、消息中间件等。 它是一种NoSQL（not-only sql，泛指非关系型数据库）的数据库。</p></div>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://gameofthrones.fandom.com/wiki/Jon_Snow'><img src='https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg'></a>
-        
-        <time>2020-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="sep"></span><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">Redis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/Redis-%E9%9D%A2%E8%AF%95%E9%A2%98/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2016/06/09/Algorithm/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
-        一致性哈希算法的理解与实践
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <h3 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h3><p>在维基百科中，是这么定义的</p>
-<blockquote>
-<p>一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。</p>
+      <blockquote>
+<p>学如逆水行舟，不进则退</p>
 </blockquote>
-<h3 id="1-引出"><a href="#1-引出" class="headerlink" title="1. 引出"></a>1. 引出</h3><p>我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽量少的移动数据。那么，我们思考一下，普通的Hash算法是如何实现？又存在什么问题呢？<br>那么我们引出一个问题：</p>
-<blockquote>
-<p>假设有1000w个数据项，100个存储节点，请设计一种算法合理地将他们存储在这些节点上。</p>
-</blockquote>
-<p>看一看普通Hash算法的原理：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" class="lazyload" data-srcset="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="normal_hash"></p>
+<p>经过几年的工作经验，我发现<code>List</code>有很多坑，之前公司有些实习生一不小心就踩到了，所以我打算写一篇文章总结一下，希望看到这篇文章的人能不再踩到坑，代码没bug。做个快乐的程序员。</p>
     
   </div>
   
@@ -481,12 +429,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2016-06-09</time>
+        <time>2020-06-21</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2016/06/09/Algorithm/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E8%B7%B5/'>
+          <a class='readmore' href='/2020/06/21/%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/List%E9%9B%86%E5%90%88%E7%9A%84%E5%9D%91/'>
             阅读全文
           </a>
         </div>
@@ -508,14 +456,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2015/11/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/">
-        网络知识拾遗
+      <a href="/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+        SpringMVC全局异常处理
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
+      
+        SpringMVC全局异常处理SpringMVC除了可以做URL映射和请求拦截外，还可以做全局异常的处理。全局异常处理可能我们平时比较少机会接触，但是每个项目都肯定会做这个处理。比如在上一间公司，是前后端分离的架构，所以后端只要有运行时异常就会报“系统异常，请稍后再试”。如果想要走上架构师的话，这个肯定是要学会的。
+SpringMVC全局异常处理机制首先，要知道全局异常处理，SpringMV...
+      
     
   </div>
   
@@ -525,12 +476,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2015-11-23</time>
+        <time>2020-06-14</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2015/11/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/'>
+          <a class='readmore' href='/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/'>
             阅读全文
           </a>
         </div>
@@ -552,17 +503,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2015/04/03/Algorithm/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AALRU-Cache%EF%BC%9F/">
-        如何设计实现一个LRU Cache？
+      <a href="/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/">
+        面试题总结-基础篇
       </a>
     </h2>
   
   <div class='md'>
     
       
-        1. 什么是LRU Cache？之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：
-
-Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.get(key...
+        基础知识JVM、JRE、JDK有什么联系与区别？JVM是java虚拟机，能够将 class 文件中的字节码指令进行识别并调用操作系统向上的 API 完成动作。JRE是java运行时环境，它主要包含两个部分，jvm 的标准实现和 Java 的一些基本类库。它相对于 jvm 来说，多出来的是一部分的 Java 类库。换句话说，JRE包含JVM。JDK是java开发工具包，它集成了 jre 和一些...
       
     
   </div>
@@ -573,12 +522,12 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2015-04-03</time>
+        <time>2020-06-11</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2015/04/03/Algorithm/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AALRU-Cache%EF%BC%9F/'>
+          <a class='readmore' href='/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/'>
             阅读全文
           </a>
         </div>
@@ -600,43 +549,14 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
   
     
     <h2 class="article-title" >
-      <a href="/2014/11/20/Algorithm/algorithm_sort/">
-        排序算法总结
+      <a href="/2020/06/06/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/">
+        责任链模式
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-1. 排序算法汇总1. 概述
-
-
-算法名称
-复杂度
-实现关键
-
-
-
-冒泡排序
-O(n^2)
-（无序区，有序区）。从无序区通过交换找出最大元素放到有序区前端。
-
-
-选择排序
-O(n^2)
-（有序区，无序区）。在无序区里选择一个最小的元素跟在有序区的后面。
-
-
-插入排序
-O(n^2)
-（有序区，无序区）。把无序区的第一个元素插入到有序区的合适的位置。
-
-
-希尔排序
-nlog^2(n)
-每一轮按...
-      
+      <p>各位<strong>java技术爱好者</strong>，我们又见面了！<br>之前我在面试的时候遇到这个问题，当时答不上来。这件事就一直在我心里耿耿于怀。相信很多人面试完都有这种体验，哈哈~<br>不过今日不同往日了，现在我已经搞懂了，其实并不是很难。</p>
     
   </div>
   
@@ -646,12 +566,56 @@ nlog^2(n)
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2014-11-20</time>
+        <time>2020-06-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2014/11/20/Algorithm/algorithm_sort/'>
+          <a class='readmore' href='/2020/06/06/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/05/31/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%B8%8ESpringMVC/">
+        适配器模式与SpringMVC
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>适配器模式是将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src=''></a>
+        
+        <time>2020-05-31</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/05/31/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%B8%8ESpringMVC/'>
             阅读全文
           </a>
         </div>
@@ -678,8 +642,14 @@ nlog^2(n)
           </a>
         
         <p class="current">
-          74 / 74
+          74 / 77
         </p>
+        
+          <a class="next" rel="next" href="/page/75/">
+            <section class="post next white-box shadow">
+              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </section>
+          </a>
         
       </div>
     
@@ -778,7 +748,7 @@ nlog^2(n)
           <li><a class="flat-box"
             title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
             id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/HTTP/" href="/categories/HTTP/"
@@ -798,17 +768,27 @@ nlog^2(n)
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
             id="categorieswebJavaScript"
-            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>JavaScript</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/Vue/" href="/categories/web/Vue/"
+            id="categorieswebVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/css/" href="/categories/web/css/"
             id="categorieswebcss"
             ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/%E9%9D%A2%E8%AF%95/" href="/categories/web/%E9%9D%A2%E8%AF%95/"
+            id="categorieswebE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -867,7 +847,7 @@ nlog^2(n)
 
 
     <div class='content'>
-      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 16.86px; color: #868686">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 18.29px; color: #7c7c7c">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 15.43px; color: #8f8f8f">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 15.43px; color: #8f8f8f">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
@@ -892,7 +872,7 @@ nlog^2(n)
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>370 篇</div>
+          <div>383 篇</div>
         </div>
       
 
@@ -914,7 +894,7 @@ nlog^2(n)
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>783.6k 字</div>
+          <div>946.3k 字</div>
         </div>
       
 
@@ -940,8 +920,8 @@ nlog^2(n)
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 12 2021 17:24:58 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-12 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 14 2021 14:21:05 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-14 日</div>
           
         </div>
         
@@ -991,7 +971,7 @@ nlog^2(n)
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-14 日';
           }
         </script>
         

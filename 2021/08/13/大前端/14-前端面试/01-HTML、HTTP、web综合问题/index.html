@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,zh-HK,zh-TW,default">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>HTML、HTTP、web综合问题 - Hexo</title>
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Alloceee
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Twilight Rush</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="Search" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>首页</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-history fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/about"
+              
+              
+              id="about">
+              <i class='fas fa-heart fa-spin fa-fw'></i><p>关于</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/alloceee"
+              
+              
+              id="https:githubcomalloceee">
+              <i class='fas fa-paper-plane fa-fw'></i><p>github</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        HTML、HTTP、web综合问题
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' target="_blank" href="https://gameofthrones.fandom.com/wiki/Jon_Snow" rel="nofollow noopener">
+    <img no-lazy src="https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg">
+    <p>Alloceee</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/web/">web</a><span class="sep"></span><a class="category-link" href="/categories/web/%E9%9D%A2%E8%AF%95/">面试</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年8月13日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="HTML、HTTP、web综合问题" data-path="/2021/08/13/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/01-HTML%E3%80%81HTTP%E3%80%81web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="一、HTML、HTTP、web综合问题"><a href="#一、HTML、HTTP、web综合问题" class="headerlink" title="一、HTML、HTTP、web综合问题"></a>一、HTML、HTTP、web综合问题</h2><h3 id="1-前端需要注意哪些SEO"><a href="#1-前端需要注意哪些SEO" class="headerlink" title="1 前端需要注意哪些SEO"></a>1 前端需要注意哪些SEO</h3><ul>
+<li>合理的<code>title</code>、<code>description</code>、<code>keywords</code>：搜索对着三项的权重逐个减小，<code>title</code>值强调重点即可，重要关键词出现不要超过2次，而且要靠前，不同页面<code>title</code>要有所不同；<code>description</code>把页面内容高度概括，长度合适，不可过分堆砌关键词，不同页面<code>description</code>有所不同；<code>keywords</code>列举出重要关键词即可</li>
+<li>语义化的<code>HTML</code>代码，符合W3C规范：语义化代码让搜索引擎容易理解网页</li>
+<li>重要内容<code>HTML</code>代码放在最前：搜索引擎抓取<code>HTML</code>顺序是从上到下，有的搜索引擎对抓取长度有限制，保证重要内容一定会被抓取</li>
+<li>重要内容不要用<code>js</code>输出：爬虫不会执行js获取内容</li>
+<li>少用<code>iframe</code>：搜索引擎不会抓取<code>iframe</code>中的内容</li>
+<li>非装饰性图片必须加<code>alt</code></li>
+<li>提高网站速度：网站速度是搜索引擎排序的一个重要指标</li>
+</ul>
+<h3 id="2-lt-img-gt-的title和alt有什么区别"><a href="#2-lt-img-gt-的title和alt有什么区别" class="headerlink" title="2 &lt;img&gt;的title和alt有什么区别"></a>2 <code>&lt;img&gt;</code>的<code>title</code>和<code>alt</code>有什么区别</h3><ul>
+<li>通常当鼠标滑动到元素上的时候显示</li>
+<li><code>alt</code>是<code>&lt;img&gt;</code>的特有属性，是图片内容的等价描述，用于图片无法加载时显示、读屏器阅读图片。可提图片高可访问性，除了纯装饰图片外都必须设置有意义的值，搜索引擎会重点分析</li>
+</ul>
+<h3 id="3-HTTP的几种请求方法用途"><a href="#3-HTTP的几种请求方法用途" class="headerlink" title="3 HTTP的几种请求方法用途"></a>3 HTTP的几种请求方法用途</h3><ul>
+<li><code>GET</code>方法<ul>
+<li>发送一个请求来取得服务器上的某一资源</li>
+</ul>
+</li>
+<li><code>POST</code>方法<ul>
+<li>向<code>URL</code>指定的资源提交数据或附加新的数据</li>
+</ul>
+</li>
+<li><code>PUT</code>方法<ul>
+<li>跟<code>POST</code>方法很像，也是想服务器提交数据。但是，它们之间有不同。<code>PUT</code>指定了资源在服务器上的位置，而<code>POST</code>没有</li>
+</ul>
+</li>
+<li><code>HEAD</code>方法<ul>
+<li>只请求页面的首部</li>
+</ul>
+</li>
+<li><code>DELETE</code>方法<ul>
+<li>删除服务器上的某资源</li>
+</ul>
+</li>
+<li><code>OPTIONS</code>方法<ul>
+<li>它用于获取当前<code>URL</code>所支持的方法。如果请求成功，会有一个<code>Allow</code>的头包含类似<code>“GET,POST”</code>这样的信息</li>
+</ul>
+</li>
+<li><code>TRACE</code>方法<ul>
+<li><code>TRACE</code>方法被用于激发一个远程的，应用层的请求消息回路</li>
+</ul>
+</li>
+<li><code>CONNECT</code>方法<ul>
+<li>把请求连接转换到透明的<code>TCP/IP</code>通道</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-从浏览器地址栏输入url到显示页面的步骤"><a href="#4-从浏览器地址栏输入url到显示页面的步骤" class="headerlink" title="4 从浏览器地址栏输入url到显示页面的步骤"></a>4 从浏览器地址栏输入url到显示页面的步骤</h3><h4 id="基础版本"><a href="#基础版本" class="headerlink" title="基础版本"></a>基础版本</h4><ul>
+<li>浏览器根据请求的<code>URL</code>交给<code>DNS</code>域名解析，找到真实<code>IP</code>，向服务器发起请求；</li>
+<li>服务器交给后台处理完成后返回数据，浏览器接收文件（<code>HTML、JS、CSS</code>、图象等）；</li>
+<li>浏览器对加载到的资源（<code>HTML、JS、CSS</code>等）进行语法解析，建立相应的内部数据结构（如<code>HTML</code>的<code>DOM</code>）；</li>
+<li>载入解析到的资源文件，渲染页面，完成。</li>
+</ul>
+<h4 id="详细版"><a href="#详细版" class="headerlink" title="详细版"></a>详细版</h4><ol>
+<li><p>在浏览器地址栏输入URL</p>
+</li>
+<li><p>浏览器查看<code>缓存</code>，如果请求资源在缓存中并且新鲜，跳转到转码步骤</p>
+<ol>
+<li><p>如果

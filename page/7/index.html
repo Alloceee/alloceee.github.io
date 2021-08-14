@@ -409,26 +409,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/09-lazyload&%E9%98%B2%E6%8A%96%E5%8A%A8%E5%92%8C%E8%8A%82%E6%B5%81%E9%98%80/">
-        2021年8月6日
+      <a href="/2021/08/08/SystemArchitect/%E7%AC%AC7%E7%AB%A0%EF%BC%9A%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92/">
+        第7章：系统规划
       </a>
     </h2>
   
   <div class='md'>
     
       
-        lazyload用的最多的场景是：
+        新旧系统的分析与比较遗留系统的评价方法遗留系统的演化策略
+淘汰策略
 
-图片lazyload
-
-组件lazyload
-
-
-现在一般都单独做css的lazyload或者js的lazyload，因为这种方式，其实还是要加载图片和组件。
-图片lazyload图片一般是页面最大的资源，所以非首屏延迟加载很重要（让首屏尽快显示）。
-防抖动（Debouncing）和节流阀（Throtting）参考链接：
-
-实例解析防抖动（Debounc...
+第3象限为低水平、低价值区，即遗留系统的技术含量较低，且具有较低的商业价值。对这种遗留系统的演化策略为淘汰，即全面重新开发新的系统以代替遗留系统。
+完全淘汰是一种极端性策略，一般是企业的业务产生了根本的变化，遗留系统基本上不再适应企业运作的需要；或者是遗留系统的维护人员、维护文档资料都丢失了。经过评价，发现将遗留系统完全淘...
       
     
   </div>
@@ -439,12 +432,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/'><img src=''></a>
         
-        <time>2021-08-06</time>
+        <time>2021-08-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/09-lazyload&%E9%98%B2%E6%8A%96%E5%8A%A8%E5%92%8C%E8%8A%82%E6%B5%81%E9%98%80/'>
+          <a class='readmore' href='/2021/08/08/SystemArchitect/%E7%AC%AC7%E7%AB%A0%EF%BC%9A%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92/'>
             阅读全文
           </a>
         </div>
@@ -466,7 +462,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/04-%E5%89%8D%E7%AB%AF%E7%9B%91%E6%8E%A7%E6%8A%80%E6%9C%AF/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%A7%AF%E7%B4%AF/">
         2021年8月6日
       </a>
     </h2>
@@ -474,33 +470,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        前言要监控的内容：
-
-业务数据
-
-稳定性
-
-性能
-
-错误
-
-用户操作路径
-
-
-怎么监控：
-
-PV/UV、业务操作上报
-
-根据上报寻找异常
-
-将页面性能数据上报
-
-将页面产生错误上报
-
-跟踪用户操作路径
-
-
-
+        SPU 和 SKUSKU（stock keeping unit）：库存量单位。 SKU是物理上不可分割的最小库存单元。通俗来讲，你可以把 sku 理解成是「最小单元」。
+SPU（Standard Product Unit）：标准化产品单元。是商品信息聚合的最小单位。通俗来讲，你可以把 spu 理解成是「某一类的单元」。
+比如说，针对 Kindle paperwhite4 这款阅读器，颜色分白...
       
     
   </div>
@@ -516,7 +488,7 @@ PV/UV、业务操作上报
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/04-%E5%89%8D%E7%AB%AF%E7%9B%91%E6%8E%A7%E6%8A%80%E6%9C%AF/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%A7%AF%E7%B4%AF/'>
             阅读全文
           </a>
         </div>
@@ -538,7 +510,7 @@ PV/UV、业务操作上报
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/02-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/%E5%89%8D%E7%AB%AF%E5%8D%9A%E5%AE%A2%E6%8E%A8%E8%8D%90/">
         2021年8月6日
       </a>
     </h2>
@@ -546,10 +518,15 @@ PV/UV、业务操作上报
   <div class='md'>
     
       
-        前言数组在实战开发中，使用得相当频繁。前端同学通过接口拿到json数据后，往往需要把数据进行各种形式的变换和展示。这个时候，数组的常见操作，就发挥了很大的作用。
-如果你对数组的基础知识不太熟悉，建议回去看看03-JavaScript的基础知识。
-掌握了基础知识之后，我们再来看看，实战开发中，数组都有哪些常见操作。
-数组的常见操作从对象数组中，将属性的值提取为数组一般人可能会想着通过 for ...
+        前端博客推荐
+冴羽的博客：https://github.com/mqyqingfeng/Blog
+
+冴羽写博客的地方，预计写四个系列：JavaScript深入系列、JavaScript专题系列、ES6系列、React系列。
+
+颜乐乐：https://github.com/yanlele/node-index
+
+在头条做前端，博客内容很全，尤其是“单元测试”系列。
+
       
     
   </div>
@@ -565,7 +542,7 @@ PV/UV、业务操作上报
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/02-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/%E5%89%8D%E7%AB%AF%E5%8D%9A%E5%AE%A2%E6%8E%A8%E8%8D%90/'>
             阅读全文
           </a>
         </div>
@@ -587,7 +564,7 @@ PV/UV、业务操作上报
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/01-%E5%89%8D%E7%AB%AF%E5%B8%B8%E8%A7%81%E4%B8%93%E6%9C%89%E5%90%8D%E8%AF%8D/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/UserAgent/">
         2021年8月6日
       </a>
     </h2>
@@ -595,16 +572,14 @@ PV/UV、业务操作上报
   <div class='md'>
     
       
-        性能相关
-防抖和节流
+        前言我们知道，在控制台里可以添加很多设备。我们需要点击 edit，手动添加：
+img
+添加时，是根据 User agent 来识别的：
+img
+不同浏览器（包括微信内置的浏览器）的 useragent 信息，是不一样的，我们可以根据 navigator.userAgent属性来获取。
+比如说，我们在控制台输入navigator.userAgent，如下：
 
-滚动穿透
-
-
-样式相关
-多行文字截断
-
-
+上图显示，MacOS上的Chrom...
       
     
   </div>
@@ -620,7 +595,7 @@ PV/UV、业务操作上报
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/16-%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/01-%E5%89%8D%E7%AB%AF%E5%B8%B8%E8%A7%81%E4%B8%93%E6%9C%89%E5%90%8D%E8%AF%8D/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/UserAgent/'>
             阅读全文
           </a>
         </div>
@@ -642,7 +617,7 @@ PV/UV、业务操作上报
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/15-%E9%9D%A2%E8%AF%95%E9%A2%98%E7%A7%AF%E7%B4%AF/%E9%9D%A2%E7%BB%8F%E9%93%BE%E6%8E%A5%E6%8E%A8%E8%8D%90/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/json%E7%9B%B8%E5%85%B3/">
         2021年8月6日
       </a>
     </h2>
@@ -650,27 +625,14 @@ PV/UV、业务操作上报
   <div class='md'>
     
       
-        2018-01-25
-有时在面试时，我都替候选人着急——候选人完全可以在面试前准备
+        json中根据键获取值参考链接：
 
-2018-01-26
-转眼人到中年：前端老程序员无法忘怀的一次百度电话面试
+http://yuxisanren.iteye.com/blog/1895807
 
-八年前的面经，咋记得这么清楚？
-2018-01-27
-16年毕业的前端er在杭州求职ing
-
-2018-02-04
-2018秋招前端总结
-
-2018-02-25
-前端开发面试题(CSS)
-
-超过20家的前端面试题
+https://blog.csdn.net/w405722907/article/details/72828041
 
 
 
-来聊聊前端...
       
     
   </div>
@@ -686,7 +648,7 @@ PV/UV、业务操作上报
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/15-%E9%9D%A2%E8%AF%95%E9%A2%98%E7%A7%AF%E7%B4%AF/%E9%9D%A2%E7%BB%8F%E9%93%BE%E6%8E%A5%E6%8E%A8%E8%8D%90/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/17-%E5%89%8D%E7%AB%AF%E7%BB%BC%E5%90%88/json%E7%9B%B8%E5%85%B3/'>
             阅读全文
           </a>
         </div>
@@ -713,7 +675,7 @@ PV/UV、业务操作上报
           </a>
         
         <p class="current">
-          7 / 74
+          7 / 77
         </p>
         
           <a class="next" rel="next" href="/page/8/">
@@ -819,7 +781,7 @@ PV/UV、业务操作上报
           <li><a class="flat-box"
             title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
             id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/HTTP/" href="/categories/HTTP/"
@@ -839,17 +801,27 @@ PV/UV、业务操作上报
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
             id="categorieswebJavaScript"
-            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>JavaScript</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/Vue/" href="/categories/web/Vue/"
+            id="categorieswebVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/css/" href="/categories/web/css/"
             id="categorieswebcss"
             ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/%E9%9D%A2%E8%AF%95/" href="/categories/web/%E9%9D%A2%E8%AF%95/"
+            id="categorieswebE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -908,7 +880,7 @@ PV/UV、业务操作上报
 
 
     <div class='content'>
-      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 16.86px; color: #868686">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 18.29px; color: #7c7c7c">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 15.43px; color: #8f8f8f">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 15.43px; color: #8f8f8f">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
@@ -933,7 +905,7 @@ PV/UV、业务操作上报
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>370 篇</div>
+          <div>383 篇</div>
         </div>
       
 
@@ -955,7 +927,7 @@ PV/UV、业务操作上报
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>783.6k 字</div>
+          <div>946.3k 字</div>
         </div>
       
 
@@ -981,8 +953,8 @@ PV/UV、业务操作上报
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 12 2021 17:24:38 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-12 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 14 2021 14:20:43 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-14 日</div>
           
         </div>
         
@@ -1032,7 +1004,7 @@ PV/UV、业务操作上报
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-14 日';
           }
         </script>
         

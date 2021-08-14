@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,zh-HK,zh-TW,default">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>SpringMVC全局异常处理 - Hexo</title>
+  
+    <meta name="keywords" content="java,SpringMVC,源码分析">
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Alloceee
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Twilight Rush</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="Search" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>首页</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-history fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/about"
+              
+              
+              id="about">
+              <i class='fas fa-heart fa-spin fa-fw'></i><p>关于</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/alloceee"
+              
+              
+              id="https:githubcomalloceee">
+              <i class='fas fa-paper-plane fa-fw'></i><p>github</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        SpringMVC全局异常处理
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>请设置文章作者</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年6月14日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="SpringMVC全局异常处理" data-path="/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h1 id="SpringMVC全局异常处理"><a href="#SpringMVC全局异常处理" class="headerlink" title="SpringMVC全局异常处理"></a>SpringMVC全局异常处理</h1><p><code>SpringMVC</code>除了可以做<code>URL映射</code>和<code>请求拦截</code>外，还可以做<code>全局异常</code>的处理。全局异常处理可能我们平时比较少机会接触，但是每个项目都肯定会做这个处理。比如在上一间公司，是前后端分离的架构，所以后端只要有运行时异常就会报“系统异常，请稍后再试”。如果想要走上架构师的话，这个肯定是要学会的。</p>
+<h2 id="SpringMVC全局异常处理机制"><a href="#SpringMVC全局异常处理机制" class="headerlink" title="SpringMVC全局异常处理机制"></a>SpringMVC全局异常处理机制</h2><p>首先，要知道全局异常处理，<code>SpringMVC</code>提供了两种方式：</p>
+<ul>
+<li>实现<code>HandlerExceptionResolver</code>接口，自定义异常处理器。</li>
+<li>使用<code>HandlerExceptionResolver</code>接口的子类，也就是<code>SpringMVC</code>提供的异常处理器。</li>
+</ul>
+<p>所以，总得来说就两种方式，一种是自定义异常处理器，第二种是<code>SpringMVC</code>提供的。接下来先说<code>SpringMVC</code>提供的几种异常处理器的使用方式，然后再讲自定义异常处理器。</p>
+<p><code>SpringMVC</code>提供的异常处理器有哪些呢？我们可以直接看源码的类图。</p>
+<p><img src="https://static.lovebilibili.com/HandlerExceptionResolver.png" class="lazyload" data-srcset="https://static.lovebilibili.com/HandlerExceptionResolver.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>可以看出有四种：</p>
+<ul>
+<li><code>DefaultHandlerExceptionResolver</code>，默认的异常处理器。根据各个不同类型的异常，返回不同的异常视图。</li>
+<li><code>SimpleMappingExceptionResolver</code>，简单映射异常处理器。通过配置异常类和view的关系来解析异常。</li>
+<li><code>ResponseStatusExceptionResolver</code>，状态码异常处理器。解析带有<code>@ResponseStatus</code>注释类型的异常。</li>
+<li><code>ExceptionHandlerExceptionResolver</code>，注解形式的异常处理器。对<code>@ExceptionHandler</code>注解的方法进行异常解析。</li>
+</ul>
+<h3 id="DefaultHandlerExceptionResolver"><a href="#DefaultHandlerExceptionResolver" class="headerlink" title="DefaultHandlerExceptionResolver"></a>DefaultHandlerExceptionResolver</h3><p>这个异常处理器是<code>SprngMVC</code>默认的一个处理器，处理一些常见的异常，比如：没有找到请求参数，参数类型转换异常，请求方式不支持等等。</p>
+<p>接着我们看<code>DefaultHandlerExceptionResolver</code>类的<code>doResolveException()</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="meta">@Nullable</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> ModelAndView <span class="title">doResolveException</span><span class="params">(HttpServletRequest request, HttpServletResponse response,<span class="meta">@Nullable</span> Object handler, Exception ex)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (ex <span class="keyword">instanceof</span> HttpRequestMethodNotSupportedException) &#123;</span><br><span class="line">			<span class="keyword">return</span> handleHttpRequestMethodNotSupported((HttpRequestMethodNotSupportedException) ex, request,</span><br><span class="line">					response, handler);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> HttpMediaTypeNotSupportedException) &#123;</span><br><span class="line">			<span class="keyword">return</span> handleHttpMediaTypeNotSupported((HttpMediaTypeNotSupportedException) ex, request, response,</span><br><span class="line">					handler);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> HttpMediaTypeNotAcceptableException) &#123;</span><br><span class="line">			<span class="keyword">return</span> handleHttpMediaTypeNotAcceptable((HttpMediaTypeNotAcceptableException) ex, request, response,</span><br><span class="line">					handler);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//省略...以下还有十几种异常的else-if</span></span><br><span class="line">	&#125;<span class="keyword">catch</span> (Exception handlerException) &#123;</span><br><span class="line">           <span class="comment">//是否打开日志，如果打开，那就记录日志</span></span><br><span class="line">		<span class="keyword">if</span> (logger.isWarnEnabled()) &#123;</span><br><span class="line">			logger.warn(<span class="string">&quot;Handling of [&quot;</span> + ex.getClass().getName() + <span class="string">&quot;] resulted in Exception&quot;</span>, handlerException);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>if-else</code>判断，判断继承什么异常就显示对应的错误码和错误提示信息。由此可以知道，处理一般有两步，一是设置响应码，二是在响应头设置异常信息。下面是<code>MissingServletRequestPartException</code>的处理的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> ModelAndView <span class="title">handleMissingServletRequestPartException</span><span class="params">(MissingServletRequestPartException ex,</span></span></span><br><span class="line"><span class="params"><span class="function">		HttpServletRequest request, HttpServletResponse response, <span class="meta">@Nullable</span> Object handler)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">	<span class="comment">//设置响应码，设置异常信息，SC_BAD_REQUEST就是400(bad request)</span></span><br><span class="line">	response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ModelAndView();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//响应码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SC_BAD_REQUEST = <span class="number">400</span>;</span><br></pre></td></tr></table></figure>
+
+<p>为什么要存在这个异常处理器呢？</p>
+<p>从框架的设计理念来看，这种公共的、常见的异常应该交给框架本身来完成，是一些必需处理的异常。比如参数类型转换异常，如果程序员不处理，还有框架提供默认的处理方式，<strong>不至于出现这种错误而无法排查</strong>。</p>
+<h3 id="SimpleMappingExceptionResolver"><a href="#SimpleMappingExceptionResolver" class="headerlink" title="SimpleMappingExceptionResolver"></a>SimpleMappingExceptionResolver</h3><p>这种异常处理器需要提前配置异常类和对应的<code>view</code>视图。一般用于使用<code>JSP</code>的项目中，出现异常则通过这个异常处理器跳转到指定的页面。</p>
+<p>怎么配置？首先搭建<code>JSP</code>项目我就不浪费篇幅介绍了。首先要加载一个<code>XML</code>文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="comment">//在启动类，加载配置文件</span></span><br><span class="line"><span class="meta">@ImportResource(&quot;classpath:spring-config.xml&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>resources</code>目录下，创建一个<code>spring-config.xml</code>文件，内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.handler.SimpleMappingExceptionResolver&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义默认的异常处理页面 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;defaultErrorView&quot;</span> <span class="attr">value</span>=<span class="string">&quot;err&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;exceptionAttribute&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ex&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;exceptionMappings&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 数组越界异常 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;java.lang.ArrayIndexOutOfBoundsException&quot;</span>&gt;</span>err/arrayIndexOutOfBounds<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 空指针异常 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;java.lang.NullPointerException&quot;</span>&gt;</span>err/nullPointer<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>webapp</code>也就是存放<code>JSP</code>页面的目录下，创建两个<code>JSP</code>页面。</p>
+<p><code>arrayIndexOutOfBounds.jsp</code>如下：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;数组越界异常&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;数组越界异常&lt;/h1&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;%-- 打印异常到页面上 --%&gt;</span><br><span class="line">&lt;% Exception ex = (Exception)request.getAttribute(<span class="string">&quot;ex&quot;</span>); %&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;div&gt;&lt;%= ex.getMessage() %&gt;&lt;/div&gt;</span><br><span class="line">&lt;% ex.printStackTrace(<span class="keyword">new</span> java.io.PrintWriter(out)); %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>nullPointer.jsp</code>如下：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;空指针异常&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;空指针异常&lt;/h1&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;%-- 打印异常到页面上 --%&gt;</span><br><span class="line">&lt;% Exception ex = (Exception)request.getAttribute(<span class="string">&quot;ex&quot;</span>); %&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;div&gt;&lt;%=ex.getMessage()%&gt;&lt;/div&gt;</span><br><span class="line">&lt;% ex.printStackTrace(<span class="keyword">new</span> java.io.PrintWriter(out)); %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接着创建两个<code>Controller</code>，分别抛出空指针异常和数组越界异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/error&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/null&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">err</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        String str = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//抛出空指针异常</span></span><br><span class="line">        <span class="keyword">int</span> length = str.length();</span><br><span class="line">        System.out.println(length);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/indexOut&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">indexOut</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="comment">//抛出数组越界异常</span></span><br><span class="line">            nums[i] = i;</span><br><span class="line">            System.out.println(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目后，我们发送两个请求，就可以看到：</p>
+<p><img src="https://static.lovebilibili.com/exceptionResolver_2.png" class="lazyload" data-srcset="https://static.lovebilibili.com/exceptionResolver_2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p><img src="https://static.lovebilibili.com/exceptionResolver_3.png" class="lazyload" data-srcset="https://static.lovebilibili.com/exceptionResolver_3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>通过上述例子可以看出，其实对于现在<strong>前后端分离的项目</strong>来说，<strong>这种异常处理器已经不是很常用了</strong>。</p>
+<h3 id="ResponseStatusExceptionResolver"><a href="#ResponseStatusExceptionResolver" class="headerlink" title="ResponseStatusExceptionResolver"></a>ResponseStatusExceptionResolver</h3><p>这种异常处理器主要用于处理带有<code>@ResponseStatus</code>注释的异常。下面演示一下使用方式。</p>
+<p>首先自定义异常类继承<code>Exception</code>，并且使用<code>@ResponseStatus</code>注解修饰。如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//value需要使用HttpStatus枚举类型，HttpStatus.FORBIDDEN=403。</span></span><br><span class="line"><span class="meta">@ResponseStatus(value = HttpStatus.FORBIDDEN,reason = &quot;My defined Exception&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefinedException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再在<code>Controller</code>层抛出此异常。如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/error&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/myException&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">ex</span><span class="params">(<span class="meta">@RequestParam(name = &quot;num&quot;)</span> Integer num)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">//抛出自定义异常</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> DefinedException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后启动项目，请求接口，可以看到如下信息：</p>
+<p><img src="https://static.lovebilibili.com/exceptionResolver_4.png" class="lazyload" data-srcset="https://static.lovebilibili.com/exceptionResolver_4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>使用这种异常处理器，需要自定义一个异常，一定要一直往上层抛出异常，如果不往上层抛出，在<code>service</code>或者<code>dao</code>层就<code>try-catch</code>处理掉的话，是不会触发的。</p>
+<h3 id="ExceptionHandlerExceptionResolver"><a href="#ExceptionHandlerExceptionResolver" class="headerlink" title="ExceptionHandlerExceptionResolver"></a>ExceptionHandlerExceptionResolver</h3><p>这个异常处理器才是最重要的，也是最常用，最灵活的，因为是使用注解。首先我们还是简单地演示一下怎么使用：</p>
+<p>首先需要定义一个全局的异常处理器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里使用了RestControllerAdvice，是@ResponseBody和@ControllerAdvice的结合</span></span><br><span class="line"><span class="comment">//会把实体类转成JSON格式的提示返回，符合前后端分离的架构</span></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line">    <span class="comment">//这里自定义了一个BaseException，当抛出BaseException异常就会被此方法处理</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(BaseException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ErrorInfo <span class="title">errorHandler</span><span class="params">(HttpServletRequest req, BaseException e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ErrorInfo r = <span class="keyword">new</span> ErrorInfo();</span><br><span class="line">        r.setMessage(e.getMessage());</span><br><span class="line">        r.setCode(ErrorInfo.ERROR);</span><br><span class="line">        r.setUrl(req.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们自定义一个自定义异常类<code>BaseException</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BaseException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>Controller</code>层定义一个方法测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/error&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/base&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">base</span><span class="params">()</span> <span class="keyword">throws</span> BaseException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> BaseException(<span class="string">&quot;系统异常，请稍后重试。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>老规矩，启动项目，请求接口可以看到结果：</p>
+<p><img src="https://static.lovebilibili.com/exceptionResolver_1.jpg" class="lazyload" data-srcset="https://static.lovebilibili.com/exceptionResolver_1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>你也可以不自定义异常<code>BaseException</code>，而直接拦截常见的各种异常都可以。所以这是一个非常灵活的异常处理器。你也可以做跳转页面，返回<code>ModelAndView</code>即可（以免篇幅过长就不演示了，哈哈）。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>经过以上的演示后我们学习了<code>SpringMVC</code>四种异常处理器的工作机制，最后这种作为程序员我觉得是必须掌握的，前面的简单映射异常处理器和状态映射处理器可以选择性掌握，默认的异常处理器了解即可。</p>
+<p>那这么多异常处理器，究竟是如何工作的呢？为什么是设计一个接口，下面有一个抽象类加上四个实现子类呢？接下来我们通过源码分析来揭开谜底！</p>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>源码分析从哪里入手呢？在<code>SpringMVC</code>中，其实你想都不用想，肯定在<code>DispatcherServlet</code>类里。经过我顺藤摸瓜，我定位在了<code>processHandlerException()</code>方法。怎么定位的呢？其实很简单，看源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">processDispatchResult</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="meta">@Nullable</span> HandlerExecutionChain mappedHandler, <span class="meta">@Nullable</span> ModelAndView mv,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="meta">@Nullable</span> Exception exception)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">boolean</span> errorView = <span class="keyword">false</span>;</span><br><span class="line">	<span class="comment">//异常不为空</span></span><br><span class="line">	<span class="keyword">if</span> (exception != <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (exception <span class="keyword">instanceof</span> ModelAndViewDefiningException) &#123;</span><br><span class="line">			logger.debug(<span class="string">&quot;ModelAndViewDefiningException encountered&quot;</span>, exception);</span><br><span class="line">			mv = ((ModelAndViewDefiningException) exception).getModelAndView();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			Object handler = (mappedHandler != <span class="keyword">null</span> ? mappedHandler.getHandler() : <span class="keyword">null</span>);</span><br><span class="line">               <span class="comment">//关键点：执行异常处理</span></span><br><span class="line">			mv = processHandlerException(request, response, handler, exception);</span><br><span class="line">			<span class="comment">//省略...</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="processHandlerException"><a href="#processHandlerException" class="headerlink" title="processHandlerException()"></a>processHandlerException()</h3><p>就是这个直接的一个<code>if-else</code>判断，那个<code>processHandlerException()</code>方法又是怎么处理的呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> ModelAndView <span class="title">processHandlerException</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span></span><br><span class="line"><span class="params"><span class="function">      <span class="meta">@Nullable</span> Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   ModelAndView exMv = <span class="keyword">null</span>;</span><br><span class="line">   <span class="comment">//判断异常处理器的集合是否为空</span></span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">this</span>.handlerExceptionResolvers != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="comment">//不为空则遍历异常处理器 </span></span><br><span class="line">      <span class="keyword">for</span> (HandlerExceptionResolver handlerExceptionResolver : <span class="keyword">this</span>.handlerExceptionResolvers) &#123;</span><br><span class="line">         <span class="comment">//调用异常处理器的resolveException()方法进行处理异常</span></span><br><span class="line">         exMv = handlerExceptionResolver.resolveException(request, response, handler, ex);</span><br><span class="line">         <span class="comment">//判断返回的ModelAndView是否为null，不为null则跳出循环，为null则继续下一个异常处理器</span></span><br><span class="line">         <span class="keyword">if</span> (exMv != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//如果ModelAndView不为空</span></span><br><span class="line">   <span class="keyword">if</span> (exMv != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (exMv.isEmpty()) &#123;</span><br><span class="line">         <span class="comment">//设置异常信息提示</span></span><br><span class="line">         request.setAttribute(EXCEPTION_ATTRIBUTE, ex);</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//如果返回的ModelAndView不包含view</span></span><br><span class="line">      <span class="keyword">if</span> (!exMv.hasView()) &#123;</span><br><span class="line">         <span class="comment">//设置一个默认的视图 </span></span><br><span class="line">         String defaultViewName = getDefaultViewName(request);</span><br><span class="line">         <span class="keyword">if</span> (defaultViewName != <span class="keyword">null</span>) &#123;</span><br><span class="line">            exMv.setViewName(defaultViewName);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//省略...</span></span><br><span class="line">      <span class="comment">//返回异常的ModelAndView	</span></span><br><span class="line">      <span class="keyword">return</span> exMv;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">throw</span> ex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这不就是责任链模式吗！提前加载异常处理器到<code>handlerExceptionResolvers</code>集合中，然后遍历去执行，能处理就处理，不能处理就跳到下一个异常处理器处理。</p>
+<p>那接下来我们就有一个问题了，<code>handlerExceptionResolvers</code>集合是怎么加载异常处理器的？这个问题很简单，就是使用<code>DispatcherServlet.properties</code>配置文件。这个文件真的很重要！！！</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">org.springframework.web.servlet.HandlerExceptionResolver</span>=<span class="string">org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver,\</span></span><br><span class="line"><span class="string">	org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver,\</span></span><br><span class="line"><span class="string">	org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver</span></span><br></pre></td></tr></table></figure>
+
+<p>默认是加载以上三种异常处理器到集合中，所以只要带有<code>@ControllerAdvice</code>、<code>@ExceptionHandler</code>、<code>@ResponseStatus</code>注解的都会被扫描。<code>SimpleMappingExceptionResolver</code>则是通过<code>xml</code>文件(当然也可以使用<code>@Configuration</code>)去配置。</p>
+<h3 id="resolveException"><a href="#resolveException" class="headerlink" title="resolveException()"></a>resolveException()</h3><p>其实在<code>resolveException()</code>处理异常的方法中，还使用了模板模式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="meta">@Nullable</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="meta">@Nullable</span> Object handler, Exception ex)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//省略...</span></span><br><span class="line">       	<span class="comment">//预处理</span></span><br><span class="line">		prepareResponse(ex, response);</span><br><span class="line">       	<span class="comment">//调用了一个抽象方法，抽象方法由子类去实现</span></span><br><span class="line">		ModelAndView result = doResolveException(request, response, handler, ex);</span><br><span class="line">		<span class="comment">//省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象方法<code>doResolveException()</code>，由子类实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> ModelAndView <span class="title">doResolveException</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="params"><span class="function">      HttpServletResponse response, <span class="meta">@Nullable</span> Object handler, Exception ex)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>怎么识别模板方法，其实很简单，只要看到抽象类，有个具体方法里面调用了抽象方法，那很大可能就是模板模式。抽象方法就是模板方法，由子类实现。</p>
+<p>子类我们都知道就是那四个异常处理器实现类了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>用流程图概括一下：</p>
+<p><img src="https://static.lovebilibili.com/exceptionResolver_5.png" class="lazyload" data-srcset="https://static.lovebilibili.com/exceptionResolver_5.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>经过以上的学习后，我们知道只需要把异常处理器加到集合中，就可以执行。所以我们可以使用直接实现<code>HandlerExceptionResolver</code>接口的方式来实现异常处理器。</p>
+<h2 id="实现HandlerExceptionResolver接口实现全局异常处理"><a href="#实现HandlerExceptionResolver接口实现全局异常处理" class="headerlink" title="实现HandlerExceptionResolver接口实现全局异常处理"></a>实现HandlerExceptionResolver接口实现全局异常处理</h2><p>首先自定一个异常类<code>MyException</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后实现<code>HandlerExceptionResolver</code>接口定义一个异常处理器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注册异常处理器到Spring容器中</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExceptionHandler</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//如果属于MyException异常，则输出异常提示到页面</span></span><br><span class="line">            <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> MyException) &#123;</span><br><span class="line">                response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line">                response.getWriter().println(ex.getMessage());</span><br><span class="line">                <span class="comment">//这里返回null，不做处理。也可以返回ModelAndView跳转页面</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>Controller</code>层定义一个方法测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/error&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/myEx&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">myEx</span><span class="params">()</span> <span class="keyword">throws</span> MyException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行myEx()&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">&quot;自定义异常提示信息&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目，请求接口，我们可以看到：</p>
+<p><img src="https://static.lovebilibili.com/exceptionResolver_6.png" class="lazyload" data-srcset="https://static.lovebilibili.com/exceptionResolver_6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<h1 id="最后说几句"><a href="#最后说几句" class="headerlink" title="最后说几句"></a>最后说几句</h1><p>以上就是我对于<code>SpringMVC</code>全局异常处理机制的理解。更多的<code>java</code>技术分享，可以关注我的公众号“<strong>java技术爱好者</strong>”，后续会不断更新。</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://alloceee.github.io/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/>https://alloceee.github.io/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-04T11:17:18+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年8月4日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>java</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/SpringMVC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>SpringMVC</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>源码分析</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://alloceee.github.io/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/&title=SpringMVC全局异常处理 - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alloceee.github.io/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/&title=SpringMVC全局异常处理 - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://alloceee.github.io/2020/06/14/Java/%E5%BF%85%E5%AD%A6%E7%9A%84%E4%BC%98%E7%A7%80%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/&title=SpringMVC全局异常处理 - Hexo&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/06/21/%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/List%E9%9B%86%E5%90%88%E7%9A%84%E5%9D%91/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>List集合的坑</p>
+          <p class='content'>
+学如逆水行舟，不进则退
+
+经过几年的工作经验，我发现List有很多坑，之前公司有些实习生一不小心就踩到了，所以我打算写一篇文章总结一下，希望看到这篇文章的人能不再踩到坑，代码没bug。做个快乐...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/06/11/%E9%9D%A2%E7%BB%8F%E5%88%86%E4%BA%AB/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93-%E5%9F%BA%E7%A1%80%E7%AF%87/'>
+          <p class='title'>面试题总结-基础篇<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>基础知识JVM、JRE、JDK有什么联系与区别？JVM是java虚拟机，能够将 class 文件中的字节码指令进行识别并调用操作系统向上的 API 完成动作。JRE是java运行时环境，它主要包...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-text">SpringMVC全局异常处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DefaultHandlerExceptionResolver"><span class="toc-text">DefaultHandlerExceptionResolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SimpleMappingExceptionResolver"><span class="toc-text">SimpleMappingExceptionResolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ResponseStatusExceptionResolver"><span class="toc-text">ResponseStatusExceptionResolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExceptionHandlerExceptionResolver"><span class="toc-text">ExceptionHandlerExceptionResolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#processHandlerException"><span class="toc-text">processHandlerException()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolveException"><span class="toc-text">resolveException()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0HandlerExceptionResolver%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">实现HandlerExceptionResolver接口实现全局异常处理</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="SpringMVC全局异常处理";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='5363470125'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css", window.volantis.loadcss);
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/20

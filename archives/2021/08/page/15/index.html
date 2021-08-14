@@ -408,7 +408,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/00-%E5%87%86%E5%A4%87/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/15-%E8%99%9A%E6%8B%9FDOM/">
         2021年8月6日
       </a>
     </h2>
@@ -416,38 +416,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        前言面试分为三部分
-技术面试：问技术问题。
+        前言vdom 是 vue 和 React 的核心，先讲哪个都绕不开它。
+vdom 比较独立，使用也比较简单。
+如果面试问到 vue 和 React 和实现，免不了问 vdom：
 
-负责人面试：考察综合能力。比如：项目把控能力、项目深度、项目架构、业务等。
+vdom 是什么？为何会存在 vdom？
 
- hr 面试：侧重于性格、沟通、潜力等。
+vdom 的如何应用，核心 API 是什么
 
-
-每轮面试在一小时左右。
-每轮面试的知识点一面：
-
-主要考察基础知识。
+介绍一下 diff 算法
 
 
-页面布局
-
-CSS盒模型、DOM事件
-
-HTTP 协议、原型链
-
-面向对象、通信
-
-前端安全、算法
-
-
-二面：
-
-渲染机制
-
-JS 运行机制
-
-页面性...
+什么是 vdom什么是 vdomDOM操作是昂贵的。
+步骤一：用JS对象模拟DOM树
+步骤二：...
       
     
   </div>
@@ -463,7 +445,7 @@ JS 运行机制
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/00-%E5%87%86%E5%A4%87/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/15-%E8%99%9A%E6%8B%9FDOM/'>
             阅读全文
           </a>
         </div>
@@ -485,7 +467,7 @@ JS 运行机制
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/10-React%20Navive%E5%88%9D%E8%AF%86/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/11-02.ES6/">
         2021年8月6日
       </a>
     </h2>
@@ -493,15 +475,22 @@ JS 运行机制
   <div class='md'>
     
       
-        搭建开发环境官方文档：https://reactnative.cn/docs/getting-started.html
-安装Node、homebrew、Watchman安装 homebrew：
-1
-
-安装 watchman：
-1brew install watchman
+        Class和普通构造函数有何区别
+我们经常会用ES6中的Class来代替JS中的构造函数做开发。
 
 
-Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装此工具可以提高开发时的性能（package...
+Class 在语法上更加贴合面向对象的写法
+
+ Class 实现继承更加易读、易理解
+
+
+
+更易于写 java 等后端语言的使用
+
+
+本质还是语法糖，使用 prototype
+
+
       
     
   </div>
@@ -517,7 +506,7 @@ Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/10-React%20Navive%E5%88%9D%E8%AF%86/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/11-02.ES6/'>
             阅读全文
           </a>
         </div>
@@ -539,7 +528,7 @@ Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装�
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/09-AntD%E6%A1%86%E6%9E%B6%E7%9A%84upload%E7%BB%84%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/11-01.ES6%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/">
         2021年8月6日
       </a>
     </h2>
@@ -547,10 +536,31 @@ Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装�
   <div class='md'>
     
       
-        前言本次做后台管理系统，采用的是 AntD 框架。涉及到图片的上传，用的是AntD的 upload 组件。
-前端做文件上传这个功能，是很有技术难度的。既然框架给我们提供好了，那就直接用呗。结果用的时候，发现 upload 组件的很多bug。下面来列举几个。
-备注：本文写于2019-03-02，使用的 antd 版本是 3.13.6。
-使用 AntD 的 upload 组件做图片的上传因为需要...
+        前言ES6的主要内容
+模块化的使用和编译环境
+
+Class与JS构造函数的区别
+
+Promise的用法
+
+ES6其他常用功能
+
+
+本文来讲“模块化的使用和编译环境”。
+面试常见问题
+ES6 模块化如何使用，开发环境如何打包
+
+Class 和普通构造函数有何区别
+
+Promise 的基本使用和原理
+
+总结一下 ES6 其他常用功能
+
+
+ES6的现状
+开发环境已经普及使用
+
+浏览器环境却支持不好...
       
     
   </div>
@@ -566,7 +576,7 @@ Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/09-AntD%E6%A1%86%E6%9E%B6%E7%9A%84upload%E7%BB%84%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/11-01.ES6%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/'>
             阅读全文
           </a>
         </div>
@@ -588,7 +598,7 @@ Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装�
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/08-Ant%20Design%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/11-00.JavaScript%E9%AB%98%E7%BA%A7%E9%9D%A2%E8%AF%95%EF%BC%9A%E5%89%8D%E8%A8%80/">
         2021年8月6日
       </a>
     </h2>
@@ -596,17 +606,22 @@ Watchman则是由 Facebook 提供的监视文件系统变更的工具。安装�
   <div class='md'>
     
       
-        andt 的介绍Ant Design 是基于 React 实现，开发和服务于企业级后台产品。
-支持环境
-现代浏览器和 IE9 及以上（需要 polyfills）。
+        前言一、基础知识：
 
-支持服务端渲染。
+ES 6常用语法：class 、module、Promise等
 
-Electron
+原型高级应用：结合 jQuery 和 zepto 源码
+
+异步全面讲解：从原理到 jQuery 再到 Promise
 
 
-Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允许使用Node.js（作为后端）和Chromium（作为前端）完成桌面GUI应用程序的开发。
-很多客...
+二、框架原理：
+
+虚拟DOM：存在价值、如何使用、diff算法
+
+MVVM  vue：MVVM、vue响应式、模板解析、渲染
+
+组件化 React：组件化、JSX、vdom、setSt...
       
     
   </div>
@@ -622,7 +637,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/08-Ant%20Design%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/11-00.JavaScript%E9%AB%98%E7%BA%A7%E9%9D%A2%E8%AF%95%EF%BC%9A%E5%89%8D%E8%A8%80/'>
             阅读全文
           </a>
         </div>
@@ -644,7 +659,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/07-React%E8%B7%AF%E7%94%B1%E7%9A%84%E4%BD%BF%E7%94%A8/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/10-02.%E5%89%8D%E7%AB%AF%E9%94%99%E8%AF%AF%E7%9B%91%E6%8E%A7/">
         2021年8月6日
       </a>
     </h2>
@@ -652,12 +667,32 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
   <div class='md'>
     
       
-        React路由的使用使用React路由之前，我们需要先安装 react-router-dom这个包。比如：
-1yarn add react-router-dom
+        前言错误监控包含的内容是：
 
-代码举例：
-（1）index.html
-1234567891011121314151617&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;  &lt...
+前端错误的分类
+
+每种错误的捕获方式
+
+上报错误的基本原理
+
+
+面试时，可能有两种问法：
+
+如何监测 js 错误？（开门见山的方式）
+
+如何保证产品质量？（其实问的也是错误监控）
+
+
+前端错误的分类包括两种：
+
+即时运行错误（代码错误）
+
+资源加载错误
+
+
+每种错误的捕获方式即时运行错误的捕获方式方式1：try … catch。
+这种方式要部署在代码中。
+方式2...
       
     
   </div>
@@ -673,7 +708,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/13-React%E5%9F%BA%E7%A1%80/07-React%E8%B7%AF%E7%94%B1%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/10-02.%E5%89%8D%E7%AB%AF%E9%94%99%E8%AF%AF%E7%9B%91%E6%8E%A7/'>
             阅读全文
           </a>
         </div>
@@ -700,7 +735,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
           </a>
         
         <p class="current">
-          15 / 50
+          15 / 54
         </p>
         
           <a class="next" rel="next" href="/archives/2021/08/page/16/">
@@ -807,7 +842,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
           <li><a class="flat-box"
             title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
             id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/HTTP/" href="/categories/HTTP/"
@@ -827,17 +862,27 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
             id="categorieswebJavaScript"
-            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>JavaScript</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/Vue/" href="/categories/web/Vue/"
+            id="categorieswebVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/css/" href="/categories/web/css/"
             id="categorieswebcss"
             ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/%E9%9D%A2%E8%AF%95/" href="/categories/web/%E9%9D%A2%E8%AF%95/"
+            id="categorieswebE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -896,7 +941,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
 
 
     <div class='content'>
-      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 16.86px; color: #868686">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 18.29px; color: #7c7c7c">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 15.43px; color: #8f8f8f">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 15.43px; color: #8f8f8f">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
@@ -921,7 +966,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>370 篇</div>
+          <div>383 篇</div>
         </div>
       
 
@@ -943,7 +988,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>783.6k 字</div>
+          <div>946.3k 字</div>
         </div>
       
 
@@ -969,8 +1014,8 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 12 2021 17:24:20 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-12 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 14 2021 14:20:20 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-14 日</div>
           
         </div>
         
@@ -1020,7 +1065,7 @@ Electron（原名为Atom Shell）是GitHub开发的一个开源框架。 它允�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-14 日';
           }
         </script>
         

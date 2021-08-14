@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,zh-HK,zh-TW,default">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>Vue响应式原理 - Hexo</title>
+  
+    <meta name="keywords" content="Vue">
+  
+
+  
+    <meta name="description" content="Vue 的响应式原理是核心是通过 ES5 的保护对象的 Object.defindeProperty 中的访问器属性中的 get 和 set 方法，data 中声明的属性都被添加了访问器属性，当读取 data 中的数据时自动调用 get 方法，当修改 data 中的数据时，自动调用 set 方法，检测到数据的变化...">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Alloceee
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Twilight Rush</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="Search" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>首页</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-history fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/about"
+              
+              
+              id="about">
+              <i class='fas fa-heart fa-spin fa-fw'></i><p>关于</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/alloceee"
+              
+              
+              id="https:githubcomalloceee">
+              <i class='fas fa-paper-plane fa-fw'></i><p>github</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Vue响应式原理
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' target="_blank" href="https://gameofthrones.fandom.com/wiki/Jon_Snow" rel="nofollow noopener">
+    <img no-lazy src="https://joe-1253912574.cos.ap-shenzhen-fsi.myqcloud.com/images/IMG_1292(20200629-005627).jpg">
+    <p>Alloceee</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/web/">web</a><span class="sep"></span><a class="category-link" href="/categories/web/Vue/">Vue</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年8月14日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Vue响应式原理" data-path="/2021/08/14/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E8%BF%9B%E9%98%B6/01-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <div class="note ,quote"><p>Vue 的响应式原理是核心是通过 ES5 的保护对象的 <code>Object.defindeProperty</code> 中的访问器属性中的 get 和 set 方法，data 中声明的属性都被添加了访问器属性，当读取 data 中的数据时自动调用 get 方法，当修改 data 中的数据时，自动调用 set 方法，检测到数据的变化，会通知观察者 Wacher，观察者 Wacher自动触发重新render 当前组件（子组件不会重新渲染）,生成新的虚拟 DOM 树，Vue 框架会遍历并对比新虚拟 DOM 树和旧虚拟 DOM 树中每个节点的差别，并记录下来，最后，加载操作，将所有记录的不同点，局部修改到真实 DOM树上。</p></div>
+
+<span id="more"></span>
+
+<p><img src="https://poetries1.gitee.io/img-repo/2021/01/15.png" class="lazyload" data-srcset="https://poetries1.gitee.io/img-repo/2021/01/15.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="img"></p>
+<ul>
+<li>虚拟DOM (Virtaul DOM): 用 js 对象模拟的，保存当前视图内所有 DOM 节点对象基本描述属性和节点间关系的树结构。用 js 对象，描述每个节点，及其父子关系，形成虚拟 DOM 对象树结构。</li>
+<li>因为只要在 <code>data</code> 中声明的基本数据类型的数据，基本不存在数据不响应问题，所以重点介绍数组和对象在<code>vue</code>中的数据响应问题，vue可以检测对象属性的修改，但无法监听数组的所有变动及对象的新增和删除，只能使用数组变异方法及<code>$set</code>方法。</li>
+</ul>
+<p><img src="https://poetries1.gitee.io/img-repo/2021/01/16.png" class="lazyload" data-srcset="https://poetries1.gitee.io/img-repo/2021/01/16.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="img"></p>
+<blockquote>
+<p>可以看到，<code>arrayMethods</code> 首先继承了 <code>Array</code>，然后对数组中所有能改变数组自身的方法，如 <code>push</code>、<code>pop</code> 等这些方法进行重写。重写后的方法会先执行它们本身原有的逻辑，并对能增加数组长度的 3 个方法 <code>push</code>、<code>unshift</code>、<code>splice</code> 方法做了判断，获取到插入的值，然后把新添加的值变成一个响应式对象，并且再调用 <code>ob.dep.notify()</code> 手动触发依赖通知，这就很好地解释了用 <code>vm.items.splice</code>(<code>newLength</code>) 方法可以检测到变化</p>
+</blockquote>
+<blockquote>
+<p>总结：Vue 采用数据劫持结合发布—订阅模式的方法，通过 <code>Object.defineProperty()</code> 来劫持各个属性的 setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。</p>
+</blockquote>
+<p><img src="http://poetries1.gitee.io/img-repo/20190922/vue.jpeg" class="lazyload" data-srcset="http://poetries1.gitee.io/img-repo/20190922/vue.jpeg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="img"></p>
+<ul>
+<li><code>Observer</code> 遍历数据对象，给所有属性加上 <code>setter</code> 和 <code>getter</code>，监听数据的变化</li>
+<li><code>compile</code> 解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图</li>
+</ul>
+<blockquote>
+<p><code>Watcher</code> 订阅者是 <code>Observer</code> 和 <code>Compile</code> 之间通信的桥梁，主要做的事情</p>
+</blockquote>
+<ul>
+<li>在自身实例化时往属性订阅器 (<code>dep</code>) 里面添加自己</li>
+<li>待属性变动 <code>dep.notice()</code> 通知时，调用自身的 <code>update()</code> 方法，并触发 <code>Compile</code> 中绑定的回调</li>
+</ul>
+<p>**Object.defineProperty()**，那么它的用法是什么，以及优缺点是什么呢？</p>
+<ul>
+<li>可以检测对象中数据发生的修改</li>
+<li>对于复杂的对象，层级很深的话，是不友好的，需要经行深度监听，这样子就需要递归到底，这也是它的缺点。</li>
+<li>对于一个对象中，如果你新增加属性，删除属性，**Object.defineProperty()**是不能观测到的，那么应该如何解决呢？可以通过<code>Vue.set()</code>和<code>Vue.delete()</code>来实现。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟 Vue 中的 data 选项 </span></span><br><span class="line"><span class="keyword">let</span> data = &#123;</span><br><span class="line">    <span class="attr">msg</span>: <span class="string">&#x27;hello&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 模拟 Vue 的实例 </span></span><br><span class="line"><span class="keyword">let</span> vm = &#123;&#125;</span><br><span class="line"><span class="comment">// 数据劫持:当访问或者设置 vm 中的成员的时候，做一些干预操作</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(vm, <span class="string">&#x27;msg&#x27;</span>, &#123;</span><br><span class="line">  <span class="comment">// 可枚举(可遍历)</span></span><br><span class="line">  <span class="attr">enumerable</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 可配置(可以使用 delete 删除，可以通过 defineProperty 重新定义) </span></span><br><span class="line">  <span class="attr">configurable</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 当获取值的时候执行 </span></span><br><span class="line">  get () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;get: &#x27;</span>, data.msg)</span><br><span class="line">    <span class="keyword">return</span> data.msg </span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 当设置值的时候执行 </span></span><br><span class="line">  set (newValue) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;set: &#x27;</span>, newValue) </span><br><span class="line">    <span class="keyword">if</span> (newValue === data.msg) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    data.msg = newValue</span><br><span class="line">    <span class="comment">// 数据更改，更新 DOM 的值 </span></span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#app&#x27;</span>).textContent = data.msg</span><br><span class="line">  &#125; </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line">vm.msg = <span class="string">&#x27;Hello World&#x27;</span> </span><br><span class="line"><span class="built_in">console</span>.log(vm.msg)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Vue3.x响应式数据原理</strong></p>
+<blockquote>
+<p><code>Vue3.x</code>改用<code>Proxy</code>替代<code>Object.defineProperty</code>。因为<code>Proxy</code>可以直接监听<code>对象和数组</code>的变化，并且有多达13种拦截方法。并且作为新标准将受到浏览器厂商重点持续的性能优化。</p>
+</blockquote>
+<p><code>Proxy</code>只会代理对象的第一层，那么<code>Vue3</code>又是怎样处理这个问题的呢？</p>
+<blockquote>
+<p>判断当前<code>Reflect.get的</code>返回值是否为<code>Object</code>，如果是则再通过<code>reactive</code>方法做代理， 这样就实现了深度观测。</p>
+</blockquote>
+<p><strong>监测数组的时候可能触发多次get/set，那么如何防止触发多次呢？</strong></p>
+<blockquote>
+<p>我们可以判断<code>key</code>是否为当前被代理对象<code>target</code>自身属性，也可以判断旧值与新值是否相等，只有满足以上两个条件之一时，才有可能执行<code>trigger</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟 Vue 中的 data 选项 </span></span><br><span class="line"><span class="keyword">let</span> data = &#123;</span><br><span class="line">  <span class="attr">msg</span>: <span class="string">&#x27;hello&#x27;</span>,</span><br><span class="line">  <span class="attr">count</span>: <span class="number">0</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 模拟 Vue 实例</span></span><br><span class="line"><span class="keyword">let</span> vm = <span class="keyword">new</span> <span class="built_in">Proxy</span>(data, &#123;</span><br><span class="line">  <span class="comment">// 当访问 vm 的成员会执行</span></span><br><span class="line">  get (target, key) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;get, key: &#x27;</span>, key, target[key])</span><br><span class="line">    <span class="keyword">return</span> target[key]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 当设置 vm 的成员会执行</span></span><br><span class="line">  set (target, key, newValue) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;set, key: &#x27;</span>, key, newValue)</span><br><span class="line">    <span class="keyword">if</span> (target[key] === newValue) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    target[key] = newValue</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#app&#x27;</span>).textContent = target[key]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line">vm.msg = <span class="string">&#x27;Hello World&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(vm.msg)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Proxy 相比于 defineProperty 的优势</strong></p>
+<ul>
+<li>数组变化也能监听到</li>
+<li>不需要深度遍历监听</li>
+</ul>
+<blockquote>
+<p><code>Proxy</code> 是 <code>ES6</code> 中新增的功能，可以用来自定义对象中的操作</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler);</span><br><span class="line"><span class="comment">// `target` 代表需要添加代理的对象</span></span><br><span class="line"><span class="comment">// `handler` 用来自定义对象中的操作</span></span><br><span class="line"><span class="comment">// 可以很方便的使用 Proxy 来实现一个数据绑定和监听</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> onWatch = <span class="function">(<span class="params">obj, setBind, getLogger</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> handler = &#123;</span><br><span class="line">    <span class="function"><span class="title">get</span>(<span class="params">target, property, receiver</span>)</span> &#123;</span><br><span class="line">      getLogger(target, property)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, property, receiver);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">set</span>(<span class="params">target, property, value, receiver</span>)</span> &#123;</span><br><span class="line">      setBind(value);</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, property, value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, handler);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">let</span> value</span><br><span class="line"><span class="keyword">let</span> p = onWatch(obj, <span class="function">(<span class="params">v</span>) =&gt;</span> &#123;</span><br><span class="line">  value = v</span><br><span class="line">&#125;, <span class="function">(<span class="params">target, property</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Get &#x27;<span class="subst">$&#123;property&#125;</span>&#x27; = <span class="subst">$&#123;target[property]&#125;</span>`</span>);</span><br><span class="line">&#125;)</span><br><span class="line">p.a = <span class="number">2</span> <span class="comment">// bind `value` to `2`</span></span><br><span class="line">p.a <span class="comment">// -&gt; Get &#x27;a&#x27; = 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong></p>
+<p><img src="http://img-repo.poetries.top/images/20210408091523.png" class="lazyload" data-srcset="http://img-repo.poetries.top/images/20210408091523.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="img"></p>
+<ul>
+<li><p>Vue</p>
+<ul>
+<li>记录传入的选项，设置 <code>$data/$el</code></li>
+<li>把 <code>data</code> 的成员注入到 <code>Vue</code> 实例</li>
+<li>负责调用 <code>Observer</code> 实现数据响应式处理(数据劫持)</li>
+<li>负责调用 <code>Compiler</code> 编译指令/插值表达式等</li>
+</ul>
+</li>
+<li><p>```<br>Observer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 数据劫持</span><br><span class="line">    - 负责把 `data` 中的成员转换成 `getter/setter`</span><br><span class="line">    - 负责把多层属性转换成 `getter/setter`</span><br><span class="line">    - 如果给属性赋值为新对象，把新对象的成员设置为 `getter/setter`</span><br><span class="line">  - 添加 `Dep` 和 `Watcher` 的依赖关系</span><br><span class="line">  - 数据变化发送通知</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  Compiler</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>负责编译模板，解析指令/插值表达式</li>
+<li>负责页面的首次渲染过程</li>
+<li>当数据变化后重新渲染</li>
+</ul>
+</li>
+<li><p>```<br>Dep</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 收集依赖，添加订阅者(`watcher`)</span><br><span class="line">  - 通知所有订阅者</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  Watcher</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自身实例化的时候往<code>dep</code>对象中添加自己</li>
+<li>当数据变化<code>dep</code>通知所有的 <code>Watcher</code> 实例更新视图</li>
+</ul>
+</li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://alloceee.github.io/2021/08/14/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E8%BF%9B%E9%98%B6/01-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/>https://alloceee.github.io/2021/08/14/%E5%A4%A7%E5%89%8D%E7%AB%AF/12-Vue%E8%BF%9B%E9%98%B6/01-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <d

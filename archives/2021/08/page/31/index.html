@@ -408,7 +408,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%BB%A7%E6%89%BF/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/04-jQuery%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%E5%92%8C%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86/">
         2021年8月6日
       </a>
     </h2>
@@ -416,7 +416,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        创建对象的几种方式通过Object12345678910111213141516171819202122232425262728293031323334353637&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;    &lt;...
+        jQuery 设置宽度和高度宽度操作：
+12$(selector).height();     //不带参数表示获取高度$(selector).height(200);  //带参数表示设置高度
+
+
+宽度操作：
+12$(selector).width();     //不带参数表示获取宽度$(selector).width(200);  //带参数表示设置高宽度
+
+问题：jQuery的css...
       
     
   </div>
@@ -432,7 +439,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%BB%A7%E6%89%BF/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/04-jQuery%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%E5%92%8C%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86/'>
             阅读全文
           </a>
         </div>
@@ -454,7 +461,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/03-jQuery%E6%93%8D%E4%BD%9CDOM/">
         2021年8月6日
       </a>
     </h2>
@@ -462,35 +469,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        前言面试问题：
+        文本主要内容
+样式和类操作
 
-说一下对变量提升的理解
-
-说明this的几种不同的使用场景
-
-创建10个&lt;a&gt;标签，点击的时候弹出来对应的序号
-
-如何理解作用域
-
-实际开发中闭包的应用
+节点操作
 
 
-涉及到的知识点：
-
-执行上下文
-
-this
-
-作用域
-
-作用域链
-
-闭包
-
-
-执行上下文执行上下文主要有两种情况：
-
-全局代码： 一段&lt;script&gt;标签里，有一个全局的执行上下文。所做的事情是...
+样式操作和类操作作用：设置或获取元素的样式属性值。
+样式操作1、设置样式：
+123456789  //设置单个样式：  css(属性，值);  $(&quot;div&quot;).css(&quot;background-color&quot;,&quot;red&quot;);  //设置多个样式：  css(json);$(&quot;div...
       
     
   </div>
@@ -506,7 +493,7 @@ this
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/03-jQuery%E6%93%8D%E4%BD%9CDOM/'>
             阅读全文
           </a>
         </div>
@@ -528,7 +515,7 @@ this
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/this/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/02-jQuery%E5%8A%A8%E7%94%BB%E8%AF%A6%E8%A7%A3/">
         2021年8月6日
       </a>
     </h2>
@@ -536,18 +523,17 @@ this
   <div class='md'>
     
       
-        thisthis的作用
-this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以直接写成this.name、this.age。
-
-特别是当我们不知道一个对象是什么，或者这个对象没有名字但又很想调用它的时候，就会使用到this对象。
+        
+本文最初发表于博客园，并在GitHub上持续更新前端的系列文章。欢迎在GitHub上关注我，一起入门和进阶前端。
 
 
-举例：
+以下是正文。
 
-遍历DOM对象，绑定click事件，调用当前点击的对象的id，而不是所有对象的id。
+前言jQuery提供的一组网页中常见的动画效果，这些动画是标准的、有规律的效果；同时还提供给我们了自定义动画的功能。
+显示动画方式一：
+1$(&quot;div&quot;).show();
 
-代码：
-12345678...
+解释：无参数，表示让指定的元素直接显示出来。其实这个方法的底层就...
       
     
   </div>
@@ -563,7 +549,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/this/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/02-jQuery%E5%8A%A8%E7%94%BB%E8%AF%A6%E8%A7%A3/'>
             阅读全文
           </a>
         </div>
@@ -585,7 +571,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/call%E3%80%81apply%E3%80%81bind%E7%9A%84%E5%8C%BA%E5%88%AB/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/01-jQuery%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E9%80%89%E6%8B%A9%E5%99%A8/">
         2021年8月6日
       </a>
     </h2>
@@ -593,15 +579,24 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
   <div class='md'>
     
       
-        call()和apply()介绍这两个方法都是函数对象的方法，需要通过函数对象来调用。
-当函数调用call()和apply()时，函数都会立即执行。
-
-都可以用来改变函数的this对象的指向。
-
-第一个参数都是this要指向的对象（函数执行时，this将指向这个对象），后续参数用来传实参。
+        
+本文最初发表于博客园，并在GitHub上持续更新前端的系列文章。欢迎在GitHub上关注我，一起入门和进阶前端。
 
 
-显式绑定thisJS提供的绝大多数函数以及我们自己创建的所有函数，都可以使用call 和apply...
+以下是正文。
+
+jQuery 的介绍引入 jQuery 的原因在用 js 写代码时，会遇到一些问题：
+
+window.onload 事件有事件覆盖的问题，因此只能写一个事件。
+
+代码容错性差。
+
+浏览器兼容性问题。
+
+书写很繁琐，代码量多。
+
+代码很乱，各个页面到处都是。
+...
       
     
   </div>
@@ -617,7 +612,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/04-JavaScript%E8%BF%9B%E9%98%B6/call%E3%80%81apply%E3%80%81bind%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/06-jQuery/01-jQuery%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E9%80%89%E6%8B%A9%E5%99%A8/'>
             阅读全文
           </a>
         </div>
@@ -639,7 +634,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/03-JavaScript%E5%9F%BA%E7%A1%80/30-%E5%B8%B8%E8%A7%81%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/">
+      <a href="/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/05-%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E5%8A%9F%EF%BC%9AJavaScript%E7%89%B9%E6%95%88/04-JS%E7%9A%84%E5%B0%8F%E7%9F%A5%E8%AF%86/">
         2021年8月6日
       </a>
     </h2>
@@ -647,12 +642,9 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
   <div class='md'>
     
       
-        callback &amp;&amp; callback()的含义1callback &amp;&amp; callback()
-
-
-含义是：如果callback存在，则执行callback()函数。
-这个 callback 通常作为函数的参数使用。举例：
-123456789function foo(callback) &#123;    &#123;        // do someth...
+        方法的注释方法写完之后（注意，一定要先写完整），我们在方法的前面输入/**，然后回车，会发现，注释的格式会自动补齐。
+比如：
+123456789/** * 功能：给定元素查找他的第一个元素子节点，并返回 * @param ele * @returns &#123;Element|*|Node&#125; */function getFirstNode(ele)&#123;    var no...
       
     
   </div>
@@ -668,7 +660,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/03-JavaScript%E5%9F%BA%E7%A1%80/30-%E5%B8%B8%E8%A7%81%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/'>
+          <a class='readmore' href='/2021/08/06/%E5%A4%A7%E5%89%8D%E7%AB%AF/05-%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E5%8A%9F%EF%BC%9AJavaScript%E7%89%B9%E6%95%88/04-JS%E7%9A%84%E5%B0%8F%E7%9F%A5%E8%AF%86/'>
             阅读全文
           </a>
         </div>
@@ -695,7 +687,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
           </a>
         
         <p class="current">
-          31 / 50
+          31 / 54
         </p>
         
           <a class="next" rel="next" href="/archives/2021/08/page/32/">
@@ -802,7 +794,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
           <li><a class="flat-box"
             title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
             id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/HTTP/" href="/categories/HTTP/"
@@ -822,17 +814,27 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
             id="categorieswebJavaScript"
-            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>JavaScript</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/Vue/" href="/categories/web/Vue/"
+            id="categorieswebVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/css/" href="/categories/web/css/"
             id="categorieswebcss"
             ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/%E9%9D%A2%E8%AF%95/" href="/categories/web/%E9%9D%A2%E8%AF%95/"
+            id="categorieswebE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -891,7 +893,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
 
 
     <div class='content'>
-      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 16.86px; color: #868686">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 18.29px; color: #7c7c7c">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 15.43px; color: #8f8f8f">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 15.43px; color: #8f8f8f">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
@@ -916,7 +918,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>370 篇</div>
+          <div>383 篇</div>
         </div>
       
 
@@ -938,7 +940,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>783.6k 字</div>
+          <div>946.3k 字</div>
         </div>
       
 
@@ -964,8 +966,8 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 12 2021 17:24:25 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-12 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 14 2021 14:20:25 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-14 日</div>
           
         </div>
         
@@ -1015,7 +1017,7 @@ this可以帮我们简化很多代码。比如xiaoming.name、xiaoming.age可以
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-14 日';
           }
         </script>
         

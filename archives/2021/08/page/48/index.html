@@ -408,7 +408,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%A6%81%E7%B2%BE%E9%80%9ASQL%E4%BC%98%E5%8C%96%EF%BC%9F%E9%82%A3%E5%B0%B1%E5%AD%A6%E4%B8%80%E5%AD%A6explain%E5%90%A7/">
+      <a href="/2021/08/04/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1/Redis-%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%E3%80%81%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E3%80%81%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">
         2021年8月4日
       </a>
     </h2>
@@ -419,8 +419,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
 文章已收录Github精选，欢迎Star：https://github.com/yehongzhi
 
-前言在MySQL中，我们知道加索引能提高查询效率，这基本上算是常识了。但是有时候，我们加了索引还是觉得SQL查询效率低下，我想看看有没有使用到索引，扫描了多少行，表的加载顺序等等，怎么查看呢？其实MySQL自带的SQL分析神器Explain执行计划就能完成以上的事情！
-Explain有哪些...
+前言Redis作为目前使用最广泛的缓存，相信大家都不陌生。但是使用缓存并没有这么简单，还要考虑缓存雪崩，缓存击穿，缓存穿透的问题，什么是缓存雪崩，击穿，穿透呢，出现这些问题又怎么解决呢，接下来学习一下吧。
+缓存雪崩什么是缓存雪崩？
+当某一个时刻出现大规模的缓存失效的情况，那么就会导致大量的...
       
     
   </div>
@@ -436,7 +437,7 @@ Explain有哪些...
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%A6%81%E7%B2%BE%E9%80%9ASQL%E4%BC%98%E5%8C%96%EF%BC%9F%E9%82%A3%E5%B0%B1%E5%AD%A6%E4%B8%80%E5%AD%A6explain%E5%90%A7/'>
+          <a class='readmore' href='/2021/08/04/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1/Redis-%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%E3%80%81%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E3%80%81%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/'>
             阅读全文
           </a>
         </div>
@@ -458,114 +459,7 @@ Explain有哪些...
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%BF%85%E9%A1%BB%E4%BA%86%E8%A7%A3%E7%9A%84mysql%E4%B8%89%E7%A7%8Dlog/">
-        2021年8月4日
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-文章已收录Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
-
-前言大家有没有想过为什么MySQL数据库可以实现主从复制，实现持久化，实现回滚的呢？其实关键在于MySQL里的三种log，分别是：
-
-binlog
-redo log
-undo log
-
-这三种log也是面试经常会问的问题，下面我们一起来探讨一下吧。
-一、bi...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src=''></a>
-        
-        <time>2021-08-04</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%BF%85%E9%A1%BB%E4%BA%86%E8%A7%A3%E7%9A%84mysql%E4%B8%89%E7%A7%8Dlog/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%8F%E8%AF%BB%E3%80%81%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%E3%80%81%E5%B9%BB%E8%AF%BB/">
-        2021年8月4日
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-文章已收录Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
-
-脏读、不可重复读、幻读在现代关系型数据库中，事务机制是非常重要的，假如在多个事务并发操作数据库时，如果没有有效的机制进行避免就会导致出现脏读，不可重复读，幻读。
-脏读1、在事务A执行过程中，事务A对数据资源进行了修改，事务B读取了事务A修改后的数据。
-2、由...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src=''></a>
-        
-        <time>2021-08-04</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%8F%E8%AF%BB%E3%80%81%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%E3%80%81%E5%B9%BB%E8%AF%BB/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%EF%BC%8C%E8%83%BD%E8%AE%B2%E4%B8%80%E4%B8%8B%E5%90%97/">
+      <a href="/2021/08/04/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%97%A5%E5%BF%97%E9%9B%86%E4%B8%AD%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0ELK/">
         2021年8月4日
       </a>
     </h2>
@@ -575,11 +469,10 @@ undo log
       
         思维导图
 
-微信公众号已开启：【java技术爱好者】，还没关注的记得关注哦~
-文章已收录到我的Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
+文章已收录Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
 
-前言在很多项目，特别是互联网项目，在使用MySQL时都会采用主从复制、读写分离的架构。
-为什么要采用主从复制读写分离的架构？如何实现？有什么缺点？让我们带着这些问题开始这段学习...
+概述我们都知道，在生产环境中经常会遇到很多异常，报错信息，需要查看日志信息排查错误。现在的系统大多比较复杂，即使是一个服务背后也是一个集群的机器在运行，如果逐台机器去查看日志显然是很费力的，也不现实。
+如果能把日志全部收集到一个平台，然后像百度，谷...
       
     
   </div>
@@ -595,7 +488,7 @@ undo log
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%EF%BC%8C%E8%83%BD%E8%AE%B2%E4%B8%80%E4%B8%8B%E5%90%97/'>
+          <a class='readmore' href='/2021/08/04/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%97%A5%E5%BF%97%E9%9B%86%E4%B8%AD%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0ELK/'>
             阅读全文
           </a>
         </div>
@@ -617,7 +510,7 @@ undo log
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%8EMVVC%E6%9C%BA%E5%88%B6/">
+      <a href="/2021/08/04/%E5%88%86%E5%B8%83%E5%BC%8F/skywalking%E8%B0%83%E7%94%A8%E9%93%BE%E8%BF%BD%E8%B8%AA/">
         2021年8月4日
       </a>
     </h2>
@@ -625,11 +518,12 @@ undo log
   <div class='md'>
     
       
-        
+        思维导图
+
 文章已收录Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
 
-前言无论是上一篇文章讲的事务隔离级别，还是之前讲的undo log日志，其实都涉及到MVCC机制，那么什么是MVCC机制，它的作用是什么，下面就让我们带着问题一起学习吧。
-什么是MVCCMVCC全称是多版本并发控制 (Multi-Version Concur...
+概述**skywalking**又是一个优秀的国产开源框架，2015年由个人吴晟（华为开发者）开源 ， 2017年加入Apache孵化器。
+skywalking是分布式系统的应用程序性能监视工具，专为微服务、云原生架构和基于容器（Docker、K8...
       
     
   </div>
@@ -645,7 +539,115 @@ undo log
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/04/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%8EMVVC%E6%9C%BA%E5%88%B6/'>
+          <a class='readmore' href='/2021/08/04/%E5%88%86%E5%B8%83%E5%BC%8F/skywalking%E8%B0%83%E7%94%A8%E9%93%BE%E8%BF%BD%E8%B8%AA/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/04/%E5%88%86%E5%B8%83%E5%BC%8F/3%E5%8D%83%E5%AD%97%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82XXL-JOB%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%B9%B3%E5%8F%B0/">
+        2021年8月4日
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        思维导图
+
+文章已收录Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
+
+一、概述在平时的业务场景中，经常有一些场景需要使用定时任务，比如：
+
+时间驱动的场景：某个时间点发送优惠券，发送短信等等。
+批量处理数据：批量统计上个月的账单，统计上个月销售数据等等。
+固定频率的场景：每隔5分钟需要执行一次。
+
+所以定时任务在平时...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src=''></a>
+        
+        <time>2021-08-04</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/04/%E5%88%86%E5%B8%83%E5%BC%8F/3%E5%8D%83%E5%AD%97%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82XXL-JOB%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%B9%B3%E5%8F%B0/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/04/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AFJMM/">
+        2021年8月4日
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        思维导图
+
+文章已收录Github精选，欢迎Star：https://github.com/yehongzhi/learningSummary
+
+面试官：讲讲什么是JMM你要是整这个我可就不困了。
+
+JMM就是Java内存模型(java memory model)。因为在不同的硬件生产商和不同的操作系统下，内存的访问有一定的差异，所以会造成相同的代码运行在不同的系统上会出现各种问题。所以ja...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src=''></a>
+        
+        <time>2021-08-04</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/04/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AFJMM/'>
             阅读全文
           </a>
         </div>
@@ -672,7 +674,7 @@ undo log
           </a>
         
         <p class="current">
-          48 / 50
+          48 / 54
         </p>
         
           <a class="next" rel="next" href="/archives/2021/08/page/49/">
@@ -779,7 +781,7 @@ undo log
           <li><a class="flat-box"
             title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
             id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/HTTP/" href="/categories/HTTP/"
@@ -799,17 +801,27 @@ undo log
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/JavaScript/" href="/categories/web/JavaScript/"
             id="categorieswebJavaScript"
-            ><div class='name'>JavaScript</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>JavaScript</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/Vue/" href="/categories/web/Vue/"
+            id="categorieswebVue"
+            ><div class='name'>Vue</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/web/css/" href="/categories/web/css/"
             id="categorieswebcss"
             ><div class='name'>css</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/web/%E9%9D%A2%E8%AF%95/" href="/categories/web/%E9%9D%A2%E8%AF%95/"
+            id="categorieswebE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -868,7 +880,7 @@ undo log
 
 
     <div class='content'>
-      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 14px; color: #999">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 15.43px; color: #8f8f8f">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 14px; color: #999">搜索引擎</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/ClickHouse/" style="font-size: 14px; color: #999">ClickHouse</a> <a href="/tags/ElasticSearch/" style="font-size: 16.86px; color: #868686">ElasticSearch</a> <a href="/tags/HTTP/" style="font-size: 16.86px; color: #868686">HTTP</a> <a href="/tags/HTTP%E5%92%8CHTTPS/" style="font-size: 15.43px; color: #8f8f8f">HTTP和HTTPS</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/JavaScript/" style="font-size: 18.29px; color: #7c7c7c">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #999">Leetcode</a> <a href="/tags/MySQL/" style="font-size: 19.71px; color: #727272">MySQL</a> <a href="/tags/NIO/" style="font-size: 15.43px; color: #8f8f8f">NIO</a> <a href="/tags/Netty/" style="font-size: 15.43px; color: #8f8f8f">Netty</a> <a href="/tags/RabbitMQ/" style="font-size: 15.43px; color: #8f8f8f">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.43px; color: #8f8f8f">Redis</a> <a href="/tags/Sentinel/" style="font-size: 14px; color: #999">Sentinel</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Vue/" style="font-size: 15.43px; color: #8f8f8f">Vue</a> <a href="/tags/WebSocket/" style="font-size: 14px; color: #999">WebSocket</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/java/" style="font-size: 22.57px; color: #5f5f5f">java</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/web/" style="font-size: 15.43px; color: #8f8f8f">web</a> <a href="/tags/zookeeper/" style="font-size: 15.43px; color: #8f8f8f">zookeeper</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 14px; color: #999">分布式锁</a> <a href="/tags/%E5%A4%96%E9%94%AE/" style="font-size: 14px; color: #999">外键</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">嵌入式系统设计</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 18.29px; color: #7c7c7c">数据库</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15.43px; color: #8f8f8f">架构</a> <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 15.43px; color: #8f8f8f">消息中间件</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15.43px; color: #8f8f8f">消息队列</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 14px; color: #999">源码分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 14px; color: #999">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.71px; color: #727272">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 15.43px; color: #8f8f8f">系统</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 24px; color: #555">系统架构师</a> <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">经验总结</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 16.86px; color: #868686">计算机网络</a> <a href="/tags/%E8%AE%A4%E8%AF%81/" style="font-size: 14px; color: #999">认证</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 21.14px; color: #686868">设计模式</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" style="font-size: 14px; color: #999">配置中心</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.43px; color: #8f8f8f">面试</a>
     </div>
   </section>
 
@@ -893,7 +905,7 @@ undo log
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>370 篇</div>
+          <div>383 篇</div>
         </div>
       
 
@@ -915,7 +927,7 @@ undo log
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>783.6k 字</div>
+          <div>946.3k 字</div>
         </div>
       
 
@@ -941,8 +953,8 @@ undo log
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 12 2021 17:24:30 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-12 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 14 2021 14:20:31 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-14 日</div>
           
         </div>
         
@@ -992,7 +1004,7 @@ undo log
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-12 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-14 日';
           }
         </script>
         
